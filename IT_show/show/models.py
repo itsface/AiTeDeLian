@@ -55,3 +55,28 @@ class WorksShow(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class HeadPicture(models.Model):
+    name = models.CharField(verbose_name="描述", max_length=10, default="")
+    pic = models.ImageField(verbose_name="图片", upload_to='show/WorksShow_pic')
+
+    class Meta:
+        verbose_name = r"匿名评论头像"
+        verbose_name_plural = r"匿名评论头像"
+
+    def __str__(self):
+        return self.name
+
+
+class Comment(models.Model):
+    content = models.CharField(verbose_name="内容", max_length=100, default="")
+    head = models.ForeignKey(HeadPicture, verbose_name="头像", null=True, on_delete=models.SET_NULL)
+    createTime = models.DateTimeField(verbose_name="创建时间", auto_now_add=True)
+
+    class Meta:
+        verbose_name = r"匿名评论"
+        verbose_name_plural = r"匿名评论"
+
+    def __str__(self):
+        return self.content
