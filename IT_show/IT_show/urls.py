@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
+import django.views.static
+import IT_show.settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^(?P<path>.*)', django.views.static.serve, {'document_root': IT_show.settings.BASE_DIR }),
 ]

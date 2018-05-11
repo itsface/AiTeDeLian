@@ -133,3 +133,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL="/"
+MEDIA_ROOT=os.path.join(BASE_DIR,"image/")
+
+
+
+EMAIL_HOST = 'smtp.163.com'  # 如果是 163 改成 smtp.163.com
+EMAIL_PORT = 25  # 作用未知
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'easyblog123@163.com'  # 帐号
+EMAIL_HOST_PASSWORD = '110abc'  # 密码
+DEFAULT_FROM_EMAIL = 'IT <easyblog123@163.com>'

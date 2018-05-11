@@ -1,16 +1,43 @@
 from django.db import models
+import show.models
+class StatusInfo(models.Model):
+    code=models.IntegerField(verbose_name="状态Id", default=0,auto_created=True,primary_key=True)
+    nextStatus = models.ForeignKey('self',verbose_name="下个状态", null=True,blank=True)
+    # nextStatus = models.IntegerField(verbose_name="下个状态", null=True)
+    info=models.CharField(verbose_name="状态信息",max_length=50)
+    emailText = models.TextField(verbose_name="邮件主体", max_length=50,default="",null=True,blank=True,help_text="留空则表示该状态不发送信息")
+    class Meta:
+        verbose_name = r"状态内容维护"
+        verbose_name_plural = r"状态内容维护"
+
+    def __str__(self):
+        return str(self.info)
 
 
 class Fresher(models.Model):
-    name = models.TextField(verbose_name="姓名", max_length=10, default="")
-    sex = models.BooleanField(verbose_name="性别", default=False)
+    Gender_Choice = (
+        (False, u'男'),
+        (True, u'女')
+    )
+    Department_Choice = (
+        ('程序开发', u'程序开发'),
+        ('前端开发', u'前端开发'),
+        ('UI设计', u'UI设计'),
+        ('APP开发', u'APP开发')
+    )
+    name = models.CharField(verbose_name="姓名", max_length=10, default="")
+    sex = models.BooleanField(verbose_name="性别", default=False,choices=Gender_Choice)
     # 0False男 1True女
-    yearAndMajor = models.TextField(verbose_name="年级专业", max_length=20, default="")
+    yearAndMajor = models.CharField(verbose_name="年级专业", max_length=20, default="")
     email = models.EmailField(verbose_name="邮箱")
-    phone = models.TextField(verbose_name="手机号", max_length=15, default="")
+    phone = models.CharField(verbose_name="手机号", max_length=15, default="")
     selfIntro = models.TextField(verbose_name="自我介绍", max_length=300, default="")
-    status = models.IntegerField(verbose_name="招新状态", default=0)
-    registerTime = models.DateTimeField(verbose_name="注册时间", auto_now_add=True)
+    status = models.ForeignKey(StatusInfo,verbose_name="招新状态")
+    wantDepartment = models.ForeignKey(show.models.Department,verbose_name="意向部门", max_length=10, default="",null=True)
+    #wantDepartment=models.CharField(verbose_name="意向部门",max_length=10,default="",choices=Department_Choice)
+    #status = models.IntegerField(verbose_name="招新状态", default=0)
+    registerTime = models.DateTimeField(verbose_name="报名时间", auto_now_add=True)
+    userCode=models.CharField(verbose_name="工单号",max_length=10,default="")
 
     class Meta:
         verbose_name = r"报名者"
@@ -19,3 +46,17 @@ class Fresher(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class StatusDetails(models.Model):
+    code = models.ForeignKey(StatusInfo,verbose_name="状态Id")
+    time = models.DateTimeField(verbose_name="发生时间")
+    info = models.CharField(verbose_name="额外信息", max_length=50, default="",blank=True,null=True,help_text="额外信息选填")
+    hostID = models.ForeignKey(Fresher, verbose_name="报名者")
+    class Meta:
+        verbose_name = r"报名者状态详情"
+        verbose_name_plural = r"报名者状态详情"
+
+    def __str__(self):
+        return self.hostID.name
