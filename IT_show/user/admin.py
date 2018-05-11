@@ -49,9 +49,10 @@ def update_data_src(modeladmin, request, queryset):
     if not form:
         form = modeladmin.data_src_form(initial={'_selected_action': request.POST.getlist(admin.ACTION_CHECKBOX_NAME)})
     # return render_to_response('batch_update.html',
-    if queryset[0].status.emailText != "":
-        for fresher in queryset:
-            user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
+    sendStatuInfo(modeladmin, request, queryset)
+    # if queryset[0].status.emailText != "":
+    #     for fresher in queryset:
+    #         user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
     return render(request, 'batch_update.html',
                   {'objs': queryset, 'form': form, 'path': request.get_full_path(),
                    'action': 'update_data_src', 'title': u'将所选用户跳转至如下状态'},
@@ -60,18 +61,20 @@ def update_data_src(modeladmin, request, queryset):
 update_data_src.short_description = u'将所选用户跳转至指定状态，并发送邮件通知'
 
 def sendStatuInfo(modeladmin, request, queryset):
-    if queryset[0].status.emailText!="":
         for fresher in queryset:
-            user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
+            if  fresher.status_id!=None and fresher.status.emailText!="":
+                user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
 sendStatuInfo.short_description = "给所选用户发送当前状态通知"
 
 def statusToNext(modeladmin, request, queryset):
     for fresher in queryset:
-        fresher.status_id=models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
-        fresher.save()
-    if queryset[0].status.emailText != "":
-        for fresher in queryset:
-            user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
+        if fresher.status_id != None and models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id!=None :
+            fresher.status_id=models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
+            fresher.save()
+    sendStatuInfo(modeladmin, request, queryset)
+    # if queryset[0].status.emailText != "":
+    #     for fresher in queryset:
+    #         user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
 statusToNext.short_description = "所选用户跳转至下一状态，并发送邮件通知"
 
 def makeExcel(modeladmin, request, queryset):
