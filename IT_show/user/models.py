@@ -35,7 +35,7 @@ class Fresher(models.Model):
     email = models.EmailField(verbose_name="邮箱")
     phone = models.CharField(verbose_name="手机号", max_length=15, default="")
     selfIntro = models.TextField(verbose_name="自我介绍", max_length=300, default="")
-    status = models.ForeignKey(StatusInfo,verbose_name="招新状态")
+    status = models.ForeignKey(StatusInfo,verbose_name="招新状态",default=0,null=True,blank=True)
     wantDepartment = models.ForeignKey(show.models.Department,verbose_name="意向部门", max_length=10, default="",null=True)
     #wantDepartment=models.CharField(verbose_name="意向部门",max_length=10,default="",choices=Department_Choice)
     #status = models.IntegerField(verbose_name="招新状态", default=0)

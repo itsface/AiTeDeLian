@@ -107,9 +107,10 @@ def update_data_src(modeladmin, request, queryset):
     if not form:
         form = modeladmin.data_src_form(initial={'_selected_action': request.POST.getlist(admin.ACTION_CHECKBOX_NAME)})
     # return render_to_response('batch_update.html',
-    if queryset[0].status.emailText != "":
-        for fresher in queryset:
-            user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
+    sendStatuInfo(modeladmin, request, queryset)
+    # if queryset[0].status.emailText != "":
+    #     for fresher in queryset:
+    #         user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
     return render(request, 'batch_update.html',
                   {'objs': queryset, 'form': form, 'path': request.get_full_path(),
                    'action': 'update_data_src', 'title': u'将所选用户跳转至如下状态'},
@@ -121,8 +122,8 @@ update_data_src.short_description = u'将所选用户跳转至指定状态，并
 
 
 def sendStatuInfo(modeladmin, request, queryset):
-    if queryset[0].status.emailText != "":
-        for fresher in queryset:
+    for fresher in queryset:
+        if  fresher.status_id!=None and fresher.status.emailText!="":
             user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
 
 
@@ -131,7 +132,10 @@ sendStatuInfo.short_description = "给所选用户发送当前状态通知"
 
 def statusToNext(modeladmin, request, queryset):
     for fresher in queryset:
-        newStatusId = models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
+        try:
+            newStatusId = models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
+        except:
+            newStatusId = None
         if newStatusId:
             fresher.status_id = newStatusId
             SetNewStatusDetails(fresher.id, newStatusId)

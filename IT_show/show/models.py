@@ -2,9 +2,11 @@ from django.db import models
 from django.utils.safestring import mark_safe
 import IT_show.settings
 
+
+
 class Member(models.Model):
     name = models.CharField(verbose_name="名字", max_length=10, default="")
-    photo = models.ImageField(verbose_name="皂片", upload_to='show/member_photo')
+    photo = models.ImageField(verbose_name="皂片", upload_to='image/MemberPhoto/',default='media/default/MemberPhoto.png',)
     intro = models.TextField(verbose_name="个性签名", max_length=100, default="")
     year = models.IntegerField(verbose_name="年份", default=0)
 
@@ -17,13 +19,11 @@ class Member(models.Model):
         return self.name
 
     def image_tag(self):
-        #return u'<img width=50px src="%s%s" />' % (MEDIA_URL, self.img)
-        return mark_safe('<img width=50px src="..%s%s" />' % (IT_show.settings.MEDIA_URL,self.photo))
-
+        return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.photo))
 
 class Department(models.Model):
     name = models.CharField(verbose_name="部门名", max_length=10, default="")
-    pic = models.ImageField(verbose_name="图标", upload_to='show/department_pic')
+    pic = models.ImageField(verbose_name="图标", upload_to='image/DepartmentPicture/',default='media/default/DepartmentPicture.png', max_length=100)
     intro = models.TextField(verbose_name="部门介绍", max_length=200, default="")
 
     class Meta:
@@ -33,10 +33,13 @@ class Department(models.Model):
     def __str__(self):
         return self.name
 
+    def image_tag(self):
+        return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
+
 
 class Event(models.Model):
     name = models.CharField(verbose_name="事件名", max_length=10, default="")
-    pic = models.ImageField(verbose_name="配图", upload_to='show/department_pic')
+    pic = models.ImageField(verbose_name="配图", upload_to='image/EventPhoto/',default='media/default/EventPhoto.png',)
     content = models.TextField(verbose_name="详细内容", max_length=100, default="")
     year = models.IntegerField(verbose_name="年份", default=0)
 
@@ -48,10 +51,13 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+    def image_tag(self):
+        return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
+
 
 class WorksShow(models.Model):
     name = models.CharField(verbose_name="网站名", max_length=10, default="")
-    pic = models.ImageField(verbose_name="网站图片", upload_to='show/WorksShow_pic')
+    pic = models.ImageField(verbose_name="网站图片",upload_to='image/WorksShowPhoto/',default='media/default/WorksShowPhoto.png',)
     link = models.TextField(verbose_name="链接", default="")
 
     class Meta:
@@ -61,9 +67,12 @@ class WorksShow(models.Model):
     def __str__(self):
         return self.name
 
+    def image_tag(self):
+        return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
+
 class HeadPicture(models.Model):
     name = models.CharField(verbose_name="描述", max_length=10, default="")
-    pic = models.ImageField(verbose_name="图片", upload_to='show/WorksShow_pic')
+    pic = models.ImageField(verbose_name="图片", upload_to='image/HeadPicture/',default='media/default/HeadPicture.png', max_length=100)
 
     class Meta:
         verbose_name = r"匿名评论头像"
@@ -72,10 +81,14 @@ class HeadPicture(models.Model):
     def __str__(self):
         return self.name
 
+    def image_tag(self):
+        return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
+
+
 
 class Comment(models.Model):
     name=models.CharField(verbose_name="昵称",max_length=10,default="")
-    content = models.CharField(verbose_name="内容", max_length=100, default="")
+    content = models.TextField(verbose_name="内容", max_length=100, default="")
     head = models.ForeignKey(HeadPicture, verbose_name="头像", null=True, on_delete=models.SET_NULL)
     createTime = models.DateTimeField(verbose_name="创建时间", auto_now_add=True)
 
@@ -85,4 +98,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+    def image_tag(self):
+        return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.head.pic))
 
