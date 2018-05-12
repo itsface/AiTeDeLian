@@ -40,6 +40,9 @@ def update_data_src(modeladmin, request, queryset):
                 # case.data_src = data_src
                 case.status_id = data_src.code
                 case.save()
+                if case.status != None:
+                    newInfo = user.models.StatusDetails.objects.create(code_id=case.status.code, time=datetime.now(),
+                                                                       hostID_id=case.id)
             modeladmin.message_user(request, "%s successfully updated." % queryset.count())
             return HttpResponseRedirect(request.get_full_path())
         else:
@@ -71,6 +74,10 @@ def statusToNext(modeladmin, request, queryset):
         if fresher.status_id != None and models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id!=None :
             fresher.status_id=models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
             fresher.save()
+            if fresher.status != None:
+                newInfo = user.models.StatusDetails.objects.create(code_id=fresher.status_id, time=datetime.now(),
+                                                                   hostID_id=fresher.id)
+
     sendStatuInfo(modeladmin, request, queryset)
     # if queryset[0].status.emailText != "":
     #     for fresher in queryset:
@@ -226,15 +233,25 @@ class FresherAdmin(admin.ModelAdmin):
         _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
         data_src = forms.ModelChoiceField(user.models.StatusInfo.objects)
 
+    def save_model(self, request, obj, form, change):
+        """
+        Given a model instance save it to the database.
+        """
+        if obj.status!=None:
+            newInfo=user.models.StatusDetails.objects.create(code_id=obj.status.code,time=datetime.now(),hostID_id=obj.id)
+        obj.save()
+
 #招生状态设置
 class StatusInfoAdmin(admin.ModelAdmin):
     list_display = ('code','info', "nextStatus", "emailText")
     search_fields = ('code', 'info', "emailText","nextStatus")
     list_per_page = 30
     ordering = ('-code',)
+
     def save_model(self, request, obj, form, change):
         # 自定义操作
         obj.save()
+
 
 #新生状态详情
 class StatusDetailsAdmin(admin.ModelAdmin):

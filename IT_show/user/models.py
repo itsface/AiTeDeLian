@@ -18,13 +18,13 @@ class Fresher(models.Model):
     Gender_Choice = (
         (False, u'男'),
         (True, u'女')
-    )
-    Department_Choice = (
-        ('程序开发', u'程序开发'),
-        ('前端开发', u'前端开发'),
-        ('UI设计', u'UI设计'),
-        ('APP开发', u'APP开发')
-    )
+     )
+    # Department_Choice = (
+    #     ('程序开发', u'程序开发'),
+    #     ('前端开发', u'前端开发'),
+    #     ('UI设计', u'UI设计'),
+    #     ('APP开发', u'APP开发')
+    # )
     name = models.CharField(verbose_name="姓名", max_length=10, default="")
     sex = models.BooleanField(verbose_name="性别", default=False,choices=Gender_Choice)
     # 0False男 1True女
@@ -32,7 +32,7 @@ class Fresher(models.Model):
     email = models.EmailField(verbose_name="邮箱")
     phone = models.CharField(verbose_name="手机号", max_length=15, default="")
     selfIntro = models.TextField(verbose_name="自我介绍", max_length=300, default="")
-    status = models.ForeignKey(StatusInfo,verbose_name="招新状态",default=0,null=True,blank=True)
+    status = models.ForeignKey(StatusInfo,verbose_name="招新状态",default=0,null=True,blank=True,on_delete=models.SET_NULL)
     wantDepartment = models.ForeignKey(show.models.Department,verbose_name="意向部门", max_length=10, default="",null=True)
     #wantDepartment=models.CharField(verbose_name="意向部门",max_length=10,default="",choices=Department_Choice)
     #status = models.IntegerField(verbose_name="招新状态", default=0)
@@ -46,9 +46,6 @@ class Fresher(models.Model):
 
     def __str__(self):
         return self.name
-
-
-
 
 
 class StatusDetails(models.Model):
