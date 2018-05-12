@@ -15,6 +15,8 @@ from user import models
 from xlwt import *
 from django import forms
 from django.views.decorators.csrf import csrf_exempt
+import logging
+
 
 # Register your models here.
 # class CaseAdmin(admin.ModelAdmin):
@@ -25,7 +27,62 @@ from django.views.decorators.csrf import csrf_exempt
 #         _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
 #         data_src = forms.ModelChoiceField(user.models.Fresher.objects)
 
-#action函数
+# action函数
+
+def SetNewStatusDetails(userId, statuId : -1):
+    try:
+        user = Fresher.objects.get(id=userId)
+    except:
+        return False
+
+    if statuId == -1:
+        try:
+            statuId = user.status.nextStatus_id
+        except:
+            return False
+    try:
+        statu = StatusInfo.objects.get(code=statuId)
+    except:
+        return False
+
+    code = 1
+    tailDetail = None
+    try:
+        tailDetail = StatusDetails.objects.get(hostID=user, isTail=True)
+        code = tailDetail.code + 1
+        logging.debug(code)
+    except:
+        pass
+
+    try:
+        newDetail = StatusDetails.objects.create(code=code, hostID=user, statu=statu)
+        try:
+            tailDetail.isTail = False
+            tailDetail.save()
+        except:
+            pass
+        newDetail.save()
+    except:
+        return False
+    logging.debug("新链生成成功")
+    return True
+
+
+def DeleteStatusDetails(userId):
+    try:
+        tailDetail = StatusDetails.objects.get(hostID__id=userId, isTail=True)
+        code = tailDetail.code - 1
+        # logging.debug(code)
+        if code == 0:
+            return False
+        tailDetail.delete()
+        tailDetail = StatusDetails.objects.get(hostID__id=userId, code=code)
+        tailDetail.isTail = True
+        tailDetail.save()
+    except:
+        return False
+    return True
+
 
 def update_data_src(modeladmin, request, queryset):
     form = None
@@ -39,6 +96,7 @@ def update_data_src(modeladmin, request, queryset):
             for case in queryset:
                 # case.data_src = data_src
                 case.status_id = data_src.code
+                SetNewStatusDetails(case.id, data_src.code)
                 case.save()
             modeladmin.message_user(request, "%s successfully updated." % queryset.count())
             return HttpResponseRedirect(request.get_full_path())
@@ -57,22 +115,48 @@ def update_data_src(modeladmin, request, queryset):
                    'action': 'update_data_src', 'title': u'将所选用户跳转至如下状态'},
                   # context_instance=RequestContext(request)
                   )
+
+
 update_data_src.short_description = u'将所选用户跳转至指定状态，并发送邮件通知'
 
-def sendStatuInfo(modeladmin, request, queryset):
-    if queryset[0].status.emailText!="":
-        for fresher in queryset:
-            user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
-sendStatuInfo.short_description = "给所选用户发送当前状态通知"
 
-def statusToNext(modeladmin, request, queryset):
-    for fresher in queryset:
-        fresher.status_id=models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
-        fresher.save()
+def sendStatuInfo(modeladmin, request, queryset):
     if queryset[0].status.emailText != "":
         for fresher in queryset:
             user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
+
+
+sendStatuInfo.short_description = "给所选用户发送当前状态通知"
+
+
+def statusToNext(modeladmin, request, queryset):
+    for fresher in queryset:
+        newStatusId = models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
+        if newStatusId:
+            fresher.status_id = newStatusId
+            SetNewStatusDetails(fresher.id, newStatusId)
+            fresher.save()
+    if queryset[0].status.emailText != "":
+        for fresher in queryset:
+            user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
+
+
 statusToNext.short_description = "所选用户跳转至下一状态，并发送邮件通知"
+
+
+def statusGoBack(modeladmin, request, queryset):
+    for fresher in queryset:
+            DeleteStatusDetails(fresher.id)
+            try:
+                nowDetailTail = StatusDetails.objects.get(hostID=fresher, isTail=True)
+                fresher.status_id = nowDetailTail.statu.code
+                fresher.save()
+            except:
+                pass
+
+
+statusGoBack.short_description = "所选用户撤销上一个改变状态的操作"
+
 
 def makeExcel(modeladmin, request, queryset):
     # 创建工作簿
@@ -122,11 +206,14 @@ def makeExcel(modeladmin, request, queryset):
     response['Content-Disposition'] = 'attachment; filename=' + fileName  # test.xls'
     response.write(sio.getvalue())
     return response
+
+
 makeExcel.short_description = "导出所选用户信息为excel"
 
-#过滤器
 
-#新生报名日期
+# 过滤器
+
+# 新生报名日期
 class UserFilterPubtime(admin.SimpleListFilter):
     title = u'注册时间'
     parameter_name = 'registerTime'
@@ -156,7 +243,8 @@ class UserFilterPubtime(admin.SimpleListFilter):
         elif self.value() == '4':
             return queryset.exclude(registerTime__year=datetime.now().year)
 
-#新生当前状态
+
+# 新生当前状态
 class UserFilterStatus(admin.SimpleListFilter):
     title = u'招新状态'
     parameter_name = 'status'
@@ -174,7 +262,8 @@ class UserFilterStatus(admin.SimpleListFilter):
         if self.value() != None:
             return queryset.filter(status=self.value())
 
-#新生性别
+
+# 新生性别
 class UserFilterSex(admin.SimpleListFilter):
     title = u'性别'
     parameter_name = 'sex'
@@ -191,7 +280,8 @@ class UserFilterSex(admin.SimpleListFilter):
         elif self.value() == '1':
             return queryset.filter(sex=1)
 
-#新生部门
+
+# 新生部门
 class UserFilterDepartment(admin.SimpleListFilter):
     title = u'部门'
     parameter_name = 'wantDepartment'
@@ -208,35 +298,42 @@ class UserFilterDepartment(admin.SimpleListFilter):
             return queryset.filter(wantDepartment=self.value())
 
 
-
-#招生管理设置
+# 招生管理设置
 class FresherAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'sex', 'yearAndMajor', "wantDepartment", 'email', 'phone', 'status', 'registerTime')
     search_fields = ('name', 'email', 'phone', 'yearAndMajor', "wantDepartment")
     list_per_page = 30
     ordering = ('-registerTime',)
-    list_filter = (UserFilterSex, UserFilterStatus,UserFilterDepartment,UserFilterPubtime,)
-    actions = [sendStatuInfo, update_data_src, statusToNext, makeExcel]
+    list_filter = (UserFilterSex, UserFilterStatus, UserFilterDepartment, UserFilterPubtime,)
+    actions = [sendStatuInfo, update_data_src, statusToNext, makeExcel,statusGoBack]
 
     class data_src_form(forms.forms.Form):
         _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
         data_src = forms.ModelChoiceField(user.models.StatusInfo.objects)
 
-#招生状态设置
+
+# 招生状态设置
 class StatusInfoAdmin(admin.ModelAdmin):
-    list_display = ('code','info', "nextStatus", "emailText")
-    search_fields = ('code', 'info', "emailText","nextStatus")
+    list_display = ('code', 'info', "nextStatus", "emailText")
+    search_fields = ('code', 'info', "emailText", "nextStatus")
+    fieldsets = (
+        ["", {
+            'fields': ('code', 'info', "emailText", "nextStatus"),
+        }],
+    )
     list_per_page = 30
-    ordering = ('-code',)
+    # ordering = ('-code',)
+
     def save_model(self, request, obj, form, change):
         # 自定义操作
         obj.save()
 
-#新生状态详情
+
+# 新生状态详情
 class StatusDetailsAdmin(admin.ModelAdmin):
-    list_display = ("hostID", 'code', 'time')
-    search_fields = ('code', 'info', "hostID")
+    list_display = ('hostID', 'code', 'statu', 'time')
+    search_fields = ('hostID__name',)
     list_per_page = 30
     ordering = ('-time',)
 
