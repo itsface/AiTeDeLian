@@ -22,12 +22,6 @@ class Fresher(models.Model):
         (False, u'男'),
         (True, u'女')
      )
-    # Department_Choice = (
-    #     ('程序开发', u'程序开发'),
-    #     ('前端开发', u'前端开发'),
-    #     ('UI设计', u'UI设计'),
-    #     ('APP开发', u'APP开发')
-    # )
     name = models.CharField(verbose_name="姓名", max_length=10, default="")
     sex = models.BooleanField(verbose_name="性别", default=False,choices=Gender_Choice)
     # 0False男 1True女

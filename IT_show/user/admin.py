@@ -69,7 +69,7 @@ def SetNewStatusDetails(userId, statuId : -1):
 
 
 def DeleteStatusDetails(userId):
-    try:
+    #try:
         tailDetail = StatusDetails.objects.get(hostID__id=userId, isTail=True)
         code = tailDetail.code - 1
         # logging.debug(code)
@@ -79,9 +79,9 @@ def DeleteStatusDetails(userId):
         tailDetail = StatusDetails.objects.get(hostID__id=userId, code=code)
         tailDetail.isTail = True
         tailDetail.save()
-    except:
-        return False
-    return True
+    #except:
+        #return False
+        return True
 
 
 def update_data_src(modeladmin, request, queryset):
@@ -96,11 +96,14 @@ def update_data_src(modeladmin, request, queryset):
             for case in queryset:
                 # case.data_src = data_src
                 case.status_id = data_src.code
-                SetNewStatusDetails(case.id, data_src.code)
+                #SetNewStatusDetails(case.id, data_src.code)
                 case.save()
                 if case.status != None:
-                    newInfo = user.models.StatusDetails.objects.create(code_id=case.status.code, time=datetime.now(),
-                                                                       hostID_id=case.id)
+                    oldDetail = models.StatusDetails.objects.get(hostID=case.id, isTail=1)
+                    oldDetail.isTail = False
+                    oldDetail.save()
+                    newInfo = user.models.StatusDetails.objects.create(statu_id=case.status.code, time=datetime.now(),
+                                                                       hostID_id=case.id,code=user.models.StatusDetails.objects.filter(hostID=case.id).count()+1)
             modeladmin.message_user(request, "%s successfully updated." % queryset.count())
             return HttpResponseRedirect(request.get_full_path())
         else:
@@ -141,11 +144,14 @@ def statusToNext(modeladmin, request, queryset):
             newStatusId = None
         if newStatusId:
             fresher.status_id = newStatusId
-            SetNewStatusDetails(fresher.id, newStatusId)
+            #SetNewStatusDetails(fresher.id, newStatusId)
             fresher.save()
+            oldDetail=models.StatusDetails.objects.get(hostID=fresher.id,isTail=1)
+            oldDetail.isTail = False
+            oldDetail.save()
             if fresher.status != None:
-                newInfo = user.models.StatusDetails.objects.create(code_id=fresher.status_id, time=datetime.now(),
-                                                                   hostID_id=fresher.id)
+                newInfo = user.models.StatusDetails.objects.create(statu_id=fresher.status_id, time=datetime.now(),
+                                                                   hostID_id=fresher.id,code=user.models.StatusDetails.objects.filter(hostID=fresher.id).count()+1)
 
     sendStatuInfo(modeladmin, request, queryset)
 statusToNext.short_description = "所选用户跳转至下一状态，并发送邮件通知"
@@ -323,8 +329,11 @@ class FresherAdmin(admin.ModelAdmin):
         """
         Given a model instance save it to the database.
         """
+        oldDetail = models.StatusDetails.objects.get(hostID=obj.id, isTail=1)
+        oldDetail.isTail = False
+        oldDetail.save()
         if obj.status!=None:
-            newInfo=user.models.StatusDetails.objects.create(code_id=obj.status.code,time=datetime.now(),hostID_id=obj.id)
+            newInfo=user.models.StatusDetails.objects.create(statu_id=obj.status.code,time=datetime.now(),hostID_id=obj.id,code=user.models.StatusDetails.objects.filter(hostID=obj.id).count()+1)
         obj.save()
 
 #招生状态设置
@@ -346,7 +355,7 @@ class StatusInfoAdmin(admin.ModelAdmin):
 
 # 新生状态详情
 class StatusDetailsAdmin(admin.ModelAdmin):
-    list_display = ('hostID', 'code', 'statu', 'time')
+    list_display = ('hostID',  'statu',"info",'code', 'time')
     search_fields = ('hostID__name',)
     list_per_page = 30
     ordering = ('-time',)
