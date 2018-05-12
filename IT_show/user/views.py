@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail, BadHeaderError
 # Create your views here.
 
+
 def sendEmail(name, code, mail,text):
         try:
             send_mail(
