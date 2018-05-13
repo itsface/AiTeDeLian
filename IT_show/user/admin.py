@@ -67,6 +67,15 @@ def SetNewStatusDetails(userId, statuId : -1):
     logging.debug("新链生成成功")
     return True
 
+def setNewStatues(userId):
+    try:
+        oldDetail = models.StatusDetails.objects.get(hostID=userId, isTail=1)
+    except:
+        oldDetail = None
+    if oldDetail != None:
+        oldDetail.isTail = False
+        oldDetail.save()
+
 
 def DeleteStatusDetails(userId):
     #try:
@@ -99,9 +108,14 @@ def update_data_src(modeladmin, request, queryset):
                 #SetNewStatusDetails(case.id, data_src.code)
                 case.save()
                 if case.status != None:
-                    oldDetail = models.StatusDetails.objects.get(hostID=case.id, isTail=1)
-                    oldDetail.isTail = False
-                    oldDetail.save()
+                    setNewStatues(case.id)
+                    # try:
+                    #     oldDetail = models.StatusDetails.objects.get(hostID=case.id, isTail=1)
+                    # except:
+                    #     oldDetail = None
+                    # if oldDetail != None:
+                    #     oldDetail.isTail = False
+                    #     oldDetail.save()
                     newInfo = user.models.StatusDetails.objects.create(statu_id=case.status.code, time=datetime.now(),
                                                                        hostID_id=case.id,code=user.models.StatusDetails.objects.filter(hostID=case.id).count()+1)
             modeladmin.message_user(request, "%s successfully updated." % queryset.count())
@@ -146,9 +160,14 @@ def statusToNext(modeladmin, request, queryset):
             fresher.status_id = newStatusId
             #SetNewStatusDetails(fresher.id, newStatusId)
             fresher.save()
-            oldDetail=models.StatusDetails.objects.get(hostID=fresher.id,isTail=1)
-            oldDetail.isTail = False
-            oldDetail.save()
+            setNewStatues(fresher.id)
+            # try:
+            #     oldDetail = models.StatusDetails.objects.get(hostID=fresher.id, isTail=1)
+            # except:
+            #     oldDetail = None
+            # if oldDetail !=None:
+            #     oldDetail.isTail = False
+            #     oldDetail.save()
             if fresher.status != None:
                 newInfo = user.models.StatusDetails.objects.create(statu_id=fresher.status_id, time=datetime.now(),
                                                                    hostID_id=fresher.id,code=user.models.StatusDetails.objects.filter(hostID=fresher.id).count()+1)
@@ -193,12 +212,12 @@ def makeExcel(modeladmin, request, queryset):
         # data_content = obj.content
         # dada_source = obj.source
         w.write(excel_row, 0, obj.name)
-        w.write(excel_row, 1, obj.sex)
+        w.write(excel_row, 1, "女" if obj.sex else "男")
         w.write(excel_row, 2, obj.yearAndMajor)
         w.write(excel_row, 3, obj.email)
         w.write(excel_row, 4, obj.phone)
         w.write(excel_row, 5, obj.selfIntro)
-        w.write(excel_row, 6, str(obj.registerTime))
+        w.write(excel_row, 6, str(obj.registerTime.strftime("%Y-%m-%d %H:%I:%S")))
         w.write(excel_row, 7, obj.userCode)
         excel_row += 1
     # 检测文件是够存在
@@ -329,12 +348,18 @@ class FresherAdmin(admin.ModelAdmin):
         """
         Given a model instance save it to the database.
         """
-        oldDetail = models.StatusDetails.objects.get(hostID=obj.id, isTail=1)
-        oldDetail.isTail = False
-        oldDetail.save()
+        setNewStatues(obj.id)
+        # try:
+        #     oldDetail = models.StatusDetails.objects.get(hostID=obj.id, isTail=1)
+        # except :
+        #     oldDetail=None
+        # if oldDetail !=None:
+        #     oldDetail.isTail = False
+        #     oldDetail.save()
+        obj.save()
         if obj.status!=None:
             newInfo=user.models.StatusDetails.objects.create(statu_id=obj.status.code,time=datetime.now(),hostID_id=obj.id,code=user.models.StatusDetails.objects.filter(hostID=obj.id).count()+1)
-        obj.save()
+
 
 #招生状态设置
 class StatusInfoAdmin(admin.ModelAdmin):
