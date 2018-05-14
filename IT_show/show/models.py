@@ -3,24 +3,6 @@ from django.utils.safestring import mark_safe
 import IT_show.settings
 
 
-
-class Member(models.Model):
-    name = models.CharField(verbose_name="名字", max_length=10, default="")
-    photo = models.ImageField(verbose_name="皂片", upload_to='image/MemberPhoto/',default='media/default/MemberPhoto.png',)
-    intro = models.TextField(verbose_name="个性签名", max_length=100, default="")
-    year = models.IntegerField(verbose_name="年份", default=0)
-
-    class Meta:
-        verbose_name = r"成员信息"
-        verbose_name_plural = r"成员信息"
-        get_latest_by = "year"
-
-    def __str__(self):
-        return self.name
-
-    def image_tag(self):
-        return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.photo))
-
 class Department(models.Model):
     name = models.CharField(verbose_name="部门名", max_length=10, default="")
     pic = models.ImageField(verbose_name="图标", upload_to='image/DepartmentPicture/',default='media/default/DepartmentPicture.png', max_length=100)
@@ -35,6 +17,31 @@ class Department(models.Model):
 
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
+
+class Member(models.Model):
+    Gender_Choice = (
+        (False, u'男'),
+        (True, u'女')
+    )
+    sex = models.BooleanField(verbose_name="性别", default=False, choices=Gender_Choice,blank=True)
+    name = models.CharField(verbose_name="名字", max_length=10, default="")
+    photo = models.ImageField(verbose_name="皂片", upload_to='image/MemberPhoto/',default='media/default/MemberPhoto.png',)
+    intro = models.TextField(verbose_name="个性签名", max_length=100, default="")
+    year = models.IntegerField(verbose_name="年份", default=0)
+    department=models.ForeignKey(Department,verbose_name="所属部门", max_length=10, default="",null=True)
+
+    class Meta:
+        verbose_name = r"成员信息"
+        verbose_name_plural = r"成员信息"
+        get_latest_by = "year"
+
+    def __str__(self):
+        return self.name
+
+    def image_tag(self):
+        return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.photo))
+
+
 
 
 class Event(models.Model):

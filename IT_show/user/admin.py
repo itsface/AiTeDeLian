@@ -203,6 +203,7 @@ def makeExcel(modeladmin, request, queryset):
     w.write(0, 5, u"自我介绍")
     w.write(0, 6, u"注册时间")
     w.write(0, 7, u"工单号")
+    w.write(0,8,u"意向部门")
     # 写入内容
     excel_row = 1
     for obj in queryset:
@@ -219,6 +220,7 @@ def makeExcel(modeladmin, request, queryset):
         w.write(excel_row, 5, obj.selfIntro)
         w.write(excel_row, 6, str(obj.registerTime.strftime("%Y-%m-%d %H:%I:%S")))
         w.write(excel_row, 7, obj.userCode)
+        w.write(excel_row, 8, str(obj.wantDepartment))
         excel_row += 1
     # 检测文件是够存在
     # 方框中代码是保存本地文件使用，如不需要请删除该代码
@@ -384,6 +386,18 @@ class StatusDetailsAdmin(admin.ModelAdmin):
     search_fields = ('hostID__name',)
     list_per_page = 30
     ordering = ('-time',)
+
+    def has_add_permission(self, request):
+        """ 取消后台添加附件功能 """
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        """ 取消后台删除附件功能 """
+        return False
+
+    def save_model(self, request, obj, form, change):
+        """ 取消后台编辑附件功能 """
+        return False
 
 
 admin.site.register(Fresher, FresherAdmin)
