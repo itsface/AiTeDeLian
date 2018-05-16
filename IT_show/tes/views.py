@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def api_comment_submit_test(request):
+    return render(request, 'postTest.html')
