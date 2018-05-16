@@ -92,8 +92,8 @@ class HeadPicture(models.Model):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
 
 
-
 class Comment(models.Model):
+    code = models.IntegerField(verbose_name="这是第几个创建的评论")
     name=models.CharField(verbose_name="昵称",max_length=10,default="")
     content = models.TextField(verbose_name="内容", max_length=100, default="")
     head = models.ForeignKey(HeadPicture, verbose_name="头像", null=True, on_delete=models.SET_NULL)
@@ -102,6 +102,7 @@ class Comment(models.Model):
     class Meta:
         verbose_name = r"评论"
         verbose_name_plural = r"评论"
+
 
     def __str__(self):
         return self.content

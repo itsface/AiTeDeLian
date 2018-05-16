@@ -143,8 +143,8 @@ class WorksShowAdmin(admin.ModelAdmin):
     #list_filter = ("year")
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name',"image_tag",'content',"createTime")
-    search_fields = ( 'name','content')
+    list_display = ('code',"image_tag",'content',"createTime")
+    search_fields = ( 'code','content')
     list_per_page = 30
 
 class HeadPictureAdmin(admin.ModelAdmin):
