@@ -26,6 +26,7 @@ def api_comment_get(request):
         i = 0
         for c in comments:
             i = i + 1
+
             back[str(i)] = {
                 "head": c.head.pic.url,
                 "content": c.content,
@@ -34,6 +35,7 @@ def api_comment_get(request):
             }
     except:
         back["success"] = False
+    return HttpResponse(json.dumps(back), content_type="application/json")
     return HttpResponse(json.dumps(back))
 
 
@@ -80,6 +82,7 @@ def api_comment_submit(request):
         c.save()
     except:
         back["success"] = False
+    return HttpResponse(json.dumps(back), content_type="application/json")
     return HttpResponse(json.dumps(back))
 
 
