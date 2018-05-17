@@ -19,7 +19,6 @@ import django.views.static
 import IT_show.settings
 
 urlpatterns = [
-    url(r'^test/', include("tes.urls")),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('base.urls')),
     url(r'^test/', include('tes.urls')),

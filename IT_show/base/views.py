@@ -36,7 +36,7 @@ def api_comment_get(request):
     except:
         back["success"] = False
     return HttpResponse(json.dumps(back), content_type="application/json")
-    return HttpResponse(json.dumps(back))
+    # return HttpResponse(json.dumps(back))
 
 
 def api_comment_get2(request):
@@ -64,7 +64,7 @@ def api_comment_get2(request):
             }]
     except:
         pass
-    return HttpResponse(json.dumps(back))
+    return HttpResponse(json.dumps(back), content_type="application/json")
 
 
 def api_comment_submit(request):
@@ -83,7 +83,7 @@ def api_comment_submit(request):
     except:
         back["success"] = False
     return HttpResponse(json.dumps(back), content_type="application/json")
-    return HttpResponse(json.dumps(back))
+    # return HttpResponse(json.dumps(back))
 
 
 def api_status_get(request):
@@ -101,4 +101,4 @@ def api_status_get(request):
             }]
     except:
         pass
-    return HttpResponse(json.dumps(back))
+    return HttpResponse(json.dumps(back), content_type="application/json")
