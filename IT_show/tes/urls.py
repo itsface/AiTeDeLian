@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """IT_show URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -19,13 +19,10 @@ from django.contrib import admin
 import django.views.static
 import IT_show.settings
 from . import views
-urlpatterns = [
-    url(r'^page1/', views.test),
-=======
 from django.conf.urls import url
 from .views import *
-
 urlpatterns = [
+    url(r'^page1/', views.test),
     url(r'^comment/submit$', api_comment_submit_test, name='api_comment_submit_test'),
->>>>>>> 93b57445b6ff73c03413a39b38c83a32527d01e9
+
 ]

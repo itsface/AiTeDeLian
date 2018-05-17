@@ -93,9 +93,10 @@ class HeadPicture(models.Model):
 
 
 class Comment(models.Model):
-    code = models.IntegerField(verbose_name="这是第几个创建的评论")
+    code = models.IntegerField(verbose_name="这是第几个创建的评论",default=0)
     name=models.CharField(verbose_name="昵称",max_length=10,default="")
     content = models.TextField(verbose_name="内容", max_length=100, default="")
+    reply=models.TextField(verbose_name="回复",max_length=200,default=None,null=True,blank=True)
     head = models.ForeignKey(HeadPicture, verbose_name="头像", null=True, on_delete=models.SET_NULL)
     createTime = models.DateTimeField(verbose_name="创建时间", auto_now_add=True)
 

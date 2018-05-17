@@ -1,5 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from random import Random
 from django.http import HttpResponse
 from django.core.mail import send_mail, BadHeaderError
@@ -10,9 +9,8 @@ from django.views.decorators.cache import cache_page
 def test(request):
     a=(10^10)*(10^10%13)*7%6
     return render(request,"test.html")
-=======
 
 
 def api_comment_submit_test(request):
     return render(request, 'postTest.html')
->>>>>>> 93b57445b6ff73c03413a39b38c83a32527d01e9
+
