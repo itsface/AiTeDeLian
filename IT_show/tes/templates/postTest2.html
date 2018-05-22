@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/api/sign/submit" method="POST">
+        {% csrf_token %}
+        name <input type="text" name="name"> <br>
+        sex <input type="checkbox" name="sex" value="True" />女
+<input type="checkbox" name="sex" value="False" /> 男<br>
+        yearAndMajor <input type="text" name="yearAndMajor"> <br>
+        email <input type="email" name="email"> <br>
+        phone <input type="text" name="phone"> <br>
+        selfIntro <input type="text" name="selfIntro"> <br>
+        wantDepartment <input type="number" name="wantDepartment" list="aaa">
+        <datalist id="aaa">
+            <option value="1">第一个部门</option>
+            <option value="2">第二个部门</option>
+        </datalist>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

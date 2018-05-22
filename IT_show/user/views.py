@@ -11,7 +11,7 @@ def sendEmail(name, code, mail,text):
                 '爱特工作室',
                 '' + name + '同学,你好！\n'
                             +text+
-                            '\n你的工单号为:' + code+'\n',
+                            '\n你的个人ID为:' + code+'\n',
                 'easyblog123@163.com',
                 [mail],
                 fail_silently=False

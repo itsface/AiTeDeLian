@@ -14,3 +14,5 @@ def test(request):
 def api_comment_submit_test(request):
     return render(request, 'postTest.html')
 
+def api_sign_submit_test(request):
+    return render(request, 'postTest2.html')
