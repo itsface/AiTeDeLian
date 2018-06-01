@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'django_crontab',
     'tes',
     'base',
     'show',
@@ -141,7 +141,21 @@ MEDIA_URL = "/image/"
 MEDIA_ROOT=os.path.join(BASE_DIR,"image/")
 
 
+#定时任务
+CRONJOBS = [
+    ('00 06 * * *', 'django.core.management.call_command', ['refreshCache'],{},'>> /Logs/run.log'),
+]
+#缓存
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': [
+            '127.0.0.1:11211',
+        ]
+    }
+}
 
+#邮件配置
 EMAIL_HOST = 'smtp.163.com'  # 如果是 163 改成 smtp.163.com
 EMAIL_PORT = 25  # 作用未知
 EMAIL_USE_TLS = True

@@ -22,7 +22,8 @@ from . import views
 from django.conf.urls import url
 from .views import *
 urlpatterns = [
-    url(r'^page1/', views.test),
+    url(r'^page1/(?P<slug>.+)$', simple_cache_page(60 * 60 * 24)(views.test), name='page1'),
+    url(r'^page2/(?P<slug>.+)$', simple_cache_page(60 * 60 * 24)(views.test2), name='page2'),
     url(r'^comment/submit$', api_comment_submit_test, name='api_comment_submit_test'),
     url(r'^sign/submit$', api_sign_submit_test, name='api_sign_submit_test'),
 
