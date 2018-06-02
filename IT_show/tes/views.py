@@ -8,7 +8,7 @@ from django.core.cache import cache
 import json
 
 #页面缓存装饰器
-def simple_cache_page(cache_timeout):
+def simple_cache_page(keyName,cache_timeout):
     """
     Decorator for views that tries getting the page from the cache and
     populates the cache if the page isn't in the cache yet.
@@ -30,10 +30,13 @@ def simple_cache_page(cache_timeout):
     return _dec
 
 #这里设置的是 60秒 * 10 ,10分钟
-@simple_cache_page(60 * 10)
+@simple_cache_page(keyName="test",cache_timeout=60 * 10)
 def test(request):
     return render(request, "test.html")
 
+def test2(request):
+    cache.set("test", None,0*0)
+    return render(request, "test.html")
 
 def setCache():
     from django.core.cache import cache
