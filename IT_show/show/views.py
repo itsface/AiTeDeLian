@@ -39,4 +39,20 @@ class tasksThread(threading.Thread):
 
 
 def index(request):
-    return render(request, 'home.html')
+    return render(request, 'home(pre).html')
+
+
+def workshow(request):
+    return render(request, 'workshow.html')
+
+
+def member(request):
+    return render(request, 'member.html')
+
+
+def department(request):
+    return render(request, 'department.html')
+
+
+def big_event(request):
+    return render(request, 'bigevent.html')

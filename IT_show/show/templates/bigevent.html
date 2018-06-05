@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+	<meta charset="UTF-8">
+	<title>爱特大事件</title>
+	<link rel="stylesheet" href="{% static  "css/scrollbar.css" %}">
+	
+	<link rel="stylesheet" href="{% static  "css/bigevent.css" %}">
+{% endblock %}
+
+{% block content %}
+		<h1>爱特大事件</h1>
+		<div class="line"></div>
+		
+		<div class="background"><img src="{% static  "images/qiu.png" %}" alt=""></div>
+		<!-- <div class="block_line"></div>
+		<div class="event">
+			<div class="event_clock"></div>
+			<div class="event_clock"></div>
+			<div class="event_clock"></div>
+			<div class="event_clock"></div>
+			<div class="event_clock"></div>
+		</div> -->
+		<!-- <span class="block_bottom"></span> -->
+		<div class="plates">
+		
+				<div class="plate" id="">
+					<div class="board">2014
+					</div>
+					<div class="pole"></div>
+				</div>
+				<div class="plate" id="">
+					<div class="board">2015</div>
+					<div class="pole"></div>
+				</div>
+				<div class="plate" id="">
+					<div class="board">2016</div>
+					<div class="pole"></div>
+				</div>
+				<div class="plate" id="">
+					<div class="board">2017</div>
+					<div class="pole"></div>
+				</div>
+				<div class="plate" id="">
+					<div class="board">2018</div>
+					<div class="pole"></div>
+				</div>
+		
+		
+		</div>
+		<div class="ball"><img src="{% static  "images/orangeball.png" %}" alt=""></div>
+		<div class="eventwrap">
+		<div id="2014" class="yearevent">
+			<div class="year">2014</div>
+			<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+			<div class="index_topic mCustomScrollbar _mCS_1">
+			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">
+			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr"> 
+			      <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div id="2015" class="yearevent">
+			<div class="year">2015</div>
+			<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+			<div class="index_topic mCustomScrollbar _mCS_1">
+			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">
+			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr"> 
+			      <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div id="2016" class="yearevent">
+			<div class="year">2016</div>
+			<div class="close clearfix"><img src="{% static  "images/close.png" %}" alt=""></div>
+			<div class="index_topic mCustomScrollbar _mCS_1">
+			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">
+			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr"> 
+			      <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div id="2017" class="yearevent">
+			<div class="year">2017</div>
+			<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+			<div class="index_topic mCustomScrollbar _mCS_1" id="text2017">
+			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">
+			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr"> 
+			      <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div id="2018" class="yearevent">
+			<div class="year">2018</div>
+			<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+			<div class="index_topic mCustomScrollbar _mCS_1">
+			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">
+			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr"> 
+			      <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			        <div class="event"></div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		</div>
+{% endblock %}
+		
+{% block script %}
+    <script src="{% static  "js/bigevent.js" %}"></script>
+    <script src="{% static  "js/mCustomScrollbar.js" %}"></script>
+{% endblock %}
