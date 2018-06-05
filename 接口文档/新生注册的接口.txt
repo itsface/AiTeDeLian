@@ -1,0 +1,16 @@
+---
+HTTP方法：post
+接口url：/api/sign/submit
+参数：name            # 姓名 字符串
+      sex             # 性别 布尔
+      yearAndMajor    # 年级专业 字符串
+      email           # 邮箱 邮箱
+      phone           # 手机号 字符串
+      selfIntro       # 自我介绍 可换行字符串（文本域）
+      wantDepartment  # 意向部门（的编号） 整形
+描述：提交报名表单
+	  返回值为
+      "statusCode": 状态码
+	  状态码为1时：未知错误   为2时：邮件发送错误   为0时：成功
+备注：报名表单的发送接口
+---

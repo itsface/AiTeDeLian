@@ -137,8 +137,8 @@ def api_sign_submit(request):
                                             status_id=1, wantDepartment_id=wantDepartment,
                                             userCode=code)
         logging.debug(newFresher)
-        request.session[code] = newFresher
-        # newFresher.save()
+        request.session[code] = newFresher.id
+        newFresher.save()
         back["statusCode"] = 0  # 成功
     except:
         pass
@@ -148,7 +148,9 @@ def api_sign_submit(request):
 
 def api_sign_ok(request, code):
     try:
-        newFresher = request.session[code]
+        newFresherId = request.session[code]
+        newFresher = Fresher.objects.get(id=newFresherId)
+        newFresher.active = True
         newFresher.save()
         try:
             del request.session[code]

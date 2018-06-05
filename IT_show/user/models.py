@@ -35,6 +35,7 @@ class Fresher(models.Model):
     #status = models.IntegerField(verbose_name="招新状态", default=0)
     registerTime = models.DateTimeField(verbose_name="报名时间", auto_now_add=True)
     userCode=models.CharField(verbose_name="工单号",max_length=10, default="")
+    active = models.BooleanField(verbose_name="是否激活", default=False)
 
     class Meta:
         verbose_name = r"报名者"

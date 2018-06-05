@@ -1,0 +1,18 @@
+---
+HTTP方法：get
+接口url：/api/status/get
+参数：userCode 字符串
+描述：根据工单号获取状态
+      返回的参数为字典。内容：
+	  success为布尔变量表示获取评论是否成功
+	  status为数组，其中每个元素都是字典。内容：
+		   "statusName": 状态名称 
+		   "statusHappenTime":  发生时间
+		   "statusOrder": 第几个发生的状态
+备注：后台用类似链表的结构存储用户从开始到当前的所有状态，一次请求会返回所有的历史状态
+---
+样例输入1：
+/api/status/get?userCode=1
+
+样例输出1：
+[{"statusName": "1", "statusHappenTime": "2018-05-12 03:38:00", "statusOrder": 1}, {"statusName": "2", "statusHappenTime": "2018-05-17 06:42:00", "statusOrder": 2}, {"statusName": "3", "statusHappenTime": "2018-05-17 06:42:03", "statusOrder": 3}]

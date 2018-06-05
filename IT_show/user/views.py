@@ -3,6 +3,7 @@ from random import Random
 from django.http import HttpResponse
 from django.core.mail import send_mail, BadHeaderError
 from user.sendMail import send_mail as asynchronousSendEmail
+from .form import FresherForm
 # Create your views here.
 
 
@@ -29,6 +30,14 @@ def sendEmail(name, code, mail,text):
         except BadHeaderError:
             return HttpResponse('Invalid header found')
 
+
 def refreshCache():
     from django.core.cache import cache
     cache.clear()
+
+
+def register(request):
+    back = {
+        "form": FresherForm,
+    }
+    return render(request, 'apform.html', back)

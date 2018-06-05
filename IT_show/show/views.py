@@ -36,3 +36,7 @@ class tasksThread(threading.Thread):
         for i in range(5):
             time.sleep(1)
             print("start.... %s" % (self.getName(),))
+
+
+def index(request):
+    return render(request, 'home.html')

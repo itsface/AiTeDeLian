@@ -1,0 +1,9 @@
+---
+HTTP方法：post
+接口url：/api/comment/submit
+参数：content 内容 字符串,head 头像编号 整形,identify 验证码 字符串
+描述：ajax提交评论。返回值为
+		"statusCode": 状态码
+	  状态码为1时：未知错误   为2时：验证码错误   为0时：成功
+备注：ajax提交评论的一个接口。验证码通过访问一个url生成，而且每次提交评论的动作都会销毁验证码。
+---

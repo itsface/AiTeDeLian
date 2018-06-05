@@ -1,0 +1,14 @@
+---
+HTTP方法：get
+接口url：/api/comment/get
+参数：code 整形
+描述：获取编号小于code的评论，不传code或code=0则获取最新的评论。
+      返回的参数为字典。内容：
+	  success为布尔变量表示获取评论是否成功
+	  comment为数组，其中每个元素都是字典。内容：
+		   head——头像url
+		   content——内容
+		   createTime——创建时间
+		   code——编号
+备注：后台保存评论时会分配编号，越晚发出的评论编号越大。做瀑布流时把最下面的评论的code发来，接收到的评论接在下面。
+---
