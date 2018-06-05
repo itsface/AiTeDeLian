@@ -38,7 +38,13 @@ def api_comment_get(request):
             }]
     except:
         back["success"] = False
-    return HttpResponse(json.dumps(back), content_type="application/json")
+    response = HttpResponse(json.dumps(back), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response
+    #return HttpResponse(json.dumps(back), content_type="application/json")
 
 
 def api_status_get(request):
@@ -59,7 +65,13 @@ def api_status_get(request):
             }]
     except:
         back["success"] = False
-    return HttpResponse(json.dumps(back), content_type="application/json")
+    response = HttpResponse(json.dumps(back), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response
+    #return HttpResponse(json.dumps(back), content_type="application/json")
 
 
 def api_comment_submit(request):
@@ -86,7 +98,13 @@ def api_comment_submit(request):
         back["statusCode"] = 0  # 成功
     except:
         pass
-    return HttpResponse(json.dumps(back), content_type="application/json")
+    response = HttpResponse(json.dumps(back), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response
+    #return HttpResponse(json.dumps(back), content_type="application/json")
     # return HttpResponse(json.dumps(back))
 
 
@@ -143,7 +161,13 @@ def api_sign_submit(request):
     except:
         pass
     logging.debug(back["message"])
-    return HttpResponse(json.dumps(back), content_type="application/json")
+    response = HttpResponse(json.dumps(back), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response
+    #return HttpResponse(json.dumps(back), content_type="application/json")
 
 
 def api_sign_ok(request, code):

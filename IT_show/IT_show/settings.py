@@ -132,11 +132,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static/"),
-)
+
+STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR,'static/').replace('\\','/')
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/admin"),)
+
 MEDIA_URL = "/image/"
 MEDIA_ROOT=os.path.join(BASE_DIR,"image/")
 
@@ -162,3 +164,40 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'easyblog123@163.com'  # 帐号
 EMAIL_HOST_PASSWORD = '110abc'  # 密码
 DEFAULT_FROM_EMAIL = 'IT <easyblog123@163.com>'
+
+
+# logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[%(asctime)s] [%(levelname)s] %(message)s'
+        },
+    },
+    'handlers': {
+        'console':{
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': r'D:\Web\ITShow2018\nginx-1.14.0\AiTeDeLian-master\IT_show\django_log\all.log',
+            'formatter': 'verbose'
+        },
+        'email': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file', 'email'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
