@@ -94,7 +94,7 @@ $(document).ready(function() {
 		$(".verify .inputwrap").css({
 			'margin-top': 0.076 * 0.802 * H
 		})
-		$(".verify .check,.verify .back").css({
+		$(".verify .verify_check,.verify .verify_back").css({
 			'height': 0.0588 * 0.802 * H,
 			'margin-top': 0.3587 * 0.802 * H
 		})
@@ -219,7 +219,7 @@ $(document).ready(function() {
 			$(".verify .inputwrap").css({
 				'margin-top': 0.076 * 0.802 * H
 			})
-			$(".verify .check,.verify .back").css({
+			$(".verify .verify_check,.verify .back").css({
 				'height': 0.0588 * 0.802 * H,
 				'margin-top': 0.3587 * 0.802 * H
 			})
@@ -508,7 +508,7 @@ $(document).ready(function() {
 	});
 
 	//点击查看进程
-	$(".apform .check").click(function() {
+	$(".apform_check").click(function() {
 		$(".apform").hide();
 		$(".verify").show();
 	})
@@ -615,7 +615,7 @@ chec// kprocess();
 
 
 
-	$(".verify .check").click(function() {
+	$(".verify_check").click(function() {
 
 		$(".verify").hide();
 		$(".processform").show();
@@ -623,7 +623,8 @@ chec// kprocess();
 
 
 	//输入编号点击返回
-	$(".verify .back").click(function() {
+	$(".verify_back").click(function() {
+		alert(1);
 		$('.verify').hide();
 		$(".apform").show();
 	})
