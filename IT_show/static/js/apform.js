@@ -25,6 +25,7 @@ $(document).ready(function() {
 
 		$(".container").height(H);
 		$(".container").width(W);
+		$("body").eq(0).height(H)
 		$("#apform").height(0.852 * H);
 		$(".verify").height(0.852 * H);
 		$(".formbody").height(0.852 * H);
@@ -59,14 +60,14 @@ $(document).ready(function() {
 			// 'bottom':0.0322*0.802*H,
 			'height': 0.058 * 0.802 * H
 		})
-		$(".intention").height(0.22 * 0.802 * H);
+		$(".intention").height(0.21 * 0.802 * H);
 		$(".intention h2").css({
 			'margin-top': 0.041 * 0.802 * H,
-			'margin-bottom': 0.034 * 0.802 * H
+			'margin-bottom': 0.030 * 0.802 * H
 		})
 		$(".buttonwrap").css({
 			'height': 0.058 * 0.802 * H,
-			'margin-top': 0.040 * 0.802 * H
+			'margin-top': 0.037 * 0.802 * H
 		})
 		$(".intention ul li").eq(0).css({
 			'margin-bottom': 0.03 * 0.802 * H
@@ -76,15 +77,15 @@ $(document).ready(function() {
 		})
 
 		$(".self_introduction .title").css({
-			'margin-bottom': 0.028 * 0.802 * H
+			'margin-bottom': 0.025 * 0.802 * H
 		})
 		if (W < '1400') {
 			$(".self_introduction").css({
-				'margin-top': 0.039 * 0.802 * H
+				'margin-top': 0.035 * 0.802 * H
 			})
 		} else {
 			$(".self_introduction").css({
-				'margin-top': 0.046 * 0.802 * H
+				'margin-top': 0.041 * 0.802 * H
 			})
 		}
 		$(".verify input").height(0.0807 * 0.802 * H);
@@ -129,7 +130,7 @@ $(document).ready(function() {
 
 		})
 		$(".event").eq(1).css({
-			'bottom': 0.201 * 0.802 * H
+			'bottom': 0.180 * 0.802 * H
 		})
 		$(".event").eq(2).css({
 			'top': 0.0346 * 0.802 * H
@@ -144,6 +145,7 @@ $(document).ready(function() {
 		$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 			$(".container").height(H);
 			$(".container").width(W);
+				$("body").eq(0).height(H)
 			$("#apform").height(0.852 * H);
 			$(".verify").height(0.852 * H);
 			$(".formbody").height(0.852 * H);
@@ -184,14 +186,14 @@ $(document).ready(function() {
 				// 'bottom':0.0322*0.802*H,
 				'height': 0.058 * 0.802 * H
 			})
-			$(".intention").height(0.22 * 0.802 * H);
+			$(".intention").height(0.21 * 0.802 * H);
 			$(".intention h2").css({
 				'margin-top': 0.041 * 0.802 * H,
-				'margin-bottom': 0.034 * 0.802 * H
+				'margin-bottom': 0.030 * 0.802 * H
 			})
 			$(".buttonwrap").css({
 				'height': 0.058 * 0.802 * H,
-				'margin-top': 0.040 * 0.802 * H
+				'margin-top': 0.037 * 0.802 * H
 			})
 			$(".intention ul li").eq(0).css({
 				'margin-bottom': 0.03 * 0.802 * H
@@ -201,15 +203,15 @@ $(document).ready(function() {
 			})
 
 			$(".self_introduction .title").css({
-				'margin-bottom': 0.028 * 0.802 * H
+				'margin-bottom': 0.026 * 0.802 * H
 			})
 			if (W < '1400') {
 				$(".self_introduction").css({
-					'margin-top': 0.039 * 0.802 * H
+					'margin-top': 0.035 * 0.802 * H
 				})
 			} else {
 				$(".self_introduction").css({
-					'margin-top': 0.046 * 0.802 * H
+					'margin-top': 0.041 * 0.802 * H
 				})
 			}
 			$(".verify input").height(0.0807 * 0.802 * H)
@@ -254,7 +256,7 @@ $(document).ready(function() {
 
 			})
 			$(".event").eq(1).css({
-				'bottom': 0.201 * 0.802 * H
+				'bottom': 0.180 * 0.802 * H
 			})
 			$(".event").eq(2).css({
 				'top': 0.0346 * 0.802 * H
@@ -449,7 +451,6 @@ $(document).ready(function() {
 		if (Isname == true && Isprofession == true && Isqq == true && Isintention == true && Isphone == true && Isintro == true && $(".introduction").val().length <= 200 && $(".introduction").val().length > 0) {
 			let wantdepart = $(".selected").val();
 			$(".intention_choose").val(wantdepart);
-			alert("发了aj");
 			$.ajax({
 				type: "POST",
 				url: "/api/sign/submit",
@@ -515,33 +516,80 @@ $(document).ready(function() {
 
 
 	$(".verify_check").click(function() {
-		$.ajax({
-				type: "GET",
-				url: "/api/status/get?userCode="+$("#usercodeinput").val(),
-				timeout : 5000,
-				dataType: "json",
-				//发送成功可以返回的东西
-				success: function(data){
-					if (data.success){
-						$(".cname").html(data.name);
-						$(".cmajor").html(data.major);
-						$(".cdepart").html(data.wantDepart);
+		if($(".inputwrap input").val() == '')
+		{
+			alert('查询编号不可为空!');
+		}
+		else {
+            // $.ajax({
+            //     type: "GET",
+            //     url: "/api/status/get?userCode=" + $("#usercodeinput").val(),
+            //     timeout: 5000,
+            //     dataType: "json",
+            //     //发送成功可以返回的东西
+            //     success: function (data) {
+            //         if (data.success) {
+            //             $(".cname").html(data.name);
+            //             $(".cmajor").html(data.major);
+            //             $(".cdepart").html(data.wantDepart);
+            //
+            //             x = [0, 1, 2];
+            //             x.forEach(function (v) {
+            //                 if (data.status[v])
+            //                     $(".status" + x[v].toString()).html("状态：" + data.status[v].statusName + "，发生于：" + data.status[v].statusHappenTime);
+            //             })
+            //             $(".verify").hide();
+            //             $(".processform").show();
+            //         } else {
+            //             alert("获取失败");
+            //         }
+            //     },
+            //     error: function (jqXHR) {
+            //         alert("服务器错误请重试，错误代码：" + jqXHR.status);
+            //     },
+            // });
+			           var obj = {
+                method: "GET",
+                url: "/api/status/get?userCode=" + $("#usercodeinput").val(),
+                timeout: 5000,
+               	dataType: 'Default: Intelligent Guess',
+				async: true
+            }
+            promisesetajax(obj).then(function (data) {
+                if (data.success) {
+                    $(".cname").html(data.name);
+                    $(".cmajor").html(data.major);
+                    $(".cdepart").html(data.wantDepart);
 
-						x=[0,1,2];
-						x.forEach(function (v) {
-							if (data.status[v])
-								$(".status"+x[v].toString()).html("状态："+data.status[v].statusName+"，发生于："+data.status[v].statusHappenTime);
-                        })
-						$(".verify").hide();
-						$(".processform").show();
-					}else {
-						alert("获取失败");
-					}
-				},
-				error: function(jqXHR){
-				   alert("服务器错误请重试，错误代码：" + jqXHR.status);
-				},
-			});
+                    x = [0, 1, 2];
+                    x.forEach(function (v) {
+                        if (data.status[v])
+                            $(".status" + x[v].toString()).html("状态：" + data.status[v].statusName + "，发生于：" + data.status[v].statusHappenTime);
+                    })
+                    // var str22 ='';
+                    // for (let i = 0, m = data.status.length; i < m; i++) {
+                    //
+						// 	str22 += `
+						// 	<div class="event">
+						// 		<span>${data.status[i].statusHappenTime}</span>
+						// 		<span>${data.status[i].statusName}</span>
+                    //
+						// 	</div>
+                    // `
+                    //
+                    //
+						// }
+						// $("events").append(str22);
+                    $(".verify").hide();
+                    $(".processform").show();
+                } else {
+                    alert("查询失败!");
+                }
+            }, function (error) {
+                alert("发生错误：" + error);
+
+            })
+        }
 	});
 
 
@@ -582,31 +630,31 @@ $(document).ready(function() {
 // 		}
 // 	})
 // 	//promise
-// 	function promisesetajax(obj) {
-// 		return new Promise((resolve, reject) => {
-// 			var request = new XMLHttpRequest();
-// 			request.open(obj.method, obj.url, obj.async);
-// 			if (obj.method == 'GET') {
-// 				request.send();
-// 			} else if (obj.method == 'POST') {
-// 				request.send(obj.data);
-// 			}
-//
-// 			request.onreadystatechange = function() {
-// 				if (request.readyState === 4) {
-// 					if (request.status === 200) {
-// 						var dat = JSON.parse(request.responseText);
-// 						resolve(dat);
-//
-// 					} else {
-// 						reject(new Error(request.status))
-// 					}
-// 				}
-//
-// 			}
-//
-// 		})
-// 	}
+	function promisesetajax(obj) {
+		return new Promise((resolve, reject) => {
+			var request = new XMLHttpRequest();
+			request.open(obj.method, obj.url, obj.async);
+			if (obj.method == 'GET') {
+				request.send();
+			} else if (obj.method == 'POST') {
+				request.send(obj.data);
+			}
+
+			request.onreadystatechange = function() {
+				if (request.readyState === 4) {
+					if (request.status === 200) {
+						var dat = JSON.parse(request.responseText);
+						resolve(dat);
+
+					} else {
+						reject(new Error(request.status))
+					}
+				}
+
+			}
+
+		})
+	}
 // 	//输入编号点击查询
 // chec// kprocess();
 // 	//要判断是否填写了编号,要返回错误信息

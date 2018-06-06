@@ -113,6 +113,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(".name").eq(2).css({
 		'margin-left': -parseInt($(".name").eq(2).width()) / 2
 	})
+	$(".line").css({
+		'margin-top':0.015*H
+	})
 
 
 	// balloval2(0.30, 0.65, programr, programr);
@@ -136,6 +139,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		$(".container").height(H);
 		$(".container").width(W);
+			$(".line").css({
+			'margin-top':0.015*H
+		})
 		$front.css({
 			'height': 0.088 * W,
 			'top': 0.215 * W
@@ -164,8 +170,8 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'height': 0.1822 * W
 		})
 		$(".depart_intro .front_end h3").css({
-			'margin-top': 0.03 * W,
-			'margin-bottom': 0.02 * W
+			'margin-top': 0.027 * W,
+			'margin-bottom': 0.017 * W
 		})
 		$(".depart_intro .front_end .close").css({
 			'top': 0.030 * 0.324 * H,
@@ -177,8 +183,8 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'bottom': 0.292 * 0.324 * H
 		})
 		$(".depart_intro .app h3").css({
-			'margin-top': 0.03 * W,
-			'margin-bottom': 0.02 * W
+			'margin-top': 0.027 * W,
+			'margin-bottom': 0.017 * W
 		})
 		$(".depart_intro .app .close").css({
 			'top': 0.030 * 0.324 * H,
@@ -271,7 +277,7 @@ function balloval3(ballname, ox, oy, shorto, longo) {
 
 
 		// console.log(x+short);
-	}, 60)
+	}, 50)
 }
 
 
@@ -551,21 +557,23 @@ $(".baller").mouseleave(function() {
 
 $(".baller").click(function() {
 	let index = $(".baller").index(this);
-	for (let i = 0; i < 4; i++) {
-		if (index != i) {
-			closeintro(i);
-		}
-
-	}
+	// for (let i = 0; i < 4; i++) {
+	// 	if (index != i) {
+	// 		closeintro(i);
+	// 	}
+    //
+	// }
 
 	// $(".depart_intro .intro").eq(index).siblings().
-
+if(!$(this).is(":animated")){
 	$(".depart_intro .intro").eq(index).show();
 	$(".depart_intro .intro").eq(index).animate({
 		'opacity': '1'
 	}, 200)
 	Isclick[index] = true;
 	cleart(index);
+}
+
 	// $(".depart_intro .intro").eq(index).siblings().
 
 

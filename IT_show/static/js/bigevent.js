@@ -81,6 +81,9 @@ window.onload = function() {
 		initial_degree();
 
 		//将牌子的偏转坐标移到正确的位置
+			$(".line").css({
+		'margin-top':0.015*H
+	})
 
 
 
@@ -159,6 +162,9 @@ window.onload = function() {
 
 
 			//将牌子的偏转坐标移到正确的位置
+				$(".line").css({
+				'margin-top':0.015*H
+		})
 
 
 

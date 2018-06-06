@@ -61,6 +61,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 
 	$(".container").height(H);
 	$(".container").width(W);
+	$("body").eq(0).height(H)
 	// $(".header h1").css({'margin-top':(H-H2)/2});
 	$(".index_topic").height(H * 0.414);
 	$(".index_topic").css({
@@ -91,7 +92,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		'margin-top': 0.125 * 0.284 * H * 0.414
 	})
 	$(".line").css({
-		'margin-top': 0.025 * H
+		'margin-top': 0.020 * H
 	})
 	if ($(".write").css('z-index') > 0) {
 
@@ -193,6 +194,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 
 
 
+
 	// boxw = $write.css('width');
 	// boxh = 0.52 * H;
 
@@ -201,6 +203,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		// $(".write").width(0.6*W);
 		$(".container").height(H);
 		$(".container").width(W);
+			$("body").eq(0).height(H);
 		// $(".header h1").css({'margin-top':(H-H2)/2});
 		$(".index_topic").height(H * 0.414);
 		$(".index_topic").css({
@@ -231,7 +234,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'margin-top': 0.125 * 0.284 * H * 0.414
 		})
 		$(".line").css({
-			'margin-top': 0.025 * H
+			'margin-top': 0.020* H
 		})
 
 	if ($(".write").css('z-index') > 0) {
@@ -474,6 +477,13 @@ $(".make_comment").click(function() {
 
 
 $(".write .close").click(function() {
+	close_comment();
+})
+	function close_comment(){
+
+
+
+
 	//先收起遮罩层并隐藏
 	// alert("666")
 	// $(".writewrap").animate({
@@ -516,7 +526,7 @@ $(".write .close").click(function() {
 
 	}, 10)
 	// });
-});
+			}
 
 
 
@@ -527,8 +537,16 @@ let Iscomment = false,
 //id输入 ??字数限制呢
 $(".write .id").on({
 	focus: function() {
-		if (!Isid && $(".write .id").val() == '') {
+		if (!Isid && $(".write .id input").val() == '') {
 			Isid = true;
+		}
+	},
+	keydown: function(event) {
+
+		if ($(".write textarea").val().length > 8 && event.keyCode != 8) {
+			alert("字数太多了！");
+			$(".write textarea").val($(".write textarea").val().substring(0, 8));
+
 		}
 	}
 })
@@ -566,14 +584,21 @@ $(".write .submit").click(function() {
 
 	if (!Iscomment) {
 		alert("留言不能为空！");
+		changeverify();
 	} else if (!Isverify) {
 		alert("请输入验证码！");
-	} else {
+		changeverify();
+	} else if($(".write .id input").val()==''){
+		alert("请输入昵称！");
+		changeverify();
+	}else{
 		// var msg = $(".write textarea").val(),
 		// 	msg = htmlEncodeJQ(msg);
-		console.log($(".write textarea").val())
-		console.log(headimg)
-		console.log($(".verify input").val())
+		// console.log($(".write textarea").val())
+		// console.log(headimg)
+		// console.log($(".verify input").val())
+
+
 		$.ajax({
 				type: "POST",
 				url: "/api/comment/submit",
@@ -587,53 +612,69 @@ $(".write .submit").click(function() {
 				dataType: "json",
 				//发送成功可以返回的东西
 				success: function(data){
-					switch (data.statusC){
-						case 1:
-							alert("发表失败");
-							break;
-						case 2:
-							alert("验证码错误");
-							break;
-						case 0:
-							alert("成功");
-							break;
-					}
+					if (data.statusC == 1) {
+					alert("留言提交失败！");
+					changeverify();
+
+				} else if (data.statusC == 2) {
+					alert("验证码错误！");
+					changeverify();
+				} else if (data.statusC == 0) {
+					alert("留言发表成功!");
+					close_comment();
+				}
+	// 				switch (data.statusC){
+	// 					case 1:
+	// 						alert("发表失败");
+	// 						break;
+	// 					case 2:
+	// 						alert("验证码错误");
+	// 						break;
+	// 					case 0:
+	// 						alert("留言发表成功成功");
+	// 						break;
+	// 				}
 				},
 				error: function(jqXHR){
 				   alert("服务器错误请重试，错误代码：" + jqXHR.status);
 				},
 			});
-		// let com = {
-		// 	url: '/api/comment/submit',
-		// 	method: 'POST',
-		// 	data: {
-		// 		content: $(".write textarea").val(),
-		// 		head: headimg,
-		// 		identify: $(".verify input").val(),
-		// 	},
-		// 	timeout: 5000,
-		// 	dataType: 'json',
-		// }
-        //
-        //
-        //
-		// promisesetajax(com).then(function(data) {
-        //
-		// 		if (data.statusCode == 1) {
-		// 			alert("留言提交失败！");
-        //
-		// 		} else if (data.statusCode == 2) {
-		// 			alert("验证码错误！");
-		// 		} else if (data.statusCode == 0) {
-		// 			alert("留言发表成功!");
-		// 		}
-        //
-        //
-        //
-		// 	},
-		// 	function(error) {
-		// 		alert("发生错误：" + error);
-		// 	})
+	// 	var com = {
+	// 		url: '/api/comment/submit',
+	// 		method: 'POST',
+	// 		data: {
+	// 			content: $(".write textarea").val(),
+	// 			head: headimg,
+	// 			identify: $(".verify input").val(),
+	// 			nickName: $(".id input").val(),
+	// 		},
+	// 		timeout: 5000,
+	// 		dataType: 'json',
+	// 		async:true,
+	// 		dat :"content="+$(".write textarea").val()
+	// 		+"&head="+headimg
+	// 		+"&identify="+$(".verify input").val()
+	// 		+"&nickName="+ $(".id input").val()
+	// 	}
+    //
+    //
+	// 	promisesetajax(com).then(function(data) {
+    //
+	// 			if (data.statusC == 1) {
+	// 				alert("留言提交失败！");
+    //
+	// 			} else if (data.statusC == 2) {
+	// 				alert("验证码错误！");
+	// 			} else if (data.statusC == 0) {
+	// 				alert("留言发表成功!");
+	// 			}
+    //
+    //
+    //
+	// 		},
+	// 		function(error) {
+	// 			alert("发生错误：" + error);
+	// 		})
 	}
 })
 
@@ -688,9 +729,12 @@ function promisesetajax(obj) {
 		var request = new XMLHttpRequest();
 		request.open(obj.method, obj.url, obj.async);
 		if (obj.method == 'GET') {
+
 			request.send();
 		} else if (obj.method == 'POST') {
-			request.send(obj.data);
+			request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+			console.log(obj.dat)
+			request.send(obj.dat);
 		}
 
 		request.onreadystatechange = function() {
@@ -720,73 +764,73 @@ function addcomment(firstTime=false) {
 		code = $(".index_topic .comments:last-child").attr('id')
 	}
 
-	var obj = {
-		url: '/api/comment/get?code=' + code,
-		method: 'GET',
-		dataType: 'Default: Intelligent Guess',
-		async: true
-
-	}
-
-
-	promisesetajax(obj).then(function(data) {
-			let str = "";
-			if (data.comment == '[]') {
-
-			} else {
-				for (let i = 0, m = data.comment.length; i < m; i++) {
-
-					str += `<div class="comments clearfix" id="${data.comment[i].code}">
-	         			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
-	          				<div class="right clearfix">
-				            <div class="clearfix" style="margin-bottom: -5px;"> 
-				              	<div class="id">${data.comment[i].nickname}</div>
-				             	 <div class="time">${data.comment[i].createTime}</div>
-				            </div>
-				            <p>${data.comment[i].content}</p>
-				          	</div>
-			        	</div>
-        `
-				}
-			}
-
-			$("#mCSB_1_container").append(str);
-
-
-
-		},
-		function(error) {
-			alert("发生错误：" + error);
-		})
-
-	// $.ajax({
-	// 	type: "GET",
-	// 	url: "http://118.25.179.209/api/comment/get",
-	// 	dataType: "json",
-	// 	success: function(data) {
-
+	// var obj = {
+	// 	url: '/api/comment/get?code=' + code,
+	// 	method: 'GET',
+	// 	dataType: 'Default: Intelligent Guess',
+	// 	async: true
+    //
+	// }
+    //
+    //
+	// promisesetajax(obj).then(function(data) {
 	// 		let str = "";
-	// 		for (let i = 0, m = data.comment.length; i < m; i++) {
-
-	// 			str += `<div class="comments clearfix">
-	//          			 	<div class="head"><img src="${data.comment[i].head}" alt="" /></div>
+	// 		if (data.comment == '[]') {
+    //
+	// 		} else {
+	// 			for (let i = 0, m = data.comment.length; i < m; i++) {
+    //
+	// 				str += `<div class="comments clearfix" id="${data.comment[i].code}">
+	//          			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
 	//           				<div class="right clearfix">
-	// 			            <div class="clearfix" style="margin-bottom: -5px;"> 
-	// 			              	<div class="id"></div>
+	// 			            <div class="clearfix" >
+	// 			              	<div class="id">${data.comment[i].nickname}</div>
 	// 			             	 <div class="time">${data.comment[i].createTime}</div>
 	// 			            </div>
 	// 			            <p>${data.comment[i].content}</p>
 	// 			          	</div>
 	// 		        	</div>
-	//        `
+     //    `
+	// 			}
 	// 		}
+    //
 	// 		$("#mCSB_1_container").append(str);
+    //
+    //
+    //
+	// 	},
+	// 	function(error) {
+	// 		alert("发生错误：" + error);
+	// 	})
 
-	// 	},
-	// 	error: function(jqXHR) {
-	// 		alert("发生错误：" + jqXHR.status);
-	// 	},
-	// });
+	$.ajax({
+		type: "GET",
+		url: "http://118.25.179.209/api/comment/get",
+		dataType: "json",
+		success: function(data) {
+
+			let str = "";
+			for (let i = 0, m = data.comment.length; i < m; i++) {
+
+				str += `<div class="comments clearfix">
+	         			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
+	          				<div class="right clearfix">
+				            <div class="clearfix" style="margin-bottom: -5px;"> 
+				              	<div class="id"></div>
+				             	 <div class="time">${data.comment[i].createTime}</div>
+				            </div>
+				            <p>${data.comment[i].content}</p>
+				          	</div>
+			        	</div>
+	       `
+			}
+			$("#mCSB_1_container").append(str);
+
+		},
+		error: function(jqXHR) {
+			alert("发生错误：" + jqXHR.status);
+		},
+	});
 }
 
 //评论初始化函数
