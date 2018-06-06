@@ -764,73 +764,73 @@ function addcomment(firstTime=false) {
 		code = $(".index_topic .comments:last-child").attr('id')
 	}
 
-	// var obj = {
-	// 	url: '/api/comment/get?code=' + code,
-	// 	method: 'GET',
-	// 	dataType: 'Default: Intelligent Guess',
-	// 	async: true
-    //
-	// }
-    //
-    //
-	// promisesetajax(obj).then(function(data) {
-	// 		let str = "";
-	// 		if (data.comment == '[]') {
-    //
-	// 		} else {
-	// 			for (let i = 0, m = data.comment.length; i < m; i++) {
-    //
-	// 				str += `<div class="comments clearfix" id="${data.comment[i].code}">
-	//          			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
-	//           				<div class="right clearfix">
-	// 			            <div class="clearfix" >
-	// 			              	<div class="id">${data.comment[i].nickname}</div>
-	// 			             	 <div class="time">${data.comment[i].createTime}</div>
-	// 			            </div>
-	// 			            <p>${data.comment[i].content}</p>
-	// 			          	</div>
-	// 		        	</div>
-     //    `
-	// 			}
-	// 		}
-    //
-	// 		$("#mCSB_1_container").append(str);
-    //
-    //
-    //
-	// 	},
-	// 	function(error) {
-	// 		alert("发生错误：" + error);
-	// 	})
+	var obj = {
+		url: '/api/comment/get?code=' + code,
+		method: 'GET',
+		dataType: 'Default: Intelligent Guess',
+		async: true
 
-	$.ajax({
-		type: "GET",
-		url: "http://118.25.179.209/api/comment/get",
-		dataType: "json",
-		success: function(data) {
+	}
 
+
+	promisesetajax(obj).then(function(data) {
 			let str = "";
-			for (let i = 0, m = data.comment.length; i < m; i++) {
+			if (data.comment == '[]') {
 
-				str += `<div class="comments clearfix">
+			} else {
+				for (let i = 0, m = data.comment.length; i < m; i++) {
+
+					str += `<div class="comments clearfix" id="${data.comment[i].code}">
 	         			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
 	          				<div class="right clearfix">
-				            <div class="clearfix" style="margin-bottom: -5px;"> 
-				              	<div class="id"></div>
+				            <div class="clearfix" >
+				              	<div class="id">${data.comment[i].nickname}</div>
 				             	 <div class="time">${data.comment[i].createTime}</div>
 				            </div>
 				            <p>${data.comment[i].content}</p>
 				          	</div>
 			        	</div>
-	       `
+        `
+				}
 			}
+
 			$("#mCSB_1_container").append(str);
 
+
+
 		},
-		error: function(jqXHR) {
-			alert("发生错误：" + jqXHR.status);
-		},
-	});
+		function(error) {
+			alert("发生错误：" + error);
+		})
+
+	// $.ajax({
+	// 	type: "GET",
+	// 	url: "http://118.25.179.209/api/comment/get",
+	// 	dataType: "json",
+	// 	success: function(data) {
+    //
+	// 		let str = "";
+	// 		for (let i = 0, m = data.comment.length; i < m; i++) {
+    //
+	// 			str += `<div class="comments clearfix">
+	//          			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
+	//           				<div class="right clearfix">
+	// 			            <div class="clearfix" style="margin-bottom: -5px;">
+	// 			              	<div class="id"></div>
+	// 			             	 <div class="time">${data.comment[i].createTime}</div>
+	// 			            </div>
+	// 			            <p>${data.comment[i].content}</p>
+	// 			          	</div>
+	// 		        	</div>
+	//        `
+	// 		}
+	// 		$("#mCSB_1_container").append(str);
+    //
+	// 	},
+	// 	error: function(jqXHR) {
+	// 		alert("发生错误：" + jqXHR.status);
+	// 	},
+	// });
 }
 
 //评论初始化函数
