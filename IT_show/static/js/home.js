@@ -168,7 +168,7 @@ var point_hua=0;
 function down(){
 	var i;
 	for(i=0;i<3;i++){
-		$(".block").eq(i).children().eq(0).children().eq(0).attr("src","./img./jj.png")
+		$(".block").eq(i).children().eq(0).children().eq(0).attr("src","/static/img/jj.png")
 	}
 
 	if(point_hua==0){
@@ -191,7 +191,7 @@ function down(){
 function up(){
 	var i;
 	for(i=0;i<3;i++){
-		$(".block").eq(i).children().eq(0).children().eq(0).attr("src","./img./jj.png")
+		$(".block").eq(i).children().eq(0).children().eq(0).attr("src","/static/img/jj.png")
 	}
 	if(point_hua==1){
 		$(".back_ground").animate({height:0.7*$(window).height()},1000);
@@ -210,7 +210,7 @@ function up(){
 }
 $(".block").click(function(){
 	down();
-	$(this).children().eq(0).children().eq(0).attr("src","./img./cahui.png");
+	$(this).children().eq(0).children().eq(0).attr("src","/static/img/cahui.png");
 	if($(this).hasClass("imagine")){
 		$(".qixiang").css("display","block");
 		$(".jingzhun").css("display","none");
@@ -231,7 +231,7 @@ $(".block").click(function(){
 $(window).bind('mousewheel', function(event, delta) {  
         if(delta==-1&&point_hua==0){
         	down();
-        	$(".imagine").children().eq(0).children().eq(0).attr("src","./img./cahui.png");
+        	$(".imagine").children().eq(0).children().eq(0).attr("src","/static/img/cahui.png");
 			$(".qixiang").css("display","block");
 			$(".jingzhun").css("display","none");
 			$(".youxiu").css("display","none");
