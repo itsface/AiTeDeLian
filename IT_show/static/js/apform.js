@@ -564,7 +564,10 @@ $(document).ready(function() {
                     x = [0, 1, 2];
                     x.forEach(function (v) {
                         if (data.status[v])
-                            $(".status" + x[v].toString()).html("状态：" + data.status[v].statusName + "，发生于：" + data.status[v].statusHappenTime);
+                            $(".status" + x[2-v].toString()).html("状态：" + data.status[v].statusName + "，发生于：" + data.status[v].statusHappenTime);
+                        else{
+                        	$(".status" + x[2-v].toString()).html("");
+						}
                     })
                     // var str22 ='';
                     // for (let i = 0, m = data.status.length; i < m; i++) {
