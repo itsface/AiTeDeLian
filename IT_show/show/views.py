@@ -1,58 +1,29 @@
 from django.shortcuts import render
-from django.views.decorators.cache import cache_page
 from django.core.cache import cache
-import threading
-import time
+from show.tool import simple_cache_page,refreshCacheThread
 # Create your views here.
 
+#添加或删除留言时调用该函数
+def refreshCache(key):
+    newTask=refreshCacheThread(key)
+    newTask.start()
 
-def simple_cache_page(cache_timeout,keyName):
-    """
-    Decorator for views that tries getting the page from the cache and
-    populates the cache if the page isn't in the cache yet.
-
-    The cache is keyed by view name and arguments.
-    """
-    def _dec(func):
-        def _new_func(*args, **kwargs):
-            key = func.__name__
-            if kwargs:
-                key += ':' + ':'.join([kwargs[key] for key in kwargs])
-
-            response = cache.get(key)
-            if not response:
-                response = func(*args, **kwargs)
-                cache.set(key, response, cache_timeout)
-            return response
-        return _new_func
-    return _dec
-
-
-class tasksThread(threading.Thread):
-    #prints = tasksThread()
-    #prints.start()
-    def run(self):
-        print("start.... %s" % (self.getName(),))
-        for i in range(5):
-            time.sleep(1)
-            print("start.... %s" % (self.getName(),))
-
-
+@simple_cache_page(60*60*10,"index")
 def index(request):  # success
     return render(request, 'home(pre).html')
 
-
+@simple_cache_page(60*60*10,"workshow")
 def workshow(request):  # success
     return render(request, 'workshow.html')
 
-
+@simple_cache_page(60*60*10,"member")
 def member(request):
     return render(request, 'member.html')
 
-
+@simple_cache_page(60*60*10,"department")
 def department(request):
     return render(request, 'department.html')
 
-
+@simple_cache_page(60*60*10,"bigevent")
 def big_event(request):
     return render(request, 'bigevent.html')

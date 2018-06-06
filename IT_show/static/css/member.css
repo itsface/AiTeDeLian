@@ -1,0 +1,139 @@
+*{
+	font-family: MicrosoftYaHei, sans-serif;
+}
+.container{
+  overflow: hidden;
+  position: relative;
+  /*background-color: red;*/
+}
+
+.me {
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.me a {
+  display: inline-block;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+  color: #232323;
+  font-size: 1.5rem;
+  transition: 0.75s;
+}
+.me a:hover {
+  color: #002b75;
+}
+.container{
+	position: relative;
+}
+.mountain{
+	width: 100%;
+	position: absolute;
+	bottom:-20px;
+}
+.star{
+	width: 80%;
+	margin:0px auto 0px auto;
+	display: block;
+}
+.main{
+	position: absolute;
+}
+.quan{
+	position: absolute;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.member_block{
+	border-radius: 10px;
+	opacity:0.85;
+	border:2px solid #458BAC;
+	position:absolute;
+	background-color: white;
+	/*display: none;*/
+}
+.grade{
+	font-size: 20px;
+	color: #458BAC;
+	font-weight: 500;
+	position: absolute;
+}
+.lunbo{
+	background: yellow;
+	position: absolute;
+}
+.boy{
+	float: left;
+}
+.long{
+	width: 3000px;
+}
+.name{
+	text-align: center;
+	font-size: 24px;
+	color: #458BAC;
+}
+.department{
+	color: #458BAC;
+	font-size: 16px;
+	text-align: center;
+}
+.turnleft_row,.turnright_row{
+	position: absolute;
+}
+.turnleft,.turnright{
+	cursor: pointer;
+}
+.cha_block{
+	cursor: pointer;
+}
+.cha{
+	position: absolute;
+	right: 15px;
+	top: 15px;
+}
+.turn_page{
+	position: absolute;
+	background-color: red;
+}
+.page{
+	float: left;
+	position: relative;
+}
+.qiu{
+	position: absolute;
+}
+.uprow{
+	position: absolute;
+}
+.downrow{
+	position: absolute;
+}
+@media screen and (min-width:980px) and (max-width:1367px){
+  
+  .me {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .me a {
+    display: inline-block;
+    padding: 0.25rem;
+    margin: 0 0.25rem;
+    color: #232323;
+    font-size: 1.5rem;
+    transition: 0.75s;
+  }
+  .me a:hover {
+    color: #002b75;
+  }
+  .name{
+  	font-size: 16px;
+  }
+  .department{
+	color: #458BAC;
+	font-size: 9px;
+	}
+} 

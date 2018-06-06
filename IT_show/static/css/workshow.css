@@ -1,0 +1,142 @@
+*{
+	font-family: MicrosoftYaHei, sans-serif;
+}
+.container{
+  /*overflow: hidden;*/
+  position: relative;
+    width: 100%;
+}
+
+.title{
+	position: absolute;
+	left: 50%;
+	top: 15%;
+    transform: translate(-50%, 0 );
+}
+.line{
+	width: 60px;
+	height: 4px;
+	background-color: #face6f;
+	text-align: center;
+	position: relative;
+	top: 0%;
+	left: 50%;
+	margin-left: -30px;
+	z-index: 300;
+
+}
+
+.me {
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.me a {
+  display: inline-block;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+  color: #232323;
+  font-size: 1.5rem;
+  transition: 0.75s;
+}
+.me a:hover {
+  color: #002b75;
+}
+.ball{
+  width: 271px;
+  height: 271px;
+  position: absolute;
+  background-image: url("../img./ehng.png");
+  background-size: cover;
+}
+.up{
+  cursor: pointer;
+}
+.down{
+  cursor: pointer;
+}
+.up_row{
+  position: absolute;
+}
+.down_row{
+  position: absolute;
+}
+.web_name{
+  color: white;
+  text-align: center;
+}
+.block{
+  height: 246px;
+  width: 493px;
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.in_img{
+  height: 246px;
+  width: 493px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.zhe{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: #7ECEF4;
+  opacity: 0;
+  height: 1000px;
+  width: 1000px;
+  z-index: 50;
+  display: none;
+}
+.huiji{
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  display: none;
+  width: 72px;
+}
+.quan{
+  position: absolute;
+  transition: 0.7s;
+}
+.fugaitwo{
+  background-color: white;
+  position: absolute;
+  bottom:0px;
+    left:0px;
+}
+.fugai{
+  background-color: white;
+  position: absolute;
+  bottom:0px;
+    left:0px;
+}
+@media screen and (min-width:980px) and (max-width:1367px){
+
+  
+  .me {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .me a {
+    display: inline-block;
+    padding: 0.25rem;
+    margin: 0 0.25rem;
+    color: #232323;
+    font-size: 1.5rem;
+    transition: 0.75s;
+  }
+  .me a:hover {
+    color: #002b75;
+  }
+  .block{
+    border-radius: 5px;
+  }
+  }
+
+}
