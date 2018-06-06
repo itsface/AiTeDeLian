@@ -195,7 +195,7 @@ function up(){
 	}
 	if(point_hua==1){
 		$(".back_ground").animate({height:0.7*$(window).height()},1000);
-		$(".head").css({"background-color":"#2AA8D9","opacity":"0"});
+		$(".head").css({"background-color":"transparent","opacity":"0"});
 		$(".head").animate({opacity:"1"},1000);
 		$(".menu-item a").css({"color":"white"});
 		$(".back_ground .head .center h2").css({"color":"white"});

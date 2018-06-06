@@ -1,5 +1,6 @@
 import random
 from IT_show import settings
+import logging
 
 chNum = "0123456789"
 chAlphaLow = "qwertyuiopasdfghjklzxcvbnm"
@@ -37,6 +38,7 @@ def randomString(chSet, len):
     for i in range(0, len):
         r = random.randint(0, strlen)
         backString = backString + chSet[r]
+    logging.debug("随机串："+backString)
     return backString
 
 

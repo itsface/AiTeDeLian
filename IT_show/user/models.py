@@ -27,6 +27,7 @@ class Fresher(models.Model):
     # 0False男 1True女
     yearAndMajor = models.CharField(verbose_name="年级专业", max_length=20, default="")
     email = models.EmailField(verbose_name="邮箱")
+    qqnum = models.CharField(verbose_name="qq号", max_length=12, default="")
     phone = models.CharField(verbose_name="手机号", max_length=15, default="")
     selfIntro = models.TextField(verbose_name="自我介绍", max_length=300, default="")
     status = models.ForeignKey(StatusInfo,verbose_name="招新状态",default=0,null=True,blank=True,on_delete=models.SET_NULL)

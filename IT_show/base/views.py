@@ -77,7 +77,7 @@ def api_status_get(request):
 
 def api_comment_submit(request):
     back = {
-        "statusCode": 1,  # 未知错误
+        "statusC": 1,  # 未知错误
     }
     try:
         content = request.POST.get("content")
@@ -88,7 +88,7 @@ def api_comment_submit(request):
         # logging.debug(code)
         identify = str(request.POST['identify'])
         if identify.upper() != str(request.session['identify']).upper():
-            back["statusCode"] = 2  # u"验证码错误"
+            back["statusC"] = 2  # u"验证码错误"
             raise RuntimeError()
         try:
             del request.session['identify']
@@ -96,7 +96,7 @@ def api_comment_submit(request):
             pass
         c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(id=head))
         c.save()
-        back["statusCode"] = 0  # 成功
+        back["statusC"] = 0  # 成功
     except:
         pass
     response = HttpResponse(json.dumps(back), content_type="application/json")
@@ -111,28 +111,31 @@ def api_comment_submit(request):
 
 def api_sign_submit(request):
     back = {
-        "statusCode": 1,  # 未知错误
+        "statusC": 1,  # 未知错误
     }
     try:
-        back["message"] = "表单获取错误"
+        back["statusC"] = 3  # "表单获取错误"
         name = request.POST.get("name")  # nchar
-        sex = request.POST.get("sex")  # bool
+        # sex = request.POST.get("sex")  # bool
         yearAndMajor = request.POST.get("yearAndMajor")  # nchar
         email = request.POST.get("email")  # email
+        qqnum = request.POST.get("qq")  # nchar
         phone = request.POST.get("phone")  # nchar
         selfIntro = request.POST.get("selfIntro")  # text
         wantDepartment = request.POST.get("wantDepartment")  # int
 
         logging.debug(name)
-        logging.debug(sex)
+        # logging.debug(sex)
         logging.debug(yearAndMajor)
+        logging.debug(qqnum)
         logging.debug(email)
         logging.debug(phone)
         logging.debug(selfIntro)
         logging.debug(wantDepartment)
 
         code = randomCode()
-        back["message"] = "邮件发送错误"
+        logging.debug(code)
+        back["statusC"] = 4  # "邮件发送错误"
         try:
             send_mail(
                 '爱特工作室',
@@ -147,21 +150,23 @@ def api_sign_submit(request):
                 fail_silently=False
             )
         except BadHeaderError:
-            back["statusCode"] = 2  # 邮件错误
+            back["statusC"] = 2  # 邮件错误
             logging.debug("邮件错了")
             raise RuntimeError()
 
-        newFresher = Fresher.objects.create(name=name, sex=sex, yearAndMajor=yearAndMajor,
-                                            email=email, phone=phone, selfIntro=selfIntro,
-                                            status_id=1, wantDepartment_id=wantDepartment,
+        newFresher = Fresher.objects.create(name=name,  # sex=sex,
+                                            yearAndMajor=yearAndMajor,
+                                            email=email, qqnum=qqnum, phone=phone,
+                                            selfIntro=selfIntro, status_id=1,
+                                            wantDepartment_id=wantDepartment,
                                             userCode=code)
         logging.debug(newFresher)
         request.session[code] = newFresher.id
         newFresher.save()
-        back["statusCode"] = 0  # 成功
+        back["statusC"] = 0  # 成功
     except:
         pass
-    logging.debug(back["message"])
+    logging.debug(back["statusC"])
     response = HttpResponse(json.dumps(back), content_type="application/json")
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'

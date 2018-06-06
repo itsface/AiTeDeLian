@@ -60,11 +60,11 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	})
 	$(".depart_intro .front_end").css({
 		'margin-top': -0.157 * 0.802 * H,
-		'height': 0.1822*W
+		'height': 0.1822 * W
 	})
 	$(".depart_intro .front_end h3").css({
-		'margin-top': 0.175 * 0.324 * H,
-		'margin-bottom': 0.132* 0.324 * H
+		'margin-top': 0.03 * W,
+		'margin-bottom': 0.02 * W
 	})
 	$(".depart_intro .front_end .close").css({
 		'top': 0.030 * 0.324 * H,
@@ -72,12 +72,12 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	})
 	$(".depart_intro .app").css({
 		// 'margin-top': -0.157 * 0.802 * H,
-		'height': 0.1822*W,
+		'height': 0.1822 * W,
 		'bottom': 0.292 * 0.324 * H
 	})
 	$(".depart_intro .app h3").css({
-		'margin-top': 0.175 * 0.324 * H,
-		'margin-bottom': 0.132* 0.324 * H
+		'margin-top': 0.03 * W,
+		'margin-bottom': 0.02 * W
 	})
 	$(".depart_intro .app .close").css({
 		'top': 0.030 * 0.324 * H,
@@ -85,11 +85,11 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	})
 	$(".depart_intro .ui").css({
 		'margin-top': -0.157 * 0.802 * H,
-		'height': 0.1822*W
+		'height': 0.1822 * W
 	})
 	$(".depart_intro .ui h3").css({
-		'margin-top': 0.175 * 0.324 * H,
-		'margin-bottom': 0.132* 0.324 * H
+		'margin-top': 0.03 * W,
+		'margin-bottom': 0.02 * W
 	})
 	$(".depart_intro .ui .close").css({
 		'top': 0.030 * 0.324 * H,
@@ -97,16 +97,23 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	})
 	$(".depart_intro .program").css({
 		'margin-top': -0.157 * 0.802 * H,
-		'height': 0.1822*W
+		'height': 0.1822 * W
 	})
 	$(".depart_intro .program h3").css({
-		'margin-top': 0.175 * 0.324 * H,
-		'margin-bottom': 0.132* 0.324 * H
+		'margin-top': 0.03 * W,
+		'margin-bottom': 0.02 * W
 	})
 	$(".depart_intro .program .close").css({
 		'top': 0.030 * 0.324 * H,
 		'right': 0.057 * 0.324 * H
 	})
+	$(".name").css({
+		'margin-left': -parseInt($(".name").width()) / 2
+	})
+	$(".name").eq(2).css({
+		'margin-left': -parseInt($(".name").eq(2).width()) / 2
+	})
+
 
 	// balloval2(0.30, 0.65, programr, programr);
 	// if(W>1700 && W<=1920){
@@ -128,79 +135,87 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		$(".container").height(H);
-	$(".container").width(W);
-	$front.css({
-		'height': 0.088 * W,
-		'top': 0.215 * W
-	})
-	$ui.css({
-		'height': 0.0906 * W,
-		'top': 0.276 * W
-	})
-	$program.css({
-		'height': 0.0906 * W,
-		'top': 0.122 * W
-	})
-	$app.css({
-		'height': 0.0906 * W,
-		'top': 0.2502 * W
-	})
+		$(".container").width(W);
+		$front.css({
+			'height': 0.088 * W,
+			'top': 0.215 * W
+		})
+		$ui.css({
+			'height': 0.0906 * W,
+			'top': 0.276 * W
+		})
+		$program.css({
+			'height': 0.0906 * W,
+			'top': 0.122 * W
+		})
+		$app.css({
+			'height': 0.0906 * W,
+			'top': 0.2502 * W
+		})
 
-	$("h1").css({
-		'top': 0.045 * W
-	})
-	$(".back").css({
-		'height': H
-	})
-	$(".depart_intro .front_end").css({
-		'margin-top': -0.157 * 0.802 * H,
-		'height': 0.1822*W
-	})
-	$(".depart_intro .front_end h3").css({
-		'margin-top': 0.175 * 0.324 * H,
-		'margin-bottom': 0.132* 0.324 * H
-	})
-	$(".depart_intro .front_end .close").css({
-		'top': 0.030 * 0.324 * H,
-		'right': 0.057 * 0.324 * H
-	})
-	$(".depart_intro .app").css({
-		// 'margin-top': -0.157 * 0.802 * H,
-		'height': 0.1822*W,
-		'bottom': 0.292 * 0.324 * H
-	})
-	// $(".depart_intro .app h3").css({
-	// 	'margin-top': 0.175 * 0.324 * H,
-	// 	'margin-bottom': 0.132* 0.324 * H
-	// })
-	$(".depart_intro .app .close").css({
-		'top': 0.030 * 0.324 * H,
-		'right': 0.057 * 0.324 * H
-	})
-	$(".depart_intro .ui").css({
-		'margin-top': -0.157 * 0.802 * H,
-		'height': 0.1822*W
-	})
-	$(".depart_intro .ui h3").css({
-		'margin-top': 0.175 * 0.324 * H,
-		'margin-bottom': 0.132* 0.324 * H
-	})
-	$(".depart_intro .ui .close").css({
-		'top': 0.030 * 0.324 * H,
-		'right': 0.057 * 0.324 * H
-	})
-	$(".depart_intro .program").css({
-		'margin-top': -0.157 * 0.802 * H,
-		'height': 0.1822*W
-	})
-	$(".depart_intro .program h3").css({
-		'margin-top': 0.175 * 0.324 * H,
-		'margin-bottom': 0.132* 0.324 * H
-	})
-	$(".depart_intro .program .close").css({
-		'top': 0.030 * 0.324 * H,
-		'right': 0.057 * 0.324 * H
-	})
+		$("h1").css({
+			'top': 0.045 * W
+		})
+		$(".back").css({
+			'height': H
+		})
+		$(".depart_intro .front_end").css({
+			'margin-top': -0.157 * 0.802 * H,
+			'height': 0.1822 * W
+		})
+		$(".depart_intro .front_end h3").css({
+			'margin-top': 0.03 * W,
+			'margin-bottom': 0.02 * W
+		})
+		$(".depart_intro .front_end .close").css({
+			'top': 0.030 * 0.324 * H,
+			'right': 0.057 * 0.324 * H
+		})
+		$(".depart_intro .app").css({
+			// 'margin-top': -0.157 * 0.802 * H,
+			'height': 0.1822 * W,
+			'bottom': 0.292 * 0.324 * H
+		})
+		$(".depart_intro .app h3").css({
+			'margin-top': 0.03 * W,
+			'margin-bottom': 0.02 * W
+		})
+		$(".depart_intro .app .close").css({
+			'top': 0.030 * 0.324 * H,
+			'right': 0.057 * 0.324 * H
+		})
+		$(".depart_intro .ui").css({
+			'margin-top': -0.157 * 0.802 * H,
+			'height': 0.1822 * W
+		})
+		$(".depart_intro .ui h3").css({
+			'margin-top': 0.03 * W,
+			'margin-bottom': 0.02 * W
+		})
+		$(".depart_intro .ui .close").css({
+			'top': 0.030 * 0.324 * H,
+			'right': 0.057 * 0.324 * H
+		})
+		$(".depart_intro .program").css({
+			'margin-top': -0.157 * 0.802 * H,
+			'height': 0.1822 * W
+		})
+		$(".depart_intro .program h3").css({
+			'margin-top': 0.03 * W,
+			'margin-bottom': 0.02 * W
+		})
+		$(".depart_intro .program .close").css({
+			'top': 0.030 * 0.324 * H,
+			'right': 0.057 * 0.324 * H
+		})
+		$(".name").css({
+			'margin-left': -parseInt($(".name").width()) / 2
+		})
+		$(".name").eq(2).css({
+			'margin-left': -parseInt($(".name").eq(2).width()) / 2
+		})
+
+
 
 	})
 } else {
@@ -208,6 +223,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 }
 let t1, t2, t3, t4, t5, t6, t7;
 //ui小球运动函数
+
 function balloval3(ballname, ox, oy, shorto, longo) {
 	$ball = $(ballname);
 	var y = parseInt($ball.css("top"));
@@ -219,29 +235,35 @@ function balloval3(ballname, ox, oy, shorto, longo) {
 	let long2 = long * long;
 	let all = long2 * short2;
 	let b = y;
+	let a = y;
+	let flag = 1;
 	// console.log("orginx"+ox*W)
-	t5 = setInterval(function() {
-		// console.log($ball.css('left'));
-		if (parseInt($ball.css('left')) < 0.49 * W) {
-			clearInterval(t5);
+	t3 = setInterval(function() {
 
-			t6 = setInterval(function() {
-				if (parseInt($ball.css('top')) > 0.58 * H) {
-					clearInterval(t6);
-					balloval3(ballname, ox, oy, shorto, longo);
-				}
-				b += 1;
-				x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
-
-				$ball.css({
-					'top': b,
-					'left': x + originx
-				})
-			}, 20)
+		if (parseInt($ball.css('top')) > 0.58 * H) {
+			flag = 1;
+		} else if (parseInt($ball.css('top')) < 0.48 * H) {
+			flag = 2;
 		}
-		b -= 1;
-		x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
 
+
+		// console.log($ball.css('left'));
+		if (flag == 1) {
+
+
+			b -= 1;
+
+
+		} else if (flag == 2) {
+
+
+
+			b += 1;
+
+		}
+
+
+		x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
 		$ball.css({
 			'top': b,
 			'left': x + originx
@@ -249,16 +271,19 @@ function balloval3(ballname, ox, oy, shorto, longo) {
 
 
 		// console.log(x+short);
-	}, 20)
+	}, 60)
 }
+
+
 
 // balloval3(".ball .ui", 0.30, 0.65, 0.27 * W, 0.27 * W);
 
 
 //前端小球运动函数
+
 function balloval1(ox, oy, shorto, longo) {
-	// $ball = $(ballname);.
-	var y = parseInt($(".front_end").css("top"));
+	// $ball = $(ballname);
+	var y = parseInt($(".ball .front_end").css("top"));
 	let originx = ox * W;
 	let originy = oy * H;
 	let short = shorto;
@@ -267,30 +292,35 @@ function balloval1(ox, oy, shorto, longo) {
 	let long2 = long * long;
 	let all = long2 * short2;
 	let b = y;
+	let flag = 1;
 	// console.log("orginx"+ox*W)
 	t1 = setInterval(function() {
-		// console.log($ball.css('left'));
-		if (parseInt($(".ball .front_end").css('top')) > 0.53 * H) {
-			clearInterval(t1);
 
-			t2 = setInterval(function() {
-				if (parseInt($(".ball .front_end").css('left')) < 0.36 * W) {
-					clearInterval(t2);
-					balloval1(ox, oy, shorto, longo);
-				}
-				b -= 1;
-				x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
+		if (parseInt($(".ball .front_end").css('top')) > 0.51 * H) {
+			flag = 1;
+		} else if (parseInt($(".ball .front_end").css('top')) < 0.40 * H && W >= 1400) {
+			flag = 2;
+		} else if (parseInt($(".ball .front_end").css('top')) < 0.45 * H && (W < 1400)) {
 
-
-				$(".ball .front_end").css({
-					'top': b,
-					'left': x + originx
-				})
-			}, 20)
+			flag = 2;
 		}
-		b += 1;
-		x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
 
+
+		if (flag == 1) {
+
+			b -= 1;
+
+
+		} else if (flag == 2) {
+
+
+
+			b += 1;
+
+		}
+
+
+		x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
 		$(".ball .front_end").css({
 			'top': b,
 			'left': x + originx
@@ -298,14 +328,16 @@ function balloval1(ox, oy, shorto, longo) {
 
 
 		// console.log(x+short);
-	}, 20)
+	}, 50)
 }
 
 // balloval1(0.25, 0.75, 0.24 * W, 0.19 * W);
 //程序部门的小球
+
+
 function balloval4(ox, oy, shorto, longo) {
 	// $ball = $(ballname);
-	let y = parseInt($(".ball .program").css("top"));
+	var y = parseInt($(".ball .program").css("top"));
 	let originx = ox * W;
 	let originy = oy * H;
 	let short = shorto;
@@ -314,34 +346,33 @@ function balloval4(ox, oy, shorto, longo) {
 	let long2 = long * long;
 	let all = long2 * short2;
 	let b = y;
+	let a = y;
+	let flag = 1;
 	// console.log("orginx"+ox*W)
-	t7 = setInterval(function() {
-		// console.log($(".program").css('left'));
-		if (Ismovein == true) {
-			clearInterval(t7);
-		} else if (parseInt($(".ball .program").css('left')) < 0.66 * W) {
-			clearInterval(t7);
+	t4 = setInterval(function() {
 
-			t8 = setInterval(function() {
-				if (Ismovein == true) {
-					clearInterval(t8);
-				}
-				if (parseInt($(".program").css('top')) > 0.55 * H) {
-					clearInterval(t8);
-					balloval4(ox, oy, shorto, longo);
-				}
-				b += 1;
-				x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
-
-				$(".ball .program").css({
-					'top': b,
-					'left': x + originx
-				})
-			}, 20)
+		if (parseInt($(".ball .program").css('top')) > 0.55 * H) {
+			flag = 1;
+		} else if (parseInt($(".ball .program").css('top')) < 0.30 * H) {
+			flag = 2;
 		}
-		b -= 1;
-		x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
 
+
+		if (flag == 1) {
+
+			b -= 1;
+
+
+		} else if (flag == 2) {
+
+
+
+			b += 1;
+
+		}
+
+
+		x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
 		$(".ball .program").css({
 			'top': b,
 			'left': x + originx
@@ -349,14 +380,14 @@ function balloval4(ox, oy, shorto, longo) {
 
 
 		// console.log(x+short);
-	}, 20)
+	}, 40)
 }
 // balloval4(0.30, 0.65, 0.42 * W, 0.42 * W);
 
 //安卓部门的小球
 
 function balloval2(ox, oy, shorto, longo) {
-
+	// $ball = $(ballname);
 	var y = parseInt($(".ball .app").css("top"));
 	let originx = ox * W;
 	let originy = oy * H;
@@ -366,38 +397,42 @@ function balloval2(ox, oy, shorto, longo) {
 	let long2 = long * long;
 	let all = long2 * short2;
 	let b = y;
-	// let move = 0;
+	let a = y;
+	let flag = 1;
 	// console.log("orginx"+ox*W)
-	t3 = setInterval(function() {
-		// console.log($(".app").css('left'));
-		if (parseInt($(".ball .app").css('left')) < 0.79 * W) {
-			clearInterval(t3);
+	t2 = setInterval(function() {
 
-			t4 = setInterval(function() {
-				if (parseInt($(".ball .app").css('top')) > 0.55 * H) {
-					clearInterval(t4);
-					balloval2(ox, oy, shorto, longo);
-				}
-				b += 1;
-				x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
-
-				$(".ball .app").css({
-					'top': b,
-					'left': x + originx
-				})
-			}, 20)
+		if (parseInt($(".ball .app").css('top')) > 0.55 * H) {
+			flag = 1;
+		} else if (parseInt($(".ball .app").css('top')) < 0.35 * H) {
+			flag = 2;
 		}
-		b -= 1;
-		x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
 
+
+		if (flag == 1) {
+
+
+			b -= 1;
+
+
+		} else if (flag == 2) {
+
+
+
+			b += 1;
+
+		}
+
+
+		x = Math.sqrt((all - long2 * (b - originy) * (b - originy)) / short2);
 		$(".ball .app").css({
 			'top': b,
 			'left': x + originx
 		})
 
 
-
-	}, 20)
+		// console.log(x+short);
+	}, 30)
 }
 
 
@@ -430,28 +465,39 @@ function initialize() {
 let Ismovein = [false, false, false, false];
 let Isclick = [false, false, false, false];
 let movedown = [false, false, false, false];
-//balloval1(0.25, 0.75, 0.24 * W, 0.19 * W);
-//balloval2(0.50, 0.50, 0.33 * W, 0.34 * W);
-// balloval3(".ball .ui", 0.30, 0.65, 0.27 * W, 0.27 * W);
-//balloval4(0.30, 0.65, 0.42 * W, 0.42 * W);
+initialize();
+setTimeout(function() {
+	balloval1(0.25, 0.75, 0.24 * W, 0.19 * W);
+	balloval2(0.50, 0.50, 0.33 * W, 0.34 * W);
+	balloval3(".ball .ui", 0.30, 0.65, 0.27 * W, 0.27 * W);
+	balloval4(0.30, 0.65, 0.42 * W, 0.42 * W);
+}, 1000);
 
+
+$(window).resize(function() {
+	for (let i = 0; i < 4; i++) {
+		cleart(i);
+		startt(i);
+
+	}
+
+})
 
 function startt(index) {
 	if (index == 0) {
 		clearInterval(t1);
-		clearInterval(t2);
+
 		balloval1(0.25, 0.75, 0.24 * W, 0.19 * W);
 	} else if (index == 1) {
-		clearInterval(t3);
-		clearInterval(t4);
+		clearInterval(t2);
+
 		balloval2(0.50, 0.50, 0.33 * W, 0.34 * W);
 	} else if (index == 2) {
-		clearInterval(t5);
-		clearInterval(t6);
+		clearInterval(t3);
+
 		balloval3(".ball .ui", 0.30, 0.65, 0.27 * W, 0.27 * W);
 	} else if (index == 3) {
-		clearInterval(t7);
-		clearInterval(t8);
+		clearInterval(t4);
 		balloval4(0.30, 0.65, 0.42 * W, 0.42 * W);
 	}
 
@@ -460,19 +506,19 @@ function startt(index) {
 function cleart(index) {
 	if (index == 0) {
 		clearInterval(t1);
-		clearInterval(t2);
+
 
 	} else if (index == 1) {
-		clearInterval(t3);
-		clearInterval(t4);
+		clearInterval(t2);
+
 
 	} else if (index == 2) {
-		clearInterval(t5);
-		clearInterval(t6);
+		clearInterval(t3);
+
 
 	} else if (index == 3) {
-		clearInterval(t7);
-		clearInterval(t8);
+		clearInterval(t4);
+
 
 	}
 }
@@ -486,7 +532,7 @@ $(".baller").mouseenter(function() {
 	$(".black").eq(index).stop().show();
 
 	Ismovein[index] = true;
-	// cleart(index);
+	cleart(index);
 });
 
 //鼠标离开星球
@@ -498,25 +544,40 @@ $(".baller").mouseleave(function() {
 	$(".black").eq(index).stop().hide();
 
 	if (Isclick[index] == false) {
-		// startt(index);
+		startt(index);
 	}
 	Ismovein[index] = false;
 });
 
 $(".baller").click(function() {
-	console.log("99")
 	let index = $(".baller").index(this);
+	for (let i = 0; i < 4; i++) {
+		if (index != i) {
+			closeintro(i);
+		}
+
+	}
+
+	// $(".depart_intro .intro").eq(index).siblings().
+
 	$(".depart_intro .intro").eq(index).show();
 	$(".depart_intro .intro").eq(index).animate({
 		'opacity': '1'
 	}, 200)
 	Isclick[index] = true;
-	// cleart(index);
+	cleart(index);
+	// $(".depart_intro .intro").eq(index).siblings().
+
 
 })
 //关闭介绍
 $(".depart_intro .close").click(function() {
 	let index = $(".depart_intro .close").index(this)
+	closeintro(index);
+});
+
+function closeintro(index) {
+	// let index = $(".depart_intro .close").index(this)
 	$(".depart_intro .intro").eq(index).animate({
 		'opacity': '0'
 	}, 200, function() {
@@ -524,10 +585,9 @@ $(".depart_intro .close").click(function() {
 	})
 
 	Isclick[index] = false;
-	// startt(index);
+	startt(index);
 
-});
-
+}
 
 //img记得控制高度
 // ballrun();
