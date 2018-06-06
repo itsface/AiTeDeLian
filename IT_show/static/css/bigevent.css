@@ -46,6 +46,7 @@ h1{
 	position: absolute;
 	left: 50%;
 	top: 15%;
+    font-size: 20px;
     transform: translate(-50%, 0 );
 }
 .line{

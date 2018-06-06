@@ -281,6 +281,7 @@ $(document).ready(function() {
 		Isphone = false,
 		Isintro = false,
 		Isintention = false;
+		Isemail = false;
 	$(".name").on({
 		focus: function() {
 			if (!Isname) {
@@ -359,7 +360,7 @@ $(document).ready(function() {
 				"border-bottom": "1px solid #cccbc8"
 			})
 		}
-	})
+	});
 	$(".phonenumber").on({
 		focus: function() {
 			if (!Isphone) {
@@ -382,6 +383,32 @@ $(document).ready(function() {
 				Isphone = true;
 			}
 			$(".phonenumber").css({
+				"border-bottom": "1px solid #cccbc8"
+			})
+		}
+	});
+	$(".email").on({
+		focus: function() {
+			if (!Isemail) {
+				$(".email").val("")
+				$(".email").css({
+					"border-bottom": " 1px solid #2a74a3",
+					"color": "#2a74a3"
+				})
+			}
+		},
+		blur: function() {
+			reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+			if (!reg.test($(".email").val())) {
+				$(".email").val("请输入正确的邮箱");
+				$(".email").css({
+					"color": "#e81a33"
+				})
+				Isemail = false;
+			} else {
+				Isemail = true;
+			}
+			$(".email").css({
 				"border-bottom": "1px solid #cccbc8"
 			})
 		}
@@ -420,9 +447,49 @@ $(document).ready(function() {
 
 	$(".form_submit").click(function() {
 		if (Isname == true && Isprofession == true && Isqq == true && Isintention == true && Isphone == true && Isintro == true && $(".introduction").val().length <= 200 && $(".introduction").val().length > 0) {
-			let str = $(".selected").text();
-			$(".intention_choose").html(str);
-
+			let wantdepart = $(".selected").val();
+			$(".intention_choose").val(wantdepart);
+			alert("发了aj");
+			$.ajax({
+				type: "POST",
+				url: "/api/sign/submit",
+				timeout : 5000,
+				data: {
+					name: $(".name").val(),
+					yearAndMajor: $(".profession").val(),
+					qq: $(".qq").val(),
+					phone: $(".phonenumber").val(),
+					email: $(".email").val(),
+					wantDepartment: $(".intention_choose").val(),
+					selfIntro: $(".introduction").val(),
+				},
+				dataType: "json",
+				//发送成功可以返回的东西
+				success: function(data){
+					str = "";
+					switch (data.statusC){
+						case 0:
+							alert("提交成功，按邮件说明完成最后一步报名操作（你可以关闭这个页面了）");
+							return;
+						case 1:
+							str="未知错误"
+							break;
+						case 2:
+							str="邮件发送错误"
+							break;
+						case 3:
+							str="表单错误"
+							break;
+						case 4:
+							str="邮件发送错误"
+							break;
+					}
+					alert("错误："+str);
+				},
+				error: function(jqXHR){
+				   alert("服务器错误请重试，错误代码：" + jqXHR.status);
+				},
+			});
 
 		} else {
 			if ($(".introduction").val().length > 200) {
@@ -434,18 +501,10 @@ $(document).ready(function() {
 	})
 
 	$("form").submit(function() {
-		if (Isname == true && Isprofession == true && Isqq == true && Isintention == true && Isphone == true && Isintro == true && $(".self_introduction").val().length <= 200 && $(".self_introduction").val().length > 0) {
-
-			return true;
-		} else {
-			if ($(".introduction").val().length > 200) {
-				var a = $(".introduction").val().substr(0, 199);
-				$(".introduction").val(a);
-
-			}
-
-			return false;
-		}
+		console.log(Isname,Isintention,Isqq,Isintention,Isphone,Isintro);
+		console.log($(".introduction").val());
+		console.log($(".introduction").text());
+		return false;
 	});
 
 	//点击查看进程
@@ -503,7 +562,7 @@ $(document).ready(function() {
 		})
 	}
 	//输入编号点击查询
-checkprocess();
+chec// kprocess();
 	//要判断是否填写了编号,要返回错误信息
 	function checkprocess() {
 		// + $(".verify input").val()

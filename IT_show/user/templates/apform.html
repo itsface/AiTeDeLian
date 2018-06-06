@@ -14,7 +14,8 @@
 			<div class="logo"><a href=""><img src="{% static  "images/logo.png" %}" alt=""></a></div>
 			<h1 class="formheader">爱特工作室2018秋季招新报名表</h1>
 
-			<form class="apform" action="" method="post" id="apform" style="display: block;">
+			<form class="apform" method="post" id="apform" style="display: block;">
+                    {% csrf_token %}
 					<div class="formbody">
 						<div class="basic_info">
 							<div class="info_title">姓名</div>
@@ -33,26 +34,30 @@
 							<div class="info_title">手机</div>
 							<input type="text" class="phonenumber">
 						</div>
+                        <div class="basic_info clearfix">
+							<div class="info_title">邮箱</div>
+							<input type="text" class="email">
+						</div>
 						<div style="clear: both;"></div>
 						<div class="intention clearfix">
 							<h2>请选择意向部门</h2>
 							<ul class="clearfix">
-								<li>前端部门</li>
-								<li>UI部门</li>
-								<li>程序部门</li>
-								<li>安卓部门</li>
+								<li value="1">前端部门</li>
+								<li value="2">UI部门</li>
+								<li value="3">程序部门</li>
+								<li value="4">安卓部门</li>
 							</ul>
 						</div>
 						<div style="clear: both;"></div>
-						<div class="intention_choose"></div>
+						<input type="number" class="intention_choose">
 						<div class="self_introduction">
 							<div class="title">个人简介</div>
 							<textarea name="introduction" id="" cols="" rows="" class="introduction"></textarea>
 							<div class="tip">（不要超过200字）</div>
-						</div> 
+						</div>
 						<div class="buttonwrap clearfix2">
-							
-							<button class="form_submit" type="submit"></button>
+
+							<button class="form_submit"></button>
 							<button class="check"></button>
 						</div>
 						
@@ -121,4 +126,9 @@
 </body>
 <script src="{% static  "js/jquery-3.2.1.min.js" %}"></script>
 <script src="{% static  "js/apform.js" %}"></script>
+<script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+</script>>
 </html>

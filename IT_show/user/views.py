@@ -37,7 +37,4 @@ def refreshCache():
 
 
 def register(request):
-    back = {
-        "form": FresherForm,
-    }
-    return render(request, 'apform.html', back)
+    return render(request, 'apform.html')
