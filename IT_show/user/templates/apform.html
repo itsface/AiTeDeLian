@@ -1,15 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>纳新报名表</title>
-	<link rel="stylesheet" href="../css/apform.css">
+	<link rel="stylesheet" href="{% static  "css/apform.css" %}">
 </head>
+
 <body>
 	<div class="container">
 		<div class="header"></div>
 		<div class="body">
-			<div class="logo"><a href=""><img src="../images/logo.png" alt=""></a></div>
+			<div class="logo"><a href=""><img src="{% static  "images/logo.png" %}" alt=""></a></div>
 			<h1 class="formheader">爱特工作室2018秋季招新报名表</h1>
 			<div class="verify" style="display: none;">
 
@@ -19,26 +21,26 @@
 				<button class="back"></button>
 
 			</div>
-			<form class="apform" action="/api/sign/submit" method="post" id="apform" >
-					{% csrf_token %}
-                    <div class="formbody">
+			<form class="apform" action="" method="post" id="apform" style="display: none;">
+					<div class="formbody">
 						<div class="basic_info">
-							<div>姓名</div>
-							{{ form.name }}
-                            <div style="clear: both;"></div>
+							<div class="info_title">姓名</div>
+							<input type="text" class="name">
+							<div style="clear: both;"></div>
 						</div>
 						<div class="basic_info clearfix">
-							<div>专业</div>
+							<div class="info_title">专业</div>
 							<input type="text" class="profession">
 						</div>
 						<div class="basic_info clearfix">
-							<div>QQ</div>
+							<div class="info_title">QQ</div>
 							<input type="text" class="qq">
 						</div>
 						<div class="basic_info clearfix">
-							<div>手机</div>
+							<div class="info_title">手机</div>
 							<input type="text" class="phonenumber">
 						</div>
+						<div style="clear: both;"></div>
 						<div class="intention clearfix">
 							<h2>请选择意向部门</h2>
 							<ul class="clearfix">
@@ -51,7 +53,7 @@
 						<div style="clear: both;"></div>
 						<div class="intention_choose"></div>
 						<div class="self_introduction">
-							<div>个人简介</div>
+							<div class="title">个人简介</div>
 							<textarea name="introduction" id="" cols="" rows="" class="introduction"></textarea>
 							<div class="tip">（不要超过200字）</div>
 						</div> 
@@ -64,7 +66,7 @@
 					</div>
 		
 			</form>
-			<div class="processform" style="display: none;">
+			<div class="processform" >
 				<div class="info clearfix name">
 					<div class="title">姓名:</div>
 					<div class="content">浦则元</div>
@@ -89,7 +91,7 @@
 							<div class="dot"></div>
 						</div>
 						<div class="events">
-							<div class="event">
+							<!-- <div class="event">
 								<span>2018年9月10日</span>
 								<span> 网上报名</span>
 								<span>成功</span>
@@ -103,7 +105,7 @@
 								<span>2018年9月10日</span>
 								<span> 网上报名</span>
 								<span>成功</span>
-							</div>
+							</div> -->
 							
 						</div>
 
@@ -114,6 +116,6 @@
 		</div>
 	</div>
 </body>
-<script src="../js/jquery-3.2.1.min.js"></script>
-<script src="../js/apform.js"></script>
+<script src="{% static  "js/jquery-3.2.1.min.js" %}"></script>
+<script src="{% static  "js/apform.js" %}"></script>
 </html>

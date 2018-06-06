@@ -38,11 +38,11 @@ class tasksThread(threading.Thread):
             print("start.... %s" % (self.getName(),))
 
 
-def index(request):
+def index(request):  # success
     return render(request, 'home(pre).html')
 
 
-def workshow(request):
+def workshow(request):  # success
     return render(request, 'workshow.html')
 
 

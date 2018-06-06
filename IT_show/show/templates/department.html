@@ -8,8 +8,10 @@
 
 {% block content %}
 {#		<img class="back" src="{% static  "images/department_background.png" %}" alt="">#}
-		<h1>部门介绍</h1>
-		<div class="line"></div>
+		<div class="title">
+            部门介绍
+		    <div class="line"></div>
+        </div>
 		<div class="person"><img src="{% static  "images/person.png" %}" alt=""></div>
 		<div class="ball">
 			<div class="front_end baller">
@@ -79,6 +81,7 @@
 {% endblock %}
 
 {% block script %}
+    <script src="{% static  "/js/jquery-3.2.1.min.js" %}"></script>
     <script src="{% static  "js/department.js" %}"></script>
 {% endblock %}
 
