@@ -1,0 +1,542 @@
+input{
+	outline: none;
+}
+
+li{
+	list-style: none;
+}
+textarea{
+	outline: none;
+}
+button{
+	outline: none;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+*{
+	padding: 0px;
+	margin:0px;
+	font-family: MicrosoftYaHei;
+}
+.container{
+	width: 100%;
+	background-image: url(../images/背景.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;	
+	overflow: hidden;
+	position: relative;
+}
+.logo{
+	/*width: 77px;*/
+	width: 4%;
+	/*height: 77px;*/
+	height: auto;
+	margin: 0px auto;
+}
+.logo img{
+	width: 100%;
+	height: auto;
+}
+#apform{
+
+	/*width: 560px;*/
+	width: 29.167%;
+	height: 915px;
+	margin:0px auto;
+	z-index: 5;
+	
+}
+/*.bodywrap{
+	width: 560px;
+	background-color: rgba(250, 250, 250, 0.96);
+	box-shadow: 0px 3px 3px 0px 
+		rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	opacity: 0.96;
+	position: relative;
+}*/
+.formheader{
+	font-size: 24px;
+	letter-spacing: 2px;
+	color: #458bac;
+	font-weight: normal;
+	font-stretch: normal;
+	text-align: center;
+	margin-bottom: 23px;
+}
+
+.formbody{
+	/*width: 452px;*/
+	/*width: auto;*/
+	width: 80.71%;
+	/*height: 837px;*/
+	margin: 0px auto;
+	/*padding:0px 50px 40px 50px;*/
+	padding: 0px 9.645% 0 9.645%;
+	background-color: rgba(250, 250, 250, 0.96);
+	box-shadow: 0px 3px 3px 0px 
+		rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	opacity: 0.96;
+	position: relative;
+}
+
+.basic_info{
+	/*width: 452px;*/
+	width: 100%;
+	/*height: 69px;*/
+	
+	 
+}
+.basic_info>div:first-child{
+	/*width: 75px;*/
+	width: 16%;
+	/*height: 39px;*/
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	margin-top: 30px;
+	/*line-height: 69px;*/
+	letter-spacing: 2px;
+	color: #458bac;
+	float: left;
+}
+.basic_info input{
+	float: left;
+	/*width: 375px;*/
+	width: 83%;
+	/*height: 54px;*/
+	margin-top: 10px;
+	font-size: 20px;
+	background-color: rgba(250, 250, 250, 0.96);
+	border:1px solid rgba(250, 250, 250, 0.96);
+	border-bottom: 2px solid rgba(204, 204, 204, 0.6);
+}
+.intention{
+	width: 71%;
+	/*width: 321px;*/
+	margin:0px auto;
+}
+.intention h2{
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 2px;
+	color: #458bac;
+	margin-top: 36px;
+	margin-bottom: 32px;
+	text-align: center;
+}
+.intention ul{
+	/*width: 321px;*/
+	width: 100%;
+	/*height: 139px;*/
+	padding: 0px;
+}
+.intention ul li{
+	/*width: 129px;*/
+	width: 40%;
+	/*height: 52px;*/
+	color: #458bac;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 56px;
+	border-radius: 10px;
+	border: solid 2px #458bac;
+	float: left;
+	text-align: center;
+}
+.intention ul li:nth-child(1){
+	/*margin-right: 50px;*/
+	margin-right: 15.625%;
+	margin-bottom: 27px;
+}
+.intention ul li:nth-child(2){
+	margin-bottom: 27px;
+}
+.intention ul li:nth-child(3){
+	/*margin-right: 50px;*/
+	margin-right: 15.625%;
+}
+.intention ul li:hover{
+	cursor: pointer;
+}
+.self_introduction{
+	/*width: 452px;*/
+	width: 100%;
+	margin-top: 23px;
+	position: relative;
+}
+.self_introduction div{
+
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	margin-bottom: 25px;
+	letter-spacing: 2px;
+	color: #458bac;
+	float: left;
+
+}
+.introduction{
+	/*width: 428px;*/
+	width: 94%;
+	/*height: 148px;*/
+	background-color: #ffffff;
+	border-radius: 8px;
+	border: solid 2px #458bac;
+	clear: both;
+	font-size: 20px;
+	padding: 2.3%;
+}
+.self_introduction .tip{
+
+	position: absolute;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 1px;
+	color: #d9d9d9;
+	right: 17px;
+	bottom: -3px;
+
+}
+.buttonwrap{
+	/*width: 170px;*/
+	width: 70.1%;
+	margin: 0px auto;
+
+	margin-top: 30px;
+}
+.form_submit,#apform .check{
+	/*width: 170px;*/
+	/*width: 170px;*/
+	width: 43.2%;
+	/*height: 51px;*/
+	font-size: 24px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 2px;
+	color: #ffffff;
+	
+	background-repeat: no-repeat;
+	border-radius: 25px;
+	box-shadow: none;
+	border: 1px solid rgb(250,250,250);
+	line-height: 51px;
+	/*position: absolute;*/
+	/*left: 85px;*/
+	/*bottom: 24px;*/
+	background-position: center;
+	float: left;
+
+}
+.form_submit{
+	/*left: 85px;*/
+	/*left: 15.7%;*/
+	background-image: url(../images/submit.png);
+	background-position: center;
+	background-size: cover;
+	margin-right: 13.4%;
+
+}
+#apform .check{
+background-size: cover;
+	
+	background-image: url(../images/check_process.png);
+	/*right: 85px;*/
+	right: 15.7%;
+	background-position: center;
+
+}
+.form_submit,#apform .check:hover{
+	cursor: pointer;
+}
+
+.intention_choose{
+	display: none;
+}
+.verify{
+	z-index: 10;
+	width: 29.167%;;
+	height: 915px;
+	margin:0px auto;
+	background-color: rgba(250, 250, 250, 0.96);
+	box-shadow: 0px 3px 3px 0px 
+		rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	opacity: 0.96;
+	border: 1px solid white;
+	position: relative;
+	display: none;
+}
+.verify h2{
+
+	font-size: 24px;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 2px;
+	color: #458bac;
+	text-align: center;
+	margin-top: 112px;
+
+}
+.verify input{
+	width: 100%;
+	height: 70px;
+	background-color: #ffffff;
+	border-radius: 10px;
+	border: solid 2px #458bac;
+	font-size: 25px;
+	padding-left: 5px;
+}
+.verify .inputwrap{
+	margin: 0px auto;
+	width: 63.2%;
+	margin-top: 66px;
+}
+.verify .check,.verify .back{
+	/*width: 170px;*/
+	width: 30.3%;
+	/*height: 51px;*/
+	border-radius: 25px;
+	background-image: url(../images/check2.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+	font-size: 24px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 51px;
+	letter-spacing: 2px;
+	color: #ffffff;
+	box-shadow: none;
+	border: 1px solid rgb(250,250,250);
+	margin-left: 34.85%;
+	margin-top: 311px;
+}
+.verify .check,.verify .back:hover{
+	cursor: pointer;
+}
+.verify .back{
+
+	background-image: url(../images/back.png);
+	background-position: center;
+	margin-top: 31px;
+
+}
+
+.processform{
+	width: 23.9%;
+	/*height: 787px;*/
+	background-color: #fafafa;
+	box-shadow: 0px 3px 3px 0px 
+		rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	/*z-index: 100;*/
+	margin: 0px auto;
+	padding:2.08% 2.86% 2.08% 2.86%;
+	position: relative;
+	display:none;
+}
+.processform .info{
+	/*height: 17px;*/
+	margin-bottom: 49px;
+}
+.processform .info div{
+	float: left;
+}
+
+.processform .info .title{
+
+	font-size: 20px;
+	letter-spacing: 2px;
+	color: rgb(161,161,161);
+	float: left;
+	margin-right: 1.78%;
+	
+}
+.processform .info .content{
+
+	font-size: 20px;
+	
+	letter-spacing: 2px;
+	color: #458bac;
+	float: left;
+	
+}
+.state{
+	width: 100%;
+	height: 348px;
+	margin-top: 50px;
+	position: relative;
+}
+.line{
+	width: 2px;
+	height: 350px;
+	background-color: #458bac;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+
+}
+.dot{
+	width: 2.14%;
+	height: 12px;
+	background-color: #458bac;
+	position: absolute;
+	left: 0px;
+	margin-left: -1.07%;
+}
+.dot:nth-child(3){
+	
+top: 30px;
+}
+.dot:nth-child(2){
+	bottom: 175px;
+	 
+}
+.dot:nth-child(1){
+	
+	 bottom: 30px;
+}
+.event{
+	position: absolute;
+	left: 3.9%;
+	color: #458bac;
+}
+.event:nth-child(3){
+	top: 30px;
+
+}
+.event:nth-child(2){
+	bottom: 175px;
+	 
+}
+.event:nth-child(1){
+	bottom: 30px;
+	 
+}
+.processform .return{
+	width: 36.9%;
+/*	background-blend-mode: normal, 
+		normal;
+	box-shadow: 0px 4px 4px 0px 
+		rgba(0, 0, 0, 0.09);*/
+	border-radius: 25px;
+	background-image: url(../images/back.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	border: none;
+	/*position: absolute;*/
+	/*left: 50%;*/
+	margin-left: 31.55%;
+	/*bottom: 41px;*/
+	/*margin: 0px auto;*/
+
+
+}
+.processform .return:hover{
+	cursor:pointer;
+}
+@media screen and (max-width: 1400px)
+{
+	.apform{
+		font-size: 12px;
+	}
+	.basic_info>div:first-child{
+		font-size: 12px;
+	}
+	.intention ul li{
+		font-size: 10px;
+		border: solid 1px #458bac;
+	}
+	.intention h2{
+		font-size: 12px;
+	}
+	.self_introduction div{
+		font-size: 12px;
+	}
+	.formheader{
+		font-size: 18px;
+	}
+	.self_introduction .tip{
+		font-size: 10px;
+	}
+	.introduction{
+		border: solid 1px #458bac;
+	}
+	.basic_info input{
+	font-size: 11px;
+	border:0.2x solid rgba(250, 250, 250, 0.96);
+	}
+	.introduction{
+		font-size: 11px;
+	}
+	.processform .info .title{
+		font-size: 12px;
+	}
+	.processform .info .content{
+		font-size: 12px;
+	}
+	.state{
+		font-size: 9px;
+	}
+	.verify h2{
+		font-size: 13px;
+	}
+	.verify input{
+		border:solid 1px #458bac;
+		font-size: 12px;
+	}
+
+
+}
+@media screen and (max-width: 1200px)
+{
+	.apform{
+		font-size: 10px;
+	}
+	.basic_info>div:first-child{
+		font-size: 10px;
+	}
+	.intention ul li{
+		font-size: 10px;
+		border: solid 1px #458bac;
+	}
+	.intention h2{
+		font-size: 10px;
+	}
+	.self_introduction div{
+		font-size: 10px;
+	}
+	.formheader{
+		font-size: 16px;
+	}
+	.self_introduction .tip{
+		font-size: 8px;
+		right: 4px;
+		bottom: -12px;
+	}
+	.introduction{
+		border: solid 1px #458bac;
+	}
+	.basic_info input{
+	font-size: 9px;
+	border:0.2x solid rgba(250, 250, 250, 0.96);
+	}
+	.introduction{
+		font-size: 9px;
+	}
+/*	.processform{
+		font-size: 12px!important;
+	}*/
+}
+
