@@ -7,6 +7,16 @@ from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 import json
 
+def test3(request):
+    from IT_show import settings
+    if settings.isNew:
+        print("new")
+        settings.isNew=False
+    else:
+        print("old")
+        settings.isNew=True
+    return render(request, "test.html",{"isNew":settings.isNew})
+
 #页面缓存装饰器
 def simple_cache_page(keyName,cache_timeout):
     """

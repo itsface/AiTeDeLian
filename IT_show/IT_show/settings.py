@@ -201,3 +201,6 @@ LOGGING = {
         },
     },
 }
+
+#全局变量
+isNew=True
