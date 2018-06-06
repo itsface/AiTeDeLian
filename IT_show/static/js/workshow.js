@@ -268,7 +268,9 @@ function clockwise(fx){
             $(".rightimg").removeClass("rightimg");
             $(".topimg").removeClass("topimg");
             $(".bottomimg").removeClass("bottomimg");
+
             nowBlock=next(nowBlock,fx);
+            $(".web_name").html($("#webname"+_(nowBlock)).val());
             circling = false;
 		}
 	},1)
