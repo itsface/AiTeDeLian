@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+	<title>作品展示</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="{% static  "css/workshow.css" %}">
+{% endblock %}
+{% block content %}
+        <div class="title">
+            作品展示
+		    <div class="line"></div>
+        </div>
+		<img src="{% static  "img/quan.png" %}" class="quan">
+		<div class="ball">
+			<div class="up">
+				<img src="{% static  "img/up1.png" %}" class="up_row">
+			</div>
+			<div class="down">
+				<img src="{% static  "img/down1.png" %}" class="down_row">
+			</div>
+			<h3 class="web_name">海洋技术网站技术网站</h3>
+		</div>
+		<div class="block1 block">
+
+			<img src="{% static  "img/huiji.png" %}" class="huiji">
+			<img src="{% static  "img/back.png" %}" class="in_img1">
+			<div class="zhe"></div>
+		</div>
+		<div class="block2 block">
+
+			<img src="{% static  "img/huiji.png" %}" class="huiji">
+			<img src="{% static  "img/jjjj.jpg" %}" class="in_img2">
+			<div class="zhe"></div>
+		</div>
+		<div class="block3 block">
+			<img src="{% static  "img/huiji.png" %}" class="huiji">
+			<img src="{% static  "img/cbsah.png" %}" class="in_img3">
+			<div class="zhe"></div>
+		</div>
+		<div class="block4 block" style="display: none">
+
+			<img src="{% static  "img/huiji.png" %}" class="huiji">
+			<img src="{% static  "img/back.png" %}" class="in_img4">
+			<div class="zhe"></div>
+		</div>
+        <div class="block5 block" style="display: none">
+
+			<img src="{% static  "img/huiji.png" %}" class="huiji">
+			<img src="{% static  "img/back.png" %}" class="in_img5">
+			<div class="zhe"></div>
+		</div>
+        <div class="block6 block" style="display: none">
+
+			<img src="{% static  "img/huiji.png" %}" class="huiji">
+			<img src="{% static  "img/back.png" %}" class="in_img6">
+			<div class="zhe"></div>
+		</div>
+        <div class="fugai"></div>
+        <div class="fugaitwo"></div>
+{% endblock %}
+{% block script %}
+	<script type="text/javascript" src="{% static  "/js/jquery-3.3.1.min.js" %}"></script>
+	<script src="http://cdn.bootcss.com/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="{% static  "js/workshow.js" %}"></script>
+{% endblock %}

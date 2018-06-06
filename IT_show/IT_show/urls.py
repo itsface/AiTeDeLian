@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('base.urls')),
     url(r'^test/', include('tes.urls')),
+    url(r'^home/', include('show.urls')),
+    url(r'^fresher/', include('user.urls')),
 
     url(r'^(?P<path>.*)', django.views.static.serve, {'document_root': IT_show.settings.BASE_DIR }),
 ]

@@ -36,3 +36,23 @@ class tasksThread(threading.Thread):
         for i in range(5):
             time.sleep(1)
             print("start.... %s" % (self.getName(),))
+
+
+def index(request):  # success
+    return render(request, 'home(pre).html')
+
+
+def workshow(request):  # success
+    return render(request, 'workshow.html')
+
+
+def member(request):
+    return render(request, 'member.html')
+
+
+def department(request):
+    return render(request, 'department.html')
+
+
+def big_event(request):
+    return render(request, 'bigevent.html')

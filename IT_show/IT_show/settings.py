@@ -133,11 +133,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-
 STATIC_URL = '/static/'
-STATIC_ROOT=os.path.join(BASE_DIR,'static/').replace('\\','/')
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/admin"),)
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/').replace('\\', '/')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 
 MEDIA_URL = "/image/"
 MEDIA_ROOT=os.path.join(BASE_DIR,"image/")
@@ -181,12 +179,12 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': r'D:\Web\ITShow2018\nginx-1.14.0\AiTeDeLian-master\IT_show\django_log\all.log',
-            'formatter': 'verbose'
-        },
+        # 'file': {
+        #     'level': 'INFO',
+        #     'class': 'logging.FileHandler',
+        #     'filename': r'D:\Web\ITShow2018\nginx-1.14.0\AiTeDeLian-master\IT_show\django_log\all.log',
+        #     'formatter': 'verbose'
+        # },
         'email': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
@@ -195,7 +193,8 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file', 'email'],
+            'handlers': ['console',  # 'file',
+                         'email'],
             'level': 'INFO',
             'propagate': True,
         },
