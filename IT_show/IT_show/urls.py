@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^home/', include('show.urls')),
     url(r'^fresher/', include('user.urls')),
 
-    url(r'^(?P<path>.*)', django.views.static.serve, {'document_root': IT_show.settings.BASE_DIR }),
+    #url(r'^(?P<path>.*)', django.views.static.serve, {'document_root': IT_show.settings.BASE_DIR }),
+
 ]

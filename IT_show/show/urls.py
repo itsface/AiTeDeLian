@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^member/$', member, name='show_member'),
     url(r'^department/$', department, name='show_department'),
     url(r'^story/$', big_event, name='show_big_event'),
+
 ]

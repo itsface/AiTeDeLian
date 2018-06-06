@@ -24,6 +24,8 @@ from .views import *
 urlpatterns = [
     url(r'^page1/$',views.test, name='page1'),
     url(r'^page2/$',views.test2, name='page2'),
+    url(r'^page3/$',views.test3, name='page3'),
+    url(r'^page4/$',views.test4, name='page4'),
     url(r'^comment/submit$', api_comment_submit_test, name='api_comment_submit_test'),
     url(r'^sign/submit$', api_sign_submit_test, name='api_sign_submit_test'),
 
