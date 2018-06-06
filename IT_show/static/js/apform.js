@@ -25,9 +25,9 @@ $(document).ready(function() {
 
 		$(".container").height(H);
 		$(".container").width(W);
-		$("#apform").height(0.802 * H);
-		$(".verify").height(0.802 * H);
-		$(".formbody").height(0.802 * H);
+		$("#apform").height(0.852 * H);
+		$(".verify").height(0.852 * H);
+		$(".formbody").height(0.852 * H);
 		$(".formheader").css({
 			'margin-bottom': 0.021 * 0.802 * H,
 		})
@@ -98,7 +98,7 @@ $(document).ready(function() {
 			'height': 0.0588 * 0.802 * H,
 			'margin-top': 0.3587 * 0.802 * H
 		})
-		$(".verify .back").css({
+		$(".verify .verify_back").css({
 			'margin-top': 0.0357 * 0.802 * H
 		})
 		$(".processform .info").css({
@@ -144,9 +144,9 @@ $(document).ready(function() {
 		$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 			$(".container").height(H);
 			$(".container").width(W);
-			$("#apform").height(0.802 * H);
-			$(".verify").height(0.802 * H);
-			$(".formbody").height(0.802 * H);
+			$("#apform").height(0.852 * H);
+			$(".verify").height(0.852 * H);
+			$(".formbody").height(0.852 * H);
 			$(".formheader").css({
 				'margin-bottom': 0.021 * 0.802 * H,
 			})
@@ -219,11 +219,11 @@ $(document).ready(function() {
 			$(".verify .inputwrap").css({
 				'margin-top': 0.076 * 0.802 * H
 			})
-			$(".verify .verify_check,.verify .back").css({
+			$(".verify .verify_check,.verify .verify_back").css({
 				'height': 0.0588 * 0.802 * H,
 				'margin-top': 0.3587 * 0.802 * H
 			})
-			$(".verify .back").css({
+			$(".verify .verify_back").css({
 				'margin-top': 0.0357 * 0.802 * H
 			})
 			$(".processform .info").css({
@@ -511,123 +511,45 @@ $(document).ready(function() {
 	$(".apform_check").click(function() {
 		$(".apform").hide();
 		$(".verify").show();
-	})
-
-	let ISchecknum = false;
-	$(".verify input").on({
-		focus: function() {
-			if (!Ischecknum) {
-				$(".verify input").val("");
-
-			}
-		},
-		blur: function() {
-			// reg = /^[1-9][0-9]{4,10}$/;
-			// if (!reg.test($(".qq").val())) {
-			// 	$(".qq").val("qq");
-			// 	$(".qq").css({
-			// 		"color": "#e81a33"
-			// 	})
-			// 	Ischecknum = false;
-			// } else {
-			// 	Ischecknum = true;
-			// }
-
-		}
-	})
-	//promise
-	function promisesetajax(obj) {
-		return new Promise((resolve, reject) => {
-			var request = new XMLHttpRequest();
-			request.open(obj.method, obj.url, obj.async);
-			if (obj.method == 'GET') {
-				request.send();
-			} else if (obj.method == 'POST') {
-				request.send(obj.data);
-			}
-
-			request.onreadystatechange = function() {
-				if (request.readyState === 4) {
-					if (request.status === 200) {
-						var dat = JSON.parse(request.responseText);
-						resolve(dat);
-
-					} else {
-						reject(new Error(request.status))
-					}
-				}
-
-			}
-
-		})
-	}
-	//输入编号点击查询
-chec// kprocess();
-	//要判断是否填写了编号,要返回错误信息
-	function checkprocess() {
-		// + $(".verify input").val()
-
-
-		var obj = {
-			url: 'http://118.25.179.209/api/status/get?UserCode=1',
-			method: 'GET',
-			data: {
-
-			},
-			dataType: 'Default: Intelligent Guess',
-			async: true
-
-		}
-		promisesetajax(obj).then(function(data) {
-				let str = "";
-				if (data.success) {
-
-					if (data.status == '[]') {
-
-					} else {
-						for (let i = 0, m = data.status.length; i < m; i++) {
-							str += `
-							<div class="event">
-								<span>${data.status[i].statusHappenTime}</span>
-								<span>${data.status[i].statusName}</span>
-							
-							</div>
-					`
-
-
-						}
-
-					}
-
-					$("events").append(str);
-				}
-
-
-			},
-			function(error) {
-				alert("发生错误：" + error);
-
-			})
-
-
-
-	}
-
+	});
 
 
 	$(".verify_check").click(function() {
+		$.ajax({
+				type: "GET",
+				url: "/api/status/get?userCode="+$("#usercodeinput").val(),
+				timeout : 5000,
+				dataType: "json",
+				//发送成功可以返回的东西
+				success: function(data){
+					if (data.success){
+						$(".cname").html(data.name);
+						$(".cmajor").html(data.major);
+						$(".cdepart").html(data.wantDepart);
 
-		$(".verify").hide();
-		$(".processform").show();
-	})
+						x=[0,1,2];
+						x.forEach(function (v) {
+							if (data.status[v])
+								$(".status"+x[v].toString()).html("状态："+data.status[v].statusName+"，发生于："+data.status[v].statusHappenTime);
+                        })
+						$(".verify").hide();
+						$(".processform").show();
+					}else {
+						alert("获取失败");
+					}
+				},
+				error: function(jqXHR){
+				   alert("服务器错误请重试，错误代码：" + jqXHR.status);
+				},
+			});
+	});
 
 
 	//输入编号点击返回
 	$(".verify_back").click(function() {
-		alert(1);
 		$('.verify').hide();
-		$(".apform").show();
-	})
+		$('.apform').show();
+	});
 
 
 	//在报名状态下点击返回，然后回到单号页面
@@ -636,6 +558,109 @@ chec// kprocess();
 		$(".processform").hide();
 		$(".verify").show();
 	})
+
+// 	let ISchecknum = false;
+// 	$(".verify input").on({
+// 		focus: function() {
+// 			if (!Ischecknum) {
+// 				$(".verify input").val("");
+//
+// 			}
+// 		},
+// 		blur: function() {
+// 			// reg = /^[1-9][0-9]{4,10}$/;
+// 			// if (!reg.test($(".qq").val())) {
+// 			// 	$(".qq").val("qq");
+// 			// 	$(".qq").css({
+// 			// 		"color": "#e81a33"
+// 			// 	})
+// 			// 	Ischecknum = false;
+// 			// } else {
+// 			// 	Ischecknum = true;
+// 			// }
+//
+// 		}
+// 	})
+// 	//promise
+// 	function promisesetajax(obj) {
+// 		return new Promise((resolve, reject) => {
+// 			var request = new XMLHttpRequest();
+// 			request.open(obj.method, obj.url, obj.async);
+// 			if (obj.method == 'GET') {
+// 				request.send();
+// 			} else if (obj.method == 'POST') {
+// 				request.send(obj.data);
+// 			}
+//
+// 			request.onreadystatechange = function() {
+// 				if (request.readyState === 4) {
+// 					if (request.status === 200) {
+// 						var dat = JSON.parse(request.responseText);
+// 						resolve(dat);
+//
+// 					} else {
+// 						reject(new Error(request.status))
+// 					}
+// 				}
+//
+// 			}
+//
+// 		})
+// 	}
+// 	//输入编号点击查询
+// chec// kprocess();
+// 	//要判断是否填写了编号,要返回错误信息
+// 	function checkprocess() {
+// 		// + $(".verify input").val()
+//
+//
+// 		var obj = {
+// 			url: 'http://118.25.179.209/api/status/get?UserCode=1',
+// 			method: 'GET',
+// 			data: {
+//
+// 			},
+// 			dataType: 'Default: Intelligent Guess',
+// 			async: true
+//
+// 		}
+// 		promisesetajax(obj).then(function(data) {
+// 				let str = "";
+// 				if (data.success) {
+//
+// 					if (data.status == '[]') {
+//
+// 					} else {
+// 						for (let i = 0, m = data.status.length; i < m; i++) {
+// 							str += `
+// 							<div class="event">
+// 								<span>${data.status[i].statusHappenTime}</span>
+// 								<span>${data.status[i].statusName}</span>
+//
+// 							</div>
+// 					`
+//
+//
+// 						}
+//
+// 					}
+//
+// 					$("events").append(str);
+// 				}
+//
+//
+// 			},
+// 			function(error) {
+// 				alert("发生错误：" + error);
+//
+// 			})
+//
+//
+//
+// 	}
+
+
+
 
 
 

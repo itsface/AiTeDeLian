@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<meta charset="UTF-8">
+	<title>评论</title>
+	<link rel="stylesheet" href="{% static  "css/comment.css" %}">
+	<link rel="stylesheet" href="{% static  "css/jquery.mCustomScrollbar.css" %}">
+{% endblock %}
+
+{% block content %}
+ <!--    <div class="writewrap" style="display: none;"></div> -->
+    <div class="write">
+      <div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+      <div class="header clearfix3">
+        <div class="select_head" >
+        <div class="left_arrow"><img src="{% static  "images/leftarrow.png" %}" alt=""></div>
+          <div class="head_c">
+            
+              <li><img src="{% static  "images/head1.png" %}" alt=""></li>
+              <li><img src="{% static  "images/head2.png" %}" alt=""></li>
+              <li><img src="{% static  "images/head3.png" %}" alt=""></li>
+              <li><img src="{% static  "images/head4.png" %}" alt=""></li>
+              <li><img src="{% static  "images/head5.png" %}" alt=""></li>
+              <li><img src="{% static  "images/head6.png" %}" alt=""></li>
+
+          </div>
+        <div class="right_arrow"><img src="{% static  "images/rightarrow.png" %}" alt=""></div>
+        
+        </div>
+        <div class="id"><input type="text"></div>
+        <!-- <div style="clear: both;"></div> -->
+        <div class="head_tip">(请选择头像)</div>
+        
+        
+        <div class="id_tip" >(请输入你的昵称）</div>
+      </div>
+      
+      <div class="text">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="footer clearfix3">
+        <div class="verify_tip">(请输入验证码)</div>
+        <div class="text_tip">(请不要超过80个字)</div>
+        <div class="verify"><input type="text"></div>
+        <div class="verify_img"><img src="{% url 'identify_code_picture' %}" alt="点击更换验证码" id="ident"></div>
+        <button class="submit">提交</button>
+      </div>
+      
+    </div>
+    <div class="container_in">
+    <div class="header">
+      <h1>留言板</h1>
+      <span class="line"></span>
+    </div>
+    <div class="body">
+        <div class="comments-contain index_topic mCustomScrollbar _mCS_1">
+      <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">
+        <div id="mCSB_1_container" class="mCSB_container"  dir="ltr"> 
+         
+{#          <div class="comments clearfix3">#}
+{#            <div class="head_c"><img src="{% static  "images/head1.png" %}" alt=""></div>#}
+{#            <div class="right clearfix3">#}
+{#              <div class="clearfix3"> #}
+{#                <div class="id">阿浦爱曼联（临时id）</div>#}
+{#                <div class="time">2018年5月13日 16：43</div>#}
+{#              </div>#}
+{#             #}
+{#              <p>ddddddddddddddddddddddddsssssssssssssssssssssss</p>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="comments clearfix3">#}
+{#          <div class="head_c"><img src="{% static  "images/head2.png" %}" alt=""></div>#}
+{#          <div class="right clearfix3">#}
+{#            <div class="clearfix3" style="margin-bottom: -5px;"> #}
+{#              <div class="id">阿浦爱曼联（临时id）</div>#}
+{#              <div class="time">2018年5月13日 16：43</div>#}
+{#            </div>#}
+{#           #}
+{#            <p>ddddddddddddddddddddddddsssssssssssssssssssssss</p>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="comments clearfix3">#}
+{#          <div class="head_c"><img src="{% static  "images/head2.png" %}" alt=""></div>#}
+{#          <div class="right clearfix3">#}
+{#            <div class="clearfix3" style="margin-bottom: -5px;"> #}
+{#              <div class="id">阿浦爱曼联（临时id）</div>#}
+{#              <div class="time">2018年5月13日 16：43</div>#}
+{#            </div>#}
+{#           #}
+{#            <p>ddddddddddddddddddddddddsssssssssssssssssssssss</p>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="comments clearfix3">#}
+{#          <div class="head_c"><img src="{% static  "images/head3.png" %}" alt=""></div>#}
+{#          <div class="right clearfix3">#}
+{#            <div class="clearfix3" style="margin-bottom: -5px;"> #}
+{#              <div class="id">阿浦爱曼联（临时id）</div>#}
+{#              <div class="time">2018年5月13日 16：43</div>#}
+{#            </div>#}
+{#           #}
+{#            <p>ddddddddddddddddddddddddsssssssssssssssssssssss</p>#}
+{#          </div>#}
+{#        </div>#}
+        <div class="out_tip" style="display: none;"> 留言已经到底了</div>
+        </div>
+    </div>
+</div>
+      <div class="make_comment_wrap"><button class="make_comment">我要留言</button></div>
+     
+    </div>
+
+  </div>
+{% endblock %}
+{% block script %}
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="{% static  "js/mCustomScrollbar.js" %}"></script>
+<script src="{% static  "js/comment.js" %}"></script>
+<script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+</script>>
+{% endblock %}

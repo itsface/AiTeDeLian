@@ -27,3 +27,7 @@ def department(request):
 #@simple_cache_page(60*60*10,"bigevent")
 def big_event(request):
     return render(request, 'bigevent.html')
+
+
+def comment(request):
+    return render(request, 'comment.html');

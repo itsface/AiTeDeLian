@@ -34,6 +34,7 @@ def api_comment_get(request):
             back["comment"] += [{
                 "head": c.head.pic.url,
                 "content": c.content,
+                "nickname": c.name,
                 "createTime": c.createTime.strftime("%Y-%m-%d %H:%M:%S"),
                 "code": c.code,
             }]
@@ -51,14 +52,22 @@ def api_comment_get(request):
 def api_status_get(request):
     back = {
         "success": True,
+        "name": "",
+        "major": "",
+        "wantDepart": "",
         "status": [],
     }
     try:
         userCode = request.GET["userCode"]
         # logging.debug(userCode)
-        statusList = StatusDetails.objects.filter(hostID__userCode=userCode)
+        user = Fresher.objects.get(userCode=userCode)
+        back["name"] = user.name
+        back["major"] = user.yearAndMajor
+        back["wantDepart"] = user.wantDepartment.name
+
+        statusList = StatusDetails.objects.filter(hostID__userCode=userCode).order_by("-time")
         # logging.debug(statusList)
-        for status in statusList:
+        for status in statusList[0:3]:
             back["status"] += [{
                 "statusName": status.statu.info,
                 "statusHappenTime": status.time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -86,6 +95,8 @@ def api_comment_submit(request):
         # logging.debug(content + " " + str(head))
         code = int(Comment.objects.latest("code").code) + 1
         # logging.debug(code)
+        nickName = request.POST.get("nickName")
+        logging.debug(nickName)
         identify = str(request.POST['identify'])
         if identify.upper() != str(request.session['identify']).upper():
             back["statusC"] = 2  # u"验证码错误"
@@ -94,7 +105,7 @@ def api_comment_submit(request):
             del request.session['identify']
         except:
             pass
-        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(id=head))
+        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(id=head), name=nickName)
         c.save()
         back["statusC"] = 0  # 成功
     except:

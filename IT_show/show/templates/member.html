@@ -1,14 +1,53 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block head %}
+<!DOCTYPE html>
+<html>
+<head>
 	<title>成员展示</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="{% static  "css/member.css" %}">
-{% endblock %}
-{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static  "css/d.css" %}">
+</head>
+<body>
+	<div class="container">
+		<div class="head">
+				<div class="center">
+					<img src="{% static  "img/logo.png" %}" class="logo">
+					<h2>爱特工作室</h2>
+					<div class="menu">
+                        <div class="menu-item x">
+		    				<a href="{% url 'show_index' %}">首页</a>
+		  				</div>
+		  				<div class="menu-item">
+		    				<a href="{% url 'show_department' %}">部门介绍</a>
+		  				</div>
+		  				<div class="menu-item">
+		    				<a href="{% url 'show_workshow' %}">作品展示</a>
+		  				</div>
+		 	 			<div class="menu-item">
+		    				<a href="{% url 'show_big_event' %}">爱特大事记</a>
+		  				</div>
+		  				<div class="menu-item current-menu-item">
+		    				<a href="{% url 'show_member' %}">成员展示</a>
+		    				<div class="wee"></div>
+		  				</div>
+		  				<div class="menu-item">
+		    				<a href="{% url 'show_comment' %}">留言板</a>
+		  				</div>
+		  				<div class="menu-item">
+		    				<a href="{% url 'user_' %}">加入我们</a>
+		  				</div>
+					</div>
+				</div>
+		</div>
+		<div class="show">
+			<h1 class="member_show">成员展示</h1>
+			<span class="zhan"></span>
+		</div>
 		<img src="{% static  "img/mountain.png" %}" class="mountain">
 		<img src="{% static  "img/backac.png" %}" class="star">
+		
 		<div class="main">
+			<div class="float"></div>
 			<img src="{% static  "img/asdabj.png" %}" class="time_star">
 			<div class="quan quan2011"></div>
 			<div class="quan quan2012"></div>
@@ -23,26 +62,58 @@
 			<div class="cha_block">
 				<img src="{% static  "img/cha.png" %}" class="cha">
 			</div>
-			<div class="turnleft">
+			<!-- <div class="turnleft">
 				<img src="{% static  "img/left.png" %}" class="turnleft_row">
 			</div>
 			<div class="turnright">
 				<img src="{% static  "img/right.png" %}" class="turnright_row">
-			</div>
+			</div> -->
 			<div class="lunbo">
 				<div class="long">
 				<div class="boy1 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy1 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				</div>
 			</div>
+			<!-- <div class="turn_page">
+				<div class="page1 page">
+					<img src="{% static  "img/page1.png" %}" class="qiu1 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page2 page">
+					<img src="{% static  "img/page2.png" %}" class="qiu2 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page3 page">
+					<img src="{% static  "img/page3.png" %}" class="qiu3 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page4 page">
+					<img src="{% static  "img/page4.png" %}" class="qiu4 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+			</div> -->
 		</div>
 		<div class="member2012_block member_block">
 			<h2 class="grade">2012</h2>
@@ -58,42 +129,82 @@
 			<div class="lunbo">
 				<div class="long">
 				<div class="boy1 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">1谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy2 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy3 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy4 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">2谢哈斯</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy5 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy6 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy7 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">3谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy8 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
@@ -115,6 +226,16 @@
 					<img src="{% static  "img/up.png" %}" class="uprow">
 					<img src="{% static  "img/down.png" %}" class="downrow">
 				</div>
+				<div class="page4 page" style="display: none;">
+					<img src="{% static  "img/page4.png" %}" class="qiu4 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page5 page" style="display: none;">
+					<img src="{% static  "img/page5.png" %}" class="qiu5 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
 			</div>
 		</div>
 		<div class="member2013_block member_block">
@@ -131,37 +252,72 @@
 			<div class="lunbo">
 				<div class="long">
 				<div class="boy1 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy2 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy3 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy4 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy5 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy6 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy7 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
@@ -180,6 +336,16 @@
 				</div>
 				<div class="page3 page">
 					<img src="{% static  "img/page3.png" %}" class="qiu3 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page4 page" style="display: none;">
+					<img src="{% static  "img/page4.png" %}" class="qiu4 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page5 page" style="display: none;">
+					<img src="{% static  "img/page5.png" %}" class="qiu5 qiu">
 					<img src="{% static  "img/up.png" %}" class="uprow">
 					<img src="{% static  "img/down.png" %}" class="downrow">
 				</div>
@@ -199,42 +365,82 @@
 			<div class="lunbo">
 				<div class="long">
 				<div class="boy1 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">1谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy2 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy3 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy4 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">2谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy5 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy6 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy7 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">3谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy8 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
@@ -256,6 +462,16 @@
 					<img src="{% static  "img/up.png" %}" class="uprow">
 					<img src="{% static  "img/down.png" %}" class="downrow">
 				</div>
+				<div class="page4 page" style="display: none;">
+					<img src="{% static  "img/page4.png" %}" class="qiu4 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page5 page" style="display:none;">
+					<img src="{% static  "img/page5.png" %}" class="qiu5 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
 			</div>
 		</div>
 		<div class="member2015_block member_block">
@@ -272,32 +488,62 @@
 			<div class="lunbo">
 				<div class="long">
 				<div class="boy1 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">1谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy2 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy3 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy4 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">2谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy5 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy6 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
@@ -311,6 +557,21 @@
 				</div>
 				<div class="page2 page">
 					<img src="{% static  "img/page2.png" %}" class="qiu2 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page3 page" style="display: none;">
+					<img src="{% static  "img/page3.png" %}" class="qiu3 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page4 page" style="display: none;">
+					<img src="{% static  "img/page4.png" %}" class="qiu4 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
+				<div class="page5 page" style="display: none;">
+					<img src="{% static  "img/page5.png" %}" class="qiu5 qiu">
 					<img src="{% static  "img/up.png" %}" class="uprow">
 					<img src="{% static  "img/down.png" %}" class="downrow">
 				</div>
@@ -330,77 +591,152 @@
 			<div class="lunbo">
 				<div class="long">
 				<div class="boy1 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">1谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy2 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy3 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy4 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">2谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy5 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy6 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy7 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">3谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy8 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy9 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy10 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">4谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy11 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy12 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy13 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">5谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy14 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy15 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
@@ -428,7 +764,7 @@
 					<img src="{% static  "img/down.png" %}" class="downrow">
 				</div>
 				<div class="page5 page">
-					<img src="{% static  "img/page5.png" %}" class="qiu4 qiu">
+					<img src="{% static  "img/page5.png" %}" class="qiu5 qiu">
 					<img src="{% static  "img/up.png" %}" class="uprow">
 					<img src="{% static  "img/down.png" %}" class="downrow">
 				</div>
@@ -448,53 +784,103 @@
 			<div class="lunbo">
 				<div class="long">
 				<div class="boy1 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">1谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy2 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy3 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy4 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">2谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy5 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy6 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy7 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">3谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy8 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy9 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
 					<h2 class="name">谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				<div class="boy10 boy">
-					<img src="{% static  "img/cbsah.png" %}" class="portrait">
-					<h2 class="name">谢哲勇</h2>
+					<div class="portrait">
+						<img src="{% static  "img/cbsah.png" %}" class="portrait">
+						<div class="cover">
+							<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈好</p>
+						</div>
+					</div>
+					<h2 class="name">4谢哲勇</h2>
 					<h3 class="department">程序部门</h3>
 				</div>
 				</div>
@@ -520,12 +906,16 @@
 					<img src="{% static  "img/up.png" %}" class="uprow">
 					<img src="{% static  "img/down.png" %}" class="downrow">
 				</div>
+				<div class="page5 page" style="display: none;">
+					<img src="{% static  "img/page5.png" %}" class="qiu5 qiu">
+					<img src="{% static  "img/up.png" %}" class="uprow">
+					<img src="{% static  "img/down.png" %}" class="downrow">
+				</div>
 			</div>
 		</div>
-{% endblock %}
-{% block script %}
-	<script type="text/javascript" src="{% static  "/js/jquery-3.3.1.min.js" %}"></script>
-	<script src="http://cdn.bootcss.com/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+	</div>
+	<script type="text/javascript" src="{% static  "js/jquery-3.3.1.min.js" %}"></script>
 	<script type="text/javascript" src="{% static  "js/member.js" %}"></script>
-{% endblock %}
+</body>
+</html>
 <!-- //2 8 7 8 6 15 10 -->

@@ -1,3 +1,10 @@
+$(document).ready(function() {
+	$(".menu").children().eq(5).addClass("current-menu-item")
+    var $thisnav = $('.current-menu-item').offset().left-$('.x').offset().left;
+	var $initwidth = $('.current-menu-item').width();
+      $('.wee').css({ 'left': $thisnav+10+'px' , 'width': $initwidth });
+      addcomment(true);
+})
 // $(document).ready(function() {
 var userAgent = navigator.userAgent.toLowerCase();
 // Figure out what browser is being used
@@ -16,7 +23,9 @@ let write_top1,
 	boxw,
 	button_w = 170,
 	button_h = 51,
-	box_top;
+	box_top,
+	com_h = 562;
+
 $write = $(".write");
 if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(window).width()”
 {
@@ -25,13 +34,30 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	H2 = $(".container_in").height();
 	write_top1 = $(".make_comment").offset().top
 	write_left1 = $(".make_comment").offset().left
+	box_top = $(".index_topic").offset().top
+	button_w = parseInt($(".make_comment").width())
+	button_h = parseInt($(".make_comment").height())
+	com_h = 0.58 / 1.9 * W;
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		H = $(window).height();
 		W = $(window).width();
 		H2 = $(".container_in").height();
 		write_top1 = $(".make_comment").offset().top
 		write_left1 = $(".make_comment").offset().left
+		box_top = $(".index_topic").offset().top
+		button_w = parseInt($(".make_comment").width())
+		button_h = parseInt($(".make_comment").height())
+		com_h = 0.58 / 1.9 * W;
 	});
+
+	// if(W<'1920' && W>1700)
+	// {
+	// 	com_h = 562;
+	// }else if(W<=1700 && W>1500)
+	// {
+
+	// }
+
 
 	$(".container").height(H);
 	$(".container").width(W);
@@ -44,14 +70,14 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(".comments").css({
 		// 'min-height': 0.284 * H * 0.414,
 		'margin-bottom': 0.067 * 0.414 * H,
-		'min-height':0.066*W,
+		'min-height': 0.066 * W,
 
 	})
-	$(".comments .head").css({
+	$(".comments .head_c").css({
 		// 'height': 0.645*0.284 * H * 0.414,
 		// 'margin-top': 0.27*0.645*0.284 * H * 0.414
-		'height':0.0427*W,
-		'margin-top':0.012*W
+		'height': 0.0427 * W,
+		'margin-top': 0.012 * W
 	})
 	$(".make_comment").css({
 		'height': 0.0266 * W,
@@ -67,7 +93,17 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(".line").css({
 		'margin-top': 0.025 * H
 	})
-	// $(".write").height(H*0.5);
+	if ($(".write").css('z-index') > 0) {
+
+		// $(".write").height(H * 0.5);
+		$(".write").width(0.6 * W);
+		$(".write").height(com_h);
+		$(".write").css({
+			'margin-left':-0.3*W
+		})
+	}
+
+	// $(".write").width(0.6*W);
 
 	// if ((W - 0) > 1550) {
 	// 	boxw = 1125;
@@ -80,80 +116,80 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	// 	boxw = 956;
 	// 	box_top = 177.667;
 	// }
-	boxw = parseInt($write.css('width'));
-	boxh = parseInt($write.css('height'));
+	// boxw = parseInt($write.css('width'));
+	// boxh = parseInt($write.css('height'));
 
 	//当年想要按比例缩放
-	// $(".write textarea").css({
-	// 	'height': 0.453 * 0.52 * H - 22
-	// })
-	// $(".write .text").css({
-	// 	'height': 0.453 * 0.52 * H,
-	// 	'margin-top':0.03*0.52*H
-	// })
+	$(".write textarea").css({
+		'height': 0.453 * com_h - 22
+	})
+	$(".write .text").css({
+		'height': 0.453 * com_h,
+		'margin-top': 0.03 * com_h
+	})
 	// $(".write").css({
 	// 	'height': 0.52 * H
 	// })
-	// $(".write .header").css({
-	// 	'margin-top': 0.07 * 0.52 * H
-	// })
-	// $(".write .close").css({
-	// 	'top': 0.0266 * 0.52 * H
-	// })
-	// $(".select_head").css({
-	// 	'height': 0.129 * 0.52 * H
-	// })
-	// $(".write .left_arrow").css({
-	// 	'margin-top': 0.046 * 0.52 * H
-	// })
-	// $(".write .head").css({
-	// 	'height': 0.129 * 0.52 * H
-	// })
+	$(".write .header").css({
+		'margin-top': 0.071 * com_h,
+	})
+	$(".write .close").css({
+		'top': 0.0266 * com_h
+	})
+	$(".select_head").css({
+		'height': 0.129 * com_h,
+	})
+	$(".write .left_arrow").css({
+		'margin-top': 0.046 * com_h
+	})
+	$(".write .head_c").css({
+		'height': 0.129 * com_h
+	})
 
-	// $(".write .head img").css({
-	// 	'height': 0.129 * 0.52 * H
-	// })
-	// $(".write .head_tip").css({
-	// 	'margin-top':0.028*0.52*H
-	// })
-	// $(".write .id").css({
-	// 	'height':0.076*0.52*H,
-	// 	'margin-top':0.048*0.52*H
-	// })
-	// $(".write .id input").css({
-	// 	'height':0.067*0.52*H
-	// })
-	// $(".write .id_tip").css({
-	// 	'margin-top':0.028*0.52*H
-	// })
-	// $(".write .verify_tip").css({
-	// 	'margin-top':0.028*0.52*H
-	// })
-	// $(".write .verify").css({
-	// 	'height':0.064*0.52*H,
-	// 	'margin-top':0.02*0.52*H
-	// })
-	// $(".write .verify input").css({
-	// 	'height':0.056*0.52*H
-	// })
-	// $(".verify_img").css({
-	// 	'height':0.071*0.52*H,
-	// 	'margin-top':0.021*0.52*H
-	// })
-	// $(".verify_img img").css({
-	// 	'height':0.071*0.52*H,
-	// })
-	// $(".write .submit").css({
-	// 	'height':0.087*0.52*H,
-	// 	'margin-top':0.0177*0.52*H,
-	// 	'line-height':0.087*0.52*H+'px'
-	// })
-	// $(".text_tip").css({
-	// 	'margin-top':0.028*0.52*H
-	// })
-	// $(".write .right_arrow").css({
-	// 	'margin-top':0.046*0.52*H
-	// })
+	$(".write .head_c img").css({
+		'height': 0.129 * com_h
+	})
+	$(".write .head_tip").css({
+		'margin-top': 0.028 * com_h
+	})
+	$(".write .id").css({
+		'height': 0.076 * com_h,
+		'margin-top': 0.048 * com_h
+	})
+	$(".write .id input").css({
+		'height': 0.067 * com_h
+	})
+	$(".write .id_tip").css({
+		'margin-top': 0.028 * com_h
+	})
+	$(".write .verify_tip").css({
+		'margin-top': 0.028 * com_h
+	})
+	$(".write .verify").css({
+		'height': 0.064 * com_h,
+		'margin-top': 0.02 * com_h
+	})
+	$(".write .verify input").css({
+		'height': 0.056 * com_h
+	})
+	$(".verify_img").css({
+		'height': 0.071 * com_h,
+		'margin-top': 0.021 * com_h
+	})
+	$(".verify_img img").css({
+		'height': 0.071 * com_h,
+	})
+	$(".write .submit").css({
+		'height': 0.087 * com_h,
+		'margin-top': 0.0177 * com_h,
+		'line-height': 0.087 * com_h + 'px'
+	})
+	$(".text_tip").css({
+		'margin-top': 0.028 * com_h
+	})
+	$(".write .right_arrow").css({
+		'margin-top': 0.046 * com_h
+	})
 
 
 
@@ -161,142 +197,143 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	// boxh = 0.52 * H;
 
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
+		// com_h = 0.58/21.9*W;
+		// $(".write").width(0.6*W);
 		$(".container").height(H);
-	$(".container").width(W);
-	// $(".header h1").css({'margin-top':(H-H2)/2});
-	$(".index_topic").height(H * 0.414);
-	$(".index_topic").css({
-		'margin-bottom': 0.041 * H,
-		'margin-top': 0.027 * H
-	})
-	$(".comments").css({
-		// 'min-height': 0.284 * H * 0.414,
-		'margin-bottom': 0.067 * 0.414 * H,
-		'min-height':0.066*W,
+		$(".container").width(W);
+		// $(".header h1").css({'margin-top':(H-H2)/2});
+		$(".index_topic").height(H * 0.414);
+		$(".index_topic").css({
+			'margin-bottom': 0.041 * H,
+			'margin-top': 0.027 * H
+		})
+		$(".comments").css({
+			// 'min-height': 0.284 * H * 0.414,
+			'margin-bottom': 0.067 * 0.414 * H,
+			'min-height': 0.066 * W,
 
-	})
-	$(".comments .head").css({
-		// 'height': 0.645*0.284 * H * 0.414,
-		// 'margin-top': 0.27*0.645*0.284 * H * 0.414
-		'height':0.0427*W,
-		'margin-top':0.012*W
-	})
-	$(".make_comment").css({
-		'height': 0.0266 * W,
-		'line-height': 0.0266 * W + 'px'
-	})
-	$(".make_comment_wrap").css({
-		'height': 0.0266 * W,
-		'line-height': 0.0266 * W + 'px'
-	})
-	$(".comments .right").css({
-		'margin-top': 0.125 * 0.284 * H * 0.414
-	})
-	$(".line").css({
-		'margin-top': 0.025 * H
-	})
-	// $(".write").height(H*0.5);
+		})
+		$(".comments .head_c").css({
+			// 'height': 0.645*0.284 * H * 0.414,
+			// 'margin-top': 0.27*0.645*0.284 * H * 0.414
+			'height': 0.0427 * W,
+			'margin-top': 0.012 * W
+		})
+		$(".make_comment").css({
+			'height': 0.0266 * W,
+			'line-height': 0.0266 * W + 'px'
+		})
+		$(".make_comment_wrap").css({
+			'height': 0.0266 * W,
+			'line-height': 0.0266 * W + 'px'
+		})
+		$(".comments .right").css({
+			'margin-top': 0.125 * 0.284 * H * 0.414
+		})
+		$(".line").css({
+			'margin-top': 0.025 * H
+		})
 
-	// if ((W - 0) > 1550) {
-	// 	boxw = 1125;
-	// 	box_top = 197.667;
-	// } else if ((W - 0) > 1250 && (W - 0) < 1550) {
-	// 	boxw = 985;
+	if ($(".write").css('z-index') > 0) {
 
-	// 	box_top = 187.667;
-	// } else {
-	// 	boxw = 956;
-	// 	box_top = 177.667;
-	// }
-	boxw = parseInt($(".index_topic").css('width'));
-	boxh = parseInt($(".index_topic").css('height'));
+		// $(".write").height(H * 0.5);
+		$(".write").width(0.6 * W);
+		$(".write").height(com_h);
+		$(".write").css({
+			'margin-left':-0.3*W
+		})
+	}
 
-		// boxw = $write.css('width');
-		// boxh = 0.52 * H;
-		// 	$(".write textarea").css({
-		// 	'height': 0.453 * 0.52 * H - 22
-		// })
-		// $(".write .text").css({
-		// 	'height': 0.453 * 0.52 * H,
-		// 	'margin-top':0.03*0.52*H
-		// })
-		// $(".write").css({
-		// 	'height': 0.52 * H
-		// })
-		// $(".write .header").css({
-		// 	'margin-top': 0.07 * 0.52 * H
-		// })
-		// $(".write .close").css({
-		// 	'top': 0.0266 * 0.52 * H
-		// })
-		// $(".select_head").css({
-		// 	'height': 0.129 * 0.52 * H
-		// })
-		// $(".write .left_arrow").css({
-		// 	'margin-top': 0.046 * 0.52 * H
-		// })
-		// $(".write .head").css({
-		// 	'height': 0.129 * 0.52 * H
-		// })
 
-		// $(".write .head img").css({
-		// 	'height': 0.129 * 0.52 * H
-		// })
-		// $(".write .head_tip").css({
-		// 	'margin-top':0.028*0.52*H
-		// })
-		// $(".write .id").css({
-		// 	'height':0.076*0.52*H,
-		// 	'margin-top':0.048*0.52*H
-		// })
-		// $(".write .id input").css({
-		// 	'height':0.067*0.52*H
-		// })
-		// $(".write .id_tip").css({
-		// 	'margin-top':0.028*0.52*H
-		// })
-		// $(".write .verify_tip").css({
-		// 	'margin-top':0.028*0.52*H
-		// })
-		// $(".write .verify").css({
-		// 	'height':0.064*0.52*H,
-		// 	'margin-top':0.02*0.52*H
-		// })
-		// $(".write .verify input").css({
-		// 	'height':0.056*0.52*H
-		// })
-		// $(".verify_img").css({
-		// 	'height':0.071*0.52*H,
-		// 	'margin-top':0.021*0.52*H
-		// })
-		// $(".verify_img img").css({
-		// 	'height':0.071*0.52*H,
-		// })
-		// $(".write .submit").css({
-		// 	'height':0.087*0.52*H,
-		// 	'margin-top':0.0177*0.52*H,
-		// 	'line-height':0.087*0.52*H+'px',
-		// })
-		// $(".text_tip").css({
-		// 	'margin-top':0.028*0.52*H
-		// })
-		// 	$(".write .right_arrow").css({
-		// 	'margin-top':0.046*0.52*H
-		// })
-		// $(".write").height(H*0.5);
+
 
 		// if ((W - 0) > 1550) {
 		// 	boxw = 1125;
 		// 	box_top = 197.667;
 		// } else if ((W - 0) > 1250 && (W - 0) < 1550) {
 		// 	boxw = 985;
+
 		// 	box_top = 187.667;
 		// } else {
 		// 	boxw = 956;
 		// 	box_top = 177.667;
 		// }
-		// boxh = $write.css('height');
-		
+		// boxw = parseInt($write.css('width'));
+		// boxh = parseInt($write.css('height'));
+
+		//当年想要按比例缩放
+		$(".write textarea").css({
+			'height': 0.453 * com_h - 22
+		})
+		$(".write .text").css({
+			'height': 0.453 * com_h,
+			'margin-top': 0.03 * com_h
+		})
+
+		// $(".write").css({
+		// 	'height': 0.52 * H
+		// })
+		$(".write .header").css({
+			'margin-top': 0.071 * com_h,
+		})
+		$(".write .close").css({
+			'top': 0.0266 * com_h
+		})
+		$(".select_head").css({
+			'height': 0.129 * com_h,
+		})
+		$(".write .left_arrow").css({
+			'margin-top': 0.046 * com_h
+		})
+		$(".write .head_c").css({
+			'height': 0.129 * com_h
+		})
+
+		$(".write .head_c img").css({
+			'height': 0.129 * com_h
+		})
+		$(".write .head_tip").css({
+			'margin-top': 0.028 * com_h
+		})
+		$(".write .id").css({
+			'height': 0.076 * com_h,
+			'margin-top': 0.048 * com_h
+		})
+		$(".write .id input").css({
+			'height': 0.067 * com_h
+		})
+		$(".write .id_tip").css({
+			'margin-top': 0.028 * com_h
+		})
+		$(".write .verify_tip").css({
+			'margin-top': 0.028 * com_h
+		})
+		$(".write .verify").css({
+			'height': 0.064 * com_h,
+			'margin-top': 0.02 * com_h
+		})
+		$(".write .verify input").css({
+			'height': 0.056 * com_h
+		})
+		$(".verify_img").css({
+			'height': 0.071 * com_h,
+			'margin-top': 0.021 * com_h
+		})
+		$(".verify_img img").css({
+			'height': 0.071 * com_h,
+		})
+		$(".write .submit").css({
+			'height': 0.087 * com_h,
+			'margin-top': 0.0177 * com_h,
+			'line-height': 0.087 * com_h + 'px'
+		})
+		$(".text_tip").css({
+			'margin-top': 0.028 * com_h
+		})
+		$(".write .right_arrow").css({
+			'margin-top': 0.046 * com_h
+		})
+
 	});
 
 } else {
@@ -305,7 +342,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 
 // })
 
-let HEAD_SIZE = 3; //记录头像的个数
+let HEAD_SIZE = 6; //记录头像的个数
 let headimg = 1; //默认显示第一个头像
 $(".right_arrow").click(function() {
 	if (headimg == HEAD_SIZE) {
@@ -325,6 +362,10 @@ $(".left_arrow").click(function() {
 	console.log(headimg)
 
 })
+
+function headshow() {
+	$(".write .head_c li").eq(headimg - 1).show().siblings().hide();
+}
 
 //点击打开弹框，弹出发表评论框
 //我先让评论框放到我要留言下面
@@ -354,8 +395,10 @@ $(".left_arrow").click(function() {
 
 // })
 $(".make_comment").click(function() {
-	boxw = parseInt($(".index_topic").css('width'));
-	boxh = parseInt($(".index_topic").css('height'));
+	changeverify();
+	boxw = 0.6 * W;
+	// boxh = parseInt($(".index_topic").css('height'));
+	box_top = $(".index_topic").offset().top
 	//先把遮罩层放好位置
 	// $(".writewrap").css({
 	// 	'width': boxw,
@@ -386,7 +429,7 @@ $(".make_comment").click(function() {
 
 
 			'width': boxw,
-			'height': 0.52 * H,
+			'height': com_h,
 			'top': box_top,
 			// 'left': (W - boxw) / 2,
 			// 'top':'50%',
@@ -428,6 +471,7 @@ $(".make_comment").click(function() {
 
 
 })
+
 
 $(".write .close").click(function() {
 	//先收起遮罩层并隐藏
@@ -474,14 +518,6 @@ $(".write .close").click(function() {
 	// });
 });
 
-function fillscreen() {
-
-}
-
-function headshow() {
-	$(".write .head li").eq(headimg - 1).show().siblings().hide();
-}
-
 
 
 let Iscomment = false,
@@ -497,14 +533,16 @@ $(".write .id").on({
 	}
 })
 //留言框判断
+//如果用户自己发起删除不应该判断为超出
 $(".write textarea").on({
 	focus: function() {
 		if (!Iscomment && $(".write textarea").val() == '') {
 			Iscomment = true;
 		}
 	},
-	keydown: function() {
-		if ($(".write textarea").val().length > 80) {
+	keydown: function(event) {
+
+		if ($(".write textarea").val().length > 80 && event.keyCode != 8) {
 			alert("字数太多了！");
 			$(".write textarea").val($(".write textarea").val().substring(0, 80));
 
@@ -531,18 +569,71 @@ $(".write .submit").click(function() {
 	} else if (!Isverify) {
 		alert("请输入验证码！");
 	} else {
-		var msg = $(".write textarea").val(),
-			msg = htmlEncodeJQ(msg);
-		var com = {
-			url: 'http://118.25.179.209/api/comment/get',
-			method: 'POST',
-			data: {
-				content: msg
-			},
-			dataType: 'Default: Intelligent Guess',
-			async: true
-
-		}
+		// var msg = $(".write textarea").val(),
+		// 	msg = htmlEncodeJQ(msg);
+		console.log($(".write textarea").val())
+		console.log(headimg)
+		console.log($(".verify input").val())
+		$.ajax({
+				type: "POST",
+				url: "/api/comment/submit",
+				timeout : 5000,
+				data: {
+					content: $(".write textarea").val(),
+					nickName: $(".id input").val(),
+					head: headimg,
+					identify: $(".verify input").val(),
+				},
+				dataType: "json",
+				//发送成功可以返回的东西
+				success: function(data){
+					switch (data.statusC){
+						case 1:
+							alert("发表失败");
+							break;
+						case 2:
+							alert("验证码错误");
+							break;
+						case 0:
+							alert("成功");
+							break;
+					}
+				},
+				error: function(jqXHR){
+				   alert("服务器错误请重试，错误代码：" + jqXHR.status);
+				},
+			});
+		// let com = {
+		// 	url: '/api/comment/submit',
+		// 	method: 'POST',
+		// 	data: {
+		// 		content: $(".write textarea").val(),
+		// 		head: headimg,
+		// 		identify: $(".verify input").val(),
+		// 	},
+		// 	timeout: 5000,
+		// 	dataType: 'json',
+		// }
+        //
+        //
+        //
+		// promisesetajax(com).then(function(data) {
+        //
+		// 		if (data.statusCode == 1) {
+		// 			alert("留言提交失败！");
+        //
+		// 		} else if (data.statusCode == 2) {
+		// 			alert("验证码错误！");
+		// 		} else if (data.statusCode == 0) {
+		// 			alert("留言发表成功!");
+		// 		}
+        //
+        //
+        //
+		// 	},
+		// 	function(error) {
+		// 		alert("发生错误：" + error);
+		// 	})
 	}
 })
 
@@ -558,24 +649,33 @@ $(window).on("load", function() {
 
 });
 
+//滚动条滑到底的事件！！
 $(".index_topic").mCustomScrollbar({
 
 	callbacks: {
 		whileScrolling: function() {
 			if (parseInt($(".mCSB_dragger").css("bottom")) < "4") {
-				// addcomment();
+				addcomment();
 			}
 
 		}
 	}
 })
 
-
+$("#ident").click(function(){
+	changeverify();
+});
 //更换验证码事件
 function changeverify() {
-
-
+	$.ajax({
+				type: "GET",
+				url: "/api/identifyPic",
+				timeout : 1000,
+			});
+	$("#ident").attr('src','/api/identifyPic');
 }
+
+
 
 //频繁调用函数，特别用于调整大小时
 $(window).resize(function() {})
@@ -612,14 +712,17 @@ function promisesetajax(obj) {
 
 
 //添加评论的方式
-function addcomment() {
+function addcomment(firstTime=false) {
+	var code;
+	if (firstTime){
+		code = 0;
+	} else {
+		code = $(".index_topic .comments:last-child").attr('id')
+	}
 
 	var obj = {
-		url: 'http://118.25.179.209/api/comment/get',
+		url: '/api/comment/get?code=' + code,
 		method: 'GET',
-		data: {
-
-		},
 		dataType: 'Default: Intelligent Guess',
 		async: true
 
@@ -633,11 +736,11 @@ function addcomment() {
 			} else {
 				for (let i = 0, m = data.comment.length; i < m; i++) {
 
-					str += `<div class="comments clearfix">
-	         			 	<div class="head"><img src="${data.comment[i].head}" alt="" /></div>
+					str += `<div class="comments clearfix" id="${data.comment[i].code}">
+	         			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
 	          				<div class="right clearfix">
 				            <div class="clearfix" style="margin-bottom: -5px;"> 
-				              	<div class="id"></div>
+				              	<div class="id">${data.comment[i].nickname}</div>
 				             	 <div class="time">${data.comment[i].createTime}</div>
 				            </div>
 				            <p>${data.comment[i].content}</p>
