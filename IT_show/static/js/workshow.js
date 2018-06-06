@@ -11,6 +11,7 @@ $(document).ready(function() {
 	mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
 	}; //通过正则去判断当前使用的哪种内核的浏览器
     addc();
+    webNum = parseInt($("#wNum").val());
 	upsc=1.1;
     sidesc=0.8;
 	circling = false;
