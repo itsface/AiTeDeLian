@@ -484,6 +484,9 @@ $(document).ready(function() {
 						case 4:
 							str="邮件发送错误"
 							break;
+						case 5:
+							str="数据库错误"
+							break;
 					}
 					alert("错误："+str);
 				},
