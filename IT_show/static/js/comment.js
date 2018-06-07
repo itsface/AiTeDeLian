@@ -708,7 +708,7 @@ $("#ident").click(function(){
 });
 //更换验证码事件
 function changeverify() {
-	$("#ident").attr('src','/api/identifyPic?time='+Math.random());
+	$("#ident").attr('src','/api/identifyPic?time=' + Math.random());
 }
 
 
@@ -749,14 +749,24 @@ function promisesetajax(obj) {
 }
 
 
-
+function xssdf(value){  
+  return $('<div/>').text(value).html();  
+}  
 //添加评论的方式
+lasttime = new Date().getTime();
 function addcomment(firstTime=false) {
 	var code;
 	if (firstTime){
 		code = 0;
 	} else {
 		code = $(".index_topic .comments:last-child").attr('id')
+		
+		var nowtime = new Date().getTime();
+		if (nowtime-lasttime<2000){
+			return;
+		} else {
+			lasttime = nowtime;
+		}
 	}
 
 	var obj = {
@@ -775,14 +785,14 @@ function addcomment(firstTime=false) {
 			} else {
 				for (let i = 0, m = data.comment.length; i < m; i++) {
 
-					str += `<div class="comments clearfix" id="${data.comment[i].code}">
+					str += `<div class="comments clearfix" id="${data.comment[i].code})">
 	         			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
 	          				<div class="right clearfix">
 				            <div class="clearfix" >
-				              	<div class="id">${data.comment[i].nickname}</div>
+				              	<div class="id">`+xssdf(data.comment[i].nickname)+`</div>
 				             	 <div class="time">${data.comment[i].createTime}</div>
 				            </div>
-				            <p>${data.comment[i].content}</p>
+				            <p>`+xssdf(data.comment[i].content)+`</p>
 				          	</div>
 			        	</div>
         `
