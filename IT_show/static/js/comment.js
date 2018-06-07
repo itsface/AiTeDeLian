@@ -357,7 +357,7 @@ $(".right_arrow").click(function() {
 
 })
 $(".left_arrow").click(function() {
-	if (headimg == 0) {
+	if (headimg == 1) {
 		headimg += HEAD_SIZE;
 	}
 	headimg--;
@@ -708,12 +708,7 @@ $("#ident").click(function(){
 });
 //更换验证码事件
 function changeverify() {
-	$.ajax({
-				type: "GET",
-				url: "/api/identifyPic",
-				timeout : 1000,
-			});
-	$("#ident").attr('src','/api/identifyPic');
+	$("#ident").attr('src','/api/identifyPic?time='+Math.random());
 }
 
 

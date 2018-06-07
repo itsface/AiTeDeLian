@@ -105,7 +105,7 @@ def api_comment_submit(request):
             del request.session['identify']
         except:
             pass
-        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(id=head), name=nickName)
+        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(name=head), name=nickName)
         c.save()
         back["statusC"] = 0  # 成功
     except:
