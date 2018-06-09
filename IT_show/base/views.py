@@ -156,7 +156,6 @@ def api_sign_submit(request):
             logging.debug("邮件错了")
             raise RuntimeError()
 
-
         back["statusC"] = 2  # 数据库错误
         newFresher = Fresher.objects.create(name=name,  # sex=sex,
                                             yearAndMajor=yearAndMajor,
