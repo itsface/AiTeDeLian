@@ -3,7 +3,7 @@ import os
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core import serializers
-from show.models import Comment, HeadPicture
+from show.models import Comment, HeadPicture,Event
 from user.models import Fresher, StatusDetails
 from .func import *
 import logging
@@ -92,6 +92,7 @@ def api_comment_submit(request):
     try:
         content = request.POST.get("content")
         # logging.debug(content)
+
         head = int(request.POST.get("head"))
         # logging.debug(content + " " + str(head))
         code = int(Comment.objects.latest("code").code) + 1
@@ -136,37 +137,41 @@ def api_sign_submit(request):
         selfIntro = request.POST.get("selfIntro")  # text
         wantDepartment = int(request.POST.get("wantDepartment"))  # int
 
-        logging.debug(name)
-        # logging.debug(sex)
-        logging.debug(yearAndMajor)
-        logging.debug(qqnum)
-        logging.debug(email)
-        logging.debug(phone)
-        logging.debug(selfIntro)
-        logging.debug(wantDepartment)
+        #判断邮箱注册次数
+        if Fresher.objects.filter(email=email).count() <= 3:
+            logging.debug(name)
+            # logging.debug(sex)
+            logging.debug(yearAndMajor)
+            logging.debug(qqnum)
+            logging.debug(email)
+            logging.debug(phone)
+            logging.debug(selfIntro)
+            logging.debug(wantDepartment)
 
-        code = randomCode()
-        logging.debug(code)
-        back["statusC"] = 4  # "邮件发送错误"
-        try:
-            text="你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/"+code
-        #     + '127.0.0.1:8000/api/signOK/'"
-            sendEmail(name=name,code=code,mail=email,text=text)
-        except :
-            logging.debug("邮件错了")
-            raise RuntimeError()
+            code = randomCode()
+            logging.debug(code)
+            back["statusC"] = 4  # "邮件发送错误"
+            try:
+                text="你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/"+code
+            #     + '127.0.0.1:8000/api/signOK/'"
+                sendEmail(name=name,code=code,mail=email,text=text)
+            except :
+                logging.debug("邮件错了")
+                raise RuntimeError()
 
-        back["statusC"] = 2  # 数据库错误
-        newFresher = Fresher.objects.create(name=name,  # sex=sex,
-                                            yearAndMajor=yearAndMajor,
-                                            email=email, qqnum=qqnum, phone=phone,
-                                            selfIntro=selfIntro, status_id=1,
-                                            wantDepartment_id=wantDepartment,
-                                            userCode=code)
-        logging.debug(newFresher)
-        request.session[code] = newFresher.id
-        newFresher.save()
-        back["statusC"] = 0  # 成功
+            back["statusC"] = 2  # 数据库错误
+            newFresher = Fresher.objects.create(name=name,  # sex=sex,
+                                                yearAndMajor=yearAndMajor,
+                                                email=email, qqnum=qqnum, phone=phone,
+                                                selfIntro=selfIntro, status_id=0,
+                                                wantDepartment_id=wantDepartment,
+                                                userCode=code)
+            logging.debug(newFresher)
+            request.session[code] = newFresher.id
+            newFresher.save()
+            back["statusC"] = 0  # 成功
+        else:
+            back["statusC"] = 5 #邮箱超过最大使用次数3次
     except:
         pass
     logging.debug(back["statusC"])
@@ -191,7 +196,17 @@ def api_sign_ok(request, code):
             pass
         return HttpResponse("注册成功")
     except:
-        return HttpResponse("出现错误，注册失败")
+        return HttpResponse("链接已失效，请重新报名。")
+
+def api_event_get(request):
+    year=request.GET.get("year")
+    result=[]
+    events=Event.objects.filter(year=year)
+    for event in events:
+        temp={}
+    result.append(events)
+    return HttpResponse(json.dumps(result), content_type="application/json")
+
 
 
 def identify_code_picture(request):

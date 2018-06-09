@@ -305,6 +305,22 @@ class UserFilterSex(admin.SimpleListFilter):
         elif self.value() == '1':
             return queryset.filter(sex=1)
 
+# 新生激活状态
+class UserFilterActive(admin.SimpleListFilter):
+    title = u'激活状态'
+    parameter_name = 'active'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('0', u'未激活'),
+            ('1', u'已激活')
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == '0':
+            return queryset.filter(active=False)
+        elif self.value() == '1':
+            return queryset.filter(active=True)
 
 # 新生部门
 class UserFilterDepartment(admin.SimpleListFilter):
@@ -330,7 +346,7 @@ class FresherAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'phone', 'yearAndMajor', "wantDepartment", 'qqnum')
     list_per_page = 30
     ordering = ('-registerTime',)
-    list_filter = (UserFilterSex, UserFilterStatus, UserFilterDepartment, UserFilterPubtime,)
+    list_filter = (UserFilterActive,UserFilterSex, UserFilterStatus, UserFilterDepartment, UserFilterPubtime,)
     actions = [sendStatuInfo, update_data_src, statusToNext, makeExcel,statusGoBack]
 
     class data_src_form(forms.forms.Form):

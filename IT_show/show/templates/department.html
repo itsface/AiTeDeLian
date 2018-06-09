@@ -15,65 +15,65 @@
 		<div class="person"><img src="{% static  "images/person.png" %}" alt=""></div>
 		<div class="ball">
 			<div class="front_end baller">
-				<img class="logo" src="{% static  "images/front_endlogo.png" %}" alt="">
+				<img class="logo" src="{{ MEDIA_URL }}{{ result.qianduan.pic }}" alt="">
 				<div class="black"></div>
 				<img src="{% static  "images/front_end.png" %}" alt="">
 				
-				<div class="name">前端部门</div>
+				<div class="name">{{ result.qianduan.name }}</div>
 			</div>
 			<div class="app baller">
-				<img class="logo" src="{% static  "images/applogo.png" %}" alt="">
+				<img class="logo" src="{{ MEDIA_URL }}{{ result.app.pic }}" alt="">
 				<div class="black"></div>
 				<img src="{% static  "images/app.png" %}" alt="">
 				
-				<div class="name">安卓部门</div>
+				<div class="name">{{ result.app.name }}</div>
 			</div>
 			<div class="ui baller">
-				<img class="logo" src="{% static  "images/UIlogo.png" %}" alt="">
+				<img class="logo" src="{{ MEDIA_URL }}{{ result.ui.pic }}" alt="">
 				<div class="black"></div>
 				<img src="{% static  "images/UI.png" %}" alt="">
 				
-				<div class="name">UI部门</div>
+				<div class="name">{{ result.ui.name }}</div>
 			</div>
 			<div class="program baller">
-				<img class="logo" src="{% static  "images/programlogo.png" %}" alt="">
+				<img class="logo" src="{{ MEDIA_URL }}{{ result.chengxu.pic }}" alt="">
 				<div class="black"></div>
 				<img src="{% static  "images/program.png" %}" alt="">
 				
-				<div class="name">程序部门</div>
+				<div class="name">{{ result.chengxu.name }}</div>
 			</div>
 		</div>
 		<div class="depart_intro">
 			<div class="front_end intro" style="display: none;">
 				<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
-				<h3>前端开发</h3>
+				<h3>{{ result.qianduan.name }}</h3>
 				<p>
 
-				爱特前端部门负责网站的界面开发。用html,css,javascript等语言进行前台页面的构 建与优化。他们不仅仅满足于网站结构与功能的实现，更致力于带给用户强烈的视觉冲击和良好的交互体验。“前端工程师犹如网站的化妆师”，作为最接近用户的编程者，他们用双手敲打出属于自己的绝代风华?
+				{{ result.qianduan.intro }}
 				</p>
 			</div>
 			
 			<div class="app intro" style="display: none;">
 				<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
-				<h3>安卓部门</h3>
+				<h3>{{ result.app.name }}</h3>
 				<p>
 
-				爱特APP开发部门是第一个跳出了传统的网页开发的部门，负责安卓端应用程序的开发。他们遵循Material Design的设计模式，利用C++、JAVA等语言进行应用程序后台的开发与构建，并使程序流畅的和数据库及网络进行交互，力求带给用户最好的使用体验?
+				{{ result.app.intro }}
 				</p>
 			</div>
 			<div class="ui intro" style="display: none;">
 				<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
-				<h3>UI部门</h3>
+				<h3>{{ result.ui.name }}</h3>
 				<p>
-				爱特UI设计部门专注于界面设计。他们以Photoshop, Illustration, Axure, After Effects 等软件为工具，以美为追求，使界面更有格调、更有品味，使网站操作更简单方便、交互性更强。每一个小小的icon，每一抹恰到好处的色彩，都是他们精心准备的惊喜。他们用灵感和创造力给网站以活力?
+				{{ result.ui.intro }}
 				</p>
 			</div>
 			<div class="program intro" style="display: none;">
 				<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
-				<h3>程序部门</h3>
+				<h3>{{ result.chengxu.name }}</h3>
 				<p>
 
-				爱特工作室程序部门主要负责网站的后台开发、数据库搭建以及数据处理。成员主要基亿.NET Framework 等平台进行开发，应用 C#、JAVA、Python 等编程语言进行网络编程，实现与SQL Server, MySql 等数据库数据交互，设计API供其他应用程序调用?
+				{{ result.chengxu.intro }}
 				</p>
 			</div>
 

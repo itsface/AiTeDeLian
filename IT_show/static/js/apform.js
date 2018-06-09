@@ -467,7 +467,7 @@ $(document).ready(function() {
 
 	function check_form() {
 		for (var i = 0; i < document.apform.elements.length - 2; i++) {
-			if (document.apform.elements[i].value == "" &&  i!=6) {
+			if (document.apform.elements[i].value == "" &&  i !=6) {
 				alert("表单不可为空!");
 				document.apform.elements[i].focus();
 
@@ -492,9 +492,11 @@ $(document).ready(function() {
 
 
 	//先触发submit事件,判断一下表单是否为空
-	
+$(".apform").submit(function(){
+	return false;
+	})
 
-$(".apform").submit(function() {
+$(".form_submit").click(function() {
 	if (check_form() && correct_form()) {
 		let wantdepart = $(".selected").val();
 		$(".intention_choose").val(wantdepart);
@@ -522,10 +524,11 @@ $(".apform").submit(function() {
 
 			},
 			error: function(jqXHR) {
-				if(jqXHR.status !=0)
-					alert("表单提交失败:" + jqXHR.status);
-				else
-					alert("表单提交成功，请注意邮件查收!");
+				alert("表单提交失败:" + jqXHR.status);
+				// if(jqXHR.status !=0)
+				// 	alert("表单提交失败:" + jqXHR.status);
+				// else
+				// 	alert("表单提交成功，请注意邮件查收!");
 			},
 		});
 	}else{

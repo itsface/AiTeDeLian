@@ -39,7 +39,12 @@ def member(request):
 
 #@simple_cache_page(60*60*10,"department")
 def department(request):
-    return render(request, 'department.html')
+    qianduan=models.Department.objects.get(name="前端开发")
+    chengxu=models.Department.objects.get(name="程序开发")
+    ui=models.Department.objects.get(name="UI设计")
+    app=models.Department.objects.get(name="APP开发")
+    result={"qianduan":qianduan,"chengxu":chengxu,"ui":ui,"app":app}
+    return render(request, 'department.html',{'result':result})
 
 #@simple_cache_page(60*60*10,"bigevent")
 def big_event(request):
