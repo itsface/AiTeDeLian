@@ -17,6 +17,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 import django.views.static
 import IT_show.settings
+import show.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,7 +25,7 @@ urlpatterns = [
     url(r'^test/', include('tes.urls')),
     url(r'^home/', include('show.urls')),
     url(r'^fresher/', include('user.urls')),
-
+    url('^$', show.views.index, name="index"),
     url(r'^(?P<path>.*)', django.views.static.serve, {'document_root': IT_show.settings.BASE_DIR }),
 
 ]

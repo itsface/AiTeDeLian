@@ -96,28 +96,24 @@ def DeleteStatusDetails(userId):
 def update_data_src(modeladmin, request, queryset):
     form = None
     if 'cancel' in request.POST:
-        modeladmin.message_user(request, u'已取消')
+        modeladmin.message_user(request, u'已取消操作')
         return
     elif 'data_src' in request.POST:
         form = modeladmin.data_src_form(request.POST)
         if form.is_valid():
             data_src = form.cleaned_data['data_src']
             for case in queryset:
-                # case.data_src = data_src
                 case.status_id = data_src.code
-                #SetNewStatusDetails(case.id, data_src.code)
                 case.save()
+                if case.status_id != None and case.status.emailText != "":
+                    user.views.sendEmail(case.name, case.userCode, case.email,
+                                         models.StatusInfo.objects.get(code=data_src.code).emailText)
                 if case.status != None:
                     setNewStatues(case.id)
-                    # try:
-                    #     oldDetail = models.StatusDetails.objects.get(hostID=case.id, isTail=1)
-                    # except:
-                    #     oldDetail = None
-                    # if oldDetail != None:
-                    #     oldDetail.isTail = False
-                    #     oldDetail.save()
                     newInfo = user.models.StatusDetails.objects.create(statu_id=case.status.code, time=datetime.now(),
-                                                                       hostID_id=case.id,code=user.models.StatusDetails.objects.filter(hostID=case.id).count()+1)
+                                                                       hostID_id=case.id,
+                                                                       code=user.models.StatusDetails.objects.filter(
+                                                                           hostID=case.id).count() + 1)
             modeladmin.message_user(request, "%s successfully updated." % queryset.count())
             return HttpResponseRedirect(request.get_full_path())
         else:
@@ -127,7 +123,7 @@ def update_data_src(modeladmin, request, queryset):
     if not form:
         form = modeladmin.data_src_form(initial={'_selected_action': request.POST.getlist(admin.ACTION_CHECKBOX_NAME)})
     # return render_to_response('batch_update.html',
-    sendStatuInfo(modeladmin, request, queryset)
+
     # if queryset[0].status.emailText != "":
     #     for fresher in queryset:
     #         user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
@@ -136,7 +132,6 @@ def update_data_src(modeladmin, request, queryset):
                    'action': 'update_data_src', 'title': u'将所选用户跳转至如下状态'},
                   # context_instance=RequestContext(request)
                   )
-
 
 update_data_src.short_description = u'将所选用户跳转至指定状态，并发送邮件通知'
 
@@ -157,22 +152,18 @@ def statusToNext(modeladmin, request, queryset):
         except:
             newStatusId = None
         if newStatusId:
+            fresher.status__code=newStatusId
             fresher.status_id = newStatusId
             #SetNewStatusDetails(fresher.id, newStatusId)
             fresher.save()
             setNewStatues(fresher.id)
-            # try:
-            #     oldDetail = models.StatusDetails.objects.get(hostID=fresher.id, isTail=1)
-            # except:
-            #     oldDetail = None
-            # if oldDetail !=None:
-            #     oldDetail.isTail = False
-            #     oldDetail.save()
+            if fresher.status_id != None and fresher.status.emailText != "":
+                user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, models.StatusInfo.objects.get(code=newStatusId).emailText)
             if fresher.status != None:
                 newInfo = user.models.StatusDetails.objects.create(statu_id=fresher.status_id, time=datetime.now(),
                                                                    hostID_id=fresher.id,code=user.models.StatusDetails.objects.filter(hostID=fresher.id).count()+1)
 
-    sendStatuInfo(modeladmin, request, queryset)
+
 statusToNext.short_description = "所选用户跳转至下一状态，并发送邮件通知"
 
 

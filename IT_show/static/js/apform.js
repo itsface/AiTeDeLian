@@ -442,57 +442,7 @@ $(document).ready(function() {
 
 	})
 
-<<<<<<< HEAD
 	//个人介绍事件
-=======
-	$(".form_submit").click(function() {
-		if (Isname == true && Isprofession == true && Isqq == true && Isintention == true && Isphone == true && Isintro == true && $(".introduction").val().length <= 200 && $(".introduction").val().length > 0) {
-			let wantdepart = $(".selected").val();
-			$(".intention_choose").val(wantdepart);
-			$.ajax({
-				type: "POST",
-				url: "/api/sign/submit",
-				timeout : 5000,
-				data: {
-					name: $(".name").val(),
-					yearAndMajor: $(".profession").val(),
-					qq: $(".qq").val(),
-					phone: $(".phonenumber").val(),
-					email: $(".email").val(),
-					wantDepartment: $(".intention_choose").val(),
-					selfIntro: $(".introduction").val(),
-				},
-				dataType: "json",
-				//发送成功可以返回的东西
-				success: function(data){
-					str = "";
-					switch (data.statusC){
-						case 0:
-							alert("提交成功，按邮件说明完成最后一步报名操作（你可以关闭这个页面了）");
-							return;
-						case 1:
-							str="未知错误"
-							break;
-						case 2:
-							str="邮件发送错误"
-							break;
-						case 3:
-							str="表单错误"
-							break;
-						case 4:
-							str="邮件发送错误"
-							break;
-						case 5:
-							str="数据库错误"
-							break;
-					}
-					alert("错误："+str);
-				},
-				error: function(jqXHR){
-				   alert("服务器错误请重试，错误代码：" + jqXHR.status);
-				},
-			});
->>>>>>> d44bf79ef9589344fd2ff836c2f7053c9c8cc70d
 
 	$(".introduction").blur(function() {
 		if ($(this).val().length > 0 && $(this).val().length < 200) {
@@ -517,7 +467,7 @@ $(document).ready(function() {
 
 	function check_form() {
 		for (var i = 0; i < document.apform.elements.length - 2; i++) {
-			if (document.apform.elements[i].value == "") {
+			if (document.apform.elements[i].value == "" &&  i!=6) {
 				alert("表单不可为空!");
 				document.apform.elements[i].focus();
 
@@ -572,7 +522,10 @@ $(".apform").submit(function() {
 
 			},
 			error: function(jqXHR) {
-				alert("表单提交失败:" + jqXHR.status);
+				if(jqXHR.status !=0)
+					alert("表单提交失败:" + jqXHR.status);
+				else
+					alert("表单提交成功，请注意邮件查收!");
 			},
 		});
 	}else{
@@ -580,8 +533,6 @@ $(".apform").submit(function() {
 	}
 
 })
-
-
 
 //----华丽丽的分割线
 

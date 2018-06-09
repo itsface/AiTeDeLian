@@ -708,11 +708,7 @@ $("#ident").click(function(){
 });
 //更换验证码事件
 function changeverify() {
-<<<<<<< HEAD
 	$("#ident").attr('src','/api/identifyPic?time=' + Math.random());
-=======
-	$("#ident").attr('src','/api/identifyPic?time='+Math.random());
->>>>>>> d44bf79ef9589344fd2ff836c2f7053c9c8cc70d
 }
 
 
