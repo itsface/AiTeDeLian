@@ -14,6 +14,7 @@ def makeExcel(modeladmin, request, queryset):
     w.write(0, 2, u"年份")
     w.write(0, 3, u"部门")
     w.write(0, 4, u"个性签名")
+
     # 写入内容
     excel_row = 1
     for obj in queryset:

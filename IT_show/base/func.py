@@ -36,7 +36,7 @@ def randomString(chSet, len):
     strlen = str(chSet).__len__()
     backString = ""
     for i in range(0, len):
-        r = random.randint(0, strlen)
+        r = random.randint(0, strlen-1)
         backString = backString + chSet[r]
     logging.debug("随机串："+backString)
     return backString

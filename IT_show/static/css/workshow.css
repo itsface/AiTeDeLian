@@ -2,7 +2,7 @@
 	font-family: MicrosoftYaHei, sans-serif;
 }
 .container{
-  /*overflow: hidden;*/
+  overflow: hidden;
   position: relative;
     width: 100%;
 }

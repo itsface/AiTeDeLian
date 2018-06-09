@@ -9,6 +9,7 @@ from .func import *
 import logging
 from django.core.mail import send_mail, BadHeaderError
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from user.views import sendEmail
 
 
 def api_comment_get(request):
@@ -105,7 +106,7 @@ def api_comment_submit(request):
             del request.session['identify']
         except:
             pass
-        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(id=head), name=nickName)
+        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(name=head), name=nickName)
         c.save()
         back["statusC"] = 0  # 成功
     except:
@@ -133,7 +134,7 @@ def api_sign_submit(request):
         qqnum = request.POST.get("qq")  # nchar
         phone = request.POST.get("phone")  # nchar
         selfIntro = request.POST.get("selfIntro")  # text
-        wantDepartment = request.POST.get("wantDepartment")  # int
+        wantDepartment = int(request.POST.get("wantDepartment"))  # int
 
         logging.debug(name)
         # logging.debug(sex)
@@ -148,23 +149,15 @@ def api_sign_submit(request):
         logging.debug(code)
         back["statusC"] = 4  # "邮件发送错误"
         try:
-            send_mail(
-                '爱特工作室',
-                ''
-                + name + '同学,你好！\n'
-                + '你的个人ID为:' + code + '\n'
-                + '使用该ID能在查询页查询招新状态，也用于完成注册\n'
-                + '最后一步，复制以下链接到地址栏并转到完成报名\n'
-                + '127.0.0.1:8000/api/signOK/' + code,  # 上线的时候千万记得改这个东西
-                'easyblog123@163.com',
-                [email],
-                fail_silently=False
-            )
-        except BadHeaderError:
-            back["statusC"] = 2  # 邮件错误
+            text="你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/"+code
+        #     + '127.0.0.1:8000/api/signOK/'"
+            sendEmail(name=name,code=code,mail=email,text=text)
+        except :
             logging.debug("邮件错了")
             raise RuntimeError()
 
+
+        back["statusC"] = 2  # 数据库错误
         newFresher = Fresher.objects.create(name=name,  # sex=sex,
                                             yearAndMajor=yearAndMajor,
                                             email=email, qqnum=qqnum, phone=phone,

@@ -335,7 +335,7 @@ class UserFilterDepartment(admin.SimpleListFilter):
 # 招生管理设置
 class FresherAdmin(admin.ModelAdmin):
     list_display = (
-        'name', 'sex', 'yearAndMajor', "wantDepartment", 'email', 'qqnum', 'phone', 'status', 'registerTime')
+        'name', 'sex', 'yearAndMajor', "wantDepartment", 'email', 'qqnum', 'phone', 'status', 'registerTime','active')
     search_fields = ('name', 'email', 'phone', 'yearAndMajor', "wantDepartment", 'qqnum')
     list_per_page = 30
     ordering = ('-registerTime',)

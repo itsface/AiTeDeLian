@@ -11,10 +11,10 @@
 	<div class="container">
 		<div class="header"></div>
 		<div class="body">
-			<div class="logo"><a href=""><img src="{% static  "images/logo.png" %}" alt=""></a></div>
+			<div class="logo"><a href="http://222.195.145.152:2018/home/index/"><img src="{% static  "images/logo.png" %}" alt=""></a></div>
 			<h1 class="formheader">爱特工作室2018秋季招新报名表</h1>
 
-			<form class="apform" method="post" id="apform" style="display: block;">
+			<form class="apform" method="post" id="apform" style="display: block;" name="apform" action="">
                     {% csrf_token %}
 					<div class="formbody">
 						<div class="basic_info">
@@ -43,8 +43,8 @@
 							<h2>请选择意向部门</h2>
 							<ul class="clearfix">
 								<li value="1">前端部门</li>
-								<li value="2">UI部门</li>
-								<li value="3">程序部门</li>
+								<li value="2">程序部门</li>
+								<li value="3">UI部门</li>
 								<li value="4">安卓部门</li>
 							</ul>
 						</div>
