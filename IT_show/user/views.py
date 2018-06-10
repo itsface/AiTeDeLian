@@ -6,6 +6,8 @@ from user.sendMail import send_mail as asynchronousSendEmail
 from .form import FresherForm
 from show.tool import simple_cache_page,refreshCacheThread
 from django.core.mail import send_mail
+from user.models import StatusDetails,Fresher
+from datetime import datetime, timedelta
 # Create your views here.
 import threading
 class EmailThread(threading.Thread):
@@ -39,6 +41,25 @@ def refreshCache():
     from django.core.cache import cache
     cache.clear()
 
-#@simple_cache_page(60*60*10,"register")
+@simple_cache_page(60*60*10,"register")
 def register(request):
     return render(request, 'apform.html')
+
+
+def addNewStatusDetail(userId,statueId):
+    try:
+        fresher=Fresher.objects.get(id=userId)
+        fresher.status_id = statueId #更新用户状态
+        fresher.save()
+        if statueId!=0:
+            oldStstu=StatusDetails.objects.get(hostID__id=userId, isTail=True)
+            oldStstu.isTail=False
+            oldStstu.save()
+
+        StatusDetails.objects.create(statu_id=statueId, time=datetime.now(),#添加 新状态信息
+                                     hostID_id=userId,
+                                     code=StatusDetails.objects.filter(
+                                     hostID=fresher.id).count() + 1,isTail=True)
+    except:
+        pass
+

@@ -518,7 +518,9 @@ $(".form_submit").click(function() {
 			success: function(data) {
 				if (data.statusC == 0) {
 					alert("表单提交成功，请注意邮件查收!");
-				} else {
+				} else if(data.statusC == 5){
+					alert("该邮箱已提交三次申请，请更换邮箱再提交!");
+				}else {
 					alert("表单提交失败!")
 				}
 

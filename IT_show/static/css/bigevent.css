@@ -239,7 +239,6 @@ h1{
 		font-size: 23px;
 	}
 }
-}
 @media screen and (max-width: 1557px){
    .event{
    	width: 86%;
@@ -300,6 +299,7 @@ h1{
    .title{
 		font-size: 14px;
 	}
+}
 
 @media screen and (max-width: 860px){
    .event{

@@ -3,4 +3,5 @@ from .views import *
 
 urlpatterns = [
     url(r'^new/$', register, name='user_'),
+
 ]
