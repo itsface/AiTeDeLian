@@ -178,7 +178,7 @@ def api_sign_submit(request):
         wantDepartment = int(request.POST.get("wantDepartment"))  # int
 
         #判断邮箱注册次数
-        if Fresher.objects.filter(email=email).count() <= 3:
+        if Fresher.objects.filter(email=email).count() <= 2:
             logging.debug(name)
             # logging.debug(sex)
             logging.debug(yearAndMajor)

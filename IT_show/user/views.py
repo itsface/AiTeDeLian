@@ -41,7 +41,7 @@ def refreshCache():
     from django.core.cache import cache
     cache.clear()
 
-@simple_cache_page(60*60*10,"register")
+#@simple_cache_page(60*60*10,"register")
 def register(request):
     return render(request, 'apform.html')
 

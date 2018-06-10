@@ -1,9 +1,12 @@
 $(document).ready(function() {
 	$(".menu").children().eq(3).addClass("current-menu-item")
 
-    var $thisnav = $('.current-menu-item').offset().left-$('.x').offset().left;
+	var $thisnav = $('.current-menu-item').offset().left - $('.x').offset().left;
 	var $initwidth = $('.current-menu-item').width();
-      $('.wee').css({ 'left': $thisnav+10+'px' , 'width': $initwidth });
+	$('.wee').css({
+		'left': $thisnav + 10 + 'px',
+		'width': $initwidth
+	});
 })
 window.onload = function() {
 	$baller = $(".ball");
@@ -81,9 +84,9 @@ window.onload = function() {
 		initial_degree();
 
 		//将牌子的偏转坐标移到正确的位置
-			$(".line").css({
-		'margin-top':0.015*H
-	})
+		$(".line").css({
+			'margin-top': 0.015 * H
+		})
 
 
 
@@ -122,18 +125,16 @@ window.onload = function() {
 			initial_degree();
 			let Isbig = false;
 			let big;
-			for(let i=0 ;i<5;i++)
-			{
-				if($eventboard.eq(i).css('display')!='none')
-				{
+			for (let i = 0; i < 5; i++) {
+				if ($eventboard.eq(i).css('display') != 'none') {
 
-					Isbig =true;
+					Isbig = true;
 					big = i;
 				}
-				
+
 			}
 			if (Isbig == false) {
-				
+
 				$eventboard.css({
 					'width': W * 0.061 + 'px',
 					'height': 0.0305 * W + 'px',
@@ -143,28 +144,28 @@ window.onload = function() {
 					'transform-origin': 'center ' + (plate_H + r + plate_L) + 'px'
 				})
 			} else {
-			
+
 				$eventboard.eq(big).css({
-				'width': '55.5%',
-				'height': '62.3%',
-				'margin-left': '-27.75%',
-				'margin-bottom': -0.3118 * H,
-				'bottom': '50%'
-			})
+					'width': '55.5%',
+					'height': '62.3%',
+					'margin-left': '-27.75%',
+					'margin-bottom': -0.3118 * H,
+					'bottom': '50%'
+				})
 				console.log(big)
 				$eventtext.eq(big).css({
-				'height': 0.74 *0.623*H,
-				'margin-top': -0.5 * 0.74 * 0.623*H,
-				// 'margin-bottom': -0.3118*H,
-			})
+					'height': 0.74 * 0.623 * H,
+					'margin-top': -0.5 * 0.74 * 0.623 * H,
+					// 'margin-bottom': -0.3118*H,
+				})
 			}
 
 
 
 			//将牌子的偏转坐标移到正确的位置
-				$(".line").css({
-				'margin-top':0.015*H
-		})
+			$(".line").css({
+				'margin-top': 0.015 * H
+			})
 
 
 
@@ -426,153 +427,284 @@ window.onload = function() {
 	//展示爱特大事件
 	function displayevent(index) {
 
-		$eventboard.eq(index).css({
+
+
+		var obj = {
+			url: '/api/event/get?year='+(index+2014),
+			method: 'GET',
+			data:{
+				year:index+2014
+			},
+			dataType: 'Default: Intelligent Guess',
+			async: true
+
+		}
+
+
+		promisesetajax(obj).then(function(data) {
+
+
+				//先把内容清空
+				$("#mCSB_1_container").children().remove();
+				let str = "";
+				if (data.success) {
+					
+					
+					for (let i = 0, m = data.events.length; i < m; i++) {
+						
+							console.log(data.events[0].name)
+						str += `
+
+							<div class="event">
+								<div>${data.events[i].name}</div>
+								<div>${data.events[i].content}</div>
+
+							</div>
+
+       		 `
+					}
+					
+
+					$("#mCSB_1_container").append(str);
+					$(".year").html(index + 2014)
+
+				}
+
+			},
+			function(error) {
+				alert("发生错误：" + error);
+			})
+		$(".year").css({
+			'z-index': '200'
+		})
+		$(".close").css({
+			'z-index': '200'
+		})
+		$eventboard.css({
 			'display': 'block',
 			'z-index': '200',
 
 		})
-		$(".year").eq(index).css({
-			'z-index': '200'
-		})
-		$(".close").eq(index).css({
-			'z-index': '200'
-		})
-		$eventboard.eq(index).animate({
+		$eventboard.animate({
 			'width': '55.5%',
 			'height': '62.3%',
 			'margin-left': '-27.75%',
 			'margin-bottom': -0.3118 * H,
 			'bottom': '50%'
 		}, 600, function() {
-			$eventtext.eq(index).css({
-				'height': 0.74 * parseInt($eventboard.eq(index).css('height')),
-				'margin-top': -0.5 * 0.74 * parseInt($eventboard.eq(index).css('height')),
+			$eventtext.css({
+				'height': 0.74 * parseInt($eventboard.css('height')),
+				'margin-top': -0.5 * 0.74 * parseInt($eventboard.css('height')),
 				// 'margin-bottom': -0.3118*H,
 			})
-			$eventtext.eq(index).show();
-			$eventtext.eq(index).animate({
+			$eventtext.show();
+			$eventtext.animate({
 				'opacity': '1'
 			})
-			$(".year").eq(index).show();
-			$(".year").eq(index).animate({
+			$(".year").show();
+			$(".year").animate({
 				'opacity': '1'
 			})
-			$(".close").eq(index).show();
-			$(".close").eq(index).animate({
+			$(".close").show();
+			$(".close").animate({
 				'opacity': '1'
 			})
-		});
 
 
-	}
+			// $(document).one("click",
+			// 	function() { //对document绑定一个关闭方法
+			// 		closeevent();
+
+				});
 
 
-	//点击×关闭艾特大事记
-	$(".yearevent .close").click(function() {
-		var index = $(".eventwrap .close").index(this);
-		// alert(index)
-		closeevent(index);
-	})
-	//关闭爱特大事件的函数
-	function closeevent(index) {
-		$(".year").eq(index).animate({
-			'opacity': '0'
-		}, function() {
-			$(".year").eq(index).hide();
+			// 	event.stopPropagation(); //阻止事件向上冒泡
+			// // stop(e);
+
+
+
+		// });
+
+
+		// 		function showboard(){
+
+				}
+
+
+		// $eventboard.click(function(event) {
+
+		// 			event.stopPropagation(); //阻止事件向上冒泡
+		// 		});
+		// $(document).click(function (e) {
+		//     var drag = $("#drag"),
+		//         dragel = $("#drag")[0],
+		//         target = e.target;
+		//     if (dragel !== target && !$.contains(dragel, target)) {
+		//         drag.hide();
+		//     }
+		// });
+
+
+		// menu.addEventListener('click', function(e) {
+		//     menu.style.display = 'block';
+		//      stop(e);
+		// })  
+		// document.addEventListener('click', function() {
+		//    closeevent();
+		// })  
+
+		// function stop(e){
+		//      e = e || win.event;
+		//      e.stopPropagation ? e.stopPropagation() 
+		//      : e.cancelBubble = true;
+		// }
+
+
+		//promise
+		function promisesetajax(obj) {
+			return new Promise((resolve, reject) => {
+				var request = new XMLHttpRequest();
+				request.open(obj.method, obj.url, obj.async);
+				if (obj.method == 'GET') {
+					request.send();
+				} else if (obj.method == 'POST') {
+					request.send(obj.data);
+				}
+
+				request.onreadystatechange = function() {
+					if (request.readyState === 4) {
+						if (request.status === 200) {
+							var dat = JSON.parse(request.responseText);
+							resolve(dat);
+
+						} else {
+							reject(new Error(request.status))
+						}
+					}
+
+				}
+
+			})
+		}
+
+
+
+		//点击任意一个窗口之外的位置，都能够关闭
+
+
+		// function stop(e){
+		//      e = e || win.event;
+		//      e.stopPropagation ? e.stopPropagation() 
+		//      : e.cancelBubble = true;
+		// }
+
+
+		//点击×关闭艾特大事记
+		$(".yearevent .close").click(function() {
+
+			// alert(index)
+			closeevent();
 		})
-		$(".close").eq(index).animate({
-			'opacity': '0'
-		}, function() {
-			$(".close").eq(index).hide();
-		})
-		$eventtext.eq(index).animate({
-			'opacity': '0'
-		}, function() {
-			$eventboard.eq(index).animate({
-				'width': W * 0.061 + 'px',
-				'height': 0.0375 * W + 'px',
-				'bottom': h - 0 + plate_L,
-				'margin-left': -0.0305 * W + 'px',
-				'line-height': 0.0375 * W + 'px',
-				'margin-bottom': '0px',
-				'transform-origin': 'center ' + (plate_H + r + plate_L) + 'px'
+		//关闭爱特大事件的函数
+		function closeevent() {
+			$(".year").animate({
+				'opacity': '0'
+			}, function() {
+				$(".year").hide();
 			})
-			$eventboard.eq(index).animate({
-				'z-index': '-200',
-
-
-			}, 20, function() {
-				$eventboard.eq(index).css({
-					'display': 'none'
+			$(".close").animate({
+				'opacity': '0'
+			}, function() {
+				$(".close").hide();
+			})
+			$eventtext.animate({
+				'opacity': '0'
+			}, function() {
+				$eventboard.animate({
+					'width': W * 0.061 + 'px',
+					'height': 0.0375 * W + 'px',
+					'bottom': h - 0 + plate_L,
+					'margin-left': -0.0305 * W + 'px',
+					'line-height': 0.0375 * W + 'px',
+					'margin-bottom': '0px',
+					'transform-origin': 'center ' + (plate_H + r + plate_L) + 'px'
 				})
-				//把牌子收回初始位置
+				$eventboard.animate({
+					'z-index': '-200',
 
-				click_degree(2);
+
+				}, 20, function() {
+					$eventboard.css({
+						'display': 'none'
+					})
+					//把牌子收回初始位置
+
+					click_degree(2);
+
+				})
+				$(".year").css({
+					'z-index': '-200'
+				})
+				$(".close").css({
+					'z-index': '-200'
+				})
+				// $eventtext.eq(index).hide();
 
 			})
-			$(".year").eq(index).css({
-				'z-index': '-200'
-			})
-			$(".close").eq(index).css({
-				'z-index': '-200'
-			})
-			// $eventtext.eq(index).hide();
-
-		})
 
 
 
-	}
+		}
 
-	// function ballmove() {
+		// function ballmove() {
 
-	// 	$baller = $(".ball");
-	// 	var ball = new Object();
+		// 	$baller = $(".ball");
+		// 	var ball = new Object();
 
-	// 	ball.y = parseInt($baller.css('top'));
-	// 	let ballfalllen = 100;
-	// 	ball.v = 0;
-	// 	ball.a = 0.1;
-	// 	ball.degree = 0;
-	// 	ball.degreea = 60;
-	// 	//这是小球的下落
-	// 	let t1 = setInterval(function() {
-	// 		if (ball.y - ball.v > 0.7 * H)
+		// 	ball.y = parseInt($baller.css('top'));
+		// 	let ballfalllen = 100;
+		// 	ball.v = 0;
+		// 	ball.a = 0.1;
+		// 	ball.degree = 0;
+		// 	ball.degreea = 60;
+		// 	//这是小球的下落
+		// 	let t1 = setInterval(function() {
+		// 		if (ball.y - ball.v > 0.7 * H)
 
-	// 		{
-	// 			clearInterval(t1);
+		// 		{
+		// 			clearInterval(t1);
 
 
-	// 			let t2 = setInterval(function() {
-	// 				if (ball.v < 0) {
-	// 					ball.v = 0;
-	// 					clearInterval(t2);
+		// 			let t2 = setInterval(function() {
+		// 				if (ball.v < 0) {
+		// 					ball.v = 0;
+		// 					clearInterval(t2);
 
-	// 					ballmove();
-	// 				}
-	// 				ball.degreea -= 10;
-	// 				ball.degree += ball.degreea;
-	// 				$baller.css({
-	// 					'transform': 'rotate(' + ball.degree + 'deg)'
-	// 				})
-	// 				ball.v -= ball.a;
-	// 				ball.y -= ball.v;
-	// 				$baller.css({
-	// 					'top': ball.y
-	// 				})
-	// 			}, 20)
-	// 		}
-	// 		ball.v += ball.a;
-	// 		ball.y += ball.v;
-	// 		$baller.css({
-	// 			'top': ball.y
-	// 		})
-	// 	}, 20)
-	// }
-	// ballmove();
+		// 					ballmove();
+		// 				}
+		// 				ball.degreea -= 10;
+		// 				ball.degree += ball.degreea;
+		// 				$baller.css({
+		// 					'transform': 'rotate(' + ball.degree + 'deg)'
+		// 				})
+		// 				ball.v -= ball.a;
+		// 				ball.y -= ball.v;
+		// 				$baller.css({
+		// 					'top': ball.y
+		// 				})
+		// 			}, 20)
+		// 		}
+		// 		ball.v += ball.a;
+		// 		ball.y += ball.v;
+		// 		$baller.css({
+		// 			'top': ball.y
+		// 		})
+		// 	}, 20)
+		// }
+		// ballmove();
+
+	
 
 }
-
-
 
 //关于那个小球要拟人化的

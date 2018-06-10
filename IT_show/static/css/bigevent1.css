@@ -42,24 +42,11 @@ h1{
 	color: #333333;
 	text-align: center;
 }
-.title{
-	position: absolute;
-	left: 50%;
-	top: 15%;
-    font-size: 28px;
-    transform: translate(-50%, 0 );
-}
 .line{
 	width: 60px;
 	height: 4px;
 	background-color: #7ecef4;
-	text-align: center;
-	position: relative;
-	top: 0%;
-	left: 50%;
-	margin-left: -30px;
-	z-index: 300;
-
+	margin:0px auto;
 }
 /*.event{
 	position: absolute;
@@ -172,7 +159,6 @@ h1{
 	opacity: 0;
 }
 
-
 .event {
 	width: 84%;
 	/*width: 100%;*/
@@ -183,9 +169,6 @@ h1{
 	padding: 3.6% 3.8% 3.6% 3.8%;
 	margin-bottom: 29px;
 	
-}
-.event div{
-	line-height: 23px;
 }
 .yearevent{
 	width: 1067px;
@@ -237,51 +220,26 @@ h1{
 .event_wrap{
 
 }
+.event div{
+	line-height: 23px;
+}
 
-@media screen and (max-width: 1700px) {
-	.title{
-		font-size: 23px;
-	}
-}
-}
-@media screen and (max-width: 1557px){
-   .event{
-   	width: 86%;
-   }
+
+@media screen and (max-width: 1440px){
+   
    .year{
-   	font-size: 25px;
+   	font-size: 20px;
    }
-   .title{
-		font-size: 20px;
-	}
    /*.mCustomScrollBox{
    	margin-left: 21px;
    }*/
    
 }
-@media screen and (max-width: 1400px) {
-
-	 .year{
+@media screen and (max-width: 1220px){
+   
+   .year{
    	font-size: 20px;
    }
-	   .title{
-		font-size: 16px;
-	}
-	.line{
-		height: 2px;
-}
-}
-@media screen and (max-width: 1220px){
-   .event{
-   	width: 81%;
-   	margin-left: 10px;
-   }
-   .year{
-   	font-size: 24px;
-   }
-   .title{
-		font-size: 18px;
-	}
    /*.mCustomScrollBox{
    	margin-left: 21px;
    }*/
@@ -305,9 +263,6 @@ h1{
    .year{
    	font-size: 22px;
    }
-   .title{
-		font-size: 14px;
-	}
 
 @media screen and (max-width: 860px){
    .event{
