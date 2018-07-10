@@ -1,3 +1,10 @@
+$(document).ready(function() {
+	$(".menu").children().eq(1).addClass("current-menu-item")
+    var $thisnav = $('.current-menu-item').offset().left-$('.x').offset().left;
+	var $initwidth = $('.current-menu-item').width();
+      $('.wee').css({ 'left': $thisnav+10+'px' , 'width': $initwidth });
+      addcomment(true);
+})
 var userAgent = navigator.userAgent.toLowerCase();
 // Figure out what browser is being used
 jQuery.browser = {
@@ -46,7 +53,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	})
 
 	$(".line").css({
-		'top': 0.073 * W
+		'top': 0.006 * W
 	})
 	$("h1").css({
 		'top': 0.045 * W
@@ -150,7 +157,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		})
 
 		$(".line").css({
-			'top': 0.073 * W
+			'top': 0.006 * W
 		})
 		$("h1").css({
 			'top': 0.045 * W
@@ -549,7 +556,9 @@ $(".baller").mouseleave(function() {
 });
 
 $(".baller").click(function() {
+
 	let index = $(".baller").index(this);
+	if(Isclick[index]==false){
 	for (let i = 0; i < 4; i++) {
 		if (Isclick[i] == true) {
 			
@@ -578,7 +587,7 @@ $(".baller").click(function() {
 	event.stopPropagation(); //阻止事件向上冒泡
 	// $(".depart_intro .intro").eq(index).siblings().
 
-
+	}
 
 })
  $(".depart_intro .intro").click(function(event) {

@@ -75,3 +75,6 @@ def big_event(request):
 
 def comment(request):
     return render(request, 'comment.html');
+
+def page404(request):
+    return render(request,"404.html")

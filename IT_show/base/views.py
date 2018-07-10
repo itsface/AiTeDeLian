@@ -130,26 +130,28 @@ def api_comment_submit(request):
     try:
         content = request.POST.get("content")
         # logging.debug(content)
-
-        head = int(request.POST.get("head"))
-        # logging.debug(content + " " + str(head))
-        code = int(Comment.objects.latest("code").code) + 1
-        # logging.debug(code)
-        nickName = request.POST.get("nickName")
-        logging.debug(nickName)
-        identify = str(request.POST['identify'])
-        if identify.upper() != str(request.session['identify']).upper():
-            back["statusC"] = 2  # u"验证码错误"
-            raise RuntimeError()
-        try:
-            del request.session['identify']
-        except:
-            pass
-        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(name=head), name=nickName)
-        c.save()
-        back["statusC"] = 0  # 成功
-        from show.views import refreshCache
-        refreshCache("comment")
+        if len(content) <= 80:
+            head = int(request.POST.get("head"))
+            # logging.debug(content + " " + str(head))
+            code = int(Comment.objects.latest("code").code) + 1
+            # logging.debug(code)
+            nickName = request.POST.get("nickName")
+            logging.debug(nickName)
+            identify = str(request.POST['identify'])
+            if identify.upper() != str(request.session['identify']).upper():
+                back["statusC"] = 2  # u"验证码错误"
+                raise RuntimeError()
+            try:
+                del request.session['identify']
+            except:
+                pass
+            c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(name=head), name=nickName)
+            c.save()
+            back["statusC"] = 0  # 成功
+            from show.views import refreshCache
+            refreshCache("comment")
+        else:
+            back["statusC"] = 1
     except:
         pass
     response = HttpResponse(json.dumps(back), content_type="application/json")

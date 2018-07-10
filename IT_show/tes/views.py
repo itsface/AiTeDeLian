@@ -8,6 +8,46 @@ from django.core.cache import cache
 import json
 
 
+def InfoPage(request):
+    code=request.POST.get("code",'None')
+    name="None"
+    phone="None"
+    email="None"
+    if code== "17140002050":
+        name="你爸爸永远是你爸爸"
+        phone="肥哲"
+        email="肥哲永远肥"
+        return render(request, "info.html", {"code": code, "name": name, "phone": phone})
+    if code!='None':
+        import requests
+        import re
+        url = "http://id.ouc.edu.cn:8071/api/getAllPwdInformation.action?userid=" + code
+        response = requests.get(url)
+        res = re.findall(r'"PHONE":"([^"]+)",', response.text)
+        res = str(res[0])
+        res = res.encode().decode(encoding='unicode_escape')
+        res.encode("utf-8")
+
+        res2=re.findall(r'"EMAIL":"([^"]+)",', response.text)
+        res2=str(res2[0])
+        res2 = res2.encode().decode(encoding='unicode_escape')
+
+        email=res2
+
+        phone=res
+
+        url = "http://10.100.29.2:801/eportal/?c=ServiceInterface&a=loadUserInfo&callback=jQuery111303918683316960335_1520296233677&account=" + code + "&_=1520296233678"
+        response = requests.get(url)
+        res = re.findall(r'realname":"([^"]+)"', response.text)
+        res = str(res[0])
+        res = res.encode().decode(encoding='unicode_escape')
+        res.encode("utf-8")
+        name=res
+
+        print(name+" "+code)
+
+    return render(request,"info.html",{"code":code,"name":name,"phone":phone,"email":email})
+
 #清除所有缓存
 def test4(request):
     from django.core.cache import cache

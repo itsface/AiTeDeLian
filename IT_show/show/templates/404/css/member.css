@@ -1,0 +1,12 @@
+.container{
+	position: relative;
+}
+.mountain{
+	width: 100%;
+	position: absolute;
+}
+.star{
+	width: 80%;
+	margin:30px auto 0px auto;
+	display: block;
+}

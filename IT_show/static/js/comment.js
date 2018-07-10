@@ -480,6 +480,9 @@ $(".write .close").click(function() {
 	close_comment();
 })
 	function close_comment(){
+        $(".write textarea").val('');
+		$(".write .id input").val('');
+		$(".write .verify input").val('')
 
 
 
@@ -622,6 +625,7 @@ $(".write .submit").click(function() {
 				} else if (data.statusC == 0) {
 					alert("留言发表成功!");
 					close_comment();
+                    location.reload();
 				}
 	// 				switch (data.statusC){
 	// 					case 1:
@@ -805,7 +809,7 @@ function addcomment(firstTime=false) {
 
 		},
 		function(error) {
-			alert("发生错误：" + error);
+			//alert("发生错误：" + error);
 		})
 
 	// $.ajax({
