@@ -353,6 +353,11 @@ class FresherAdmin(admin.ModelAdmin):
         _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
         data_src = forms.ModelChoiceField(user.models.StatusInfo.objects)
 
+    class Media:
+        css = {
+            'all': ('some/path/to/css/disable_save_and_continuue_editing_button.css')
+                }
+
     def save_model(self, request, obj, form, change):
         """
         Given a model instance save it to the database.
