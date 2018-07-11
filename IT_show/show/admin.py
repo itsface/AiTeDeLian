@@ -204,7 +204,11 @@ class CommentAdmin(admin.ModelAdmin):
 class HeadPictureAdmin(admin.ModelAdmin):
     list_display = ('name', "image_tag", 'pic')
     search_fields = ('name', 'pic')
+    readonly_fields = ["name"]
     list_per_page = 30
+    def has_delete_permission(self, request, obj=None):
+        """ 取消后台删除附件功能 """
+        return False
 
 
 
