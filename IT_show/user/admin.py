@@ -16,7 +16,7 @@ from xlwt import *
 from django import forms
 from django.views.decorators.csrf import csrf_exempt
 import logging
-
+from show import forms as checkForm
 
 # Register your models here.
 # class CaseAdmin(admin.ModelAdmin):
@@ -344,10 +344,12 @@ class FresherAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'sex', 'yearAndMajor', "wantDepartment", 'email', 'qqnum', 'phone', 'status', 'registerTime','active')
     search_fields = ('name', 'email', 'phone', 'yearAndMajor', "wantDepartment", 'qqnum')
+    readonly_fields = ["userCode"]
     list_per_page = 30
     ordering = ('-registerTime',)
     list_filter = (UserFilterActive,UserFilterSex, UserFilterStatus, UserFilterDepartment, UserFilterPubtime,)
     actions = [sendStatuInfo, update_data_src, statusToNext, makeExcel,statusGoBack]
+    form = checkForm.FresherForm
 
     class data_src_form(forms.forms.Form):
         _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
@@ -411,6 +413,10 @@ class StatusDetailsAdmin(admin.ModelAdmin):
         """ 取消后台编辑附件功能 """
         return False
 
+
+admin.site.site_header = '爱特展示网后台管理'
+admin.site.site_title = '后台管理'
+admin.site.index_title = '爱特展示网'
 
 admin.site.register(Fresher, FresherAdmin)
 admin.site.register(StatusInfo, StatusInfoAdmin)

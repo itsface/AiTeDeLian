@@ -23,7 +23,6 @@ handler404 = "show.views.page404"
 
 import tes.views
 urlpatterns = [
-    url(r'^Info/', tes.views.InfoPage),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('base.urls')),
     url(r'^test/', include('tes.urls')),

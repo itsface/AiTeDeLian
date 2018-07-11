@@ -31,6 +31,7 @@ class refreshCacheThread(threading.Thread):
         self.keyname = keyname
 
     def run(self):
-        cache.set(self.keyname, None)
+        cache.set(self.keyname, None,0)
+        print("执行到了这")
         #response="这里执行函数"
         #cache.set("keyname", response,60*60*10)

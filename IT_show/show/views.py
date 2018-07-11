@@ -56,7 +56,6 @@ def member(request):
               'num11':num11,'num12':num12,'num13':num13,'num14':num14,'num15':num15,'num16':num16,'num17':nnum17,
               }
 
-
     return render(request, 'member.html',{'result':result})
 
 @simple_cache_page(60*60*10,"department")

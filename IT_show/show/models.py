@@ -41,6 +41,11 @@ class Member(models.Model):
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.photo))
 
+    def fullImage(self):
+        return mark_safe('<img src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.photo))
+
+
+
 class Event(models.Model):
     name = models.CharField(verbose_name="事件名", max_length=10, default="")
     pic = models.ImageField(verbose_name="配图", upload_to='image/EventPhoto/',default='media/default/EventPhoto.png',)
@@ -106,4 +111,6 @@ class Comment(models.Model):
 
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.head.pic))
+
+
 
