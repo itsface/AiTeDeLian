@@ -6,7 +6,7 @@ import IT_show.settings
 class Department(models.Model):
     name = models.CharField(verbose_name="部门名", max_length=10, default="")
     pic = models.ImageField(verbose_name="图标", upload_to='image/DepartmentPicture/',default='media/default/DepartmentPicture.png', max_length=100)
-    intro = models.TextField(verbose_name="部门介绍", max_length=200, default="")
+    intro = models.TextField(verbose_name="部门介绍", max_length=500, default="")
 
     class Meta:
         verbose_name = r"部门"
@@ -41,6 +41,8 @@ class Member(models.Model):
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.photo))
 
+    def fullImage(self):
+        return mark_safe('<img src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.photo))
 
 
 
@@ -60,7 +62,6 @@ class Event(models.Model):
 
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
-
 
 class WorksShow(models.Model):
     name = models.CharField(verbose_name="网站名", max_length=10, default="")
@@ -110,4 +111,6 @@ class Comment(models.Model):
 
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.head.pic))
+
+
 

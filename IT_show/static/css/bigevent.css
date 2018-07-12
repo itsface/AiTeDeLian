@@ -172,16 +172,20 @@ h1{
 	opacity: 0;
 }
 
+
 .event {
-	width: 89%;
+	width: 84%;
 	/*width: 100%;*/
 	/*min-height: 44px;*/
 	
 	border-radius: 10px;
 	border: solid 2px #458bac;
-	padding: 23px 30px 23px 30px;
+	padding: 3.6% 3.8% 3.6% 3.8%;
 	margin-bottom: 29px;
 	
+}
+.event div{
+	line-height: 23px;
 }
 .yearevent{
 	width: 1067px;
@@ -256,6 +260,10 @@ h1{
    
 }
 @media screen and (max-width: 1400px) {
+
+	 .year{
+   	font-size: 20px;
+   }
 	   .title{
 		font-size: 16px;
 	}

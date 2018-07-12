@@ -26,8 +26,12 @@ def simple_cache_page(cache_timeout,keyName):
 class refreshCacheThread(threading.Thread):
     #prints = tasksThread()
     #prints.start()
+    def __init__(self, keyname):
+        threading.Thread.__init__(self)
+        self.keyname = keyname
 
     def run(self):
-        cache.set("keyname", None)
-        response="这里执行函数"
-        cache.set("keyname", response,60*60*10)
+        cache.set(self.keyname, None,0)
+        print("执行到了这")
+        #response="这里执行函数"
+        #cache.set("keyname", response,60*60*10)

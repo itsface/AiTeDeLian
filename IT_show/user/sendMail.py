@@ -4,13 +4,14 @@ import threading
 
 class EmailThread(threading.Thread):
     def __init__(self, subject, body, from_email, recipient_list, fail_silently, html):
+        threading.Thread.__init__(self)
         self.subject = subject
         self.body = body
         self.recipient_list = recipient_list
         self.from_email = from_email
         self.fail_silently = fail_silently
         self.html = html
-        threading.Thread.__init__(self)
+
 
     def run (self):
         msg = EmailMultiAlternatives(self.subject, self.body, self.from_email, self.recipient_list)
@@ -21,9 +22,11 @@ class EmailThread(threading.Thread):
 def send_mail(subject, body, from_email, recipient_list, fail_silently=False, html=None, *args, **kwargs):
     try:
         EmailThread(subject, body, from_email, recipient_list, fail_silently, html).start()
+        print("异步发送")
     except:
         try:
             core_send_mail(subject, body, from_email, recipient_list, fail_silently, html)
+            print("非异步发送")
         except:
             pass
 

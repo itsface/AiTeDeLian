@@ -3,14 +3,18 @@ import os
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core import serializers
-from show.models import Comment, HeadPicture
-from user.models import Fresher, StatusDetails
+from show.models import Comment, HeadPicture,Event
+from user.models import Fresher, StatusDetails,StatusInfo
 from .func import *
 import logging
 from django.core.mail import send_mail, BadHeaderError
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from user.views import sendEmail
+from user.views import addNewStatusDetail
 
+from show.tool import simple_cache_page
 
+#@simple_cache_page(60*60*6,"comment")
 def api_comment_get(request):
     back = {
         "success": True,
@@ -48,6 +52,41 @@ def api_comment_get(request):
     return response
     #return HttpResponse(json.dumps(back), content_type="application/json")
 
+def getComment(request,code):
+    back = {
+        "success": True,
+        "comment": [],
+    }
+    try:
+        oneTimeGet = 10
+        if code == 0:
+            comments = Comment.objects.all()
+        else:
+            comments = Comment.objects.filter(code__range=(0, code - 1))
+        comments = comments.order_by("-code")
+        len = comments.count()
+        if len > oneTimeGet:
+            len = oneTimeGet
+        comments = comments[0:len]
+        i = 0
+        for c in comments:
+            i = i + 1
+            back["comment"] += [{
+                "head": c.head.pic.url,
+                "content": c.content,
+                "nickname": c.name,
+                "createTime": c.createTime.strftime("%Y-%m-%d %H:%M:%S"),
+                "code": c.code,
+            }]
+    except:
+        back["success"] = False
+    response = HttpResponse(json.dumps(back), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response
+    # return HttpResponse(json.dumps(back), content_type="application/json")
 
 def api_status_get(request):
     back = {
@@ -91,23 +130,28 @@ def api_comment_submit(request):
     try:
         content = request.POST.get("content")
         # logging.debug(content)
-        head = int(request.POST.get("head"))
-        # logging.debug(content + " " + str(head))
-        code = int(Comment.objects.latest("code").code) + 1
-        # logging.debug(code)
-        nickName = request.POST.get("nickName")
-        logging.debug(nickName)
-        identify = str(request.POST['identify'])
-        if identify.upper() != str(request.session['identify']).upper():
-            back["statusC"] = 2  # u"验证码错误"
-            raise RuntimeError()
-        try:
-            del request.session['identify']
-        except:
-            pass
-        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(name=head), name=nickName)
-        c.save()
-        back["statusC"] = 0  # 成功
+        if len(content) <= 80:
+            head = int(request.POST.get("head"))
+            # logging.debug(content + " " + str(head))
+            code = int(Comment.objects.latest("code").code) + 1
+            # logging.debug(code)
+            nickName = request.POST.get("nickName")
+            logging.debug(nickName)
+            identify = str(request.POST['identify'])
+            if identify.upper() != str(request.session['identify']).upper():
+                back["statusC"] = 2  # u"验证码错误"
+                raise RuntimeError()
+            try:
+                del request.session['identify']
+            except:
+                pass
+            c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(name=head), name=nickName)
+            c.save()
+            back["statusC"] = 0  # 成功
+            from show.views import refreshCache
+            refreshCache("comment")
+        else:
+            back["statusC"] = 1
     except:
         pass
     response = HttpResponse(json.dumps(back), content_type="application/json")
@@ -133,49 +177,44 @@ def api_sign_submit(request):
         qqnum = request.POST.get("qq")  # nchar
         phone = request.POST.get("phone")  # nchar
         selfIntro = request.POST.get("selfIntro")  # text
-        wantDepartment = request.POST.get("wantDepartment")  # int
+        wantDepartment = int(request.POST.get("wantDepartment"))  # int
 
-        logging.debug(name)
-        # logging.debug(sex)
-        logging.debug(yearAndMajor)
-        logging.debug(qqnum)
-        logging.debug(email)
-        logging.debug(phone)
-        logging.debug(selfIntro)
-        logging.debug(wantDepartment)
+        #判断邮箱注册次数
+        if Fresher.objects.filter(email=email).count() <= 2:
+            logging.debug(name)
+            # logging.debug(sex)
+            logging.debug(yearAndMajor)
+            logging.debug(qqnum)
+            logging.debug(email)
+            logging.debug(phone)
+            logging.debug(selfIntro)
+            logging.debug(wantDepartment)
 
-        code = randomCode()
-        logging.debug(code)
-        back["statusC"] = 4  # "邮件发送错误"
-        try:
-            send_mail(
-                '爱特工作室',
-                ''
-                + name + '同学,你好！\n'
-                + '你的个人ID为:' + code + '\n'
-                + '使用该ID能在查询页查询招新状态，也用于完成注册\n'
-                + '最后一步，复制以下链接到地址栏并转到完成报名\n'
-                + '127.0.0.1:8000/api/signOK/' + code,  # 上线的时候千万记得改这个东西
-                'easyblog123@163.com',
-                [email],
-                fail_silently=False
-            )
-        except BadHeaderError:
-            back["statusC"] = 2  # 邮件错误
-            logging.debug("邮件错了")
-            raise RuntimeError()
+            code = randomCode()
+            logging.debug(code)
+            back["statusC"] = 4  # "邮件发送错误"
+            try:
+                text="你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/"+code
+            #     + '127.0.0.1:8000/api/signOK/'"
+                sendEmail(name=name,code=code,mail=email,text=text)
+            except :
+                logging.debug("邮件错了")
+                raise RuntimeError()
 
-        back["statusC"] = 5  # "数据库错误"
-        newFresher = Fresher.objects.create(name=name,  # sex=sex,
-                                            yearAndMajor=yearAndMajor,
-                                            email=email, qqnum=qqnum, phone=phone,
-                                            selfIntro=selfIntro, status_id=1,
-                                            wantDepartment_id=wantDepartment,
-                                            userCode=code)
-        logging.debug(newFresher)
-        request.session[code] = newFresher.id
-        newFresher.save()
-        back["statusC"] = 0  # 成功
+            back["statusC"] = 2  # 数据库错误
+            newFresher = Fresher.objects.create(name=name,  # sex=sex,
+                                                yearAndMajor=yearAndMajor,
+                                                email=email, qqnum=qqnum, phone=phone,
+                                                selfIntro=selfIntro, status_id=0,
+                                                wantDepartment_id=wantDepartment,
+                                                userCode=code)
+            addNewStatusDetail(newFresher.id,0)
+            logging.debug(newFresher)
+            request.session[code] = newFresher.id
+            newFresher.save()
+            back["statusC"] = 0  # 成功
+        else:
+            back["statusC"] = 5 #邮箱超过最大使用次数3次
     except:
         pass
     logging.debug(back["statusC"])
@@ -194,14 +233,44 @@ def api_sign_ok(request, code):
         newFresher = Fresher.objects.get(id=newFresherId)
         newFresher.active = True
         newFresher.save()
+        statuId=newFresher.status_id
+        newId=StatusInfo.objects.get(code=statuId).nextStatus_id
+        addNewStatusDetail(newFresherId,newId)
+
+
+        text = "激活成功，你的报名信息正在等待审核"
+        #     + '127.0.0.1:8000/api/signOK/'"
+        sendEmail(name=newFresher.name, code=code, mail=newFresher.email, text=text)
+
         try:
             del request.session[code]
         except:
             pass
-        return HttpResponse("注册成功")
-    except:
-        return HttpResponse("出现错误，注册失败")
 
+        return HttpResponse("激活成功")
+    except:
+        return HttpResponse("链接已失效，请重新报名。")
+
+def api_event_get(request):
+    result = {
+        "success": True,
+        "events": [],
+    }
+    try:
+        year=request.GET.get("year")
+        events=Event.objects.filter(year=year)
+        result["success"]=True
+        for event in events:
+            temp={"name":event.name,"content":event.content}
+            result["events"].append(temp)
+    except:
+        result["success"] = False
+    response = HttpResponse(json.dumps(result), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response
 
 def identify_code_picture(request):
     width, height = identifySize

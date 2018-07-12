@@ -85,7 +85,7 @@ html body .menu .menu-item a {
 	width: 100%;
 	position: absolute;
 	bottom:-20px;
-	z-index: 1000;
+	z-index: 12000;
 }
 .star{
 	width: 80%;

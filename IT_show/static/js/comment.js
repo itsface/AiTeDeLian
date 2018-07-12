@@ -480,6 +480,9 @@ $(".write .close").click(function() {
 	close_comment();
 })
 	function close_comment(){
+        $(".write textarea").val('');
+		$(".write .id input").val('');
+		$(".write .verify input").val('')
 
 
 
@@ -535,7 +538,7 @@ let Iscomment = false,
 	Isid = false;
 
 //id输入 ??字数限制呢
-$(".write .id").on({
+$(".write .id input").on({
 	focus: function() {
 		if (!Isid && $(".write .id input").val() == '') {
 			Isid = true;
@@ -543,9 +546,9 @@ $(".write .id").on({
 	},
 	keydown: function(event) {
 
-		if ($(".write textarea").val().length > 8 && event.keyCode != 8) {
-			alert("字数太多了！");
-			$(".write textarea").val($(".write textarea").val().substring(0, 8));
+		if ($(".write .id input").val().length > 8 && event.keyCode != 8) {
+			alert("昵称太长了！");
+			$(".write .id input").val($(".write .id input").val().substring(0, 8));
 
 		}
 	}
@@ -622,6 +625,7 @@ $(".write .submit").click(function() {
 				} else if (data.statusC == 0) {
 					alert("留言发表成功!");
 					close_comment();
+                    location.reload();
 				}
 	// 				switch (data.statusC){
 	// 					case 1:
@@ -805,7 +809,7 @@ function addcomment(firstTime=false) {
 
 		},
 		function(error) {
-			alert("发生错误：" + error);
+			//alert("发生错误：" + error);
 		})
 
 	// $.ajax({

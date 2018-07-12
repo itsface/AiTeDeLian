@@ -9,9 +9,10 @@ import json
 
 
 #清除所有缓存
-def test4():
+def test4(request):
     from django.core.cache import cache
     cache.clear()
+    return HttpResponse("清除完毕")
 
 def test3(request):
     from IT_show import settings

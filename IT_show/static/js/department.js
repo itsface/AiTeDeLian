@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	$(".menu").children().eq(1).addClass("current-menu-item")
-
     var $thisnav = $('.current-menu-item').offset().left-$('.x').offset().left;
 	var $initwidth = $('.current-menu-item').width();
       $('.wee').css({ 'left': $thisnav+10+'px' , 'width': $initwidth });
+      addcomment(true);
 })
 var userAgent = navigator.userAgent.toLowerCase();
 // Figure out what browser is being used
@@ -52,6 +52,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		'top': 0.2502 * W
 	})
 
+	$(".line").css({
+		'top': 0.006 * W
+	})
 	$("h1").css({
 		'top': 0.045 * W
 	})
@@ -113,9 +116,6 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(".name").eq(2).css({
 		'margin-left': -parseInt($(".name").eq(2).width()) / 2
 	})
-	$(".line").css({
-		'margin-top':0.015*H
-	})
 
 
 	// balloval2(0.30, 0.65, programr, programr);
@@ -139,9 +139,6 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		$(".container").height(H);
 		$(".container").width(W);
-			$(".line").css({
-			'margin-top':0.015*H
-		})
 		$front.css({
 			'height': 0.088 * W,
 			'top': 0.215 * W
@@ -159,6 +156,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'top': 0.2502 * W
 		})
 
+		$(".line").css({
+			'top': 0.006 * W
+		})
 		$("h1").css({
 			'top': 0.045 * W
 		})
@@ -170,8 +170,8 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'height': 0.1822 * W
 		})
 		$(".depart_intro .front_end h3").css({
-			'margin-top': 0.027 * W,
-			'margin-bottom': 0.017 * W
+			'margin-top': 0.03 * W,
+			'margin-bottom': 0.02 * W
 		})
 		$(".depart_intro .front_end .close").css({
 			'top': 0.030 * 0.324 * H,
@@ -183,8 +183,8 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'bottom': 0.292 * 0.324 * H
 		})
 		$(".depart_intro .app h3").css({
-			'margin-top': 0.027 * W,
-			'margin-bottom': 0.017 * W
+			'margin-top': 0.03 * W,
+			'margin-bottom': 0.02 * W
 		})
 		$(".depart_intro .app .close").css({
 			'top': 0.030 * 0.324 * H,
@@ -277,7 +277,7 @@ function balloval3(ballname, ox, oy, shorto, longo) {
 
 
 		// console.log(x+short);
-	}, 50)
+	}, 40)
 }
 
 
@@ -556,28 +556,76 @@ $(".baller").mouseleave(function() {
 });
 
 $(".baller").click(function() {
+
 	let index = $(".baller").index(this);
-	// for (let i = 0; i < 4; i++) {
-	// 	if (index != i) {
-	// 		closeintro(i);
-	// 	}
-    //
-	// }
+	if(Isclick[index]==false){
+	for (let i = 0; i < 4; i++) {
+		if (Isclick[i] == true) {
+			
+			closeintro(i);
+
+		}
+
+	}
+
 
 	// $(".depart_intro .intro").eq(index).siblings().
-if(!$(this).is(":animated")){
+
 	$(".depart_intro .intro").eq(index).show();
 	$(".depart_intro .intro").eq(index).animate({
 		'opacity': '1'
 	}, 200)
 	Isclick[index] = true;
 	cleart(index);
-}
 
+	$(document).one("click",
+		function() { //对document绑定一个影藏Div方法
+			closeintro(index);
+
+		});
+
+	event.stopPropagation(); //阻止事件向上冒泡
 	// $(".depart_intro .intro").eq(index).siblings().
 
+	}
 
 })
+ $(".depart_intro .intro").click(function(event) {
+
+        event.stopPropagation(); //阻止事件向上冒泡
+    });
+// var try = document.getElementsByClass("baller")
+// try.addEventListener('click', function(e) {
+
+// 	let index = $(".baller").index(this);
+
+
+// 	$(".depart_intro .intro").eq(index).show();
+// 	$(".depart_intro .intro").eq(index).animate({
+// 		'opacity': '1'
+// 	}, 200)
+// 	Isclick[index] = true;
+// 	cleart(index);
+// 	stop(e);
+// })
+// document.addEventListener('click', function() {
+// 	for (let i = 0; i < 4; i++) {
+// 		if (index != i) {
+// 			closeintro(i);
+
+// 		}
+// 	}
+
+// })
+
+
+// function stop(e) {
+// 	e = e || win.event;
+// 	e.stopPropagation ? e.stopPropagation() :
+// 		e.cancelBubble = true;
+// }
+
+
 //关闭介绍
 $(".depart_intro .close").click(function() {
 	let index = $(".depart_intro .close").index(this)
