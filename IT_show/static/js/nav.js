@@ -1,20 +1,34 @@
-var allInterval=[];
+var allInterval=[],isFlashing=[],sw,sh; // screenwidth and screenheight;
 
-$(window).on('load resize', function() {
-    var left = $('.nowpage').position().left + 10;
+function localwee(){
+	var left = $('.nowpage').position().left + 10;
 	var width = $('.nowpage').width();
 	//console.log(width);
 	//console.log(left);
-	window.clearInterval(allInterval['.wee']);
 	$('.wee').css({ 'left': left , 'width': width });
+}
+
+$(window).on('load', function() {
+    sw = $('.container').width();
+	sh = $('.container').height();
 });
 
-function slideFlash(handle,aimLeft,aimTop,aimWidth,aimHeight,fps=50){  // top left 都是相对父元素的 fps是帧率
+$(window).on('resize', function() {
+    sw = $('.container').width();
+	sh = $('.container').height();
+	window.clearInterval(allInterval['.wee']);
+	localwee();
+});
+
+function slideFlash(handle,aimLeft,aimTop,aimWidth,aimHeight){  // top left 都是相对父元素的 fps是帧率
+	fps=50;
 	var startLeft=$(handle).position().left;
 	var startTop=$(handle).position().top;
 	var startWidth=$(handle).width();
 	var startHeight=$(handle).height();
+	var startsw=sw,startsh=sh;
 	window.clearInterval(allInterval[handle]);
+	isFlashing[handle]=true;
 	allInterval[handle]=window.setInterval(flash,750/fps);
 	var i=0;
 	function flash() {
@@ -24,8 +38,9 @@ function slideFlash(handle,aimLeft,aimTop,aimWidth,aimHeight,fps=50){  // top le
 		var nowWidth = (aimWidth - startWidth) * Math.cos(Math.PI / 2 * i / fps - Math.PI / 2) + startWidth;
 		var nowHeight = (aimHeight - startHeight) * Math.cos(Math.PI / 2 * i / fps - Math.PI / 2) + startHeight;
 		// if (i<20) console.log(i, (aimLeft - startLeft) * Math.cos(Math.PI / 2 * i / fps - Math.PI / 2));
-		$(handle).css({'left': nowLeft , 'top': nowTop , 'width': nowWidth , 'height': nowHeight });
+		$(handle).css({'left': nowLeft*sw/startsw , 'top': nowTop*sh/startsh , 'width': nowWidth*sw/startsw , 'height': nowHeight*sh/startsh });
 		if (i===fps){
+			isFlashing[handle]=false;
 			window.clearInterval(allInterval[handle]);
 		}
     }

@@ -13,7 +13,7 @@ def refreshCache(key):
 
 @simple_cache_page(60*60*10,"index")
 def index(request):  # success
-    return render(request, 'home(pre).html')
+    return render(request, 'home.html')
 
 @simple_cache_page(60*60*10,"workshow")
 def workshow(request):  # success

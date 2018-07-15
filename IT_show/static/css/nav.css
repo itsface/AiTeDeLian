@@ -1,41 +1,41 @@
-
-.center{
+.nav{
+  height: 10%;
+  position: absolute;
+  width: 100%;
+  z-index: 10000;
+}
+.nav .logoandlink{
   width: 1100px;
   height: 100%;
   margin: 0 auto;
   position: relative;
 }
-.nav{
-  height: 10%;
-  position: absolute;
-  width: 100%;
-}
-.nav .center .IT_logo{
+.nav .logoandlink .IT_logo{
   position: absolute;
   left: 0px;
   top: 23px;
 }
-.nav .center h2{
+.nav .logoandlink h2{
   font-size: 1.6rem;
   color: #232323;
   position: absolute;
   left: 100px;
   top: 35px;
 }
-html body .menu {
+.nav .logoandlink .menu {
   width: 700px;
   display: flex;
   position:absolute;
   right: 0px;
 }
-html body .menu .menu-item {
+.nav .logoandlink .menu .menu-item {
   position: relative;
   cursor: pointer;
   padding-left: 10px;
   padding-right: 10px;
   margin-top: 33px
 }
-html body .menu .wee {
+.nav .logoandlink .menu .wee {
   height: 2px;
   background-color:#EAAA15;
   position: absolute;
@@ -43,7 +43,7 @@ html body .menu .wee {
   bottom: 0;
   /* transition: 0.75s; */
 }
-html body .menu .menu-item a {
+.nav .logoandlink .menu .menu-item a {
   margin: 0;
   /*padding: 0 1rem 1.5rem;*/
   display: block;
