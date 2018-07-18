@@ -1,143 +1,136 @@
-*{
-	font-family: MicrosoftYaHei, sans-serif;
-}
-.container{
-  overflow: hidden;
-  position: relative;
-    width: 100%;
+.workshow_title{
+	height: 50px;
+	position:absolute;
+	left:0;
+	right:0;
+	top:15%;
+	margin:auto;
 }
 
-.title{
+.workshow_title h2{
+	text-align:center;
+}
+
+.workshow_title .titleline{
+	height:4px;
+	width:60px;
+	background-color:#7ECEF4;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;"
+}
+
+.planetandarrow{
+	height: 25.1%;
 	position: absolute;
-	left: 50%;
-	top: 15%;
-    font-size: 20px;
-    transform: translate(-50%, 0 );
-}
-.line{
-	width: 60px;
-	height: 4px;
-	background-color: #face6f;
-	text-align: center;
-	position: relative;
-	top: 0%;
-	left: 50%;
-	margin-left: -30px;
-	z-index: 300;
-
+	left:0;
+	right:0;
+	bottom:9.3%;
 }
 
-.me {
-  position: absolute;
-  bottom: 5rem;
-  left: 50%;
-  transform: translateX(-50%);
+.planetandarrow .planet{
+	height: 100%;
+	position: absolute;
+	left:0;
+	right:0;
+	margin:auto;
+	z-index:1;
 }
-.me a {
-  display: inline-block;
-  padding: 0.25rem;
-  margin: 0 0.25rem;
-  color: #232323;
-  font-size: 1.5rem;
-  transition: 0.75s;
-}
-.me a:hover {
-  color: #002b75;
-}
-.ball{
-  width: 271px;
-  height: 271px;
-  position: absolute;
-  background-image: url("../img./ehng.png");
-  background-size: cover;
-}
-.up{
-  cursor: pointer;
-}
-.down{
-  cursor: pointer;
-}
-.up_row{
-  position: absolute;
-}
-.down_row{
-  position: absolute;
-}
-.web_name{
-  color: white;
-  text-align: center;
-}
-.block{
-  height: 246px;
-  width: 493px;
-  position: absolute;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.in_img{
-  height: 246px;
-  width: 493px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.zhe{
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  background-color: #7ECEF4;
-  opacity: 0;
-  height: 1000px;
-  width: 1000px;
-  z-index: 50;
-  display: none;
-}
-.huiji{
-  position: absolute;
-  z-index: 100;
-  opacity: 0;
-  display: none;
-  width: 72px;
-}
-.quan{
-  position: absolute;
-  transition: 0.7s;
-}
-.fugaitwo{
-  background-color: white;
-  position: absolute;
-  bottom:0px;
-    left:0px;
-}
-.fugai{
-  background-color: white;
-  position: absolute;
-  bottom:0px;
-    left:0px;
-}
-@media screen and (min-width:980px) and (max-width:1367px){
 
-  
-  .me {
-    position: absolute;
-    bottom: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .me a {
-    display: inline-block;
-    padding: 0.25rem;
-    margin: 0 0.25rem;
-    color: #232323;
-    font-size: 1.5rem;
-    transition: 0.75s;
-  }
-  .me a:hover {
-    color: #002b75;
-  }
-  .block{
-    border-radius: 5px;
-  }
-  }
+.planetandarrow .uparrow{
+	height:8.4%;
+	cursor:pointer;
+	position: absolute;
+	left:0;
+	right:0;
+	margin:auto;
+	top:22.1%;
+	z-index:3;
+}
 
+.planetandarrow .downarrow{
+	height:8.4%;
+	cursor:pointer;
+	position: absolute;
+	left:0;
+	right:0;
+	margin:auto;
+	bottom:22.1%;
+	z-index:3;
+}
+
+.planetandarrow .webname{
+	font-size:2rem;
+	line-height:0;
+	position:absolute;
+	text-align:center; 
+	left:0;
+	right:0;
+	top: 50%;
+	z-index:3;
+}
+
+.show_container{
+	height:47.7%;
+	width: 100%;
+	/* background-color:#F2357E; */
+	position:absolute;
+	bottom:15%;
+	overflow: hidden;
+}
+
+.show_container .circle{
+	height:177.7%;
+	position:absolute;
+	top:7.7%;
+	left:0;
+	right:0;
+	margin:auto;
+}
+
+.show_container .showWeb{
+	border:2px solid #7ECEF4;
+	position:absolute;	
+	border-radius:10px;
+	-moz-border-radius:10px; /* 老的 Firefox */
+	overflow:hidden;
+	display:none;
+}
+
+.show_container .showWeb .webImg{
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+
+.show_container .showWeb .webLink{
+	width:100%;
+	height:100%;
+	background-color: #7ECEF4;
+	opacity:0;
+	position:absolute;
+	
+	transition: opacity 1s;
+	-moz-transition: opacity 1s; /* Firefox 4 */
+	-webkit-transition: opacity 1s; /* Safari 和 Chrome */
+	-o-transition: opacity 1s; /* Opera */
+}
+
+.show_container .showWeb .webLink:hover{
+	opacity:0.6;
+}
+
+.show_container .showWeb .webLinkImg{
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;
+}
+
+.show_container .webInfo{
+	display:none;
 }

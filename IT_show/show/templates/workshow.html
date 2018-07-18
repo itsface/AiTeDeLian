@@ -1,45 +1,73 @@
 {% extends "base.html" %}
+{% load myfilter %}
 {% load static %}
 {% block head %}
-	<title>作品展示</title>
-	<meta charset="utf-8">
-    <link rel="shortcut icon" href="{% static  "favicon.ico" %}">
-	<link rel="stylesheet" type="text/css" href="{% static  "css/workshow.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "css/workshow.css" %}">
 {% endblock %}
 {% block content %}
-        <div class="title">
-            作品展示
-		    <div class="line"></div>
-        </div>
-		<img src="{% static  "img/quan.png" %}" class="quan">
-		<div class="ball">
-			<div class="up">
-				<img src="{% static  "img/up1.png" %}" class="up_row">
-			</div>
-			<div class="down">
-				<img src="{% static  "img/down1.png" %}" class="down_row">
-			</div>
-			<h3 class="web_name">信息科学与工程学院</h3>
+		<div class="workshow_title">
+			<h2>作品展示</h2>
+			<div class="titleline"></div>
 		</div>
-        <input id="wNum" style="display: none" value="6">
-
-    {% for one in result.web %}
-        <div class="block{{ forloop.counter }} block" {% if forloop.counter > 3 %} style="display: none" {% endif %}>
-            <img src="{% static  "img/huiji.png" %}" class="huiji">
-            <a href="{{ one.link }}">
-                <img  src="{{ MEDIA_URL }}{{ one.pic }}" class="in_img{{ forloop.counter }}">
-            </a>
-
-            <input id="webname{{ forloop.counter0 }}" style="display: none" value="{{ one.name }}">
-			<div class="zhe"></div>
+		<div class="planetandarrow">
+			<img src="{% static "img/ehng.png" %}" class="planet">
+			<img src="{% static "img/up1.png" %}" class="uparrow">
+			<img src="{% static "img/down1.png" %}" class="downarrow">
+			<p class="webname">---||||---</p>
 		</div>
-    {% endfor %}
+		<div class="show_container">
+			<input value="{{ num }}" style="display:none" id="webNum">
+			<img src="{% static "img/quan.png"  %}" class="circle">
 
-        <div class="fugai"></div>
-        <div class="fugaitwo"></div>
+			<div class="showWeb block0">
+				<!-- 左 -->
+				<img src="{% static "img/back.png" %}" class="webImg">
+				<a class="webLink">
+					<img src="{% static "img/huiji.png" %}" class="webLinkImg">
+				</a>
+				<input style="display:none">
+			</div>
+
+			<div class="showWeb block1">
+				<!-- 上 -->
+				<img src="{% static "img/back.png" %}"  class="webImg">
+				<a class="webLink">
+					<img src="{% static "img/huiji.png" %}"  class="webLinkImg">
+				</a>
+				<input style="display:none">
+			</div>
+
+			<div class="showWeb block2">
+				<!-- 右 -->
+				<img src="{% static "img/back.png"  %}" class="webImg">
+				<a class="webLink">
+					<img src="{% static "img/huiji.png" %}"  class="webLinkImg">
+				</a>
+				<input style="display:none">
+			</div>
+
+			<div class="showWeb block3">
+				<!-- 下 -->
+				<img src="{% static "img/back.png" %}" class="webImg">
+				<a class="webLink">
+					<img src="{% static "img/huiji.png" %}" class="webLinkImg">
+				</a>
+				<input style="display:none">
+			</div>
+
+			{% for key,web in webSet.items %}
+                <div class="webInfo {{ web|key:"number" }}" style="display:none">
+				    <input value="{{ web|key:"name" }}">
+				    <!-- 网站名字 -->
+				    <input value="{{ web|key:"pic" }}">
+				    <!-- 网站图片 -->
+				    <input value="{{ web|key:"link" }}">
+				    <!-- 网站链接 -->
+			    </div>
+            {% endfor %}
+		</div>
+
 {% endblock %}
 {% block script %}
-	<script type="text/javascript" src="{% static  "/js/jquery-3.3.1.min.js" %}"></script>
-	<script src="http://cdn.bootcss.com/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-	<script type="text/javascript" src="{% static  "js/workshow.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/workshow.js" %}"></script>
 {% endblock %}

@@ -17,10 +17,26 @@ def index(request):  # success
 
 @simple_cache_page(60*60*10,"workshow")
 def workshow(request):  # success
-    num=models.WorksShow.objects.count()
-    web=models.WorksShow.objects.all()
-    result={'num':10,'web':web}
-    return render(request, 'workshow.html',{'result':result})
+    result = {
+        "num": 0,
+        "webSet": None,
+    }
+    num = models.WorksShow.objects.count()
+    result["num"] = num
+    webs = models.WorksShow.objects.all()
+    webSet = {}
+    i = 0
+    for web in webs:
+        webSet[str(i)] = {
+            "number": "number" + str(i),
+            "name": web.name,
+            "link": web.link,
+            "pic": web.pic.url,
+        }
+        i = i + 1
+    result["webSet"] = webSet
+
+    return render(request, 'workshow.html', result)
 
 @simple_cache_page(60*60*10,"member")
 def member(request):
