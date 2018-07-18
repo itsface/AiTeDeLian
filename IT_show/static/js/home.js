@@ -2,15 +2,12 @@ var pagestatus,nowchoose;
 
 $(document).ready(function() {
 	$(".menu").children().eq(1).addClass("nowpage");
-	$(".navfont").css({color:"white"});
 	localwee();
 	pagestatus=0;
 	nowchoose=1;
 })
 
 $(window).on('load resize', function() {
-	sw = $('.container').width();
-	sh = $('.container').height();
 	if (!isFlashing[".bgdown"]){
 		if (pagestatus==1){
 			$(".bgdown").css({"left": 0, "top": 0, "width": sw, "height": sh})
@@ -41,7 +38,6 @@ function chooseImgchange(mode){
 
 function pagedown(){
 	if (pagestatus!=1&&(!isFlashing[".bgdown"])){
-		$(".navfont").css({color:"black"});
 		slideFlash(".bgdown",0,0,sw,sh);
 		slideFlash(".choose_aboutus",sw*0.265,sh*0.15,sw*0.47,220);
 		$(".choose p").hide();
@@ -52,7 +48,7 @@ function pagedown(){
 
 function pageup(){
 	if (pagestatus!=0&&(!isFlashing[".bgdown"])){
-		$(".navfont").css({color:"white"});
+		
 		slideFlash(".bgdown",0,sh*0.635,sw,sh);
 		slideFlash(".choose_aboutus",sw*0.265,sh*0.02,sw*0.47,220);
 		$(".choose p").show();
@@ -71,7 +67,7 @@ $(".choose").click(function(){
 	pagedown();
 });//如果点击
 
-$(window).bind('mousewheel', function(event, delta) {
+$(window).bind('mousewheel', function(event, delta) {  
 	if(delta==-1){
 		pagedown();
 	}

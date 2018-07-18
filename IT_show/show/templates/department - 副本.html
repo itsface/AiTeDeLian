@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+	<meta charset="UTF-8">
+	<title>部门介绍</title>
+	<link rel="stylesheet" href="{% static  "css/department.css" %}">
+{% endblock %}
+
+{% block content %}
+{#		<img class="back" src="{% static  "images/department_background.png" %}" alt="">#}
+		<div class="title">
+            部门介绍
+		    <div class="line"></div>
+        </div>
+		<div class="person"><img src="{% static  "images/person.png" %}" alt=""></div>
+		<div class="ball">
+			<div class="front_end baller">
+				<img class="logo" src="{{ MEDIA_URL }}{{ result.qianduan.pic }}" alt="">
+				<div class="black"></div>
+				<img src="{% static  "images/front_end.png" %}" alt="">
+				
+				<div class="name">{{ result.qianduan.name }}</div>
+			</div>
+			<div class="app baller">
+				<img class="logo" src="{{ MEDIA_URL }}{{ result.app.pic }}" alt="">
+				<div class="black"></div>
+				<img src="{% static  "images/app.png" %}" alt="">
+				
+				<div class="name">{{ result.app.name }}</div>
+			</div>
+			<div class="ui baller">
+				<img class="logo" src="{{ MEDIA_URL }}{{ result.ui.pic }}" alt="">
+				<div class="black"></div>
+				<img src="{% static  "images/UI.png" %}" alt="">
+				
+				<div class="name">{{ result.ui.name }}</div>
+			</div>
+			<div class="program baller">
+				<img class="logo" src="{{ MEDIA_URL }}{{ result.chengxu.pic }}" alt="">
+				<div class="black"></div>
+				<img src="{% static  "images/program.png" %}" alt="">
+				
+				<div class="name">{{ result.chengxu.name }}</div>
+			</div>
+		</div>
+		<div class="depart_intro">
+			<div class="front_end intro" style="display: none;">
+				<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+				<h3>{{ result.qianduan.name }}</h3>
+				<p>
+
+				{{ result.qianduan.intro }}
+				</p>
+			</div>
+			
+			<div class="app intro" style="display: none;">
+				<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+				<h3>{{ result.app.name }}</h3>
+				<p>
+
+				{{ result.app.intro }}
+				</p>
+			</div>
+			<div class="ui intro" style="display: none;">
+				<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+				<h3>{{ result.ui.name }}</h3>
+				<p>
+				{{ result.ui.intro }}
+				</p>
+			</div>
+			<div class="program intro" style="display: none;">
+				<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>
+				<h3>{{ result.chengxu.name }}</h3>
+				<p>
+
+				{{ result.chengxu.intro }}
+				</p>
+			</div>
+
+		</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static  "/js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static  "js/department.js" %}"></script>
+{% endblock %}
+

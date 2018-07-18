@@ -80,7 +80,13 @@ def department(request):
     chengxu=models.Department.objects.get(name="程序开发")
     ui=models.Department.objects.get(name="UI设计")
     app=models.Department.objects.get(name="APP开发")
-    result={"qianduan":qianduan,"chengxu":chengxu,"ui":ui,"app":app}
+    result=[]
+    result.append(qianduan)
+    result.append(chengxu)
+    result.append(ui)
+    result.append(app)
+
+    #result={"qianduan":qianduan,"chengxu":chengxu,"ui":ui,"app":app}
     return render(request, 'department.html',{'result':result})
 
 @simple_cache_page(60*60*10,"bigevent")

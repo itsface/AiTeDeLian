@@ -74,21 +74,21 @@ function getName(){
 		// "left":centerL-circleW-sideW/2,
 		// "top":centerT-0-sideH/2,
 	// })
-
+	
 	// $(".block1").css({
 		// "width":upW,
 		// "height":upH,
 		// "left":centerL-upW/2,
 		// "top":centerT-circleH-upH/2,
 	// })
-
+	
 	// $(".block2").css({
 		// "width":sideW,
 		// "height":sideH,
 		// "left":centerL+circleW-sideW/2,
 		// "top":centerT-0-sideH/2,
 	// })
-
+	
 	// $(".block3").css({
 		// "width":0,
 		// "height":0,
@@ -130,33 +130,28 @@ $(".uparrow").click(function(){
 		var fps=50;
 		var flash=setInterval(function(){
 			angle+=90/fps;
+			setBlock(0,180-angle);
+			setBlock(1,90-angle);
+			setBlock(2,0-angle);
+			setBlock(3,270-angle);
 			if (angle>90){
 				clearInterval(flash);
-				setBlock(0,90);
-				setBlock(1,0);
-				setBlock(2,270);
-				setBlock(3,180);
 				flashFlag=false;
 				$(".block0").addClass("tempclass");
 				$(".block0").removeClass("block0");
-
+				
 				$(".block3").addClass("block0");
 				$(".block3").removeClass("block3");
-
+				
 				$(".block2").addClass("block3");
 				$(".block2").removeClass("block2");
-
+				
 				$(".block1").addClass("block2");
 				$(".block1").removeClass("block1");
-
+				
 				$(".tempclass").addClass("block1");
 				$(".tempclass").removeClass("tempclass");
 				getName();
-			} else {
-				setBlock(0,180-angle);
-				setBlock(1,90-angle);
-				setBlock(2,0-angle);
-				setBlock(3,270-angle);
 			}
 		},flashTime/fps)
 	}
@@ -173,33 +168,28 @@ $(".downarrow").click(function(){
 		var fps=50;
 		var flash=setInterval(function(){
 			angle+=90/fps;
+			setBlock(0,180+angle);
+			setBlock(1,90+angle);
+			setBlock(2,0+angle);
+			setBlock(3,270+angle);
 			if (angle>90){
 				clearInterval(flash);
-				setBlock(0,270);
-				setBlock(1,180);
-				setBlock(2,90);
-				setBlock(3,0);
 				flashFlag=false;
 				$(".block0").addClass("tempclass");
 				$(".block0").removeClass("block0");
-
+				
 				$(".block1").addClass("block0");
 				$(".block1").removeClass("block1");
-
+				
 				$(".block2").addClass("block1");
 				$(".block2").removeClass("block2");
-
+				
 				$(".block3").addClass("block2");
 				$(".block3").removeClass("block3");
-
+				
 				$(".tempclass").addClass("block3");
 				$(".tempclass").removeClass("tempclass");
 				getName();
-			} else {
-				setBlock(0,180+angle);
-				setBlock(1,90+angle);
-				setBlock(2,0+angle);
-				setBlock(3,270+angle);
 			}
 		},flashTime/fps)
 	}
