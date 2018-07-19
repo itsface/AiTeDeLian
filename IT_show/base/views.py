@@ -163,7 +163,9 @@ def api_comment_submit(request):
     #return HttpResponse(json.dumps(back), content_type="application/json")
     # return HttpResponse(json.dumps(back))
 
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def api_sign_submit(request):
     back = {
         "statusC": 1,  # 未知错误

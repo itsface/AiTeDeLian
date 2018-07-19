@@ -9,22 +9,16 @@
 {% endblock %}
 
 {% block content %}
-		<div class="title">
-            爱特大事记
-		    <div class="line"></div>
-        </div>
-
+{#		<div class="title">#}
+{#            爱特大事记#}
+{#		    <div class="line"></div>#}
+{#        </div>#}
+        <h1>爱特大事件</h1>
+        <div class="line"></div>
 		<div class="background"><img src="{% static  "images/qiu.png" %}" alt=""></div>
-		<!-- <div class="block_line"></div>
-		<div class="event">
-			<div class="event_clock"></div>
-			<div class="event_clock"></div>
-			<div class="event_clock"></div>
-			<div class="event_clock"></div>
-			<div class="event_clock"></div>
-		</div> -->
-		<!-- <span class="block_bottom"></span> -->
-		<div class="plates">
+        <div class="word_wrap"><img class="event_word" src="{% static  "images/eventword.png"%}" alt=""></div>
+
+    <div class="plates">
 
 				<div class="plate" id="">
 					<div class="board">2014
@@ -58,7 +52,7 @@
 			<div class="index_topic mCustomScrollbar _mCS_1">
 			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">
 			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr">
-			      <div class="event"></div>
+			        <div class="event"></div>
 			        <div class="event"></div>
 			        <div class="event"></div>
 			        <div class="event"></div>
@@ -70,83 +64,12 @@
 			  </div>
 			</div>
 		</div>
-{#		<div id="2015" class="yearevent">#}
-{#			<div class="year">2015</div>#}
-{#			<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>#}
-{#			<div class="index_topic mCustomScrollbar _mCS_1">#}
-{#			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">#}
-{#			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr">#}
-{#			      <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			    </div>#}
-{#			  </div>#}
-{#			</div>#}
-{#		</div>#}
-{#		<div id="2016" class="yearevent">#}
-{#			<div class="year">2016</div>#}
-{#			<div class="close clearfix"><img src="{% static  "images/close.png" %}" alt=""></div>#}
-{#			<div class="index_topic mCustomScrollbar _mCS_1">#}
-{#			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">#}
-{#			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr">#}
-{#			      <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			    </div>#}
-{#			  </div>#}
-{#			</div>#}
-{#		</div>#}
-{#		<div id="2017" class="yearevent">#}
-{#			<div class="year">2017</div>#}
-{#			<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>#}
-{#			<div class="index_topic mCustomScrollbar _mCS_1" id="text2017">#}
-{#			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">#}
-{#			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr">#}
-{#			      <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			    </div>#}
-{#			  </div>#}
-{#			</div>#}
-{#		</div>#}
-{#		<div id="2018" class="yearevent">#}
-{#			<div class="year">2018</div>#}
-{#			<div class="close"><img src="{% static  "images/close.png" %}" alt=""></div>#}
-{#			<div class="index_topic mCustomScrollbar _mCS_1">#}
-{#			  <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">#}
-{#			    <div id="mCSB_1_container" class="mCSB_container"  dir="ltr">#}
-{#			      <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			        <div class="event"></div>#}
-{#			    </div>#}
-{#			  </div>#}
-{#			</div>#}
-{#		</div>#}
 		</div>
 {% endblock %}
 		
 {% block script %}
+    <script src = "https://cdn.polyfill.io/v2/polyfill.min.js"></script>
     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-    <script src="{% static  "js/bigevent.js" %}"></script>
+    <script src="{% static  "js/bigevent2.js" %}"></script>
     <script src="{% static  "js/mCustomScrollbar.js" %}"></script>
 {% endblock %}

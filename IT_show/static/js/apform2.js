@@ -532,7 +532,7 @@ $(".verify_check").click(function() {
 	} else {
 		var obj = {
 			method: "GET",
-			url: "http://ktchen.cn:8080/api/status/get?userCode=" + '1234567890',
+			url: "/api/status/get?userCode=" + $(".inputwrap input").val(),
 			timeout: 5000,
 			dataType: 'Default: Intelligent Guess',
 			async: true
@@ -544,7 +544,6 @@ $(".verify_check").click(function() {
 				$(".content").eq(1).html(data.major);
 				$(".content").eq(2).html(data.wantDepart);
 				var str = '';
-
 				for (var i = 0; i < 3; i++) {
 					// str += `
 					// 		<div class="event">
@@ -555,9 +554,9 @@ $(".verify_check").click(function() {
 							
 
 					// `
-
 					str += "\n\t\t\t\t\t\t\t<div class=\"event\">\n\t\t\t\t\t\t\t\t<span>" + data.status[i].statusHappenTime + "</span>\n\t\t\t\t\t\t\t\t<span>" + data.status[i].statusName + "</span>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\n\n\t\t\t\t\t";
 				}
+				console.log(str)
 				$(".events").append(str)
 
 				// x = [0, 1, 2];
