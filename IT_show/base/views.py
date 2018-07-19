@@ -195,13 +195,13 @@ def api_sign_submit(request):
             code = randomCode()
             logging.debug(code)
             back["statusC"] = 4  # "邮件发送错误"
-            try:
-                text="你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/"+code
-            #     + '127.0.0.1:8000/api/signOK/'"
-                sendEmail(name=name,code=code,mail=email,text=text)
-            except :
-                logging.debug("邮件错了")
-                raise RuntimeError()
+            # try:
+            #     text="你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/"+code
+            # #     + '127.0.0.1:8000/api/signOK/'"
+            #     sendEmail(name=name,code=code,mail=email,text=text)
+            # except :
+            #     logging.debug("邮件错了")
+            #     raise RuntimeError()
 
             back["statusC"] = 2  # 数据库错误
             newFresher = Fresher.objects.create(name=name,  # sex=sex,
@@ -210,7 +210,7 @@ def api_sign_submit(request):
                                                 selfIntro=selfIntro, status_id=0,
                                                 wantDepartment_id=wantDepartment,
                                                 userCode=code)
-            addNewStatusDetail(newFresher.id,0)
+            # addNewStatusDetail(newFresher.id,0)
             logging.debug(newFresher)
             request.session[code] = newFresher.id
             newFresher.save()
@@ -230,19 +230,25 @@ def api_sign_submit(request):
 
 
 def api_sign_ok(request, code):
-    try:
-        newFresherId = request.session[code]
-        newFresher = Fresher.objects.get(id=newFresherId)
+    # try:
+        # newFresherId = request.session[code]
+        newFresher=Fresher.objects.get(userCode=code)
+        # newFresher = Fresher.objects.get(id=newFresherId)
+        if newFresher.active==True:
+            return HttpResponse("该账号已被激活，链接失效")
         newFresher.active = True
         newFresher.save()
+
         statuId=newFresher.status_id
         newId=StatusInfo.objects.get(code=statuId).nextStatus_id
-        addNewStatusDetail(newFresherId,newId)
+        addNewStatusDetail(newFresher.id,newId)
+
 
 
         text = "激活成功，你的报名信息正在等待审核"
         #     + '127.0.0.1:8000/api/signOK/'"
         sendEmail(name=newFresher.name, code=code, mail=newFresher.email, text=text)
+
 
         try:
             del request.session[code]
@@ -250,8 +256,8 @@ def api_sign_ok(request, code):
             pass
 
         return HttpResponse("激活成功")
-    except:
-        return HttpResponse("链接已失效，请重新报名。")
+    # except:
+    #     return HttpResponse("链接已失效，请重新报名。")
 
 def api_event_get(request):
     result = {

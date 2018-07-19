@@ -1,6 +1,6 @@
 from django.db import models
 import show.models
-
+import logging
 
 class StatusInfo(models.Model):
     code = models.IntegerField(verbose_name="状态Id", default=0, auto_created=True, primary_key=True)
@@ -31,7 +31,7 @@ class Fresher(models.Model):
     qqnum = models.CharField(verbose_name="qq号", max_length=12, default="")
     phone = models.CharField(verbose_name="手机号", max_length=15, default="")
     selfIntro = models.TextField(verbose_name="自我介绍", max_length=300, default="")
-    status = models.ForeignKey(StatusInfo, verbose_name="招新状态", default=0, null=True, blank=True,
+    status = models.ForeignKey(StatusInfo, verbose_name="招新状态", default=-1, null=True, blank=True,
                                on_delete=models.SET_NULL)
     wantDepartment = models.ForeignKey(show.models.Department, verbose_name="意向部门", max_length=10, default="",
                                        null=True, on_delete=models.SET_NULL)
@@ -48,6 +48,36 @@ class Fresher(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        from base import func
+        from user.views import addNewStatusDetail,sendEmail
+
+        if self.userCode=="":#以userCode不存在为新账号标志
+            self.userCode=func.randomCode()
+
+
+        super(Fresher, self).save(*args, **kwargs)  # Call the "real" save() method.
+
+        if self.status_id==-1:#-1是默认值，
+            self.status_id = 0
+            super(Fresher, self).save(*args, **kwargs)  # Call the "real" save() method.
+            from datetime import datetime
+            try:
+                text = "你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/" + self.userCode
+                #     + '127.0.0.1:8000/api/signOK/'"
+                sendEmail(name=self.name, code=self.userCode, mail=self.email, text=text)
+            except:
+                logging.debug("邮件错了")
+                raise RuntimeError()
+
+            StatusDetails.objects.create(statu_id=0, time=datetime.now(),  # 添加 新状态信息
+                                         hostID_id=self.id,
+                                         code=StatusDetails.objects.filter(
+                                             hostID=self.id).count() + 1, isTail=True)
+
+
+
 
 
 class StatusDetails(models.Model):

@@ -43,4 +43,9 @@ def randomString(chSet, len):
 
 
 def randomCode():
-    return randomString(chAlphaHigh + chAlphaLow + chNum, 10)
+    while 1:
+        code=randomString(chAlphaHigh + chAlphaLow + chNum, 10)
+        from user.models import Fresher
+        temp=Fresher.objects.filter(userCode=code)
+        if (len(temp)==0):
+            return code

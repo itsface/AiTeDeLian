@@ -78,7 +78,7 @@ def setNewStatues(userId):
 
 
 def DeleteStatusDetails(userId):
-    #try:
+    try:
         tailDetail = StatusDetails.objects.get(hostID__id=userId, isTail=True)
         code = tailDetail.code - 1
         # logging.debug(code)
@@ -88,9 +88,8 @@ def DeleteStatusDetails(userId):
         tailDetail = StatusDetails.objects.get(hostID__id=userId, code=code)
         tailDetail.isTail = True
         tailDetail.save()
-    #except:
-        #return False
-        return True
+    except:
+        return False
 
 
 def update_data_src(modeladmin, request, queryset):
@@ -344,7 +343,7 @@ class FresherAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'sex', 'yearAndMajor', "wantDepartment", 'email', 'qqnum', 'phone', 'status', 'registerTime','active')
     search_fields = ('name', 'email', 'phone', 'yearAndMajor', "wantDepartment", 'qqnum')
-    readonly_fields = ["userCode"]
+    readonly_fields = ["userCode","status"]
     list_per_page = 30
     ordering = ('-registerTime',)
     list_filter = (UserFilterActive,UserFilterSex, UserFilterStatus, UserFilterDepartment, UserFilterPubtime,)
@@ -364,17 +363,8 @@ class FresherAdmin(admin.ModelAdmin):
         """
         Given a model instance save it to the database.
         """
-        setNewStatues(obj.id)
-        # try:
-        #     oldDetail = models.StatusDetails.objects.get(hostID=obj.id, isTail=1)
-        # except :
-        #     oldDetail=None
-        # if oldDetail !=None:
-        #     oldDetail.isTail = False
-        #     oldDetail.save()
+        # setNewStatues(obj.id)
         obj.save()
-        if obj.status!=None:
-            newInfo=user.models.StatusDetails.objects.create(statu_id=obj.status.code,time=datetime.now(),hostID_id=obj.id,code=user.models.StatusDetails.objects.filter(hostID=obj.id).count()+1)
 
 
 #招生状态设置
@@ -396,8 +386,9 @@ class StatusInfoAdmin(admin.ModelAdmin):
 
 # 新生状态详情
 class StatusDetailsAdmin(admin.ModelAdmin):
-    list_display = ('hostID',  'statu',"info",'code', 'time')
+    list_display = ('hostID',  'statu',"info",'code', 'time',"isTail")
     search_fields = ('hostID__name',)
+    readonly_fields = ('hostID',  'statu',"info",'code', 'time',"isTail")
     list_per_page = 30
     ordering = ('-time',)
 

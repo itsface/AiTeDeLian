@@ -168,9 +168,9 @@ class MemberAdmin(admin.ModelAdmin):
 
 
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'intro', "image_tag")
+    list_display = ('name', 'intro',"pic", "image_tag")
     search_fields = ('name', 'intro')
-    fields = ('name', 'intro', "image_tag")
+    fields = ('name', 'intro',"pic", "image_tag")
     readonly_fields = ["image_tag"]
     list_per_page = 10
 
@@ -194,17 +194,18 @@ class WorksShowAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('code', "image_tag", 'content', "reply","createTime")
-    fields = ('code',"createTime", 'content', "reply", "image_tag")
-    readonly_fields = ("createTime","image_tag",)
-    search_fields = ('code', 'content')
+    list_display = ('code',"name", "image_tag", 'content', "reply","createTime")
+    fields = ('code',"name","createTime", 'content', "reply", "image_tag","head")
+    readonly_fields = ("createTime","image_tag","code")
+    search_fields = ('code', 'content',"name",)
     list_per_page = 30
 
 
 class HeadPictureAdmin(admin.ModelAdmin):
     list_display = ('name', "image_tag", 'pic')
+    fields = ('name', "image_tag", 'pic')
     search_fields = ('name', 'pic')
-    readonly_fields = ["name"]
+    readonly_fields = ["name","image_tag"]
     list_per_page = 30
     def has_delete_permission(self, request, obj=None):
         """ 取消后台删除附件功能 """
@@ -214,6 +215,8 @@ class HeadPictureAdmin(admin.ModelAdmin):
 
 class worksShowAdmin(admin.ModelAdmin):
     list_display = ('name', "image_tag", "link", 'pic')
+    fields = ('name', "link", 'pic', "image_tag")
+    readonly_fields = ["image_tag"]
     search_fields = ('name', "link")
     list_per_page = 30
     def save_model(self, request, obj, form, change):

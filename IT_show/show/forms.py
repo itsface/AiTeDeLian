@@ -63,7 +63,11 @@ class FresherForm(forms.ModelForm):
         pattern = r"[-_\w\.]{0,64}@([-\w]{1,63}\.)*[-\w]{1,63}"
         res = re.search(pattern, data)
         if res:
-            return data
+            from user.models import Fresher
+            if Fresher.objects.filter(email=data).count() <= 3:
+                return data
+            else:
+                raise forms.ValidationError("该邮箱注册超过3次，禁止注册!")
         else:
             raise forms.ValidationError("邮箱输入有误!")
 
