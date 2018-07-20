@@ -23,6 +23,7 @@
 		<div class="dp dp{{ forloop.counter }}">
 			<img src="{% static  "img/"%}{{ foo.name }}.png" class="dpImg">
 			<img src="{% static  "img/"%}{{ foo.name }}logo.png" class="logo logo{{ forloop.counter }}">
+            <p>{{ foo.name }}</p>
 		</div>
 		<div class="word word{{ forloop.counter }}">
 			<img src="{% static  "img/cha.png"%}" class="close">
@@ -34,52 +35,6 @@
 		</div>
     {% endfor %}
 
-{##}
-{#		<!-- ui -->#}
-{#		<img src="img/whitecircle.png" class="cir cir2">#}
-{#		<div class="dp dp2">#}
-{#			<img src="img/UI.png" class="dpImg">#}
-{#			<img src="img/UIlogo.png" class="logo logo2">#}
-{#		</div>#}
-{#		<div class="word word2">#}
-{#			<img src="img/cha.png" class="close">#}
-{#			<h3>UI</h3>#}
-{#			<!-- 简介100字 -->#}
-{#			<p>#}
-{#				前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介#}
-{#			</p>#}
-{#		</div>#}
-{##}
-{#		<!-- 程序 -->#}
-{#		<img src="img/whitecircle.png" class="cir cir3">#}
-{#		<div class="dp dp3">#}
-{#			<img src="img/program.png" class="dpImg">#}
-{#			<img src="img/programlogo.png" class="logo logo3">#}
-{#		</div>#}
-{#		<div class="word word3">#}
-{#			<img src="img/cha.png" class="close">#}
-{#			<h3>程序</h3>#}
-{#			<!-- 简介100字 -->#}
-{#			<p>#}
-{#				前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介#}
-{#			</p>#}
-{#		</div>#}
-{##}
-{#		<!-- 安卓 -->#}
-{#		<img src="img/whitecircle.png" class="cir cir4">#}
-{#		<div class="dp dp4">#}
-{#			<img src="img/app.png" class="dpImg">#}
-{#			<img src="img/applogo.png" class="logo logo4">#}
-{#		</div>#}
-{#		<div class="word word4">#}
-{#			<img src="img/cha.png" class="close">#}
-{#			<h3>安卓</h3>#}
-{#			<!-- 简介100字 -->#}
-{#			<p>#}
-{#				前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介前端的简介#}
-{#			</p>#}
-{#		</div>#}
-{##}
 
 
 {% endblock %}

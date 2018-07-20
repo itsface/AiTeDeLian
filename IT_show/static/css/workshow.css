@@ -1,5 +1,5 @@
 .workshow_title{
-	height: 50px;
+	height: 60px;
 	position:absolute;
 	left:0;
 	right:0;
@@ -9,6 +9,8 @@
 
 .workshow_title h2{
 	text-align:center;
+	font-size: 28px;
+	font-weight:normal;
 }
 
 .workshow_title .titleline{
@@ -19,7 +21,7 @@
 	bottom:0;
 	left:0;
 	right:0;
-	margin:auto;"
+	margin:auto;
 }
 
 .planetandarrow{
@@ -57,19 +59,20 @@
 	left:0;
 	right:0;
 	margin:auto;
-	bottom:22.1%;
+	bottom:24%;
 	z-index:3;
 }
 
 .planetandarrow .webname{
-	font-size:2rem;
+	font-size:1.125rem;
 	line-height:0;
 	position:absolute;
 	text-align:center; 
 	left:0;
 	right:0;
-	top: 50%;
+	top: 47.5%;
 	z-index:3;
+	color: white;
 }
 
 .show_container{

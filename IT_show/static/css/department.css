@@ -1,15 +1,18 @@
 .department_title{
-	height: 50px;
+	height: 60px;
 	position:absolute;
 	left:0;
 	right:0;
 	top:15%;
 	margin:auto;
+	text-align:center;
 }
 
 .department_title h2{
+	font-size: 28px;
 	color: white;
 	text-align:center;
+	font-weight:normal;
 }
 
 .department_title .titleline{
@@ -20,7 +23,7 @@
 	bottom:0;
 	left:0;
 	right:0;
-	margin:auto;"
+	margin:auto;
 }
 
 .backgroundImg{
@@ -60,7 +63,7 @@
 }
 
 .dp .dpImg{
-	height:100%;
+	height:79.4%;
 	position: absolute;
 }
 
@@ -69,8 +72,8 @@
 	position: absolute;
 	left:0;
 	right:0;
-	top:0;
-	bottom:0;
+	top:4.5%;
+	/* bottom:0; */
 	margin:auto;
 	
 	opacity:0;
@@ -78,6 +81,17 @@
 	-moz-transition: opacity 1s; /* Firefox 4 */
 	-webkit-transition: opacity 1s; /* Safari 和 Chrome */
 	-o-transition: opacity 1s; /* Opera */
+}
+
+.dp p{
+	font-size:1.6rem;
+	color:white;
+	position:absolute;
+	text-align:center;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
 }
 
 .word{

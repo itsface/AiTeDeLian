@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.core.cache import cache
 from show.tool import simple_cache_page,refreshCacheThread
-from show import models
 from django.views.static import serve
 from IT_show.settings import MEDIA_ROOT
+from show.models import *
 # Create your views here.
 
 #添加或删除留言时调用该函数
@@ -21,9 +21,9 @@ def workshow(request):  # success
         "num": 0,
         "webSet": None,
     }
-    num = models.WorksShow.objects.count()
+    num = WorksShow.objects.count()
     result["num"] = num
-    webs = models.WorksShow.objects.all()
+    webs = WorksShow.objects.all()
     webSet = {}
     i = 0
     for web in webs:
@@ -41,23 +41,23 @@ def workshow(request):  # success
 @simple_cache_page(60*60*10,"member")
 def member(request):
 
-    m11=models.Member.objects.filter(year=2011)
-    m12 = models.Member.objects.filter(year=2012)
-    m13=models.Member.objects.filter(year=2013)
-    m14 = models.Member.objects.filter(year=2014)
-    m15 = models.Member.objects.filter(year=2015)
-    m16 = models.Member.objects.filter(year=2016)
-    m17 = models.Member.objects.filter(year=2017)
+    m11=Member.objects.filter(year=2011)
+    m12 = Member.objects.filter(year=2012)
+    m13=Member.objects.filter(year=2013)
+    m14 = Member.objects.filter(year=2014)
+    m15 = Member.objects.filter(year=2015)
+    m16 = Member.objects.filter(year=2016)
+    m17 = Member.objects.filter(year=2017)
 
-    num11 = models.Member.objects.filter(year=2011).count()
+    num11 = Member.objects.filter(year=2011).count()
 
-    num12 = models.Member.objects.filter(year=2012).count()
+    num12 = Member.objects.filter(year=2012).count()
 
-    num13 = models.Member.objects.filter(year=2013).count()
-    num14 = models.Member.objects.filter(year=2014).count()
-    num15 = models.Member.objects.filter(year=2015).count()
-    num16 = models.Member.objects.filter(year=2016).count()
-    num17 = models.Member.objects.filter(year=2017).count()
+    num13 = Member.objects.filter(year=2013).count()
+    num14 = Member.objects.filter(year=2014).count()
+    num15 = Member.objects.filter(year=2015).count()
+    num16 = Member.objects.filter(year=2016).count()
+    num17 = Member.objects.filter(year=2017).count()
     num17=num17 // 3 if num17 % 3 == 0 else num17//3 + 1
     nnum17=range(1,num17+1)
     num11 = range(1,(num11 // 3 if num11 % 3 == 0 else num11//3 + 1)+1)
@@ -76,10 +76,10 @@ def member(request):
 
 @simple_cache_page(60*60*10,"department")
 def department(request):
-    qianduan=models.Department.objects.get(name="前端开发")
-    chengxu=models.Department.objects.get(name="程序开发")
-    ui=models.Department.objects.get(name="UI设计")
-    app=models.Department.objects.get(name="APP开发")
+    qianduan=Department.objects.get(name="前端开发")
+    chengxu=Department.objects.get(name="程序开发")
+    ui=Department.objects.get(name="UI设计")
+    app=Department.objects.get(name="APP开发")
     result=[]
     result.append(qianduan)
     result.append(chengxu)
@@ -95,7 +95,11 @@ def big_event(request):
 
 
 def comment(request):
-    return render(request, 'comment.html');
+    result={}
+    headImages=HeadPicture.objects.all().order_by("name")
+    num=HeadPicture.objects.all().count()
+    result={"heads":headImages,"num":num}
+    return render(request, 'comment.html',result)
 
 def page404(request):
     return render(request,"404.html")

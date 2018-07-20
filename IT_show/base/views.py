@@ -106,7 +106,7 @@ def api_status_get(request):
 
         statusList = StatusDetails.objects.filter(hostID__userCode=userCode).order_by("-time")
         # logging.debug(statusList)
-        for status in statusList[0:3]:
+        for status in statusList:#[0:3]:
             back["status"] += [{
                 "statusName": status.statu.info,
                 "statusHappenTime": status.time.strftime("%Y-%m-%d %H:%M:%S"),

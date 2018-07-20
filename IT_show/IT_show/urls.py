@@ -20,7 +20,10 @@ import IT_show.settings
 import show.views
 from django.conf.urls import handler404, handler500
 handler404 = "show.views.page404"
-
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
+from IT_show.settings import MEDIA_ROOT
 import tes.views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,6 +33,6 @@ urlpatterns = [
     url(r'^fresher/', include('user.urls')),
     url('^$', show.views.index, name="index"),
     url(r'^(?P<path>.*)', django.views.static.serve, {'document_root': IT_show.settings.BASE_DIR }),
+    # path('media/<path:path>',serve,{'document_root':MEDIA_ROOT}),
 
-]
-
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -120,7 +120,7 @@ html body .menu .menu-item a {
 	z-index: 20000;
 }
 .grade{
-	font-size: 20px;
+	font-size: 28px;
 	color: #458BAC;
 	font-weight: 500;
 	position: absolute;
@@ -134,18 +134,23 @@ html body .menu .menu-item a {
 }
 .long{
 	width: 5000px;
-	position: absolute;
+  position: absolute;
+  
 	left: 0px;
 }
 .name{
 	text-align: center;
 	font-size: 24px;
-	color: #458BAC;
+  color: #458BAC;
+  font-weight:normal;
+  
 }
 .department{
 	color: #458BAC;
 	font-size: 16px;
-	text-align: center;
+  text-align: center;
+  font-weight:normal;
+  margin-top: -15px;
 }
 .turnleft_row,.turnright_row{
 	position: absolute;

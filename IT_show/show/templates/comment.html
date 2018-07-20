@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block head %}
 	<meta charset="UTF-8">
 	<title>评论</title>
@@ -16,13 +15,18 @@
         <div class="select_head" >
         <div class="left_arrow"><img src="{% static  "images/leftarrow.png" %}" alt=""></div>
           <div class="head_c">
-            
-              <li><img src="{% static  "images/head1.png" %}" alt=""></li>
-              <li><img src="{% static  "images/head2.png" %}" alt=""></li>
-              <li><img src="{% static  "images/head3.png" %}" alt=""></li>
-              <li><img src="{% static  "images/head4.png" %}" alt=""></li>
-              <li><img src="{% static  "images/head5.png" %}" alt=""></li>
-              <li><img src="{% static  "images/head6.png" %}" alt=""></li>
+
+
+            {% for head in heads %}
+              <li><img src="{{ MEDIA_URL }}{{ head.pic }}" alt=""></li>
+            {% endfor %}
+<input name="headsNum" value="{{ num }}" style="display:none ">
+{#              <li><img src="{% static  "images/head1.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head2.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head3.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head4.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head5.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head6.png" %}" alt=""></li>#}
 
           </div>
         <div class="right_arrow"><img src="{% static  "images/rightarrow.png" %}" alt=""></div>

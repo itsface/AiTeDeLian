@@ -79,8 +79,8 @@ class WorksShow(models.Model):
         return mark_safe('<img width=100px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
 
 class HeadPicture(models.Model):
-    name = models.CharField(verbose_name="描述", max_length=10, default="")
-    pic = models.ImageField(verbose_name="图片", upload_to='image/HeadPicture/',default='media/default/HeadPicture.png', max_length=100)
+    name = models.IntegerField(verbose_name="序号", default="")
+    pic = models.ImageField(verbose_name="图片", upload_to='image/HeadPicture/',default='image/default/HeadPicture.png', max_length=100)
 
     class Meta:
         verbose_name = r"匿名评论头像"
