@@ -79,7 +79,7 @@ class WorksShow(models.Model):
         return mark_safe('<img width=100px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
 
 class HeadPicture(models.Model):
-    name = models.IntegerField(verbose_name="序号", default="")
+    name = models.IntegerField(verbose_name="序号", default=-1)
     pic = models.ImageField(verbose_name="图片", upload_to='image/HeadPicture/',default='image/default/HeadPicture.png', max_length=100)
 
     class Meta:
