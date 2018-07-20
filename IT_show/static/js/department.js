@@ -54,11 +54,12 @@ $(document).ready(function() {
 		rotateFlash(4)
 	},alltime[4]/fps[4]);
 })
-
+// var timeout = setTimeout(function(){
+// },100);
 $(window).on('load resize', function() {
     sw = $('.container').width();
 	sh = $('.container').height();
-	
+	var timeout = setTimeout(function(){  
 	ellipse[1].center.l=sw*0.05;
 	ellipse[1].center.t=sh*0.971;
 	ellipse[1].w=sh*0.8;
@@ -105,7 +106,7 @@ $(window).on('load resize', function() {
 			"top":tp.t-wordh/2,
 		})
 	}
-	
+},100); 
 });
 
 function rotateFlash(i) {

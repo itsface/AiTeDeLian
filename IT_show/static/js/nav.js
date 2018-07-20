@@ -1,11 +1,14 @@
 var allInterval=[],isFlashing=[],sw,sh; // screenwidth and screenheight;
 
+
 function localwee(){
+	var timeout = setTimeout(function(){
 	var left = $('.nowpage').position().left + 10;
 	var width = $('.nowpage').width();
 	//console.log(width);
 	//console.log(left);
 	$('.wee').css({ 'left': left , 'width': width });
+},100);
 }
 
 $(window).on('load', function() {
