@@ -485,11 +485,7 @@ window.onload = function() {
 
 
 					$("#mCSB_1_container").append(str);
-					$("#mCSB_1_container").append(str);
-					$("#mCSB_1_container").append(str);
-					$("#mCSB_1_container").append(str);
-					$("#mCSB_1_container").append(str);
-					$("#mCSB_1_container").append(str);
+					
 					$(".year").html(index + 2014)
 
 				}

@@ -525,7 +525,7 @@ $(".apform_submit").click(function() {
 			success: function(data) {
 				if (data.statusC == 0) {
 					alert("报名成功，请注意邮件查收!");
-					window.location.href = "http://222.195.145.152:2018/"
+					window.location.href = "/home/index/"
 				} else if (data.statusC == 5) {
 					alert("该邮箱已提交三次申请，请更换邮箱再提交!");
 				} else {

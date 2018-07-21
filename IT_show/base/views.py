@@ -108,7 +108,7 @@ def api_status_get(request):
         back["major"] = user.yearAndMajor
         back["wantDepart"] = user.wantDepartment.name
 
-        statusList = StatusDetails.objects.filter(hostID__userCode=userCode).order_by("-time")
+        statusList = StatusDetails.objects.filter(hostID__userCode=userCode).order_by("time")
         # logging.debug(statusList)
         for status in statusList:#[0:3]:
             back["status"] += [{
@@ -199,25 +199,25 @@ def api_sign_submit(request):
             code = randomCode()
             logging.debug(code)
             back["statusC"] = 4  # "邮件发送错误"
-            # try:
-            #     text="你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/"+code
-            # #     + '127.0.0.1:8000/api/signOK/'"
-            #     sendEmail(name=name,code=code,mail=email,text=text)
-            # except :
-            #     logging.debug("邮件错了")
-            #     raise RuntimeError()
+
+            text = "你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n "+request.get_host()+"/api/signOK/" + code
+            #     + '127.0.0.1:8000/api/signOK/'"
+            sendEmail(name=name, code=code, mail=email, text=text)
+            print("邮件发送成功")
 
             back["statusC"] = 2  # 数据库错误
+            print("创建新用户")
             newFresher = Fresher.objects.create(name=name,  # sex=sex,
                                                 yearAndMajor=yearAndMajor,
                                                 email=email, qqnum=qqnum, phone=phone,
                                                 selfIntro=selfIntro, status_id=0,
                                                 wantDepartment_id=wantDepartment,
                                                 userCode=code)
-            # addNewStatusDetail(newFresher.id,0)
+            addNewStatusDetail(newFresher.id,0)
+            print("创建新用户完成")
             logging.debug(newFresher)
             request.session[code] = newFresher.id
-            newFresher.save()
+            # newFresher.save()
             back["statusC"] = 0  # 成功
         else:
             back["statusC"] = 5 #邮箱超过最大使用次数3次

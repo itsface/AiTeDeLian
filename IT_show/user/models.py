@@ -52,21 +52,24 @@ class Fresher(models.Model):
     def save(self, *args, **kwargs):
         from base import func
         from user.views import addNewStatusDetail,sendEmail
-
+        newFlag=False
         if self.userCode=="":#以userCode不存在为新账号标志
             self.userCode=func.randomCode()
+            self.status_id = 0
+            newFlag=True
 
 
         super(Fresher, self).save(*args, **kwargs)  # Call the "real" save() method.
-
-        if self.status_id==-1:#-1是默认值，
-            self.status_id = 0
-            super(Fresher, self).save(*args, **kwargs)  # Call the "real" save() method.
+        print("下面判断是否为-1")
+        if newFlag:#-1是默认值，
+            print("赋值为0")
+            # super(Fresher, self).save(*args, **kwargs)  # Call the "real" save() method.
             from datetime import datetime
             try:
                 text = "你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/" + self.userCode
                 #     + '127.0.0.1:8000/api/signOK/'"
                 sendEmail(name=self.name, code=self.userCode, mail=self.email, text=text)
+                print("邮件发送成功")
             except:
                 logging.debug("邮件错了")
                 raise RuntimeError()
