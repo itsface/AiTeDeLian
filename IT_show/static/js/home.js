@@ -5,6 +5,9 @@ $(document).ready(function() {
 	localwee();
 	pagestatus=0;
 	nowchoose=1;
+	
+	$(".nav h2").css({"color":"#FFFFFF"});
+	$(".nav a").css({"color":"#FFFFFF"});
 })
 
 $(window).on('load resize', function() {
@@ -43,6 +46,8 @@ function pagedown(){
 		$(".choose p").hide();
 		pagestatus=1;
 		chooseImgchange(0);
+		$(".nav h2").css({"color":"black"});	
+		$(".nav a").css({"color":"black"});
 	}
 }
 
@@ -54,6 +59,8 @@ function pageup(){
 		$(".choose p").show();
 		pagestatus=0;
 		chooseImgchange(1);
+		$(".nav h2").css({"color":"#FFFFFF"});
+		$(".nav a").css({"color":"white"});
 	}
 }
 

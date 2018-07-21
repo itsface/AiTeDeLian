@@ -44,6 +44,7 @@ def api_comment_get(request):
                 "nickname": c.name,
                 "createTime": c.createTime.strftime("%Y-%m-%d %H:%M:%S"),
                 "code": c.code,
+                'admin':c.reply,
             }]
     except:
         back["success"] = False

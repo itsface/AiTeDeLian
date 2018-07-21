@@ -1,125 +1,122 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat MySQL Data Transfer
 
-Source Server         : 2018
-Source Server Version : 80011
-Source Host           : localhost:3306
-Source Database       : it_show
+ Source Server         : localhost_3306
+ Source Server Type    : MySQL
+ Source Server Version : 50720
+ Source Host           : localhost:3306
+ Source Schema         : it_show
 
-Target Server Type    : MYSQL
-Target Server Version : 80011
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50720
+ File Encoding         : 65001
 
-Date: 2018-06-10 13:53:18
+ Date: 21/07/2018 00:39:33
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for auth_group
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_group`;
-CREATE TABLE `auth_group` (
+CREATE TABLE `auth_group`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `name` (`name`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of auth_group
--- ----------------------------
+  UNIQUE INDEX `name`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Table structure for auth_group_permissions
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_group_permissions`;
-CREATE TABLE `auth_group_permissions` (
+CREATE TABLE `auth_group_permissions`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`) USING BTREE,
-  KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`) USING BTREE,
-  CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of auth_group_permissions
--- ----------------------------
+  UNIQUE INDEX `auth_group_permissions_group_id_permission_id_0cd325b0_uniq`(`group_id`, `permission_id`) USING BTREE,
+  INDEX `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm`(`permission_id`) USING BTREE,
+  CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Table structure for auth_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_permission`;
-CREATE TABLE `auth_permission` (
+CREATE TABLE `auth_permission`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `content_type_id` int(11) NOT NULL,
   `codename` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`) USING BTREE,
-  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  UNIQUE INDEX `auth_permission_content_type_id_codename_01ab375a_uniq`(`content_type_id`, `codename`) USING BTREE,
+  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of auth_permission
 -- ----------------------------
-INSERT INTO `auth_permission` VALUES ('1', 'Can add log entry', '1', 'add_logentry');
-INSERT INTO `auth_permission` VALUES ('2', 'Can change log entry', '1', 'change_logentry');
-INSERT INTO `auth_permission` VALUES ('3', 'Can delete log entry', '1', 'delete_logentry');
-INSERT INTO `auth_permission` VALUES ('4', 'Can add permission', '2', 'add_permission');
-INSERT INTO `auth_permission` VALUES ('5', 'Can change permission', '2', 'change_permission');
-INSERT INTO `auth_permission` VALUES ('6', 'Can delete permission', '2', 'delete_permission');
-INSERT INTO `auth_permission` VALUES ('7', 'Can add group', '3', 'add_group');
-INSERT INTO `auth_permission` VALUES ('8', 'Can change group', '3', 'change_group');
-INSERT INTO `auth_permission` VALUES ('9', 'Can delete group', '3', 'delete_group');
-INSERT INTO `auth_permission` VALUES ('10', 'Can add user', '4', 'add_user');
-INSERT INTO `auth_permission` VALUES ('11', 'Can change user', '4', 'change_user');
-INSERT INTO `auth_permission` VALUES ('12', 'Can delete user', '4', 'delete_user');
-INSERT INTO `auth_permission` VALUES ('13', 'Can add content type', '5', 'add_contenttype');
-INSERT INTO `auth_permission` VALUES ('14', 'Can change content type', '5', 'change_contenttype');
-INSERT INTO `auth_permission` VALUES ('15', 'Can delete content type', '5', 'delete_contenttype');
-INSERT INTO `auth_permission` VALUES ('16', 'Can add session', '6', 'add_session');
-INSERT INTO `auth_permission` VALUES ('17', 'Can change session', '6', 'change_session');
-INSERT INTO `auth_permission` VALUES ('18', 'Can delete session', '6', 'delete_session');
-INSERT INTO `auth_permission` VALUES ('19', 'Can add 报名者', '7', 'add_fresher');
-INSERT INTO `auth_permission` VALUES ('20', 'Can change 报名者', '7', 'change_fresher');
-INSERT INTO `auth_permission` VALUES ('21', 'Can delete 报名者', '7', 'delete_fresher');
-INSERT INTO `auth_permission` VALUES ('22', 'Can add 部门', '8', 'add_department');
-INSERT INTO `auth_permission` VALUES ('23', 'Can change 部门', '8', 'change_department');
-INSERT INTO `auth_permission` VALUES ('24', 'Can delete 部门', '8', 'delete_department');
-INSERT INTO `auth_permission` VALUES ('25', 'Can add 爱特大事记', '9', 'add_event');
-INSERT INTO `auth_permission` VALUES ('26', 'Can change 爱特大事记', '9', 'change_event');
-INSERT INTO `auth_permission` VALUES ('27', 'Can delete 爱特大事记', '9', 'delete_event');
-INSERT INTO `auth_permission` VALUES ('28', 'Can add 成员信息', '10', 'add_member');
-INSERT INTO `auth_permission` VALUES ('29', 'Can change 成员信息', '10', 'change_member');
-INSERT INTO `auth_permission` VALUES ('30', 'Can delete 成员信息', '10', 'delete_member');
-INSERT INTO `auth_permission` VALUES ('31', 'Can add 成果展示', '11', 'add_worksshow');
-INSERT INTO `auth_permission` VALUES ('32', 'Can change 成果展示', '11', 'change_worksshow');
-INSERT INTO `auth_permission` VALUES ('33', 'Can delete 成果展示', '11', 'delete_worksshow');
-INSERT INTO `auth_permission` VALUES ('34', 'Can add status details', '12', 'add_statusdetails');
-INSERT INTO `auth_permission` VALUES ('35', 'Can change status details', '12', 'change_statusdetails');
-INSERT INTO `auth_permission` VALUES ('36', 'Can delete status details', '12', 'delete_statusdetails');
-INSERT INTO `auth_permission` VALUES ('37', 'Can add status info', '13', 'add_statusinfo');
-INSERT INTO `auth_permission` VALUES ('38', 'Can change status info', '13', 'change_statusinfo');
-INSERT INTO `auth_permission` VALUES ('39', 'Can delete status info', '13', 'delete_statusinfo');
-INSERT INTO `auth_permission` VALUES ('40', 'Can add 匿名评论', '14', 'add_comment');
-INSERT INTO `auth_permission` VALUES ('41', 'Can change 匿名评论', '14', 'change_comment');
-INSERT INTO `auth_permission` VALUES ('42', 'Can delete 匿名评论', '14', 'delete_comment');
-INSERT INTO `auth_permission` VALUES ('43', 'Can add 匿名评论头像', '15', 'add_headpicture');
-INSERT INTO `auth_permission` VALUES ('44', 'Can change 匿名评论头像', '15', 'change_headpicture');
-INSERT INTO `auth_permission` VALUES ('45', 'Can delete 匿名评论头像', '15', 'delete_headpicture');
-INSERT INTO `auth_permission` VALUES ('46', 'Can add profile', '16', 'add_profile');
-INSERT INTO `auth_permission` VALUES ('47', 'Can change profile', '16', 'change_profile');
-INSERT INTO `auth_permission` VALUES ('48', 'Can delete profile', '16', 'delete_profile');
+INSERT INTO `auth_permission` VALUES (1, 'Can add log entry', 1, 'add_logentry');
+INSERT INTO `auth_permission` VALUES (2, 'Can change log entry', 1, 'change_logentry');
+INSERT INTO `auth_permission` VALUES (3, 'Can delete log entry', 1, 'delete_logentry');
+INSERT INTO `auth_permission` VALUES (4, 'Can add permission', 2, 'add_permission');
+INSERT INTO `auth_permission` VALUES (5, 'Can change permission', 2, 'change_permission');
+INSERT INTO `auth_permission` VALUES (6, 'Can delete permission', 2, 'delete_permission');
+INSERT INTO `auth_permission` VALUES (7, 'Can add group', 3, 'add_group');
+INSERT INTO `auth_permission` VALUES (8, 'Can change group', 3, 'change_group');
+INSERT INTO `auth_permission` VALUES (9, 'Can delete group', 3, 'delete_group');
+INSERT INTO `auth_permission` VALUES (10, 'Can add user', 4, 'add_user');
+INSERT INTO `auth_permission` VALUES (11, 'Can change user', 4, 'change_user');
+INSERT INTO `auth_permission` VALUES (12, 'Can delete user', 4, 'delete_user');
+INSERT INTO `auth_permission` VALUES (13, 'Can add content type', 5, 'add_contenttype');
+INSERT INTO `auth_permission` VALUES (14, 'Can change content type', 5, 'change_contenttype');
+INSERT INTO `auth_permission` VALUES (15, 'Can delete content type', 5, 'delete_contenttype');
+INSERT INTO `auth_permission` VALUES (16, 'Can add session', 6, 'add_session');
+INSERT INTO `auth_permission` VALUES (17, 'Can change session', 6, 'change_session');
+INSERT INTO `auth_permission` VALUES (18, 'Can delete session', 6, 'delete_session');
+INSERT INTO `auth_permission` VALUES (19, 'Can add 报名者', 7, 'add_fresher');
+INSERT INTO `auth_permission` VALUES (20, 'Can change 报名者', 7, 'change_fresher');
+INSERT INTO `auth_permission` VALUES (21, 'Can delete 报名者', 7, 'delete_fresher');
+INSERT INTO `auth_permission` VALUES (22, 'Can add 部门', 8, 'add_department');
+INSERT INTO `auth_permission` VALUES (23, 'Can change 部门', 8, 'change_department');
+INSERT INTO `auth_permission` VALUES (24, 'Can delete 部门', 8, 'delete_department');
+INSERT INTO `auth_permission` VALUES (25, 'Can add 爱特大事记', 9, 'add_event');
+INSERT INTO `auth_permission` VALUES (26, 'Can change 爱特大事记', 9, 'change_event');
+INSERT INTO `auth_permission` VALUES (27, 'Can delete 爱特大事记', 9, 'delete_event');
+INSERT INTO `auth_permission` VALUES (28, 'Can add 成员信息', 10, 'add_member');
+INSERT INTO `auth_permission` VALUES (29, 'Can change 成员信息', 10, 'change_member');
+INSERT INTO `auth_permission` VALUES (30, 'Can delete 成员信息', 10, 'delete_member');
+INSERT INTO `auth_permission` VALUES (31, 'Can add 成果展示', 11, 'add_worksshow');
+INSERT INTO `auth_permission` VALUES (32, 'Can change 成果展示', 11, 'change_worksshow');
+INSERT INTO `auth_permission` VALUES (33, 'Can delete 成果展示', 11, 'delete_worksshow');
+INSERT INTO `auth_permission` VALUES (34, 'Can add status details', 12, 'add_statusdetails');
+INSERT INTO `auth_permission` VALUES (35, 'Can change status details', 12, 'change_statusdetails');
+INSERT INTO `auth_permission` VALUES (36, 'Can delete status details', 12, 'delete_statusdetails');
+INSERT INTO `auth_permission` VALUES (37, 'Can add status info', 13, 'add_statusinfo');
+INSERT INTO `auth_permission` VALUES (38, 'Can change status info', 13, 'change_statusinfo');
+INSERT INTO `auth_permission` VALUES (39, 'Can delete status info', 13, 'delete_statusinfo');
+INSERT INTO `auth_permission` VALUES (40, 'Can add 匿名评论', 14, 'add_comment');
+INSERT INTO `auth_permission` VALUES (41, 'Can change 匿名评论', 14, 'change_comment');
+INSERT INTO `auth_permission` VALUES (42, 'Can delete 匿名评论', 14, 'delete_comment');
+INSERT INTO `auth_permission` VALUES (43, 'Can add 匿名评论头像', 15, 'add_headpicture');
+INSERT INTO `auth_permission` VALUES (44, 'Can change 匿名评论头像', 15, 'change_headpicture');
+INSERT INTO `auth_permission` VALUES (45, 'Can delete 匿名评论头像', 15, 'delete_headpicture');
+INSERT INTO `auth_permission` VALUES (46, 'Can add profile', 16, 'add_profile');
+INSERT INTO `auth_permission` VALUES (47, 'Can change profile', 16, 'change_profile');
+INSERT INTO `auth_permission` VALUES (48, 'Can delete profile', 16, 'delete_profile');
+INSERT INTO `auth_permission` VALUES (49, 'Can add visit user', 17, 'add_visituser');
+INSERT INTO `auth_permission` VALUES (50, 'Can change visit user', 17, 'change_visituser');
+INSERT INTO `auth_permission` VALUES (51, 'Can delete visit user', 17, 'delete_visituser');
 
 -- ----------------------------
 -- Table structure for auth_user
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_user`;
-CREATE TABLE `auth_user` (
+CREATE TABLE `auth_user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `last_login` datetime(6) DEFAULT NULL,
@@ -132,453 +129,543 @@ CREATE TABLE `auth_user` (
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  UNIQUE INDEX `username`(`username`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES ('1', 'pbkdf2_sha256$36000$GB5zKzvODIH4$ejUZiMMA1xVeApqw5HEK2lF9i5cctszgkpJWvmTSzhg=', '2018-05-26 03:42:50.180418', '1', 'root', '', '', '10086@qq.com', '1', '1', '2018-05-05 18:34:58.402120');
-INSERT INTO `auth_user` VALUES ('2', 'pbkdf2_sha256$30000$F7eHgI9NYrdo$k6vTxwADvz8XhIr+6fZSaOnLlT476NvyxF9wbKm2NmY=', '2018-05-26 06:44:35.304427', '1', 'ming', '', '', '10086@qq.com', '1', '1', '2018-05-26 06:44:06.249458');
-INSERT INTO `auth_user` VALUES ('3', 'pbkdf2_sha256$36000$tER9KegYpdaY$PRMfdIk3mJOO0SJk56yharxrM4tmzWbocD9hOrjxLQ0=', '2018-06-10 12:47:05.063991', '1', 'tantan', '', '', '12345@qq.com', '1', '1', '2018-06-05 11:29:16.682785');
+INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$36000$GB5zKzvODIH4$ejUZiMMA1xVeApqw5HEK2lF9i5cctszgkpJWvmTSzhg=', '2018-05-26 03:42:50.180418', 1, 'root', '', '', '10086@qq.com', 1, 1, '2018-05-05 18:34:58.402120');
+INSERT INTO `auth_user` VALUES (2, 'pbkdf2_sha256$30000$F7eHgI9NYrdo$k6vTxwADvz8XhIr+6fZSaOnLlT476NvyxF9wbKm2NmY=', '2018-05-26 06:44:35.304427', 1, 'ming', '', '', '10086@qq.com', 1, 1, '2018-05-26 06:44:06.249458');
+INSERT INTO `auth_user` VALUES (3, 'pbkdf2_sha256$36000$tER9KegYpdaY$PRMfdIk3mJOO0SJk56yharxrM4tmzWbocD9hOrjxLQ0=', '2018-07-19 16:33:52.150081', 1, 'tantan', '', '', '12345@qq.com', 1, 1, '2018-06-05 11:29:16.682785');
 
 -- ----------------------------
 -- Table structure for auth_user_groups
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_user_groups`;
-CREATE TABLE `auth_user_groups` (
+CREATE TABLE `auth_user_groups`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`) USING BTREE,
-  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`) USING BTREE,
-  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of auth_user_groups
--- ----------------------------
+  UNIQUE INDEX `auth_user_groups_user_id_group_id_94350c0c_uniq`(`user_id`, `group_id`) USING BTREE,
+  INDEX `auth_user_groups_group_id_97559544_fk_auth_group_id`(`group_id`) USING BTREE,
+  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Table structure for auth_user_user_permissions
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_user_user_permissions`;
-CREATE TABLE `auth_user_user_permissions` (
+CREATE TABLE `auth_user_user_permissions`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`) USING BTREE,
-  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`) USING BTREE,
-  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of auth_user_user_permissions
--- ----------------------------
+  UNIQUE INDEX `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq`(`user_id`, `permission_id`) USING BTREE,
+  INDEX `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm`(`permission_id`) USING BTREE,
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Table structure for django_admin_log
 -- ----------------------------
 DROP TABLE IF EXISTS `django_admin_log`;
-CREATE TABLE `django_admin_log` (
+CREATE TABLE `django_admin_log`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `action_time` datetime(6) NOT NULL,
   `object_id` longtext CHARACTER SET utf8 COLLATE utf8_general_ci,
   `object_repr` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `action_flag` smallint(5) unsigned NOT NULL,
+  `action_flag` smallint(5) UNSIGNED NOT NULL,
   `change_message` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`) USING BTREE,
-  KEY `django_admin_log_user_id_c564eba6_fk` (`user_id`) USING BTREE,
-  CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
-  CONSTRAINT `django_admin_log_user_id_c564eba6_fk` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=281 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  INDEX `django_admin_log_content_type_id_c4bce8eb_fk_django_co`(`content_type_id`) USING BTREE,
+  INDEX `django_admin_log_user_id_c564eba6_fk`(`user_id`) USING BTREE,
+  CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 371 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of django_admin_log
 -- ----------------------------
-INSERT INTO `django_admin_log` VALUES ('1', '2018-05-05 18:42:57.572688', '1', '浦泽元', '1', '[{\"added\": {}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('2', '2018-05-05 18:46:47.121633', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"sex\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('3', '2018-05-05 18:52:09.646987', '1', '前端开发', '1', '[{\"added\": {}}]', '8', '1');
-INSERT INTO `django_admin_log` VALUES ('4', '2018-05-05 18:52:40.750439', '2', '程序开发', '1', '[{\"added\": {}}]', '8', '1');
-INSERT INTO `django_admin_log` VALUES ('5', '2018-05-05 18:52:45.355948', '1', '前端开发', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '1');
-INSERT INTO `django_admin_log` VALUES ('6', '2018-05-05 18:53:00.752799', '3', 'UI设计', '1', '[{\"added\": {}}]', '8', '1');
-INSERT INTO `django_admin_log` VALUES ('7', '2018-05-05 18:53:25.979726', '4', 'APP开发', '1', '[{\"added\": {}}]', '8', '1');
-INSERT INTO `django_admin_log` VALUES ('8', '2018-05-05 18:54:17.538398', '1', 'Android Ap', '1', '[{\"added\": {}}]', '9', '1');
-INSERT INTO `django_admin_log` VALUES ('9', '2018-05-05 18:55:03.020191', '1', '海洋技术系网站', '1', '[{\"added\": {}}]', '11', '1');
-INSERT INTO `django_admin_log` VALUES ('10', '2018-05-05 19:25:16.432133', '1', '浦泽元', '1', '[{\"added\": {}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('11', '2018-05-05 20:49:53.897265', '4', '0', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('12', '2018-05-05 20:49:57.481429', '4', '0', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('13', '2018-05-05 20:50:31.944995', '1', '浦泽元', '1', '[{\"added\": {}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('14', '2018-05-05 21:51:54.459967', '1', '浦泽元', '1', '[{\"added\": {}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('15', '2018-05-05 21:53:07.808758', '1', '报名表审核受理中...by Pu', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('16', '2018-05-05 21:53:19.543085', '1', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('17', '2018-05-06 06:17:49.603064', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"email\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('18', '2018-05-06 06:28:55.318473', '1', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"emailText\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('19', '2018-05-06 06:32:38.613834', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"userCode\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('20', '2018-05-06 08:26:57.595329', '2', '阿浦', '1', '[{\"added\": {}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('21', '2018-05-06 08:33:14.988152', '1', '面试', '1', '[{\"added\": {}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('22', '2018-05-06 08:33:38.030022', '2', '笔试', '1', '[{\"added\": {}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('23', '2018-05-06 08:49:55.198476', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('24', '2018-05-06 08:50:41.494753', '3', '退出', '1', '[{\"added\": {}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('25', '2018-05-06 08:58:39.086122', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('26', '2018-05-06 08:58:49.965761', '2', '阿浦', '2', '[{\"changed\": {\"fields\": [\"email\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('27', '2018-05-06 11:32:01.899652', '4', '未处理', '1', '[{\"added\": {}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('28', '2018-05-06 11:32:39.423610', '2', '阿浦', '2', '[{\"changed\": {\"fields\": [\"email\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('29', '2018-05-06 11:34:01.193802', '2', '阿浦', '2', '[{\"changed\": {\"fields\": [\"email\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('30', '2018-05-06 11:34:48.335395', '1', '面试', '2', '[{\"changed\": {\"fields\": [\"emailText\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('31', '2018-05-06 11:35:04.585829', '2', '阿浦', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('32', '2018-05-09 11:13:34.085354', '0', '报名表审核受理中test...', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('33', '2018-05-09 11:13:57.865248', '0', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('34', '2018-05-09 11:30:07.688273', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"wantDepartment\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('35', '2018-05-10 07:45:39.079520', '0', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('36', '2018-05-10 07:49:46.844264', '0', '报名表审核受理中...', '2', '[]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('37', '2018-05-10 07:49:55.477631', '1', '面试', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('38', '2018-05-10 07:50:04.542424', '3', '退出', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('39', '2018-05-10 07:50:40.362377', '2', '笔试', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('40', '2018-05-10 07:51:04.257549', '4', '未处理', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('41', '2018-05-10 07:59:35.760715', '2', '阿浦', '2', '[{\"changed\": {\"fields\": [\"wantDepartment\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('42', '2018-05-10 14:42:51.285105', '2', '阿浦', '2', '[{\"changed\": {\"fields\": [\"wantDepartment\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('43', '2018-05-10 14:43:31.718836', '5', '游戏开发', '1', '[{\"added\": {}}]', '8', '1');
-INSERT INTO `django_admin_log` VALUES ('44', '2018-05-10 14:43:41.773371', '2', '阿浦', '2', '[{\"changed\": {\"fields\": [\"wantDepartment\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('45', '2018-05-10 14:47:09.658867', '5', '游戏开发', '3', '', '8', '1');
-INSERT INTO `django_admin_log` VALUES ('46', '2018-05-10 15:02:58.670389', '0', '报名表审核受理中...', '2', '[]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('47', '2018-05-10 15:12:21.789329', '0', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('48', '2018-05-10 15:16:11.186906', '4', '未处理', '2', '[]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('49', '2018-05-10 15:16:35.432388', '6', '', '1', '[{\"added\": {}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('50', '2018-05-10 15:16:47.959217', '6', '', '2', '[]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('51', '2018-05-11 00:31:44.037859', '0', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"emailText\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('52', '2018-05-11 00:32:31.254346', '0', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"nextStatus\", \"emailText\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('53', '2018-05-11 00:32:44.918875', '0', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"emailText\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('54', '2018-05-11 00:33:05.576298', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('55', '2018-05-11 00:38:21.785882', '0', '报名表审核受理中...', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('56', '2018-05-11 00:40:21.029601', '4', '未处理', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('57', '2018-05-11 00:49:49.385273', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"photo\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('58', '2018-05-11 00:50:07.412345', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"photo\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('59', '2018-05-11 00:50:26.422992', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"photo\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('60', '2018-05-11 11:27:45.536722', '2', '浦泽元', '1', '[{\"added\": {}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('61', '2018-05-11 11:29:17.185395', '2', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"photo\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('62', '2018-05-11 13:00:04.735080', '2', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"photo\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('63', '2018-05-11 13:01:34.802739', '1', '谢哲勇', '2', '[{\"changed\": {\"fields\": [\"name\", \"intro\", \"photo\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('64', '2018-05-11 13:01:59.208701', '3', '陈尊龙', '1', '[{\"added\": {}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('65', '2018-05-11 13:02:13.360466', '4', '陈开拓', '1', '[{\"added\": {}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('66', '2018-05-11 13:02:25.667290', '5', '丁进仁', '1', '[{\"added\": {}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('67', '2018-05-11 13:02:49.598394', '6', '李林宇', '1', '[{\"added\": {}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('68', '2018-05-11 13:02:58.552290', '3', '陈尊龙', '2', '[{\"changed\": {\"fields\": [\"year\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('69', '2018-05-11 13:03:03.772139', '4', '陈开拓', '2', '[{\"changed\": {\"fields\": [\"year\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('70', '2018-05-11 13:03:08.761683', '5', '丁进仁', '2', '[{\"changed\": {\"fields\": [\"year\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('71', '2018-05-11 13:03:13.299596', '6', '李林宇', '2', '[{\"changed\": {\"fields\": [\"year\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('72', '2018-05-11 13:45:44.244204', '2', '浦泽元', '1', '[{\"added\": {}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('73', '2018-05-11 13:46:12.699515', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"code\", \"info\"]}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('74', '2018-05-11 13:47:19.937267', '1', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('75', '2018-05-11 13:47:32.114669', '2', '浦泽元', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('76', '2018-05-11 13:47:47.881294', '1', '浦泽元', '3', '', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('77', '2018-05-11 13:49:08.363950', '2', '浦泽元', '1', '[{\"added\": {}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('78', '2018-05-11 13:49:35.524758', '2', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('79', '2018-05-11 14:03:15.838366', '1', '啦啦啦', '1', '[{\"added\": {}}]', '15', '1');
-INSERT INTO `django_admin_log` VALUES ('80', '2018-05-11 14:03:39.908362', '1', '爱特重量担当', '1', '[{\"added\": {}}]', '14', '1');
-INSERT INTO `django_admin_log` VALUES ('81', '2018-05-12 02:06:33.084848', '3', '浦泽元', '1', '[{\"added\": {}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('82', '2018-05-12 13:46:18.007459', '2', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('83', '2018-05-12 13:46:40.727869', '4', '未处理', '3', '', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('84', '2018-05-12 13:52:49.672195', '3', '阿浦', '1', '[{\"added\": {}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('85', '2018-05-12 13:53:00.509687', '3', '阿浦', '2', '[]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('86', '2018-05-12 13:53:03.081308', '3', '阿浦', '2', '[]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('87', '2018-05-12 13:53:05.115867', '3', '阿浦', '2', '[]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('88', '2018-05-12 13:53:28.974282', '0', '报名表审核受理中...', '3', '', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('89', '2018-05-12 13:53:50.832921', '0', '报名状态未受理', '1', '[{\"added\": {}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('90', '2018-05-12 13:53:57.385959', '0', '报名状态未受理', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('91', '2018-05-12 13:57:21.739509', '4', '21', '1', '[{\"added\": {}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('92', '2018-05-12 14:02:47.826982', '0', '报名状态未受理', '3', '', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('93', '2018-05-12 14:04:41.319905', '4', '21', '2', '[]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('94', '2018-05-12 14:04:58.318863', '4', '21', '1', '[{\"added\": {}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('95', '2018-05-12 14:16:00.855624', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('96', '2018-05-12 14:16:11.685687', '5', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('97', '2018-05-12 14:16:11.690671', '4', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('98', '2018-05-12 14:16:22.592448', '4', '21', '2', '[]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('99', '2018-05-12 14:21:43.121872', '4', '21', '2', '[{\"changed\": {\"fields\": [\"email\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('100', '2018-05-12 14:22:35.806190', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('101', '2018-05-12 14:29:29.371380', '3', '退出', '2', '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', '13', '1');
-INSERT INTO `django_admin_log` VALUES ('102', '2018-05-12 15:02:31.402345', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('103', '2018-05-12 15:09:28.644991', '21', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('104', '2018-05-12 15:09:28.652941', '20', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('105', '2018-05-12 15:09:28.666898', '19', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('106', '2018-05-12 15:09:28.673912', '18', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('107', '2018-05-12 15:09:28.679864', '17', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('108', '2018-05-12 15:09:28.684858', '16', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('109', '2018-05-12 15:09:28.690836', '15', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('110', '2018-05-12 15:09:28.696820', '14', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('111', '2018-05-12 15:09:28.702802', '13', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('112', '2018-05-12 15:09:28.706791', '12', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('113', '2018-05-12 15:09:28.711794', '11', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('114', '2018-05-12 15:09:28.719765', '10', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('115', '2018-05-12 15:09:28.725743', '9', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('116', '2018-05-12 15:09:28.731727', '8', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('117', '2018-05-12 15:09:28.736722', '7', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('118', '2018-05-12 15:09:28.742697', '6', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('119', '2018-05-12 15:09:32.579555', '4', '21', '2', '[]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('120', '2018-05-12 15:17:41.295599', '24', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('121', '2018-05-12 15:17:41.316542', '23', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('122', '2018-05-12 15:17:41.322527', '22', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('123', '2018-05-12 15:17:49.611478', '25', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('124', '2018-05-12 15:18:52.512570', '26', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('125', '2018-05-12 15:20:20.281650', '28', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('126', '2018-05-12 15:24:53.397291', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('127', '2018-05-12 15:25:23.124282', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('128', '2018-05-12 15:26:24.027378', '32', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('129', '2018-05-12 15:26:57.889158', '4', '21', '2', '[]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('130', '2018-05-12 15:28:34.859730', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('131', '2018-05-12 15:28:54.203341', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('132', '2018-05-12 15:29:55.635201', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('133', '2018-05-12 15:30:00.892145', '4', '21', '2', '[{\"changed\": {\"fields\": [\"status\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('134', '2018-05-13 08:41:13.668108', '31', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('135', '2018-05-13 08:41:13.708998', '27', '21', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('136', '2018-05-13 08:41:40.341629', '32', '21', '1', '[{\"added\": {}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('137', '2018-05-13 08:54:06.880149', '5', '小明', '1', '[{\"added\": {}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('138', '2018-05-13 08:54:17.161302', '4', '小花', '2', '[{\"changed\": {\"fields\": [\"name\"]}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('139', '2018-05-13 08:54:36.470120', '6', '大明', '1', '[{\"added\": {}}]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('140', '2018-05-13 12:21:34.835284', '32', '小花', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('141', '2018-05-13 12:21:34.845104', '41', '小明', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('142', '2018-05-13 12:21:34.851701', '37', '小明', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('143', '2018-05-13 12:21:34.858104', '39', '大明', '3', '', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('144', '2018-05-14 09:11:44.511414', '6', '大明', '2', '[]', '7', '1');
-INSERT INTO `django_admin_log` VALUES ('145', '2018-05-14 09:12:14.207083', '45', '大明', '2', '[]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('146', '2018-05-14 09:12:31.006348', '45', '大明', '2', '[{\"changed\": {\"fields\": [\"info\"]}}]', '12', '1');
-INSERT INTO `django_admin_log` VALUES ('147', '2018-05-14 09:22:40.602425', '6', '李林宇', '2', '[{\"changed\": {\"fields\": [\"department\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('148', '2018-05-14 09:23:12.017546', '6', '李林宇', '2', '[]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('149', '2018-05-14 09:23:34.374296', '5', '丁进仁', '2', '[{\"changed\": {\"fields\": [\"department\"]}}]', '10', '1');
-INSERT INTO `django_admin_log` VALUES ('150', '2018-05-26 06:44:58.384228', '1', 'Profile object', '1', '[{\"added\": {}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('151', '2018-05-27 03:31:12.435688', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('152', '2018-05-27 03:42:01.485766', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('153', '2018-05-27 03:46:23.032183', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('154', '2018-05-27 03:47:03.776018', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('155', '2018-05-27 03:47:37.001004', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('156', '2018-05-27 04:06:43.559960', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('157', '2018-05-27 04:16:59.457260', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('158', '2018-05-27 04:19:19.271866', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('159', '2018-05-27 04:19:38.589208', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('160', '2018-05-27 04:23:14.234454', '1', 'Profile object', '2', '[{\"changed\": {\"fields\": [\"avatar\"]}}]', '16', '2');
-INSERT INTO `django_admin_log` VALUES ('161', '2018-06-05 11:29:57.040093', '1', '我帅吗', '2', '[{\"changed\": {\"fields\": [\"name\", \"pic\"]}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('162', '2018-06-06 00:31:34.644759', '1', '我帅吗', '3', '', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('163', '2018-06-06 00:34:17.392081', '6', '大明', '2', '[{\"changed\": {\"fields\": [\"email\"]}}]', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('164', '2018-06-06 13:13:10.068582', '2', 'tantan', '1', '[{\"added\": {}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('165', '2018-06-06 13:14:06.319795', '2', '程序开发', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('166', '2018-06-06 13:15:35.820920', '1', '前端开发', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('167', '2018-06-06 13:17:50.502641', '3', 'UI设计', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('168', '2018-06-06 13:18:00.496209', '4', 'APP开发', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('169', '2018-06-06 13:24:22.500088', '2', 'tantan', '3', '', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('170', '2018-06-06 23:57:53.219828', '3', '小明', '1', '[{\"added\": {}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('171', '2018-06-07 00:00:44.128616', '2', 'mmm', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('172', '2018-06-07 00:07:12.022833', '3', '1', '2', '[{\"changed\": {\"fields\": [\"name\", \"pic\"]}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('173', '2018-06-07 00:07:31.265932', '4', '2', '1', '[{\"added\": {}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('174', '2018-06-07 00:07:36.944257', '5', '3', '1', '[{\"added\": {}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('175', '2018-06-07 00:07:41.537520', '6', '4', '1', '[{\"added\": {}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('176', '2018-06-07 00:07:46.757823', '7', '5', '1', '[{\"added\": {}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('177', '2018-06-07 00:07:52.875166', '8', '6', '1', '[{\"added\": {}}]', '15', '3');
-INSERT INTO `django_admin_log` VALUES ('178', '2018-06-07 00:13:35.026761', '2', '信息科学与工程学院', '1', '[{\"added\": {}}]', '11', '3');
-INSERT INTO `django_admin_log` VALUES ('179', '2018-06-07 00:15:56.839887', '1', '海洋技术系网站', '2', '[{\"changed\": {\"fields\": [\"pic\", \"link\"]}}]', '11', '3');
-INSERT INTO `django_admin_log` VALUES ('180', '2018-06-07 01:35:33.258415', '3', '嘎嘎啊嘎嘎', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('181', '2018-06-07 02:20:41.144487', '3', '嘎嘎啊嘎嘎', '2', '[{\"changed\": {\"fields\": [\"code\"]}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('182', '2018-06-07 02:20:45.736752', '2', 'mmm', '2', '[{\"changed\": {\"fields\": [\"code\"]}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('183', '2018-06-07 02:39:07.659851', '6', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('184', '2018-06-07 02:39:10.860037', '7', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('185', '2018-06-07 02:39:12.939157', '8', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('186', '2018-06-07 02:39:19.858549', '9', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('187', '2018-06-07 02:39:22.060684', '10', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('188', '2018-06-07 02:39:23.994786', '11', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('189', '2018-06-07 02:39:25.546873', '12', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('190', '2018-06-07 02:39:26.930959', '13', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('191', '2018-06-07 02:39:28.785059', '14', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('192', '2018-06-07 02:39:30.636166', '15', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('193', '2018-06-07 02:39:32.324262', '16', '批量添加', '1', '[{\"added\": {}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('194', '2018-06-07 05:31:01.462484', '36', '<script>while(1)console.log(\"555\");</script>', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('195', '2018-06-07 05:31:37.926577', '35', '<script>window.close();</script>', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('196', '2018-06-07 07:11:46.052640', '38', '<script>window.location.href=\"http://222.195.145.152:2018/fresher/new/\"</script>', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('197', '2018-06-07 08:19:39.364905', '49', 'ass', '2', '[{\"changed\": {\"fields\": [\"name\", \"content\", \"reply\"]}}]', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('198', '2018-06-07 08:24:32.726707', '6', '大明', '2', '[{\"changed\": {\"fields\": [\"qqnum\", \"active\"]}}]', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('199', '2018-06-07 09:09:57.835753', '4619', '陈开拓', '2', '[{\"changed\": {\"fields\": [\"active\"]}}]', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('200', '2018-06-07 09:32:40.200783', '8774', '哈哈哈哈哈', '2', '[{\"changed\": {\"fields\": [\"active\"]}}]', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('201', '2018-06-07 09:33:50.295791', '84', '哈哈哈哈哈', '2', '[{\"changed\": {\"fields\": [\"statu\"]}}]', '12', '3');
-INSERT INTO `django_admin_log` VALUES ('202', '2018-06-07 09:34:04.486605', '84', '哈哈哈哈哈', '2', '[{\"changed\": {\"fields\": [\"statu\"]}}]', '12', '3');
-INSERT INTO `django_admin_log` VALUES ('203', '2018-06-07 09:34:17.853374', '84', '哈哈哈哈哈', '2', '[{\"changed\": {\"fields\": [\"statu\"]}}]', '12', '3');
-INSERT INTO `django_admin_log` VALUES ('204', '2018-06-07 09:56:07.808386', '10023', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('205', '2018-06-07 09:56:07.841391', '10022', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('206', '2018-06-07 09:56:07.857383', '10021', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('207', '2018-06-07 09:56:07.873391', '10020', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('208', '2018-06-07 09:56:07.891395', '10019', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('209', '2018-06-07 09:56:07.916393', '10018', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('210', '2018-06-07 09:56:07.928394', '10017', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('211', '2018-06-07 09:56:07.944394', '10016', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('212', '2018-06-07 09:56:07.954389', '10015', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('213', '2018-06-07 09:56:07.978398', '10014', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('214', '2018-06-07 09:56:07.987400', '10013', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('215', '2018-06-07 09:56:07.999404', '10012', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('216', '2018-06-07 09:56:08.020394', '10011', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('217', '2018-06-07 09:56:08.034394', '10010', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('218', '2018-06-07 09:56:08.047405', '10009', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('219', '2018-06-07 09:56:08.070399', '10008', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('220', '2018-06-07 09:56:08.082399', '10007', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('221', '2018-06-07 09:56:08.094403', '10006', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('222', '2018-06-07 09:56:08.116397', '10005', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('223', '2018-06-07 09:56:08.127410', '10004', '陈开拓', '3', '', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('224', '2018-06-07 10:29:36.850440', '10003', '陈开拓', '2', '[{\"changed\": {\"fields\": [\"email\"]}}]', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('225', '2018-06-07 12:10:22.576655', '69', '谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('226', '2018-06-07 12:10:22.698655', '68', '谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('227', '2018-06-07 12:10:22.732669', '66', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('228', '2018-06-07 12:10:22.744663', '60', 'aabasessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsession', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('229', '2018-06-07 12:10:22.778666', '59', 'aabddbvvvvsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionids', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('230', '2018-06-08 15:24:09.056494', '76', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('231', '2018-06-08 15:24:34.532950', '74', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('232', '2018-06-08 15:26:01.691940', '72', '谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('233', '2018-06-08 15:35:20.073918', '82', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('234', '2018-06-08 15:35:20.093916', '79', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('235', '2018-06-08 15:35:20.124915', '78', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('236', '2018-06-08 15:35:20.142920', '77', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('237', '2018-06-08 15:35:39.041004', '84', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('238', '2018-06-08 15:35:39.054996', '83', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('239', '2018-06-08 16:10:50.995946', '88', '不懂下面这条评论啥意思', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('240', '2018-06-08 16:10:51.062951', '86', 'sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('241', '2018-06-09 01:54:26.358190', '1', 'Android Ap', '2', '[]', '9', '3');
-INSERT INTO `django_admin_log` VALUES ('242', '2018-06-09 13:44:27.109503', '4', '陈开拓', '2', '[{\"changed\": {\"fields\": [\"department\", \"photo\"]}}]', '10', '3');
-INSERT INTO `django_admin_log` VALUES ('243', '2018-06-09 17:44:34.248556', '6', '李林宇', '2', '[{\"changed\": {\"fields\": [\"photo\"]}}]', '10', '3');
-INSERT INTO `django_admin_log` VALUES ('244', '2018-06-09 17:44:41.067945', '5', '丁进仁', '2', '[{\"changed\": {\"fields\": [\"photo\"]}}]', '10', '3');
-INSERT INTO `django_admin_log` VALUES ('245', '2018-06-09 17:44:48.003340', '3', '陈尊龙', '2', '[{\"changed\": {\"fields\": [\"department\", \"photo\"]}}]', '10', '3');
-INSERT INTO `django_admin_log` VALUES ('246', '2018-06-09 17:44:54.342701', '2', '浦泽元', '2', '[{\"changed\": {\"fields\": [\"department\", \"photo\"]}}]', '10', '3');
-INSERT INTO `django_admin_log` VALUES ('247', '2018-06-09 17:46:16.330399', '1', '谢哲勇', '2', '[{\"changed\": {\"fields\": [\"department\", \"photo\"]}}]', '10', '3');
-INSERT INTO `django_admin_log` VALUES ('248', '2018-06-09 18:13:47.918982', '2', '信息科学与工程学院', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '11', '3');
-INSERT INTO `django_admin_log` VALUES ('249', '2018-06-09 18:14:42.306099', '1', '海洋技术系网站', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '11', '3');
-INSERT INTO `django_admin_log` VALUES ('250', '2018-06-09 18:24:38.742247', '1', '前端开发', '2', '[{\"changed\": {\"fields\": [\"intro\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('251', '2018-06-09 18:24:59.284430', '4', 'APP开发', '2', '[{\"changed\": {\"fields\": [\"intro\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('252', '2018-06-09 18:25:11.322112', '2', '程序开发', '2', '[{\"changed\": {\"fields\": [\"intro\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('253', '2018-06-09 18:25:34.344433', '3', 'UI设计', '2', '[{\"changed\": {\"fields\": [\"intro\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('254', '2018-06-09 19:35:02.420124', '4', 'APP开发', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('255', '2018-06-09 19:35:09.358522', '3', 'UI设计', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('256', '2018-06-09 19:35:16.562931', '2', '程序开发', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('257', '2018-06-09 19:35:22.895298', '1', '前端开发', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('258', '2018-06-09 19:39:54.475849', '95', '</textarea><script>alert(1)</script><textarea>', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('259', '2018-06-09 19:39:54.503851', '94', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('260', '2018-06-09 19:39:54.519850', '93', ' ', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('261', '2018-06-09 19:53:16.240766', '10035', '陈开拓', '2', '[{\"changed\": {\"fields\": [\"active\"]}}]', '7', '3');
-INSERT INTO `django_admin_log` VALUES ('262', '2018-06-09 20:36:14.819427', '0', '待审核', '1', '[{\"added\": {}}]', '13', '3');
-INSERT INTO `django_admin_log` VALUES ('263', '2018-06-09 22:56:32.006454', '1', 'Android Ap', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '9', '3');
-INSERT INTO `django_admin_log` VALUES ('264', '2018-06-10 10:59:42.398044', '3', '爱特工作室', '1', '[{\"added\": {}}]', '11', '3');
-INSERT INTO `django_admin_log` VALUES ('265', '2018-06-10 10:59:48.542396', '2', '信息科学与工程学院', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '11', '3');
-INSERT INTO `django_admin_log` VALUES ('266', '2018-06-10 11:00:24.869469', '1', '海洋技术系网站', '2', '[{\"changed\": {\"fields\": [\"pic\"]}}]', '11', '3');
-INSERT INTO `django_admin_log` VALUES ('267', '2018-06-10 11:01:08.094948', '4', '中国海洋大学iGEM', '1', '[{\"added\": {}}]', '11', '3');
-INSERT INTO `django_admin_log` VALUES ('268', '2018-06-10 11:16:38.641237', '4', 'APP开发', '2', '[{\"changed\": {\"fields\": [\"intro\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('269', '2018-06-10 11:16:44.534573', '3', 'UI设计', '2', '[{\"changed\": {\"fields\": [\"intro\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('270', '2018-06-10 11:16:57.045292', '2', '程序开发', '2', '[{\"changed\": {\"fields\": [\"intro\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('271', '2018-06-10 11:17:04.233701', '1', '前端开发', '2', '[{\"changed\": {\"fields\": [\"intro\"]}}]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('272', '2018-06-10 11:17:20.626645', '2', '程序开发', '2', '[]', '8', '3');
-INSERT INTO `django_admin_log` VALUES ('273', '2018-06-10 11:21:02.151446', '2', '小明', '1', '[{\"added\": {}}]', '9', '3');
-INSERT INTO `django_admin_log` VALUES ('274', '2018-06-10 11:21:16.977173', '3', 'fg', '1', '[{\"added\": {}}]', '9', '3');
-INSERT INTO `django_admin_log` VALUES ('275', '2018-06-10 11:21:21.271420', '4', 'gfds', '1', '[{\"added\": {}}]', '9', '3');
-INSERT INTO `django_admin_log` VALUES ('276', '2018-06-10 11:21:25.574670', '5', 'sgdfgsdfg', '1', '[{\"added\": {}}]', '9', '3');
-INSERT INTO `django_admin_log` VALUES ('277', '2018-06-10 11:21:29.833913', '6', 'gdsfgsd', '1', '[{\"added\": {}}]', '9', '3');
-INSERT INTO `django_admin_log` VALUES ('278', '2018-06-10 11:48:08.959489', '7', 'sadsadsal.', '1', '[{\"added\": {}}]', '9', '3');
-INSERT INTO `django_admin_log` VALUES ('279', '2018-06-10 12:50:32.865893', '100', '垃圾就垃圾咯', '3', '', '14', '3');
-INSERT INTO `django_admin_log` VALUES ('280', '2018-06-10 13:51:18.325659', '5', '国际教育学院', '1', '[{\"added\": {}}]', '11', '3');
+INSERT INTO `django_admin_log` VALUES (1, '2018-05-05 18:42:57.572688', '1', '浦泽元', 1, '[{\"added\": {}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (2, '2018-05-05 18:46:47.121633', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"sex\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (3, '2018-05-05 18:52:09.646987', '1', '前端开发', 1, '[{\"added\": {}}]', 8, 1);
+INSERT INTO `django_admin_log` VALUES (4, '2018-05-05 18:52:40.750439', '2', '程序开发', 1, '[{\"added\": {}}]', 8, 1);
+INSERT INTO `django_admin_log` VALUES (5, '2018-05-05 18:52:45.355948', '1', '前端开发', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 1);
+INSERT INTO `django_admin_log` VALUES (6, '2018-05-05 18:53:00.752799', '3', 'UI设计', 1, '[{\"added\": {}}]', 8, 1);
+INSERT INTO `django_admin_log` VALUES (7, '2018-05-05 18:53:25.979726', '4', 'APP开发', 1, '[{\"added\": {}}]', 8, 1);
+INSERT INTO `django_admin_log` VALUES (8, '2018-05-05 18:54:17.538398', '1', 'Android Ap', 1, '[{\"added\": {}}]', 9, 1);
+INSERT INTO `django_admin_log` VALUES (9, '2018-05-05 18:55:03.020191', '1', '海洋技术系网站', 1, '[{\"added\": {}}]', 11, 1);
+INSERT INTO `django_admin_log` VALUES (10, '2018-05-05 19:25:16.432133', '1', '浦泽元', 1, '[{\"added\": {}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (11, '2018-05-05 20:49:53.897265', '4', '0', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (12, '2018-05-05 20:49:57.481429', '4', '0', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (13, '2018-05-05 20:50:31.944995', '1', '浦泽元', 1, '[{\"added\": {}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (14, '2018-05-05 21:51:54.459967', '1', '浦泽元', 1, '[{\"added\": {}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (15, '2018-05-05 21:53:07.808758', '1', '报名表审核受理中...by Pu', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (16, '2018-05-05 21:53:19.543085', '1', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (17, '2018-05-06 06:17:49.603064', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"email\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (18, '2018-05-06 06:28:55.318473', '1', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"emailText\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (19, '2018-05-06 06:32:38.613834', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"userCode\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (20, '2018-05-06 08:26:57.595329', '2', '阿浦', 1, '[{\"added\": {}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (21, '2018-05-06 08:33:14.988152', '1', '面试', 1, '[{\"added\": {}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (22, '2018-05-06 08:33:38.030022', '2', '笔试', 1, '[{\"added\": {}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (23, '2018-05-06 08:49:55.198476', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (24, '2018-05-06 08:50:41.494753', '3', '退出', 1, '[{\"added\": {}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (25, '2018-05-06 08:58:39.086122', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (26, '2018-05-06 08:58:49.965761', '2', '阿浦', 2, '[{\"changed\": {\"fields\": [\"email\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (27, '2018-05-06 11:32:01.899652', '4', '未处理', 1, '[{\"added\": {}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (28, '2018-05-06 11:32:39.423610', '2', '阿浦', 2, '[{\"changed\": {\"fields\": [\"email\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (29, '2018-05-06 11:34:01.193802', '2', '阿浦', 2, '[{\"changed\": {\"fields\": [\"email\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (30, '2018-05-06 11:34:48.335395', '1', '面试', 2, '[{\"changed\": {\"fields\": [\"emailText\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (31, '2018-05-06 11:35:04.585829', '2', '阿浦', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (32, '2018-05-09 11:13:34.085354', '0', '报名表审核受理中test...', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (33, '2018-05-09 11:13:57.865248', '0', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (34, '2018-05-09 11:30:07.688273', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"wantDepartment\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (35, '2018-05-10 07:45:39.079520', '0', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (36, '2018-05-10 07:49:46.844264', '0', '报名表审核受理中...', 2, '[]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (37, '2018-05-10 07:49:55.477631', '1', '面试', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (38, '2018-05-10 07:50:04.542424', '3', '退出', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (39, '2018-05-10 07:50:40.362377', '2', '笔试', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (40, '2018-05-10 07:51:04.257549', '4', '未处理', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (41, '2018-05-10 07:59:35.760715', '2', '阿浦', 2, '[{\"changed\": {\"fields\": [\"wantDepartment\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (42, '2018-05-10 14:42:51.285105', '2', '阿浦', 2, '[{\"changed\": {\"fields\": [\"wantDepartment\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (43, '2018-05-10 14:43:31.718836', '5', '游戏开发', 1, '[{\"added\": {}}]', 8, 1);
+INSERT INTO `django_admin_log` VALUES (44, '2018-05-10 14:43:41.773371', '2', '阿浦', 2, '[{\"changed\": {\"fields\": [\"wantDepartment\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (45, '2018-05-10 14:47:09.658867', '5', '游戏开发', 3, '', 8, 1);
+INSERT INTO `django_admin_log` VALUES (46, '2018-05-10 15:02:58.670389', '0', '报名表审核受理中...', 2, '[]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (47, '2018-05-10 15:12:21.789329', '0', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (48, '2018-05-10 15:16:11.186906', '4', '未处理', 2, '[]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (49, '2018-05-10 15:16:35.432388', '6', '', 1, '[{\"added\": {}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (50, '2018-05-10 15:16:47.959217', '6', '', 2, '[]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (51, '2018-05-11 00:31:44.037859', '0', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"emailText\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (52, '2018-05-11 00:32:31.254346', '0', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"nextStatus\", \"emailText\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (53, '2018-05-11 00:32:44.918875', '0', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"emailText\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (54, '2018-05-11 00:33:05.576298', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (55, '2018-05-11 00:38:21.785882', '0', '报名表审核受理中...', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (56, '2018-05-11 00:40:21.029601', '4', '未处理', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (57, '2018-05-11 00:49:49.385273', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"photo\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (58, '2018-05-11 00:50:07.412345', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"photo\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (59, '2018-05-11 00:50:26.422992', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"photo\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (60, '2018-05-11 11:27:45.536722', '2', '浦泽元', 1, '[{\"added\": {}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (61, '2018-05-11 11:29:17.185395', '2', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"photo\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (62, '2018-05-11 13:00:04.735080', '2', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"photo\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (63, '2018-05-11 13:01:34.802739', '1', '谢哲勇', 2, '[{\"changed\": {\"fields\": [\"name\", \"intro\", \"photo\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (64, '2018-05-11 13:01:59.208701', '3', '陈尊龙', 1, '[{\"added\": {}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (65, '2018-05-11 13:02:13.360466', '4', '陈开拓', 1, '[{\"added\": {}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (66, '2018-05-11 13:02:25.667290', '5', '丁进仁', 1, '[{\"added\": {}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (67, '2018-05-11 13:02:49.598394', '6', '李林宇', 1, '[{\"added\": {}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (68, '2018-05-11 13:02:58.552290', '3', '陈尊龙', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (69, '2018-05-11 13:03:03.772139', '4', '陈开拓', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (70, '2018-05-11 13:03:08.761683', '5', '丁进仁', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (71, '2018-05-11 13:03:13.299596', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (72, '2018-05-11 13:45:44.244204', '2', '浦泽元', 1, '[{\"added\": {}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (73, '2018-05-11 13:46:12.699515', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"code\", \"info\"]}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (74, '2018-05-11 13:47:19.937267', '1', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (75, '2018-05-11 13:47:32.114669', '2', '浦泽元', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (76, '2018-05-11 13:47:47.881294', '1', '浦泽元', 3, '', 7, 1);
+INSERT INTO `django_admin_log` VALUES (77, '2018-05-11 13:49:08.363950', '2', '浦泽元', 1, '[{\"added\": {}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (78, '2018-05-11 13:49:35.524758', '2', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (79, '2018-05-11 14:03:15.838366', '1', '啦啦啦', 1, '[{\"added\": {}}]', 15, 1);
+INSERT INTO `django_admin_log` VALUES (80, '2018-05-11 14:03:39.908362', '1', '爱特重量担当', 1, '[{\"added\": {}}]', 14, 1);
+INSERT INTO `django_admin_log` VALUES (81, '2018-05-12 02:06:33.084848', '3', '浦泽元', 1, '[{\"added\": {}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (82, '2018-05-12 13:46:18.007459', '2', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (83, '2018-05-12 13:46:40.727869', '4', '未处理', 3, '', 13, 1);
+INSERT INTO `django_admin_log` VALUES (84, '2018-05-12 13:52:49.672195', '3', '阿浦', 1, '[{\"added\": {}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (85, '2018-05-12 13:53:00.509687', '3', '阿浦', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (86, '2018-05-12 13:53:03.081308', '3', '阿浦', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (87, '2018-05-12 13:53:05.115867', '3', '阿浦', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (88, '2018-05-12 13:53:28.974282', '0', '报名表审核受理中...', 3, '', 13, 1);
+INSERT INTO `django_admin_log` VALUES (89, '2018-05-12 13:53:50.832921', '0', '报名状态未受理', 1, '[{\"added\": {}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (90, '2018-05-12 13:53:57.385959', '0', '报名状态未受理', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (91, '2018-05-12 13:57:21.739509', '4', '21', 1, '[{\"added\": {}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (92, '2018-05-12 14:02:47.826982', '0', '报名状态未受理', 3, '', 13, 1);
+INSERT INTO `django_admin_log` VALUES (93, '2018-05-12 14:04:41.319905', '4', '21', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (94, '2018-05-12 14:04:58.318863', '4', '21', 1, '[{\"added\": {}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (95, '2018-05-12 14:16:00.855624', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (96, '2018-05-12 14:16:11.685687', '5', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (97, '2018-05-12 14:16:11.690671', '4', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (98, '2018-05-12 14:16:22.592448', '4', '21', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (99, '2018-05-12 14:21:43.121872', '4', '21', 2, '[{\"changed\": {\"fields\": [\"email\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (100, '2018-05-12 14:22:35.806190', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (101, '2018-05-12 14:29:29.371380', '3', '退出', 2, '[{\"changed\": {\"fields\": [\"nextStatus\"]}}]', 13, 1);
+INSERT INTO `django_admin_log` VALUES (102, '2018-05-12 15:02:31.402345', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (103, '2018-05-12 15:09:28.644991', '21', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (104, '2018-05-12 15:09:28.652941', '20', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (105, '2018-05-12 15:09:28.666898', '19', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (106, '2018-05-12 15:09:28.673912', '18', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (107, '2018-05-12 15:09:28.679864', '17', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (108, '2018-05-12 15:09:28.684858', '16', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (109, '2018-05-12 15:09:28.690836', '15', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (110, '2018-05-12 15:09:28.696820', '14', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (111, '2018-05-12 15:09:28.702802', '13', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (112, '2018-05-12 15:09:28.706791', '12', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (113, '2018-05-12 15:09:28.711794', '11', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (114, '2018-05-12 15:09:28.719765', '10', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (115, '2018-05-12 15:09:28.725743', '9', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (116, '2018-05-12 15:09:28.731727', '8', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (117, '2018-05-12 15:09:28.736722', '7', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (118, '2018-05-12 15:09:28.742697', '6', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (119, '2018-05-12 15:09:32.579555', '4', '21', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (120, '2018-05-12 15:17:41.295599', '24', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (121, '2018-05-12 15:17:41.316542', '23', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (122, '2018-05-12 15:17:41.322527', '22', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (123, '2018-05-12 15:17:49.611478', '25', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (124, '2018-05-12 15:18:52.512570', '26', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (125, '2018-05-12 15:20:20.281650', '28', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (126, '2018-05-12 15:24:53.397291', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (127, '2018-05-12 15:25:23.124282', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (128, '2018-05-12 15:26:24.027378', '32', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (129, '2018-05-12 15:26:57.889158', '4', '21', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (130, '2018-05-12 15:28:34.859730', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (131, '2018-05-12 15:28:54.203341', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (132, '2018-05-12 15:29:55.635201', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (133, '2018-05-12 15:30:00.892145', '4', '21', 2, '[{\"changed\": {\"fields\": [\"status\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (134, '2018-05-13 08:41:13.668108', '31', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (135, '2018-05-13 08:41:13.708998', '27', '21', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (136, '2018-05-13 08:41:40.341629', '32', '21', 1, '[{\"added\": {}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (137, '2018-05-13 08:54:06.880149', '5', '小明', 1, '[{\"added\": {}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (138, '2018-05-13 08:54:17.161302', '4', '小花', 2, '[{\"changed\": {\"fields\": [\"name\"]}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (139, '2018-05-13 08:54:36.470120', '6', '大明', 1, '[{\"added\": {}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (140, '2018-05-13 12:21:34.835284', '32', '小花', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (141, '2018-05-13 12:21:34.845104', '41', '小明', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (142, '2018-05-13 12:21:34.851701', '37', '小明', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (143, '2018-05-13 12:21:34.858104', '39', '大明', 3, '', 12, 1);
+INSERT INTO `django_admin_log` VALUES (144, '2018-05-14 09:11:44.511414', '6', '大明', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (145, '2018-05-14 09:12:14.207083', '45', '大明', 2, '[]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (146, '2018-05-14 09:12:31.006348', '45', '大明', 2, '[{\"changed\": {\"fields\": [\"info\"]}}]', 12, 1);
+INSERT INTO `django_admin_log` VALUES (147, '2018-05-14 09:22:40.602425', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"department\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (148, '2018-05-14 09:23:12.017546', '6', '李林宇', 2, '[]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (149, '2018-05-14 09:23:34.374296', '5', '丁进仁', 2, '[{\"changed\": {\"fields\": [\"department\"]}}]', 10, 1);
+INSERT INTO `django_admin_log` VALUES (150, '2018-05-26 06:44:58.384228', '1', 'Profile object', 1, '[{\"added\": {}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (151, '2018-05-27 03:31:12.435688', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (152, '2018-05-27 03:42:01.485766', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (153, '2018-05-27 03:46:23.032183', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (154, '2018-05-27 03:47:03.776018', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (155, '2018-05-27 03:47:37.001004', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (156, '2018-05-27 04:06:43.559960', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (157, '2018-05-27 04:16:59.457260', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (158, '2018-05-27 04:19:19.271866', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (159, '2018-05-27 04:19:38.589208', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (160, '2018-05-27 04:23:14.234454', '1', 'Profile object', 2, '[{\"changed\": {\"fields\": [\"avatar\"]}}]', 16, 2);
+INSERT INTO `django_admin_log` VALUES (161, '2018-06-05 11:29:57.040093', '1', '我帅吗', 2, '[{\"changed\": {\"fields\": [\"name\", \"pic\"]}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (162, '2018-06-06 00:31:34.644759', '1', '我帅吗', 3, '', 15, 3);
+INSERT INTO `django_admin_log` VALUES (163, '2018-06-06 00:34:17.392081', '6', '大明', 2, '[{\"changed\": {\"fields\": [\"email\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (164, '2018-06-06 13:13:10.068582', '2', 'tantan', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (165, '2018-06-06 13:14:06.319795', '2', '程序开发', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (166, '2018-06-06 13:15:35.820920', '1', '前端开发', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (167, '2018-06-06 13:17:50.502641', '3', 'UI设计', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (168, '2018-06-06 13:18:00.496209', '4', 'APP开发', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (169, '2018-06-06 13:24:22.500088', '2', 'tantan', 3, '', 15, 3);
+INSERT INTO `django_admin_log` VALUES (170, '2018-06-06 23:57:53.219828', '3', '小明', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (171, '2018-06-07 00:00:44.128616', '2', 'mmm', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (172, '2018-06-07 00:07:12.022833', '3', '1', 2, '[{\"changed\": {\"fields\": [\"name\", \"pic\"]}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (173, '2018-06-07 00:07:31.265932', '4', '2', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (174, '2018-06-07 00:07:36.944257', '5', '3', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (175, '2018-06-07 00:07:41.537520', '6', '4', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (176, '2018-06-07 00:07:46.757823', '7', '5', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (177, '2018-06-07 00:07:52.875166', '8', '6', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (178, '2018-06-07 00:13:35.026761', '2', '信息科学与工程学院', 1, '[{\"added\": {}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (179, '2018-06-07 00:15:56.839887', '1', '海洋技术系网站', 2, '[{\"changed\": {\"fields\": [\"pic\", \"link\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (180, '2018-06-07 01:35:33.258415', '3', '嘎嘎啊嘎嘎', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (181, '2018-06-07 02:20:41.144487', '3', '嘎嘎啊嘎嘎', 2, '[{\"changed\": {\"fields\": [\"code\"]}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (182, '2018-06-07 02:20:45.736752', '2', 'mmm', 2, '[{\"changed\": {\"fields\": [\"code\"]}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (183, '2018-06-07 02:39:07.659851', '6', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (184, '2018-06-07 02:39:10.860037', '7', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (185, '2018-06-07 02:39:12.939157', '8', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (186, '2018-06-07 02:39:19.858549', '9', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (187, '2018-06-07 02:39:22.060684', '10', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (188, '2018-06-07 02:39:23.994786', '11', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (189, '2018-06-07 02:39:25.546873', '12', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (190, '2018-06-07 02:39:26.930959', '13', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (191, '2018-06-07 02:39:28.785059', '14', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (192, '2018-06-07 02:39:30.636166', '15', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (193, '2018-06-07 02:39:32.324262', '16', '批量添加', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (194, '2018-06-07 05:31:01.462484', '36', '<script>while(1)console.log(\"555\");</script>', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (195, '2018-06-07 05:31:37.926577', '35', '<script>window.close();</script>', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (196, '2018-06-07 07:11:46.052640', '38', '<script>window.location.href=\"http://222.195.145.152:2018/fresher/new/\"</script>', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (197, '2018-06-07 08:19:39.364905', '49', 'ass', 2, '[{\"changed\": {\"fields\": [\"name\", \"content\", \"reply\"]}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (198, '2018-06-07 08:24:32.726707', '6', '大明', 2, '[{\"changed\": {\"fields\": [\"qqnum\", \"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (199, '2018-06-07 09:09:57.835753', '4619', '陈开拓', 2, '[{\"changed\": {\"fields\": [\"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (200, '2018-06-07 09:32:40.200783', '8774', '哈哈哈哈哈', 2, '[{\"changed\": {\"fields\": [\"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (201, '2018-06-07 09:33:50.295791', '84', '哈哈哈哈哈', 2, '[{\"changed\": {\"fields\": [\"statu\"]}}]', 12, 3);
+INSERT INTO `django_admin_log` VALUES (202, '2018-06-07 09:34:04.486605', '84', '哈哈哈哈哈', 2, '[{\"changed\": {\"fields\": [\"statu\"]}}]', 12, 3);
+INSERT INTO `django_admin_log` VALUES (203, '2018-06-07 09:34:17.853374', '84', '哈哈哈哈哈', 2, '[{\"changed\": {\"fields\": [\"statu\"]}}]', 12, 3);
+INSERT INTO `django_admin_log` VALUES (204, '2018-06-07 09:56:07.808386', '10023', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (205, '2018-06-07 09:56:07.841391', '10022', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (206, '2018-06-07 09:56:07.857383', '10021', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (207, '2018-06-07 09:56:07.873391', '10020', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (208, '2018-06-07 09:56:07.891395', '10019', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (209, '2018-06-07 09:56:07.916393', '10018', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (210, '2018-06-07 09:56:07.928394', '10017', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (211, '2018-06-07 09:56:07.944394', '10016', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (212, '2018-06-07 09:56:07.954389', '10015', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (213, '2018-06-07 09:56:07.978398', '10014', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (214, '2018-06-07 09:56:07.987400', '10013', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (215, '2018-06-07 09:56:07.999404', '10012', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (216, '2018-06-07 09:56:08.020394', '10011', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (217, '2018-06-07 09:56:08.034394', '10010', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (218, '2018-06-07 09:56:08.047405', '10009', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (219, '2018-06-07 09:56:08.070399', '10008', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (220, '2018-06-07 09:56:08.082399', '10007', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (221, '2018-06-07 09:56:08.094403', '10006', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (222, '2018-06-07 09:56:08.116397', '10005', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (223, '2018-06-07 09:56:08.127410', '10004', '陈开拓', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (224, '2018-06-07 10:29:36.850440', '10003', '陈开拓', 2, '[{\"changed\": {\"fields\": [\"email\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (225, '2018-06-07 12:10:22.576655', '69', '谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (226, '2018-06-07 12:10:22.698655', '68', '谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (227, '2018-06-07 12:10:22.732669', '66', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (228, '2018-06-07 12:10:22.744663', '60', 'aabasessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsession', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (229, '2018-06-07 12:10:22.778666', '59', 'aabddbvvvvsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionidsessionids', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (230, '2018-06-08 15:24:09.056494', '76', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (231, '2018-06-08 15:24:34.532950', '74', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (232, '2018-06-08 15:26:01.691940', '72', '谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚铭谭坚', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (233, '2018-06-08 15:35:20.073918', '82', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (234, '2018-06-08 15:35:20.093916', '79', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (235, '2018-06-08 15:35:20.124915', '78', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (236, '2018-06-08 15:35:20.142920', '77', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (237, '2018-06-08 15:35:39.041004', '84', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (238, '2018-06-08 15:35:39.054996', '83', '阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛阿弥陀佛', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (239, '2018-06-08 16:10:50.995946', '88', '不懂下面这条评论啥意思', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (240, '2018-06-08 16:10:51.062951', '86', 'sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。sublime大法好，完胜vscode。', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (241, '2018-06-09 01:54:26.358190', '1', 'Android Ap', 2, '[]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (242, '2018-06-09 13:44:27.109503', '4', '陈开拓', 2, '[{\"changed\": {\"fields\": [\"department\", \"photo\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (243, '2018-06-09 17:44:34.248556', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"photo\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (244, '2018-06-09 17:44:41.067945', '5', '丁进仁', 2, '[{\"changed\": {\"fields\": [\"photo\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (245, '2018-06-09 17:44:48.003340', '3', '陈尊龙', 2, '[{\"changed\": {\"fields\": [\"department\", \"photo\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (246, '2018-06-09 17:44:54.342701', '2', '浦泽元', 2, '[{\"changed\": {\"fields\": [\"department\", \"photo\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (247, '2018-06-09 17:46:16.330399', '1', '谢哲勇', 2, '[{\"changed\": {\"fields\": [\"department\", \"photo\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (248, '2018-06-09 18:13:47.918982', '2', '信息科学与工程学院', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (249, '2018-06-09 18:14:42.306099', '1', '海洋技术系网站', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (250, '2018-06-09 18:24:38.742247', '1', '前端开发', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (251, '2018-06-09 18:24:59.284430', '4', 'APP开发', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (252, '2018-06-09 18:25:11.322112', '2', '程序开发', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (253, '2018-06-09 18:25:34.344433', '3', 'UI设计', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (254, '2018-06-09 19:35:02.420124', '4', 'APP开发', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (255, '2018-06-09 19:35:09.358522', '3', 'UI设计', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (256, '2018-06-09 19:35:16.562931', '2', '程序开发', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (257, '2018-06-09 19:35:22.895298', '1', '前端开发', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (258, '2018-06-09 19:39:54.475849', '95', '</textarea><script>alert(1)</script><textarea>', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (259, '2018-06-09 19:39:54.503851', '94', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (260, '2018-06-09 19:39:54.519850', '93', ' ', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (261, '2018-06-09 19:53:16.240766', '10035', '陈开拓', 2, '[{\"changed\": {\"fields\": [\"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (262, '2018-06-09 20:36:14.819427', '0', '待审核', 1, '[{\"added\": {}}]', 13, 3);
+INSERT INTO `django_admin_log` VALUES (263, '2018-06-09 22:56:32.006454', '1', 'Android Ap', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (264, '2018-06-10 10:59:42.398044', '3', '爱特工作室', 1, '[{\"added\": {}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (265, '2018-06-10 10:59:48.542396', '2', '信息科学与工程学院', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (266, '2018-06-10 11:00:24.869469', '1', '海洋技术系网站', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (267, '2018-06-10 11:01:08.094948', '4', '中国海洋大学iGEM', 1, '[{\"added\": {}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (268, '2018-06-10 11:16:38.641237', '4', 'APP开发', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (269, '2018-06-10 11:16:44.534573', '3', 'UI设计', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (270, '2018-06-10 11:16:57.045292', '2', '程序开发', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (271, '2018-06-10 11:17:04.233701', '1', '前端开发', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (272, '2018-06-10 11:17:20.626645', '2', '程序开发', 2, '[]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (273, '2018-06-10 11:21:02.151446', '2', '小明', 1, '[{\"added\": {}}]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (274, '2018-06-10 11:21:16.977173', '3', 'fg', 1, '[{\"added\": {}}]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (275, '2018-06-10 11:21:21.271420', '4', 'gfds', 1, '[{\"added\": {}}]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (276, '2018-06-10 11:21:25.574670', '5', 'sgdfgsdfg', 1, '[{\"added\": {}}]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (277, '2018-06-10 11:21:29.833913', '6', 'gdsfgsd', 1, '[{\"added\": {}}]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (278, '2018-06-10 11:48:08.959489', '7', 'sadsadsal.', 1, '[{\"added\": {}}]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (279, '2018-06-10 12:50:32.865893', '100', '垃圾就垃圾咯', 3, '', 14, 3);
+INSERT INTO `django_admin_log` VALUES (280, '2018-06-10 13:51:18.325659', '5', '国际教育学院', 1, '[{\"added\": {}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (281, '2018-07-10 16:49:13.758587', '1', '海洋技术系网站', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (282, '2018-07-10 16:49:20.610558', '2', '信息科学与工程学院', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (283, '2018-07-10 16:49:25.458595', '3', '爱特工作室', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (284, '2018-07-10 16:49:32.223055', '4', '中国海洋大学iGEM', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (285, '2018-07-10 16:49:39.648423', '5', '国际教育学院', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (286, '2018-07-11 00:05:00.922782', '2', '小明', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 9, 3);
+INSERT INTO `django_admin_log` VALUES (287, '2018-07-11 00:05:57.380636', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (288, '2018-07-11 00:06:10.311470', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (289, '2018-07-11 00:25:12.465060', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (290, '2018-07-11 00:27:06.127804', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (291, '2018-07-11 00:29:54.175969', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (292, '2018-07-11 00:30:49.943372', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (293, '2018-07-11 00:32:10.450367', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (294, '2018-07-11 07:21:22.667225', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"department\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (295, '2018-07-11 07:23:00.420175', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"photo\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (296, '2018-07-11 08:26:02.888547', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (297, '2018-07-11 08:29:19.663617', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (298, '2018-07-11 08:30:56.014824', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (299, '2018-07-11 08:31:00.825172', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (300, '2018-07-11 08:34:12.620233', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (301, '2018-07-11 08:34:25.294191', '6', '李林宇', 2, '[]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (302, '2018-07-11 08:34:30.851220', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (303, '2018-07-11 08:37:21.846299', '6', '李林宇', 2, '[{\"changed\": {\"fields\": [\"year\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (304, '2018-07-11 08:41:29.388532', '6', '李', 2, '[{\"changed\": {\"fields\": [\"name\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (305, '2018-07-11 08:41:42.716146', '6', '李', 2, '[]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (306, '2018-07-11 08:41:46.440196', '6', '李', 2, '[]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (307, '2018-07-11 09:04:28.544390', '10042', '陈玉沅', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (308, '2018-07-11 09:04:33.011364', '10042', '陈玉沅', 2, '[{\"changed\": {\"fields\": [\"qqnum\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (309, '2018-07-11 09:04:38.148344', '10042', '陈玉沅', 2, '[{\"changed\": {\"fields\": [\"qqnum\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (310, '2018-07-11 09:19:07.428033', '10042', '陈玉沅', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (311, '2018-07-11 09:19:16.372122', '10042', '陈玉沅', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (312, '2018-07-11 09:29:13.816222', '10042', '陈玉沅', 2, '[{\"changed\": {\"fields\": [\"qqnum\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (313, '2018-07-11 09:36:00.032631', '10042', '陈玉沅', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (314, '2018-07-11 09:36:09.437131', '10042', '陈玉沅', 2, '[{\"changed\": {\"fields\": [\"yearAndMajor\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (315, '2018-07-11 09:36:13.396297', '10042', '陈玉沅', 2, '[{\"changed\": {\"fields\": [\"yearAndMajor\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (316, '2018-07-14 20:45:43.841978', '5', '国际教育学院', 2, '[{\"changed\": {\"fields\": [\"link\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (317, '2018-07-14 20:45:49.705764', '5', '国际教育学院', 2, '[{\"changed\": {\"fields\": [\"link\"]}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (318, '2018-07-14 20:54:35.198140', '6', '李1', 2, '[{\"changed\": {\"fields\": [\"name\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (319, '2018-07-18 14:36:03.012540', '6', 'fgrger', 1, '[{\"added\": {}}]', 11, 3);
+INSERT INTO `django_admin_log` VALUES (320, '2018-07-18 21:20:38.179893', '6', 'fgrger', 3, '', 11, 3);
+INSERT INTO `django_admin_log` VALUES (321, '2018-07-18 21:20:48.477395', '5', '国际教育学院', 3, '', 11, 3);
+INSERT INTO `django_admin_log` VALUES (322, '2018-07-18 21:21:53.194116', '2', '信息科学与工程学院', 3, '', 11, 3);
+INSERT INTO `django_admin_log` VALUES (323, '2018-07-18 21:21:53.202076', '1', '海洋技术系网站', 3, '', 11, 3);
+INSERT INTO `django_admin_log` VALUES (324, '2018-07-18 22:32:32.433129', '4', 'APP开发', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (325, '2018-07-18 22:32:41.339494', '4', 'APP开发', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 8, 3);
+INSERT INTO `django_admin_log` VALUES (326, '2018-07-19 10:46:44.220675', '6', '李1', 2, '[{\"changed\": {\"fields\": [\"intro\"]}}]', 10, 3);
+INSERT INTO `django_admin_log` VALUES (327, '2018-07-19 10:49:17.115642', '102', '<script>alert(\"aaa\")</script>', 2, '[{\"changed\": {\"fields\": [\"code\"]}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (328, '2018-07-19 10:49:21.273127', '102', '<script>alert(\"aaa\")</script>', 2, '[{\"changed\": {\"fields\": [\"code\"]}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (329, '2018-07-19 10:52:42.024899', '102', '<script>alert(\"aaa\")</script>', 2, '[]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (330, '2018-07-19 10:53:11.041209', '102', '<script>alert(\"aaa\")</script>', 2, '[]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (331, '2018-07-19 10:53:19.050463', '103', '评论', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (332, '2018-07-19 11:01:10.431900', '103', '评论', 2, '[{\"changed\": {\"fields\": [\"name\"]}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (333, '2018-07-19 11:35:10.809399', '10044', '小肥哲', 1, '[{\"added\": {}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (334, '2018-07-19 12:09:10.168537', '10044', '小肥哲', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (335, '2018-07-19 12:09:33.389526', '10044', '小肥哲', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (336, '2018-07-19 12:11:18.876651', '10044', '小肥哲', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (337, '2018-07-19 12:11:21.913498', '10044', '小肥哲', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (338, '2018-07-19 15:18:54.231596', '0', '待审核', 2, '[{\"changed\": {\"fields\": [\"emailText\"]}}]', 13, 3);
+INSERT INTO `django_admin_log` VALUES (339, '2018-07-19 15:28:12.437695', '10044', '小肥哲', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (340, '2018-07-19 15:28:20.926009', '10044', '小肥哲', 2, '[{\"changed\": {\"fields\": [\"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (341, '2018-07-19 15:36:09.872579', '10044', '小肥哲', 2, '[{\"changed\": {\"fields\": [\"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (342, '2018-07-19 15:37:25.684198', '10044', '小肥哲', 2, '[{\"changed\": {\"fields\": [\"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (343, '2018-07-19 15:37:42.286942', '10044', '小肥哲', 2, '[{\"changed\": {\"fields\": [\"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (344, '2018-07-19 15:45:09.200096', '10044', '小肥哲', 2, '[{\"changed\": {\"fields\": [\"active\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (345, '2018-07-19 15:45:59.247310', '10044', '小肥哲', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (346, '2018-07-19 15:46:16.937033', '10045', '小明', 1, '[{\"added\": {}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (347, '2018-07-19 15:59:31.697368', '10045', '小明', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (348, '2018-07-19 15:59:44.126145', '10046', 'APP开发', 1, '[{\"added\": {}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (349, '2018-07-19 16:01:06.072227', '10046', 'APP开发', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (350, '2018-07-19 16:01:19.249011', '10047', 'APP开发', 1, '[{\"added\": {}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (351, '2018-07-19 16:05:37.217922', '10047', 'APP开发', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (352, '2018-07-19 16:05:46.533038', '10048', 'APP开发', 1, '[{\"added\": {}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (353, '2018-07-19 16:08:16.891178', '10048', 'APP开发', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (354, '2018-07-19 16:08:26.152426', '10049', 'APP开发', 1, '[{\"added\": {}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (355, '2018-07-19 16:08:40.373422', '10049', 'APP开发', 2, '[{\"changed\": {\"fields\": [\"qqnum\"]}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (356, '2018-07-19 16:14:44.737227', '10049', 'APP开发', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (357, '2018-07-19 16:16:02.301013', '10049', 'APP开发', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (358, '2018-07-19 16:16:11.356810', '10049', 'APP开发', 3, '', 7, 3);
+INSERT INTO `django_admin_log` VALUES (359, '2018-07-19 16:16:25.690505', '10050', '谈谈谈', 1, '[{\"added\": {}}]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (360, '2018-07-19 16:16:34.818109', '10050', '谈谈谈', 2, '[]', 7, 3);
+INSERT INTO `django_admin_log` VALUES (361, '2018-07-19 16:26:19.014281', '-1', '十大sa', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (362, '2018-07-19 16:28:21.206775', '88', '反倒是方式', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (363, '2018-07-19 16:28:31.233976', '89', '给的分割发代首个df', 1, '[{\"added\": {}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (364, '2018-07-19 16:35:48.810750', '9', '', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (365, '2018-07-19 16:35:49.394209', '10', '', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (366, '2018-07-19 16:39:46.700799', '11', '', 1, '[{\"added\": {}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (367, '2018-07-19 16:51:05.159047', '8', '6', 2, '[]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (368, '2018-07-19 16:51:32.084730', '10', '', 2, '[{\"changed\": {\"fields\": [\"pic\"]}}]', 15, 3);
+INSERT INTO `django_admin_log` VALUES (369, '2018-07-20 23:45:31.385855', '87', '<script>alert(\"是这条信息吗\")</script>', 2, '[{\"changed\": {\"fields\": [\"content\"]}}]', 14, 3);
+INSERT INTO `django_admin_log` VALUES (370, '2018-07-21 00:29:39.250293', '13', '-1', 1, '[{\"added\": {}}]', 15, 3);
 
 -- ----------------------------
 -- Table structure for django_content_type
 -- ----------------------------
 DROP TABLE IF EXISTS `django_content_type`;
-CREATE TABLE `django_content_type` (
+CREATE TABLE `django_content_type`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `app_label` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `model` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  UNIQUE INDEX `django_content_type_app_label_model_76bd3d3b_uniq`(`app_label`, `model`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of django_content_type
 -- ----------------------------
-INSERT INTO `django_content_type` VALUES ('1', 'admin', 'logentry');
-INSERT INTO `django_content_type` VALUES ('3', 'auth', 'group');
-INSERT INTO `django_content_type` VALUES ('2', 'auth', 'permission');
-INSERT INTO `django_content_type` VALUES ('4', 'auth', 'user');
-INSERT INTO `django_content_type` VALUES ('5', 'contenttypes', 'contenttype');
-INSERT INTO `django_content_type` VALUES ('6', 'sessions', 'session');
-INSERT INTO `django_content_type` VALUES ('14', 'show', 'comment');
-INSERT INTO `django_content_type` VALUES ('8', 'show', 'department');
-INSERT INTO `django_content_type` VALUES ('9', 'show', 'event');
-INSERT INTO `django_content_type` VALUES ('15', 'show', 'headpicture');
-INSERT INTO `django_content_type` VALUES ('10', 'show', 'member');
-INSERT INTO `django_content_type` VALUES ('11', 'show', 'worksshow');
-INSERT INTO `django_content_type` VALUES ('16', 'tes', 'profile');
-INSERT INTO `django_content_type` VALUES ('7', 'user', 'fresher');
-INSERT INTO `django_content_type` VALUES ('12', 'user', 'statusdetails');
-INSERT INTO `django_content_type` VALUES ('13', 'user', 'statusinfo');
+INSERT INTO `django_content_type` VALUES (1, 'admin', 'logentry');
+INSERT INTO `django_content_type` VALUES (3, 'auth', 'group');
+INSERT INTO `django_content_type` VALUES (2, 'auth', 'permission');
+INSERT INTO `django_content_type` VALUES (4, 'auth', 'user');
+INSERT INTO `django_content_type` VALUES (5, 'contenttypes', 'contenttype');
+INSERT INTO `django_content_type` VALUES (6, 'sessions', 'session');
+INSERT INTO `django_content_type` VALUES (14, 'show', 'comment');
+INSERT INTO `django_content_type` VALUES (8, 'show', 'department');
+INSERT INTO `django_content_type` VALUES (9, 'show', 'event');
+INSERT INTO `django_content_type` VALUES (15, 'show', 'headpicture');
+INSERT INTO `django_content_type` VALUES (10, 'show', 'member');
+INSERT INTO `django_content_type` VALUES (11, 'show', 'worksshow');
+INSERT INTO `django_content_type` VALUES (16, 'tes', 'profile');
+INSERT INTO `django_content_type` VALUES (7, 'user', 'fresher');
+INSERT INTO `django_content_type` VALUES (12, 'user', 'statusdetails');
+INSERT INTO `django_content_type` VALUES (13, 'user', 'statusinfo');
+INSERT INTO `django_content_type` VALUES (17, 'user', 'visituser');
 
 -- ----------------------------
 -- Table structure for django_migrations
 -- ----------------------------
 DROP TABLE IF EXISTS `django_migrations`;
-CREATE TABLE `django_migrations` (
+CREATE TABLE `django_migrations`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `app` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of django_migrations
 -- ----------------------------
-INSERT INTO `django_migrations` VALUES ('1', 'contenttypes', '0001_initial', '2018-05-05 18:32:46.688076');
-INSERT INTO `django_migrations` VALUES ('2', 'auth', '0001_initial', '2018-05-05 18:32:47.809848');
-INSERT INTO `django_migrations` VALUES ('3', 'admin', '0001_initial', '2018-05-05 18:32:48.122155');
-INSERT INTO `django_migrations` VALUES ('4', 'admin', '0002_logentry_remove_auto_add', '2018-05-05 18:32:48.168278');
-INSERT INTO `django_migrations` VALUES ('5', 'contenttypes', '0002_remove_content_type_name', '2018-05-05 18:32:48.340920');
-INSERT INTO `django_migrations` VALUES ('6', 'auth', '0002_alter_permission_name_max_length', '2018-05-05 18:32:48.439671');
-INSERT INTO `django_migrations` VALUES ('7', 'auth', '0003_alter_user_email_max_length', '2018-05-05 18:32:48.553121');
-INSERT INTO `django_migrations` VALUES ('8', 'auth', '0004_alter_user_username_opts', '2018-05-05 18:32:48.569155');
-INSERT INTO `django_migrations` VALUES ('9', 'auth', '0005_alter_user_last_login_null', '2018-05-05 18:32:48.654046');
-INSERT INTO `django_migrations` VALUES ('10', 'auth', '0006_require_contenttypes_0002', '2018-05-05 18:32:48.660064');
-INSERT INTO `django_migrations` VALUES ('11', 'auth', '0007_alter_validators_add_error_messages', '2018-05-05 18:32:48.674138');
-INSERT INTO `django_migrations` VALUES ('12', 'auth', '0008_alter_user_username_max_length', '2018-05-05 18:32:48.884203');
-INSERT INTO `django_migrations` VALUES ('13', 'sessions', '0001_initial', '2018-05-05 18:34:24.186407');
-INSERT INTO `django_migrations` VALUES ('14', 'user', '0001_initial', '2018-05-05 18:34:34.752154');
-INSERT INTO `django_migrations` VALUES ('15', 'show', '0001_initial', '2018-05-05 18:34:38.722046');
-INSERT INTO `django_migrations` VALUES ('16', 'user', '0002_auto_20180506_0349', '2018-05-05 20:44:30.679280');
-INSERT INTO `django_migrations` VALUES ('18', 'user', '0003_auto_20180506_0444', '2018-05-05 21:48:34.810967');
-INSERT INTO `django_migrations` VALUES ('19', 'user', '0002_auto_20180506_1426', '2018-05-06 06:26:33.258562');
-INSERT INTO `django_migrations` VALUES ('20', 'user', '0003_auto_20180506_1625', '2018-05-06 08:25:12.293571');
-INSERT INTO `django_migrations` VALUES ('21', 'user', '0004_auto_20180509_1929', '2018-05-09 11:29:42.390493');
-INSERT INTO `django_migrations` VALUES ('22', 'user', '0005_auto_20180510_1542', '2018-05-10 07:43:05.079303');
-INSERT INTO `django_migrations` VALUES ('23', 'show', '0002_auto_20180510_1542', '2018-05-10 07:43:08.897251');
-INSERT INTO `django_migrations` VALUES ('24', 'user', '0006_auto_20180510_2240', '2018-05-10 14:42:24.806300');
-INSERT INTO `django_migrations` VALUES ('25', 'user', '0007_auto_20180510_2242', '2018-05-10 14:42:25.055636');
-INSERT INTO `django_migrations` VALUES ('26', 'show', '0003_auto_20180510_2240', '2018-05-10 14:42:30.499980');
-INSERT INTO `django_migrations` VALUES ('27', 'user', '0008_auto_20180510_2302', '2018-05-10 15:02:38.248959');
-INSERT INTO `django_migrations` VALUES ('28', 'user', '0009_auto_20180510_2305', '2018-05-10 15:05:51.200700');
-INSERT INTO `django_migrations` VALUES ('29', 'show', '0004_auto_20180511_1926', '2018-05-11 11:26:17.278348');
-INSERT INTO `django_migrations` VALUES ('30', 'user', '0010_auto_20180511_2146', '2018-05-11 13:47:03.019746');
-INSERT INTO `django_migrations` VALUES ('31', 'user', '0011_auto_20180511_2149', '2018-05-11 13:49:31.168574');
-INSERT INTO `django_migrations` VALUES ('32', 'user', '0012_auto_20180512_2202', '2018-05-12 14:02:29.060978');
-INSERT INTO `django_migrations` VALUES ('33', 'user', '0013_auto_20180512_2245', '2018-05-12 14:45:27.272933');
-INSERT INTO `django_migrations` VALUES ('34', 'show', '0005_auto_20180514_1707', '2018-05-14 09:07:38.884877');
-INSERT INTO `django_migrations` VALUES ('35', 'show', '0006_member_sex', '2018-05-14 09:19:24.752435');
-INSERT INTO `django_migrations` VALUES ('36', 'show', '0007_auto_20180516_1928', '2018-05-16 11:28:19.900506');
-INSERT INTO `django_migrations` VALUES ('37', 'tes', '0001_initial', '2018-05-26 06:39:20.306276');
+INSERT INTO `django_migrations` VALUES (1, 'contenttypes', '0001_initial', '2018-05-05 18:32:46.688076');
+INSERT INTO `django_migrations` VALUES (2, 'auth', '0001_initial', '2018-05-05 18:32:47.809848');
+INSERT INTO `django_migrations` VALUES (3, 'admin', '0001_initial', '2018-05-05 18:32:48.122155');
+INSERT INTO `django_migrations` VALUES (4, 'admin', '0002_logentry_remove_auto_add', '2018-05-05 18:32:48.168278');
+INSERT INTO `django_migrations` VALUES (5, 'contenttypes', '0002_remove_content_type_name', '2018-05-05 18:32:48.340920');
+INSERT INTO `django_migrations` VALUES (6, 'auth', '0002_alter_permission_name_max_length', '2018-05-05 18:32:48.439671');
+INSERT INTO `django_migrations` VALUES (7, 'auth', '0003_alter_user_email_max_length', '2018-05-05 18:32:48.553121');
+INSERT INTO `django_migrations` VALUES (8, 'auth', '0004_alter_user_username_opts', '2018-05-05 18:32:48.569155');
+INSERT INTO `django_migrations` VALUES (9, 'auth', '0005_alter_user_last_login_null', '2018-05-05 18:32:48.654046');
+INSERT INTO `django_migrations` VALUES (10, 'auth', '0006_require_contenttypes_0002', '2018-05-05 18:32:48.660064');
+INSERT INTO `django_migrations` VALUES (11, 'auth', '0007_alter_validators_add_error_messages', '2018-05-05 18:32:48.674138');
+INSERT INTO `django_migrations` VALUES (12, 'auth', '0008_alter_user_username_max_length', '2018-05-05 18:32:48.884203');
+INSERT INTO `django_migrations` VALUES (13, 'sessions', '0001_initial', '2018-05-05 18:34:24.186407');
+INSERT INTO `django_migrations` VALUES (14, 'user', '0001_initial', '2018-05-05 18:34:34.752154');
+INSERT INTO `django_migrations` VALUES (15, 'show', '0001_initial', '2018-05-05 18:34:38.722046');
+INSERT INTO `django_migrations` VALUES (16, 'user', '0002_auto_20180506_0349', '2018-05-05 20:44:30.679280');
+INSERT INTO `django_migrations` VALUES (18, 'user', '0003_auto_20180506_0444', '2018-05-05 21:48:34.810967');
+INSERT INTO `django_migrations` VALUES (19, 'user', '0002_auto_20180506_1426', '2018-05-06 06:26:33.258562');
+INSERT INTO `django_migrations` VALUES (20, 'user', '0003_auto_20180506_1625', '2018-05-06 08:25:12.293571');
+INSERT INTO `django_migrations` VALUES (21, 'user', '0004_auto_20180509_1929', '2018-05-09 11:29:42.390493');
+INSERT INTO `django_migrations` VALUES (22, 'user', '0005_auto_20180510_1542', '2018-05-10 07:43:05.079303');
+INSERT INTO `django_migrations` VALUES (23, 'show', '0002_auto_20180510_1542', '2018-05-10 07:43:08.897251');
+INSERT INTO `django_migrations` VALUES (24, 'user', '0006_auto_20180510_2240', '2018-05-10 14:42:24.806300');
+INSERT INTO `django_migrations` VALUES (25, 'user', '0007_auto_20180510_2242', '2018-05-10 14:42:25.055636');
+INSERT INTO `django_migrations` VALUES (26, 'show', '0003_auto_20180510_2240', '2018-05-10 14:42:30.499980');
+INSERT INTO `django_migrations` VALUES (27, 'user', '0008_auto_20180510_2302', '2018-05-10 15:02:38.248959');
+INSERT INTO `django_migrations` VALUES (28, 'user', '0009_auto_20180510_2305', '2018-05-10 15:05:51.200700');
+INSERT INTO `django_migrations` VALUES (29, 'show', '0004_auto_20180511_1926', '2018-05-11 11:26:17.278348');
+INSERT INTO `django_migrations` VALUES (30, 'user', '0010_auto_20180511_2146', '2018-05-11 13:47:03.019746');
+INSERT INTO `django_migrations` VALUES (31, 'user', '0011_auto_20180511_2149', '2018-05-11 13:49:31.168574');
+INSERT INTO `django_migrations` VALUES (32, 'user', '0012_auto_20180512_2202', '2018-05-12 14:02:29.060978');
+INSERT INTO `django_migrations` VALUES (33, 'user', '0013_auto_20180512_2245', '2018-05-12 14:45:27.272933');
+INSERT INTO `django_migrations` VALUES (34, 'show', '0005_auto_20180514_1707', '2018-05-14 09:07:38.884877');
+INSERT INTO `django_migrations` VALUES (35, 'show', '0006_member_sex', '2018-05-14 09:19:24.752435');
+INSERT INTO `django_migrations` VALUES (36, 'show', '0007_auto_20180516_1928', '2018-05-16 11:28:19.900506');
+INSERT INTO `django_migrations` VALUES (37, 'tes', '0001_initial', '2018-05-26 06:39:20.306276');
+INSERT INTO `django_migrations` VALUES (38, 'show', '0002_auto_20180609_1945', '2018-07-14 21:38:53.436180');
+INSERT INTO `django_migrations` VALUES (39, 'user', '0002_auto_20180608_2023', '2018-07-14 21:41:55.290469');
+INSERT INTO `django_migrations` VALUES (40, 'user', '0003_auto_20180609_1944', '2018-07-14 21:41:55.440283');
+INSERT INTO `django_migrations` VALUES (41, 'user', '0004_visituser', '2018-07-14 21:41:55.500256');
+INSERT INTO `django_migrations` VALUES (42, 'user', '0005_delete_visituser', '2018-07-14 21:51:20.217474');
+INSERT INTO `django_migrations` VALUES (43, 'user', '0002_visituser', '2018-07-14 23:12:17.885318');
+INSERT INTO `django_migrations` VALUES (44, 'show', '0002_auto_20180721_0027', '2018-07-21 00:27:57.393504');
 
 -- ----------------------------
 -- Table structure for django_session
 -- ----------------------------
 DROP TABLE IF EXISTS `django_session`;
-CREATE TABLE `django_session` (
+CREATE TABLE `django_session`  (
   `session_key` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `session_data` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `expire_date` datetime(6) NOT NULL,
   PRIMARY KEY (`session_key`) USING BTREE,
-  KEY `django_session_expire_date_a5c62663` (`expire_date`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  INDEX `django_session_expire_date_a5c62663`(`expire_date`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of django_session
@@ -633,6 +720,7 @@ INSERT INTO `django_session` VALUES ('0a3mbpqbiiuzahl4udrpi3qjjzkxr777', 'Y2IwOW
 INSERT INTO `django_session` VALUES ('0a9q2o60cu2n6ln2y75k4y3zabbamskl', 'YTBhODJhMWMxZmNhZGFjZmZlMjU0ODM4ZmZjYzM1M2IzZWU0YzAyYzp7IklrYU9abDd1ZTgiOjQ4Mjl9', '2018-06-21 09:10:25.162328');
 INSERT INTO `django_session` VALUES ('0abp330xi3xn53f9k8xtdfjshq5b0kq3', 'NTUyOGY0YWNjNjI3NTY4NWZhZTIwZDJhYzBiZDE2NjQyZTkyMzNlMjp7IkxYRGQwcGtxajkiOjk5ODV9', '2018-06-21 09:55:20.059656');
 INSERT INTO `django_session` VALUES ('0ah3i7aesmjnjx5foziyc0s1fasvdrr5', 'MTU2YWEyZGFiYjg0NjZhYzUxMzQ2ZDZjNzdjOWFmMWY2YmUwMWEyNjp7ImJwRXQzbVhYdlMiOjc0NzB9', '2018-06-21 09:17:45.134521');
+INSERT INTO `django_session` VALUES ('0aii2armqnhth20o78mx31tjgxjoflpd', 'ZjJhNjk0N2M0YTcwNDQxNmNkZDBiMGE0MTkwYjU0MmNiZjFjZmE4Zjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYmY2ODY3Nzg3OTE0ZTQ4Y2RiMTIyZGZhMmMyOWNjZWEyYzEwOGRkIn0=', '2018-08-02 16:33:30.844561');
 INSERT INTO `django_session` VALUES ('0ajux6lkwkeugna2wvgpndxvpwwxtebo', 'NDMyODBjOWZlMzU0YmU5NmQ1ZmExMzRkOWQ0NWM4ZWRkNDRiODNjNjp7IlBBN1Njc3hLS3YiOjY5NDV9', '2018-06-21 09:16:14.560336');
 INSERT INTO `django_session` VALUES ('0anco274whlfwxp3tzxbk4xkhxa8em7f', 'MTEyMDlmNzE0Y2IwZTllNzE5ODNjMTJlOWZiODEyNWQxMzU3MjgxYjp7ImtZTTVid1k1elkiOjc4ODl9', '2018-06-21 09:18:55.916573');
 INSERT INTO `django_session` VALUES ('0aqii15d5gex0auna8oywr8rl92t9y2s', 'M2UxYmQ2NTliZDQ3N2FiM2RlNTYxMDYwNDNkNjNiNDc3YmY1MzI2Yjp7Im8xNk8zZ3Z1U1IiOjYxMzl9', '2018-06-21 09:14:09.489170');
@@ -865,6 +953,7 @@ INSERT INTO `django_session` VALUES ('1hwt4ximemk1u0w936xc4bbpimpldjam', 'NGNkYz
 INSERT INTO `django_session` VALUES ('1hwy0w8w6db6tmngxvk4xcfiy2sfgcfj', 'ZWJjYWYxYzNmYmYxMTk4Y2Y5MTNjODBlZGFiOTA5OGZiYWY5MWUwMTp7IlJmdXZDaUhic2wiOjU3MDZ9', '2018-06-21 09:12:59.880185');
 INSERT INTO `django_session` VALUES ('1ic23briwoxkkvz4n6bfgirtirnjaxcj', 'M2E4YWIxMWI3ZDc5OTcxNjhmMjQwMjhmMzBlZGIzYjc0OTRkOGY2NDp7IlVxQ1o3bGxPNzkiOjQ0MTN9', '2018-06-21 09:09:14.775287');
 INSERT INTO `django_session` VALUES ('1iglhig97nfimr90xbj2k93l1w0rw1f5', 'OGQxYTVhMTM2Zjg0NGJiMGY0NWY4MDdiZGNkYzQyZWIwMGYxMzlkNjp7ImJ2UnVWVmtmUUMiOjk5Mjd9', '2018-06-21 09:55:16.136426');
+INSERT INTO `django_session` VALUES ('1j12jc3jrtwvzsyr5egc3zxpk8t9a8h3', 'NDM2MDA3YmYyYTgxN2Y5ZjBiYzhkNDkxOTcwMDYxZmEyZDVmNzM5NTp7ImlkZW50aWZ5IjoiMW9JWCJ9', '2018-08-02 22:06:07.191522');
 INSERT INTO `django_session` VALUES ('1j5e0gn9mv8kple61nzrnmrwvqikqsd1', 'NzQ4YTQxZTcwYzNlZDA4ZDFkNmNkODU2ZGE5N2UwYmRjNmU3NDQ3Njp7IkczYnpLbXIySm4iOjU2NDJ9', '2018-06-21 09:12:51.880728');
 INSERT INTO `django_session` VALUES ('1jak9gtd90gcj6acz9vr29e1uwdhguu7', 'NDAyYTFlMDRhYmIwMWYwMDVkMThmZGEwMzc4ZTc1MzAzZGVjZDRmYzp7ImVVakl4UENLckQiOjQxNzB9', '2018-06-21 09:08:32.220858');
 INSERT INTO `django_session` VALUES ('1jaklwd45b9kxhtw69snvzoyvcy4ufod', 'NjcwYWEyMjI5ZGQ5ZjNkM2MxMTQ5OTZkODJkNzQzYjczMjc4ZTc4Yzp7InhucnVQQ0VLSXgiOjkyOTl9', '2018-06-21 09:54:06.481443');
@@ -1229,6 +1318,7 @@ INSERT INTO `django_session` VALUES ('3qkjqr8w36egi0bcm4glqfjbhx2bxhfu', 'YzJiYj
 INSERT INTO `django_session` VALUES ('3qkx5si4pafcjm8gha5l60rn4ghw1wom', 'ZmIyZDYwOWJjNjc2ZTBmNzYzYWE4NGRlYmM3YmMyNmRhN2UwZGI1Mjp7Ik9oWXIzU1JPZEIiOjQ3MDd9', '2018-06-21 09:10:02.690053');
 INSERT INTO `django_session` VALUES ('3qnz2d1x0x2pdtor5k3gtlohccxja3x9', 'NGYyODEzOTU1NDE5MjkwMGRmYWY3YjcyNjU4MzAyNGVjYjA2YzQzMzp7InFvY1RDYWxqbUkiOjQwMTd9', '2018-06-21 09:08:03.073188');
 INSERT INTO `django_session` VALUES ('3qusuelf63l4ic7dws28afvy9vobpc5k', 'MmFmYmVhMmZiMDI3NTY4ZDViYTkzZWRjZmFjNWVlZGU2YjFlNjFmOTp7InhPd1FmUGJINXUiOjQ2MTV9', '2018-06-21 09:09:48.101197');
+INSERT INTO `django_session` VALUES ('3rhd9poj7jqwgdhxsqjmw4e0q9v7z7r4', 'MDBhYWU1MDU5YzYxMTgzZmIzOGE5OTkzMDBmY2FmOWJhYWU2ZWM0Mjp7ImlkZW50aWZ5IjoiRHhyNCJ9', '2018-08-03 21:45:47.801479');
 INSERT INTO `django_session` VALUES ('3rkg3h7lb0kas85zbd49g36t0buf54wj', 'OTIzYTA4OTdmOTI4MDU0YmQxMGU4ZWRiM2ExNWEwYzI2MDdhMzI2Yzp7InpPTXg5d2l1MlgiOjQxODl9', '2018-06-21 09:08:35.261035');
 INSERT INTO `django_session` VALUES ('3s93v74q28m5n102unmvfpteimx63rz4', 'NjlkMDYwMzlmOGVjZGYxYjNjNDkwY2ZiMDg0NjBmNTFhODY2ZDljNjp7IlpnczR3cFlQZEoiOjM5MzJ9', '2018-06-21 09:07:45.086162');
 INSERT INTO `django_session` VALUES ('3skyz5qf1fi3efuxglgzr5e8oycx94jb', 'ZTMzOTMwZGFjNzg0OGZmZTk0MzFiZDc4ZWZiYWIzYmY1ZmE3OTI4Zjp7ImpBdzl0Q2JtOTQiOjcxMTh9', '2018-06-21 09:16:44.571047');
@@ -1673,6 +1763,7 @@ INSERT INTO `django_session` VALUES ('6c0n6tjxu7l0hshu69vnj8gzz3p8e5og', 'OGQzNz
 INSERT INTO `django_session` VALUES ('6c0p7s3zg3hb62qgpaksfdn3esje5s2m', 'YmZmYWRhODVmNTdmMDczYjlmZmU5NzEyODNhYjRjYWMyODA1MjhlZjp7IjlwYk9pb21WYVkiOjUwMjl9', '2018-06-21 09:11:01.783426');
 INSERT INTO `django_session` VALUES ('6clprlnfn5u6fr2k2hxn4iww6u2815nf', 'YmZkZGJlNjZjMTFhZDljOTRiNzQ2MWRlNDE1NWE2MTdhMGFiZmVlODp7IjVoaURWT3BweXAiOjk3MDZ9', '2018-06-21 09:55:01.255578');
 INSERT INTO `django_session` VALUES ('6cmmkug8ktg1udcrdgglz9zounuq8cas', 'NzRmNWRiNGYwNDc3OWEwMWZmYTg0OTQ4MDM3YTgyOThmNjc1YWU4Yzp7Ik1HZERlWlYwRWQiOjc1MjV9', '2018-06-21 09:17:53.137981');
+INSERT INTO `django_session` VALUES ('6cn7m1g6br6txciatlb5b1wu6mkwvhy3', 'MGY1Y2VlNTlmYWJlYzU5ODYzMmQ0ZDYzZGUxYjk2ZmE1ODViNmJlYTp7ImlkZW50aWZ5IjoiMDl4RyJ9', '2018-08-03 22:37:33.832893');
 INSERT INTO `django_session` VALUES ('6d1w7w0mp6zj3mvj3bh6hj236573iylo', 'ZGFlMTQxNDcyMmZiOTZiMDM5Nzk3OTZlMTRjOWU3YmNkMWE4YjNkYzp7IjBIc2wxYk51MlUiOjQ1NTN9', '2018-06-21 09:09:35.884500');
 INSERT INTO `django_session` VALUES ('6d4rrcfakpbmvpb2a0785xj8jiy82cys', 'NzhlOGFiMjQ4NGFhODI2OTMzNWM1MzY3OGM0ZmQxZTJjNDdmYTkxZjp7IjJSMWhhNnFiRGsiOjQ3MTZ9', '2018-06-21 09:10:04.447131');
 INSERT INTO `django_session` VALUES ('6d5ndteeioxiuerqf1y9mvxtkflp9ozw', 'ZmEzZTlmNzYzZDdkYjZlN2RmN2Y4MGVkZTVhZmMwN2M2OGE3M2FjMzp7Ikc1NUNtUXc5ZjIiOjY2OTV9', '2018-06-21 09:15:34.219026');
@@ -3760,6 +3851,7 @@ INSERT INTO `django_session` VALUES ('hr85ygf8z80hvsnekh50b5ae8fu36epd', 'MTI1Mj
 INSERT INTO `django_session` VALUES ('hrcqv71exeffhu49sfoz5cm17tvq5rey', 'YjNkZjhhODFiNWZkZDEwNDE5ZWU4Mjc4OTk2ZGZjNGJmMDEwMWM2Yjp7Im84UTg0QkN1WjEiOjg1NjN9', '2018-06-21 09:20:41.674632');
 INSERT INTO `django_session` VALUES ('hrkxzt3506kcg3g3l7nzeef10vaj585j', 'NTY2Y2JlZDNlZDA0MGM5OWJjZTI5YmZlMThlYmI1Zjc4YzU2MTMxNDp7IkJVbzJKM1c5NUwiOjgwOTh9', '2018-06-21 09:19:28.537443');
 INSERT INTO `django_session` VALUES ('hrqge1pj66cn0stz0qefgedr4rrlms2l', 'ZjAzN2UwZjgyNWMwMGQ0MzI2ODJlYjkxYTUxYTA1MTBmYzg0YmI1OTp7IkhQVUlJNWtHWEkiOjM5MDR9', '2018-06-21 09:07:35.495609');
+INSERT INTO `django_session` VALUES ('hs4abhgv5ehob4l71q11swgr9p5sdq8v', 'ZmZmZDhmODIxMjZmYWU1YmFlYmRlMGUzNzQ1YmYxMmU1Y2QwMDkwNjp7ImlkZW50aWZ5IjoiM2dHVCJ9', '2018-06-24 18:10:46.730760');
 INSERT INTO `django_session` VALUES ('hsgrdp6pumaiq8aabwgchhjabimugiam', 'YjU5ZTdiZjBlZWZhYjMxMjg0NDgzZGMzODQ1NTVkMzA0ZGYzNjU3YTp7Ik5ENGU4RmN5bjgiOjU0Mzl9', '2018-06-21 09:12:17.190741');
 INSERT INTO `django_session` VALUES ('hsmehmyhpe8f394xtb0rtyqyblrmv1rd', 'ZThiNjJkNzM2NzhhMjg1ZjcwZjc2YWI2ZDgxY2EwNWI2ZjgzZDc3Mzp7Ill3WkV5WUZaRjkiOjg5NDd9', '2018-06-21 09:53:16.063549');
 INSERT INTO `django_session` VALUES ('hssux1w7ap7cf9hc43lvl8o019dubz6l', 'MDUwODFiMzQwN2UwNTdkOTE2ODBmYjRmODJkNTg0OGI1YjhmYTcyZjp7ImFwdnE4cnViTW0iOjgyMzV9', '2018-06-21 09:19:50.488691');
@@ -3844,6 +3936,7 @@ INSERT INTO `django_session` VALUES ('ibm8tnyigmbkd5u055q530bti30v0bk7', 'NDI1Zj
 INSERT INTO `django_session` VALUES ('ibwqmooa8jioistqb1wtowhesm51zdia', 'ZWM2ZGUwOTZjMTk0ZjI3ZTRiNzIxMDc0Zjk3OTdiNzg0NTI5NjdkOTp7IkF0Vk5DS2duYUoiOjU3MzZ9', '2018-06-21 09:13:04.585452');
 INSERT INTO `django_session` VALUES ('ibxmlhl1nsmw5ha7yegw1zqrv78fggkg', 'ZWE0YTIxZmZhOTgxOTZmMjY4NWMxYTgzMTY2OTE2MjNmNWRkYzlmMzp7IjVyRGN4aEVCU3YiOjgxNzV9', '2018-06-21 09:19:39.706081');
 INSERT INTO `django_session` VALUES ('ic7ai94xtwmdp0o9t6e9396qcl1xu01w', 'MzJiMTIzNWY0MDIwMWEyMDlmMDljZWY0ZGYzMjljZTlhZTA1NDdmOTp7IlVtRVg1UFMybWwiOjg5Njd9', '2018-06-21 09:53:19.225727');
+INSERT INTO `django_session` VALUES ('icnhu54auk5hgtm4ex28ydqd6q7fiywp', 'MzZlYTkzZmMwMjQwZWZlYTkxNWFhOTY5MzY4MDVlMDllNTQ0MWE4MDp7ImlkZW50aWZ5IjoiWHpuMCIsIl9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYmY2ODY3Nzg3OTE0ZTQ4Y2RiMTIyZGZhMmMyOWNjZWEyYzEwOGRkIn0=', '2018-07-25 18:05:33.586264');
 INSERT INTO `django_session` VALUES ('icpdpr27c2aardk59h08x5dcxjs9blwo', 'Nzc3YzYxM2Q4MGJhNDNkOGE5YzgyMzEzOWQ2NjJkNDdiMWE0ODBmMDp7IjJjWklRemM4cEkiOjg5MDN9', '2018-06-21 09:53:10.109212');
 INSERT INTO `django_session` VALUES ('ics3qwwmx0dl1u47hav1r0e7wx38xrzo', 'NTEwZDlhYTg0NDU1YzRhZTdkMDAwODk4ZjdhZTExMTI5OGUzMjMwNTp7ImRvOGNtQ1h4Rm8iOjg3NjB9', '2018-06-21 09:21:15.475567');
 INSERT INTO `django_session` VALUES ('ictst6hjtwzqgtp7tscfmjod41p2laf7', 'ZDJmNmQ2NWEyMDExN2RhZGY4NzRhMjJmMWI5MGM3ZTE3OGRjNDY0NDp7IlllU2d5b214QVEiOjg2ODJ9', '2018-06-21 09:21:01.827793');
@@ -3866,6 +3959,7 @@ INSERT INTO `django_session` VALUES ('ifzyug6sctmxs9vjf1axp7wrzc3woikf', 'Y2Q3ZD
 INSERT INTO `django_session` VALUES ('igjon66ncj65im8wfta2hw7b5ywldju9', 'NDNlMDY2M2NkNzUyYWFjZGExNTUzNGQwNmM5ZTkzZGNmN2M5NjAxZDp7ImpDR3M3ZDRrZmoiOjQyNTV9', '2018-06-21 09:08:46.460678');
 INSERT INTO `django_session` VALUES ('igjtpyqr0xsofp5tqsxerx43d2ldw159', 'ODU0OGZmM2U4OGQ1ZjU5NTY2ZDI5Mzk3NzE1ZDJlM2IyZDBiYTAzNzp7IjZhRkR4cnZXTG0iOjg2Nzh9', '2018-06-21 09:21:01.306757');
 INSERT INTO `django_session` VALUES ('igktqh3u87ge2rr704savajlh6dwofju', 'ZmU5Mzg3NWY3ZjBiYjQxM2ZlYTlhOTBkMjg4NzI1YWFjNWM1NTVkMDp7ImtzZnVneEFhckMiOjg0MDF9', '2018-06-21 09:20:15.249121');
+INSERT INTO `django_session` VALUES ('igxo39mlw0a07sn3dx7cevuom3eanpn9', 'ZjIwNzQyODA0YmNlNDdmZDA4ZjRjNjI3MjNlNTc0MmY0ZDI0N2NhZDp7ImlkZW50aWZ5IjoiWUNMeiJ9', '2018-06-24 18:18:56.816620');
 INSERT INTO `django_session` VALUES ('igyo98gsggr3ro9c1r00tpzo8qn1mjbk', 'MGJjZTFjMjAxYjk1OTFkZTY3MWNkYWIwNjFmZmNmZDY3MWEzYTAxODp7IlVLdjZQdmJUSVoiOjYxMzF9', '2018-06-21 09:14:08.364112');
 INSERT INTO `django_session` VALUES ('ih8s0ccjihqqumli0q83bm3fz5zxv3od', 'ZmY0NTM1M2Q1NTQ3NDUyNTY1Zjk3MGVhYzRmOWQ0YTg3NThkM2NmODp7ImxVc2ZBa1Ezc08iOjc0MzR9', '2018-06-21 09:17:37.651093');
 INSERT INTO `django_session` VALUES ('ihmqk0h5vyc1ue43jt6z0cmrlnur9pa3', 'YTNiNGEzY2QyMDMwZGMzNzA3OTc5NDg5MGIyMzU1MjEyY2MwNTExNDp7IkRTTHN1d3NJMFciOjc0NTN9', '2018-06-21 09:17:41.544316');
@@ -3900,6 +3994,7 @@ INSERT INTO `django_session` VALUES ('imrz2hn1twz0f8rrif2jqbul8pcumabl', 'ZWY0OT
 INSERT INTO `django_session` VALUES ('imsgw5oldjab3df22zj9mvcjrldl2k7u', 'YjJjYmNlODRhYjcxYjE4MzNhM2ZiNzg0NjliMTEzNmZjZGM1YjRhYTp7IlNqMWRvNDNwSFUiOjk5NjR9', '2018-06-21 09:55:18.685567');
 INSERT INTO `django_session` VALUES ('inap27kym7wehtn1w4zk9yru3ircm6qn', 'OWY4NDMwOGI2MDc5YWFmMjg2NGE2MzA5MzRkODA0NGVmYWM3MmNmYjp7InFyekNacWZhZEQiOjk5MzJ9', '2018-06-21 09:55:16.495446');
 INSERT INTO `django_session` VALUES ('ind07ilmp5zbilxlcpwoq7mivdetxlo8', 'NzFhN2JmYmNmZGQ0MjY3NTVkYWNkNzQ5NzE2NzZlZGIzNzgyZmY0ZTp7IjN0ekppcEpJaTAiOjY5MDl9', '2018-06-21 09:16:08.792007');
+INSERT INTO `django_session` VALUES ('inj3alcs7feian0k4t9apikwhey1hdk7', 'NmZjM2E2YTI3ZWI5NmJkOWEwYjhjZGI1NTMxYTJiZDEzOWIzNDFjZTp7ImlkZW50aWZ5IjoiWkdtWSJ9', '2018-07-24 16:56:03.512259');
 INSERT INTO `django_session` VALUES ('io07f9fqor0w40uhcgnawo0cxzgc8ojp', 'M2FhMzBhMmJjZGZlMDQ2N2EwMmM3M2Y0ZjY0Mjk2ODAwYTY2YzMxYzp7IktKUkNKYjVpc0ciOjU1MTR9', '2018-06-21 09:12:31.285549');
 INSERT INTO `django_session` VALUES ('io63nz9hdi80nfm1a9op99h0tl3sjbt6', 'MmNkZDYxNGQyYjM5MWQxODVjYzI0Y2JhNWUyYTAxZWQ1MzVhYmM4ZDp7InZsZXo0NW95SHciOjU2NjV9', '2018-06-21 09:12:54.728888');
 INSERT INTO `django_session` VALUES ('ioce2yzc5kjgoew4xk6amlqzpmhscjaa', 'MzlkZGMzNzQ5YTVlY2I4M2VhYjJkOGFiZGFlMDNmZWQzZTE2MGIzYzp7InRodjE0RU01UkEiOjk4Mjd9', '2018-06-21 09:55:08.785002');
@@ -3932,6 +4027,7 @@ INSERT INTO `django_session` VALUES ('iu9wo421mk4otndsg78092f53lq50t0o', 'YWVjNT
 INSERT INTO `django_session` VALUES ('iubczdg89ici6v7k7j61i9vlfy0ajnom', 'ZWNkODEwYjc2OTc3NWNjZWU5OTJkNzNmZWYzNjhiMDA3Y2VhMmZlNzp7Ino2MDZ6RHE5bksiOjg3MzN9', '2018-06-21 09:21:09.301210');
 INSERT INTO `django_session` VALUES ('iuecp3tf7bykju2eq4ifhqcvts2aftfh', 'YzQ0MzZiNGUzZGRiOWNhMWMzMGRmMzI5OTQwNzY1ODc3ODBjNTVkMjp7IjkzUmNPaXJJRFAiOjgyNDN9', '2018-06-21 09:19:51.504759');
 INSERT INTO `django_session` VALUES ('iuj8uxegowcewrwr70g4gnue2ltcnmeu', 'YTMyOTY1Y2U2NTE3MjMwM2I3MTgyOWFhMDlmZDY1OTczYTU2YTU4YTp7IkI5eVlKOXF5MFYiOjUzMzN9', '2018-06-21 09:11:56.434553');
+INSERT INTO `django_session` VALUES ('iuk19r6tm0k4jl2jnx2eum8ffa0fyqb1', 'YTQzMTlmNzhlYmQ2YWI1ZjNmZWJhYjBiZGM0ZDNmZjI4NDBmODYyNDp7ImlkZW50aWZ5IjoicFdNViJ9', '2018-07-24 17:01:36.340154');
 INSERT INTO `django_session` VALUES ('iun9fwwyxmnva7rgw3jyyn5jpmj39l9l', 'ODg5NWZjNTg3YWZiYWI2N2JmMjY5ZDNlYzFlMGNlZmQzZDgzOWQ2Zjp7ImxZWlRNSXN2cjgiOjcyNDd9', '2018-06-21 09:17:07.029332');
 INSERT INTO `django_session` VALUES ('iuyt7s31vdeuu0frn459ccabz5ygft71', 'NWI0Yjk4NzVlODFkYmEyZGRlZjk2MjdhMTFlMWQwNTU5NTAwNjY4OTp7InhxbWVWa1BibW0iOjYzMDl9', '2018-06-21 09:14:36.107705');
 INSERT INTO `django_session` VALUES ('ivcgbx452d3crew4ohk9buzp1niep2uw', 'NGFmZDFkM2ZiZjcxNDI1M2Q4MjQ2NzZjYzQ3MzQ0ODkyNGZkZTY0ZTp7Ik1uclBQVThxVDUiOjk2NDV9', '2018-06-21 09:54:57.078331');
@@ -4283,6 +4379,7 @@ INSERT INTO `django_session` VALUES ('kv4lhbvxbmrigm7rlgyw1nlcvawr3okn', 'ZWVkND
 INSERT INTO `django_session` VALUES ('kv5w7kg7vq6o3sf4o72vywvhlvygwsam', 'MjY5MzU2YjZmMzVlNzIxOGQ5Mjc4Y2RiYThiMzZjNzE2ZGJiMTg3Mzp7InNKRldkR1JZSG0iOjg5NjJ9', '2018-06-21 09:53:18.633702');
 INSERT INTO `django_session` VALUES ('kvglxknucqxme6yzyjrzbxhkfnc7tkuj', 'ZTE4NzQ2Y2RjN2MyNGQ0MDMzZTg1NTYyOWU4YmM3NTRhYTcxNDJkNTp7IjU2Y0hudXBCcTUiOjQ3Mzh9', '2018-06-21 09:10:07.889328');
 INSERT INTO `django_session` VALUES ('kvpob1wjzxif2nuv0o1qllyeks7gcpom', 'MmNmYmZlZmM4ODhkZjgzZWI3MTRlNGNmMWMzMjZjZmVmMTliZWZhNjp7ImVGcUt4Vm9iZDYiOjkzMjh9', '2018-06-21 09:54:12.376775');
+INSERT INTO `django_session` VALUES ('kvqrctc11ninlmh2p33z2psror4clnam', 'ZjJhNjk0N2M0YTcwNDQxNmNkZDBiMGE0MTkwYjU0MmNiZjFjZmE4Zjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYmY2ODY3Nzg3OTE0ZTQ4Y2RiMTIyZGZhMmMyOWNjZWEyYzEwOGRkIn0=', '2018-07-31 09:53:31.331055');
 INSERT INTO `django_session` VALUES ('kvtq7163inks74cunynid2pkbs4wxn1l', 'MDk3MWJlNTNhNzFiM2I0MGJhZDQ5MGY5OTkyNGZiMGQ2NzFlM2UxNjp7IlR1MEdrMzFXOHQiOjcyNzJ9', '2018-06-21 09:17:11.773608');
 INSERT INTO `django_session` VALUES ('kvw8ul46b8ebb61g9e82wc3yqbtmpgg2', 'NDI2NzdmNmUzNGQ1ZGI5ZGM5YTM3NGU0ZjliZjlmNjk5MTdiZjI3Mzp7ImFCMlJmSDNlT1AiOjcwNDB9', '2018-06-21 09:16:32.022338');
 INSERT INTO `django_session` VALUES ('kwjqobjag9yslzh1wloin3yfn9dpkysc', 'MTFjMmFhZmFmZjE0NDkzYTVjNTQxM2RkNWRmMGM0YzU2YTM3N2Y0Mjp7IkNTd0I1VHNrUDMiOjUxNTF9', '2018-06-21 09:11:20.504497');
@@ -4547,6 +4644,7 @@ INSERT INTO `django_session` VALUES ('mcw0c0zboz4lmwmm8kbsjznoimm392ox', 'MzJmZW
 INSERT INTO `django_session` VALUES ('md63xwbirbr1ay504lupk3nrfrfu2xuy', 'Y2IzMDdlMjQ0MDAzNzM3YmJiOTM2MzQ4YWY1NDc1NGRjYzg5M2Q2Mzp7IjltZTlON2tLM0QiOjg1MzJ9', '2018-06-21 09:20:36.595347');
 INSERT INTO `django_session` VALUES ('md8gzhzzrkxurbasxudia7wp6bgw1m23', 'NzFiZmM1MDY5NDc3NDg1YTBjZDRkYWNiOTBhMDVkNjlmNThjMTNmZTp7InA0bDJ0dEdQRDUiOjc3NDV9', '2018-06-21 09:18:32.287221');
 INSERT INTO `django_session` VALUES ('mdifxds71w5sgomh409jb7ptxhwbiamp', 'MDBlMjdjOGIxYjY4ZGNjZTg1ZTNkNGVmM2I2MzhkNmE5OTY4M2IxNTp7IkZXWUhkWnc4NmIiOjk0MDV9', '2018-06-21 09:54:23.648434');
+INSERT INTO `django_session` VALUES ('mdw4oiu86q6nry5u2lthuob2zh64nges', 'MzU3OGI0NTY5N2Q1YWRiYmZkYWQ0ODc5ZmZhZTFhNDI1ZTAwNTJhODp7ImlkZW50aWZ5IjoiOGlnOSJ9', '2018-08-03 23:38:54.936888');
 INSERT INTO `django_session` VALUES ('me6yyrl8sq0p90fkuq1gkel7qa4gr8l8', 'OWE5OTNkODRmNjg1MDY5NjQ4ODg0NGFiOWM3Mzg0ZGVmNmE1MDQ4Yzp7IkZUd1NYMWlMcXYiOjUwMjR9', '2018-06-21 09:11:00.930371');
 INSERT INTO `django_session` VALUES ('meh2byc2lyy8t3lxu4ffzd2krzyfzxni', 'ZTlkZjNhZTIwNTU0N2MwZWIzNTUzYmQzNjdiMmFjYzQzN2FkMmZkMDp7InlCZG9kanpvRmciOjk2MjR9', '2018-06-21 09:54:55.884272');
 INSERT INTO `django_session` VALUES ('meint4355tvc0ye659eap4n55yzfbbi3', 'ZGM2MDI4NTlhNjMwNjZhMWQ1MDMzZjA3NThiMTFlNTIzNDAyMDJhODp7IkpQalY3TExQWUYiOjgzODZ9', '2018-06-21 09:20:11.461904');
@@ -4584,6 +4682,7 @@ INSERT INTO `django_session` VALUES ('mm4jy5xjvw8q55a2zapbgk5agawffmc9', 'NWM1MT
 INSERT INTO `django_session` VALUES ('mmf4z20j9f92r1yvdm2004gwyt31tf97', 'NTQ3YmY0NmVhZGVjMzRmNWFjZmMyYmM1MTVhODZlZTFmYjEzNDg0YTp7ImtwT2FDWklVZFYiOjc2MTl9', '2018-06-21 09:18:07.106780');
 INSERT INTO `django_session` VALUES ('mmvn8kgqm13f0oavpvah3vkwe5qj6bfw', 'MmZmYmFmOWExNWNmZmZiZWQxZTkwMWUwYmFlMzI5MGVmODJhYTZkODp7ImpKMEp1SVBTNHQiOjQ5Mjd9', '2018-06-21 09:10:42.237306');
 INSERT INTO `django_session` VALUES ('mn0thrnd4ij0y7646mr4tgqt97tkn7nd', 'ZGVlNzhlMzk1OGQ1OWM1NWQyNmI3MmY4ZTNlOTViMTYwOWJkMWY4Yzp7Ik5rMnVCaTJWVGoiOjk2OTV9', '2018-06-21 09:55:00.564540');
+INSERT INTO `django_session` VALUES ('mn3pk1spx4aapricqaasmg77cl8846hs', 'NGUzYzUyYzk0YjYzNWRhNzRlZTU5OWQ1ZDc4MmZhYTVjZmQ3YzI2YTp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYmY2ODY3Nzg3OTE0ZTQ4Y2RiMTIyZGZhMmMyOWNjZWEyYzEwOGRkIiwiaWRlbnRpZnkiOiJGUFNuIn0=', '2018-08-04 00:13:21.536301');
 INSERT INTO `django_session` VALUES ('mn6oyaygsr0r7qa57u9hbt9ci8l33qgj', 'OTNjZGI0ZWE4ODU5OWI2OWQxNDczMGQwNWFjYzA2YTJmY2NkZWJjNzp7IjRXem5EVFZLQVIiOjg0MjB9', '2018-06-21 09:20:18.723318');
 INSERT INTO `django_session` VALUES ('mnb0ysnwuwqkslxhemau8b00m52obf90', 'NmFjM2NmMDVmYTJiMzU3NWI1NDEwOWE2OGQ1ODRlOGM2NzcxYjY4Yzp7IjZVa0Z6ekpOMTkiOjkwNjF9', '2018-06-21 09:53:34.306600');
 INSERT INTO `django_session` VALUES ('mne03oej74ldznih63tr3h3hqfilhsb3', 'NzViY2Q5ODg2OGY4Yzk3ZDcxOWJjMTE0ZTFhYmEyZmE5NzFkY2ZkZDp7IlU3NDdRZFNsSnMiOjU0NTR9', '2018-06-21 09:12:19.725881');
@@ -4896,6 +4995,7 @@ INSERT INTO `django_session` VALUES ('o8w30iagekbxbyadfjunm1si04jn9ggu', 'OGI1Mz
 INSERT INTO `django_session` VALUES ('o90p3zvj0sok4t070vav4fifee9fwa17', 'ZGRiYjU2ZmQ1YTMxYjIxM2FkMmJhMzJjZWM4Mzk3NDJmOWEzYmFjNzp7IkdiTURkOW5IUW0iOjUzMDN9', '2018-06-21 09:11:50.822232');
 INSERT INTO `django_session` VALUES ('o96o3ymhsvhjrpajh5l2ox6l8po4a7ak', 'N2NhODdmZjYyZDQxNzViOTU5ZjIyZWNmODdlNzAyZGFlM2VkNTY0Njp7IkdZVXpmR2RpWGwiOjY5Njd9', '2018-06-21 09:16:17.825514');
 INSERT INTO `django_session` VALUES ('o97qkal8owr04vjngwndci3z9dwk8vdz', 'YTI0YTRkZTc4N2NjNDY3ZTQ3M2M3YjA3MzI0NGYzNWY1NTkwZWUzMzp7ImEwekJUdnB2MjciOjg5NzN9', '2018-06-21 09:53:19.941777');
+INSERT INTO `django_session` VALUES ('o984qzijltha3uwg039214vcs31n9fpw', 'N2I1ZGYyMjgxODljMTA2NDFlMzkxMjYwM2Q4MTEwODJiZTUwOGJjZjp7ImlkZW50aWZ5IjoiZUFnaSIsIl9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYmY2ODY3Nzg3OTE0ZTQ4Y2RiMTIyZGZhMmMyOWNjZWEyYzEwOGRkIn0=', '2018-07-24 16:47:47.358128');
 INSERT INTO `django_session` VALUES ('o98n6e4v2jvc39k1cuvee0q85jt7kc1o', 'ODY3Nzk2ZjczNzQ5ZTdkOTQ0YmYyYTJhZGVlNjY2ODY0ZWQ2MTdlNDp7IldnSTBFZTJQeGoiOjg1OTd9', '2018-06-21 09:20:48.110992');
 INSERT INTO `django_session` VALUES ('o98v8w71w9q8cxjs40v6ept077gyielv', 'NWJkYmEwYmRmNWY4ZWFiMzNiMWI3MGUzMmQyNmUwNmM2NThmZjgyNDp7IjdIemZteFJKcFMiOjkzNDh9', '2018-06-21 09:54:14.974927');
 INSERT INTO `django_session` VALUES ('o9ey3fuy21y6sgq3lo80fea4zgvk7rqd', 'NzczMzU1YjNiMmQyODcwYTQ5ZTFhZjE3MDllNTM1MDQzYmNmMmU1NDp7ImFhSU10b0s5MUMiOjgyNzh9', '2018-06-21 09:19:56.855065');
@@ -4987,6 +5087,7 @@ INSERT INTO `django_session` VALUES ('oqz8s9fsju2fkh2tod89kysy87vz3def', 'NjM1YT
 INSERT INTO `django_session` VALUES ('oqzny0s7au8xuck5rvnz4kmanens5evs', 'NTlhNTA2NDgyMmQ4ZDA2NWNkZmJjNzUzOWRjMTBkZmJlNzc2Y2IzNDp7Im1wZjNQRnlnMngiOjY0NTF9', '2018-06-21 09:14:54.449747');
 INSERT INTO `django_session` VALUES ('orakrnlifd7itmiwzrg321trb1aa9shi', 'NjJlOWY0ODk3OTM2NmU0YzdjMmMwYTIyMDYxOWZkNzdjZWMyMTE5Njp7ImlkZW50aWZ5IjoieXF5ZiJ9', '2018-06-21 02:35:17.151657');
 INSERT INTO `django_session` VALUES ('orovbfkr61vlttbzrp1sx50ici5s0a6u', 'YTBkZjUzNzY5MWY1OWRmMTYwM2RlYzc5N2MwMDlmYmVhNDNhNzgxYTp7IkhjVGhmbmZKVXgiOjQ3NjJ9', '2018-06-21 09:10:13.467653');
+INSERT INTO `django_session` VALUES ('oruz0q4cnu182kc4qh2c7h9v7ms655sh', 'YjhlNDJiODQ3YjdkMjk3ODkzNDY4MGRkMDViODJlZDRjNDIxYzkwNjp7ImlkZW50aWZ5IjoibzA1RCJ9', '2018-06-24 15:36:47.350883');
 INSERT INTO `django_session` VALUES ('osa6lzj3lpgh78yd0sgys2gzkkilebsh', 'OTUwYTlhM2ExY2M5YjJlODY4NmNhMzY4MzQ5ZWFkMDcwMjZhZmJmYjp7ImhmQU42RGM5R3YiOjg5MTd9', '2018-06-21 09:53:11.863310');
 INSERT INTO `django_session` VALUES ('osijkwr10jc9vz0cbmdfuiisvzr26540', 'ODJhNjU1MjE4NDJkOGVkMzE2NGJhZjQwYzY1NmY4Mzg2MmI1YzI4ZDp7Ikt2c2djSGk2TDciOjQwOTV9', '2018-06-21 09:08:19.476127');
 INSERT INTO `django_session` VALUES ('osmchqymbgdp099bgoh73jeb6xwgoqr1', 'YjZhMWQ4OWM4NjI4MTU4YTFjYTNkYWRmNmU1MGNmNmY4OGMxOTk1YTp7IlV1YmZ3RUhFRnciOjQzODd9', '2018-06-21 09:09:08.307925');
@@ -5391,10 +5492,12 @@ INSERT INTO `django_session` VALUES ('r2ls6470pru61p4ew6rgei924tam09zz', 'MGNjMW
 INSERT INTO `django_session` VALUES ('r2npoday5o3ebfmq6vbl8met897jor9u', 'MjczYjQ5NzQ0NzVjNzI3Y2I3ODAyYmU5OTVkYzdmMGQwYjIwZjhhOTp7IjNXeTRMSmFrOG4iOjc5NDZ9', '2018-06-21 09:19:03.976028');
 INSERT INTO `django_session` VALUES ('r2q0uiasgpwgshaixu0aj26l3chx45wk', 'ZWU5NDRhYjYwZWY5ZDQyYmUyZmU1YzQ3NDI2Nzc5NDJlMmM1YWE5MDp7Ing0TXFKOE11NUkiOjQ4ODd9', '2018-06-21 09:10:34.756875');
 INSERT INTO `django_session` VALUES ('r2r0xh7iv9pa6wlqkevvq4o2famx9t8s', 'NDI4ODg0NmI4YzQwMGQxMWIwN2E0YzQ4ZmRiNjExYWFlZWY4MzM3NDp7InJSNHBaVXJUZEEiOjQzODZ9', '2018-06-21 09:09:08.154913');
+INSERT INTO `django_session` VALUES ('r2vpjjah6hpaaz32u2uhobrbep8cpn59', 'YmJjNGE3OGFhZDRjMTk2YzY5MGI0OWE1MDNkN2FhNjVmNjc5NDBjNDp7ImlkZW50aWZ5IjoiVU1PZiJ9', '2018-08-03 21:44:43.076463');
 INSERT INTO `django_session` VALUES ('r3bbg98cc7cs0xx20nmwghc833op42mp', 'OTE3OWNhYjE0Yjk5ZDAxMjQ0ZTY1OTVjZmZjOGM1MzBkYTY5ZjBlYjp7IkRYUlFBN0YyTDciOjYzMjB9', '2018-06-21 09:14:37.104745');
 INSERT INTO `django_session` VALUES ('r3n6m7e1ks5wmabv3ltmok2g79hc6t2i', 'MjA0MzcyY2U4ZWFjOGFjZWYzZDNlNzBmMzNmNmFmOTQwYWJjMTY5Yzp7InFKQXVBZlRkUloiOjYxNTV9', '2018-06-21 09:14:11.672296');
 INSERT INTO `django_session` VALUES ('r3q1xjc0hrqq6g80szudixxaltpo0r4g', 'NGVhOGQ5YzJkOWMwMGM4NzY3YmVjZjk4Y2U0NTdmYTU5ODg4ZWI5Mzp7ImQ1N29ZdTBwQ1ciOjQwMDV9', '2018-06-21 09:08:01.018074');
 INSERT INTO `django_session` VALUES ('r3vs1d3fm5iv5gw3up7n1ohm7345klf1', 'ODkxZDFjYTJmZjQ5ZDg5ZTY1NjQ4NWViMTUzY2QyY2U1OGVmOGQ3ODp7IkNvYlV3TmU2Q2kiOjQ3NjN9', '2018-06-21 09:10:13.592665');
+INSERT INTO `django_session` VALUES ('r3zi36wx6i3e5sxkgz69qz99ml75lf5z', 'MmU0YzE4OWRhZjZiYTc5YjFlMGQ2OWU5YWZiMmIyYjdlYmMyYzA4NDp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYmY2ODY3Nzg3OTE0ZTQ4Y2RiMTIyZGZhMmMyOWNjZWEyYzEwOGRkIiwiaWRlbnRpZnkiOiJFcENlIn0=', '2018-08-02 16:57:34.041037');
 INSERT INTO `django_session` VALUES ('r41pvjoyhcwmbcce29dpuvhva43bjpql', 'NjU2MDQwZGE4YzM1ZGVjZGNlZjEyZTQ1ZjQwZWNhNzUzMmRjMzZjZjp7IlA0a1huQU9xMHoiOjc4ODR9', '2018-06-21 09:18:55.253537');
 INSERT INTO `django_session` VALUES ('r4382xv0yhiy2p1omez1jo0hzikqv619', 'MjcyYTlkYjMyM2UxNDY0ZDdjNzlkNGJiNjg0NzFkNDc3YzUwN2MyMjp7IkxId2dpUGZlcXIiOjg3ODB9', '2018-06-21 09:52:44.825763');
 INSERT INTO `django_session` VALUES ('r449ap704gz4jwgz3e0zyths7uqghz6c', 'MjNjYzZmYWMzMzZmMjY4ZjlmY2QwYzgxYzBhODdiMjY4NTIwZDk1OTp7Im12VmlLV0liNG8iOjQwNTd9', '2018-06-21 09:08:09.247545');
@@ -6938,7 +7041,7 @@ INSERT INTO `django_session` VALUES ('zzxtylb9czhi7rkmbaeq43vznz8uxqi5', 'ZGIxMm
 -- Table structure for show_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `show_comment`;
-CREATE TABLE `show_comment` (
+CREATE TABLE `show_comment`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `createTime` datetime(6) NOT NULL,
@@ -6947,160 +7050,170 @@ CREATE TABLE `show_comment` (
   `code` int(11) NOT NULL,
   `reply` longtext CHARACTER SET utf8 COLLATE utf8_general_ci,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `show_comment_head_id_1a087e20_fk_show_headpicture_id` (`head_id`) USING BTREE,
-  CONSTRAINT `show_comment_head_id_1a087e20_fk_show_headpicture_id` FOREIGN KEY (`head_id`) REFERENCES `show_headpicture` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  INDEX `show_comment_head_id_1a087e20_fk_show_headpicture_id`(`head_id`) USING BTREE,
+  CONSTRAINT `show_comment_head_id_1a087e20_fk_show_headpicture_id` FOREIGN KEY (`head_id`) REFERENCES `show_headpicture` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 107 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of show_comment
 -- ----------------------------
-INSERT INTO `show_comment` VALUES ('2', 'mmm', '2018-06-07 00:00:44.124617', '3', '小明', '2', 'excited');
-INSERT INTO `show_comment` VALUES ('3', '嘎嘎啊嘎嘎', '2018-06-07 01:35:33.256418', '4', '爱特展示', '1', '');
-INSERT INTO `show_comment` VALUES ('4', 'gfdgdfgdfg', '2018-06-07 02:22:29.981719', '8', '阿萨德', '3', null);
-INSERT INTO `show_comment` VALUES ('5', '啥鼎折覆餗', '2018-06-07 02:26:33.293651', '4', 'aaa', '4', null);
-INSERT INTO `show_comment` VALUES ('6', '批量添加', '2018-06-07 02:39:07.655851', '3', '批量添加', '5', '');
-INSERT INTO `show_comment` VALUES ('7', '批量添加', '2018-06-07 02:39:10.859033', '3', '批量添加', '6', '');
-INSERT INTO `show_comment` VALUES ('8', '批量添加', '2018-06-07 02:39:12.938153', '3', '批量添加', '7', '');
-INSERT INTO `show_comment` VALUES ('9', '批量添加', '2018-06-07 02:39:19.856551', '3', '批量添加', '8', '');
-INSERT INTO `show_comment` VALUES ('10', '批量添加', '2018-06-07 02:39:22.059676', '3', '批量添加', '9', '');
-INSERT INTO `show_comment` VALUES ('11', '批量添加', '2018-06-07 02:39:23.993789', '3', '批量添加', '10', '');
-INSERT INTO `show_comment` VALUES ('12', '批量添加', '2018-06-07 02:39:25.545877', '3', '批量添加', '11', '');
-INSERT INTO `show_comment` VALUES ('13', '批量添加', '2018-06-07 02:39:26.929955', '3', '批量添加', '12', '');
-INSERT INTO `show_comment` VALUES ('14', '批量添加', '2018-06-07 02:39:28.783064', '3', '批量添加', '13', '');
-INSERT INTO `show_comment` VALUES ('15', '批量添加', '2018-06-07 02:39:30.634170', '3', '批量添加', '14', '');
-INSERT INTO `show_comment` VALUES ('16', '批量添加', '2018-06-07 02:39:32.322268', '3', '批量添加', '15', '');
-INSERT INTO `show_comment` VALUES ('17', '哈哈哈', '2018-06-07 04:10:37.781252', '3', '哈哈', '16', null);
-INSERT INTO `show_comment` VALUES ('18', '哇bug改完了', '2018-06-07 04:10:50.059956', '8', '哇bug改完了', '17', null);
-INSERT INTO `show_comment` VALUES ('19', '哇bug改完了', '2018-06-07 04:14:31.051610', '3', '哇bug改完了', '18', null);
-INSERT INTO `show_comment` VALUES ('20', '12', '2018-06-07 04:17:31.753960', '3', '1', '19', null);
-INSERT INTO `show_comment` VALUES ('21', 'hhhhhh', '2018-06-07 04:26:47.986815', '3', 'hhh', '20', null);
-INSERT INTO `show_comment` VALUES ('22', '11111111111111111111111111111111111111111111111111111111111111111111111111111111', '2018-06-07 04:28:09.018453', '3', 'hh', '21', null);
-INSERT INTO `show_comment` VALUES ('23', '5464', '2018-06-07 04:29:56.531610', '5', '256+59685+', '22', null);
-INSERT INTO `show_comment` VALUES ('24', 'werw', '2018-06-07 04:31:33.464160', '3', '23111111', '23', null);
-INSERT INTO `show_comment` VALUES ('25', 'hhhhhhhhhhhhhhhhhhhh', '2018-06-07 04:41:38.163791', '3', '666', '24', null);
-INSERT INTO `show_comment` VALUES ('26', '？？？', '2018-06-07 04:46:47.273491', '8', 'h', '25', null);
-INSERT INTO `show_comment` VALUES ('27', '12', '2018-06-07 04:48:07.206070', '3', '12', '26', null);
-INSERT INTO `show_comment` VALUES ('28', 'nxsa', '2018-06-07 04:50:00.375552', '5', 'kk', '27', null);
-INSERT INTO `show_comment` VALUES ('29', 'sssssss', '2018-06-07 04:59:17.064428', '5', 'sssss', '28', null);
-INSERT INTO `show_comment` VALUES ('30', '666', '2018-06-07 04:59:31.764273', '3', '66', '29', null);
-INSERT INTO `show_comment` VALUES ('31', '66', '2018-06-07 04:59:53.064492', '3', '66', '30', null);
-INSERT INTO `show_comment` VALUES ('32', '<Button>sss</Button>', '2018-06-07 05:00:16.115817', '7', 'gayzheng', '31', null);
-INSERT INTO `show_comment` VALUES ('33', '<img src=\"/static/img/logo.png\" class=\"IT_logo\">', '2018-06-07 05:03:21.939449', '3', 'lj', '32', null);
-INSERT INTO `show_comment` VALUES ('34', '<script>alert(\"文本\");</script>', '2018-06-07 05:06:11.195145', '3', '66', '33', null);
-INSERT INTO `show_comment` VALUES ('37', '<script>alert(1234);</script>', '2018-06-07 05:34:19.933853', '3', 'hack', '34', null);
-INSERT INTO `show_comment` VALUES ('39', '哈哈哈哈哈', '2018-06-07 07:20:31.553735', '3', '哈哈', '35', null);
-INSERT INTO `show_comment` VALUES ('40', '1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1', '2018-06-07 07:24:35.136689', '5', 'aa', '36', null);
-INSERT INTO `show_comment` VALUES ('41', '啊啊啊', '2018-06-07 07:32:09.039680', '3', '   ', '37', null);
-INSERT INTO `show_comment` VALUES ('42', '           ', '2018-06-07 07:32:51.243096', '3', '    ', '38', null);
-INSERT INTO `show_comment` VALUES ('43', '                                                                                ', '2018-06-07 07:33:52.347591', '3', '   ', '39', null);
-INSERT INTO `show_comment` VALUES ('44', '                                                                                a', '2018-06-07 07:36:02.742061', '3', '          ', '40', null);
-INSERT INTO `show_comment` VALUES ('45', 'test', '2018-06-07 07:49:41.750962', '3', 'dfgh', '41', null);
-INSERT INTO `show_comment` VALUES ('46', 'test', '2018-06-07 07:50:09.604554', '3', '<button />', '42', null);
-INSERT INTO `show_comment` VALUES ('47', 'dfghhjjj', '2018-06-07 07:52:11.924560', '3', '<a>123</a>', '43', null);
-INSERT INTO `show_comment` VALUES ('48', '   ', '2018-06-07 07:54:20.877947', '3', ' ', '44', null);
-INSERT INTO `show_comment` VALUES ('49', 'ass', '2018-06-07 07:56:05.620944', '3', 'sss', '45', '没内容也行');
-INSERT INTO `show_comment` VALUES ('50', '  ', '2018-06-07 10:26:07.676463', '3', '  ', '46', null);
-INSERT INTO `show_comment` VALUES ('51', '     vvv', '2018-06-07 10:26:41.152379', '7', 'dhd', '47', null);
-INSERT INTO `show_comment` VALUES ('52', ' c', '2018-06-07 10:28:49.603732', '3', 'c', '48', null);
-INSERT INTO `show_comment` VALUES ('53', '嗷嗷', '2018-06-07 10:35:02.128067', '3', 'a a', '49', null);
-INSERT INTO `show_comment` VALUES ('54', '我们的生活方式是什么时候回来呀，我们的生活方式是什么时候回来呀，去了', '2018-06-07 10:35:40.149241', '3', '嗷嗷', '50', null);
-INSERT INTO `show_comment` VALUES ('55', 'aaaa', '2018-06-07 10:44:27.652453', '3', 'aaa', '51', null);
-INSERT INTO `show_comment` VALUES ('56', 'aaaa', '2018-06-07 10:45:02.009423', '3', 'aaa', '52', null);
-INSERT INTO `show_comment` VALUES ('57', 'avv', '2018-06-07 10:46:46.536409', '3', 'd', '53', null);
-INSERT INTO `show_comment` VALUES ('58', 'bbb', '2018-06-07 10:49:43.903567', '3', 'aa', '54', null);
-INSERT INTO `show_comment` VALUES ('61', '少时诵诗书所所所所所所所所所所所所所所所所所所所所所所所所所所少时诵诗书所所所所所所所所所所所所所所所所所所所所所所所所所所少时诵诗书所所所所所所所所所所所所所少时诵诗书所所所所所所所所所所所所所所所所所所所所所所所所所所', '2018-06-07 11:39:04.396101', '3', 'llll', '57', null);
-INSERT INTO `show_comment` VALUES ('62', '少时诵诗书所所所', '2018-06-07 11:40:25.215729', '3', '所所所所所所所所所', '58', null);
-INSERT INTO `show_comment` VALUES ('63', 'aaaa', '2018-06-07 11:44:24.900454', '3', 'aa', '59', null);
-INSERT INTO `show_comment` VALUES ('64', 'ggg', '2018-06-07 11:45:46.955157', '3', 'aa', '60', null);
-INSERT INTO `show_comment` VALUES ('65', 'ggg#include <iostream>\nusing namespace std', '2018-06-07 11:47:23.973725', '3', 'aa', '61', null);
-INSERT INTO `show_comment` VALUES ('67', '54354354', '2018-06-07 11:52:01.873628', '3', '54', '63', null);
-INSERT INTO `show_comment` VALUES ('70', 'qeqwe', '2018-06-07 12:18:40.446172', '3', 'q', '64', null);
-INSERT INTO `show_comment` VALUES ('71', '112', '2018-06-07 12:18:55.046005', '3', '1', '65', null);
-INSERT INTO `show_comment` VALUES ('73', 'baozha', '2018-06-08 15:12:40.993089', '3', 'ewew', '67', null);
-INSERT INTO `show_comment` VALUES ('75', '咦，谁写的爆炸', '2018-06-08 15:15:12.898786', '3', '哈哈', '69', null);
-INSERT INTO `show_comment` VALUES ('80', 'sssssssss', '2018-06-08 15:31:34.750018', '3', 'ss', '73', null);
-INSERT INTO `show_comment` VALUES ('81', '啊啊啊', '2018-06-08 15:33:01.847997', '3', '啊', '74', null);
-INSERT INTO `show_comment` VALUES ('85', '啊\n啊\n啊', '2018-06-08 15:38:08.523560', '3', '啊', '75', null);
-INSERT INTO `show_comment` VALUES ('87', '这个评论的id是傻逼', '2018-06-08 15:55:24.079867', '8', '李学委', '77', null);
-INSERT INTO `show_comment` VALUES ('89', '目录\n奇珍异宝\n\nIn this, the final chapter of our journey, we will look at some odds and ends. While we have certainly covered a lot of ground in the previous chapters, there are many bash features that we have not covered. Most are fairly obscure, and useful mainly to those integrating bash into a Linux distribution. However, there are a few that, while not in common use, are helpful for certain programming problems. We will cover them here.\n\n在我们 bash 学习旅程中的最后一站，我们将看一些零星的知识点。当然我们在之前的章节中已经 涵盖了很多方面，但是还有许多 bash 特性我们没有涉及到。其中大部分特性相当晦涩，主要对 那些把 bash 集成到 Linux 发行版的程序有用处。然而还有一些特性，虽然不常用， 但是对某些程序问题是很有帮助的。我们将在这里介绍它们。\n\n组命令和子 shell\nbash allows commands to be grouped together. This can be done in one of two ways; either with a group command or with a subshell. Here are examples of the syntax of each:\n\nbash 允许把命令组合在一起。可以通过两种方式完成；要么用一个 group 命令，要么用一个子 shell。 这里是每种方式的语法示例：\n\nGroup command:\n\n组命令：\n\n{ command1; command2; [command3; ...] }\nSubshell:\n\n子 shell：\n\n(command1; command2; [command3;...])\nThe two forms differ in that a group command surrounds its commands with braces and a subshell uses parentheses. It is important to note that, due to the way bash implements group commands, the braces must be separated from the commands by a space and the last command must be terminated with either a semicolon or a newline prior to the closing brace.\n\n这两种形式的不同之处在于，组命令用花括号把它的命令包裹起来，而子 shell 用括号。值得注意的是，鉴于 bash 实现组命令的方式， 花括号与命令之间必须有一个空格，并且最后一个命令必须用一个分号或者一个换行符终止。\n\nSo what are group commands and subshells good for? While they have an important difference (which we will get to in a moment), they are both used to manage redirection. Let’s consider a script segment that performs redirections on multiple commands:\n\n那么组命令和子 shell 命令对什么有好处呢？ 尽管它们有一个很重要的差异（我们马上会接触到），但它们都是用来管理重定向的。 让我们考虑一个对多个命令执行重定向的脚本片段。\n\nls -l > output.txt\necho \"Listing of foo.txt\" >> output.txt\ncat foo.txt >> output.txt\nThis is pretty straightforward. Three commands with their output redirected to a file named output.txt. Using a group command, we could code this as follows:\n\n这些代码相当简洁明了。三个命令的输出都重定向到一个名为 output.txt 的文件中。 使用一个组命令，我们可以重新编 写这些代码，如下所示：\n\n{ ls -l; echo \"Listing of foo.txt\"; cat foo.txt; } > output.txt\nUsing a subshell is similar:\n\n使用一个子 shell 是相似的：\n\n(ls -l; echo \"Listing of foo.txt\"; cat foo.txt) > output.txt\nUsing this technique we have saved ourselves some typing, but where a group command or subshell really shines is with pipelines. When constructing a pipeline of commands, it is often useful to combine the results of several commands into a single stream. Group commands and subshells make this easy:\n\n使用这样的技术，我们为我们自己节省了一些打字时间，但是组命令和子 shell 真正闪光的地方是与管道线相结合。 当构建一个管道线命令的时候，通常把几个命令的输出结果合并成一个流是很有用的。 组命令和子 shell 使这种操作变得很简单：\n\n{ ls -l; echo \"Listing of foo.txt\"; cat foo.txt; } | lpr\nHere we have combined the output of our three commands and piped them into the input of lpr to produce a printed report.\n\n这里我们已经把我们的三个命令的输出结果合并在一起，并把它们用管道输送给命令 lpr 的输入，以便产生一个打印报告。\n\nIn the script that follows, we will use groups commands and look at several programming techniques that can be employed in conjunction with associative arrays. This script, called array-2, when given the name of a directory, prints a listing of the files in the directory along with the names of the the file’s owner and group owner. At the end of listing, the script prints a tally of the number of files belonging to each owner and group. Here we see the results (condensed for brevity) when the script is given the directory /usr/bin:\n\n在下面的脚本中，我们将使用组命令，看几个与关联数组结合使用的编程技巧。这个脚本，称为 array-2，当给定一个目录名，打印出目录中的文件列表， 伴随着每个文件的文件所有者和组所有者。在文件列表的末尾，脚本打印出属于每个所有者和组的文件数目。 这里我们看到的（为简单起见而缩短的）结果，是给定脚本的目录为 /usr/bin 的时候：\n\n[me@linuxbox ~]$ array-2 /usr/bin\n/usr/bin/2to3-2.6                 root        root\n/usr/bin/2to3                     root        root\n/usr/bin/a2p                      root        root\n/usr/bin/abrowser                 root        root\n/usr/bin/aconnect                 root        root\n/usr/bin/acpi_fakekey             root        root\n/usr/bin/acpi_listen              root        root\n/usr/bin/add-apt-repository       root        root\n.\n.\n.\n/usr/bin/zipgrep                  root        root\n/usr/bin/zipinfo                  root        root\n/usr/bin/zipnote                  root        root\n/usr/bin/zip                      root        root\n/usr/bin/zipsplit                 root        root\n/usr/bin/zjsdecode                root        root\n/usr/bin/zsoelim                  root        root\n\nFile owners:\ndaemon  : 1 file(s)\nroot    : 1394 file(s) File group owners:\ncrontab : 1 file(s)\ndaemon  : 1 file(s)\nlpadmin : 1 file(s)\nmail    : 4 file(s)\nmlocate : 1 file(s)\nroot    : 1380 file(s)\nshadow  : 2 file(s)\nssh     : 1 file(s)\ntty     : 2 file(s)\nutmp    : 2 file(s)\nHere is a listing (with line numbers) of the script:\n\n这里是脚本代码列表（带有行号）：\n\n1     #!/bin/bash\n2\n3     # array-2: Use arrays to tally file owners\n4\n5     declare -A files file_group file_owner groups owners\n6\n7     if [[ ! -d \"$1\" ]]; then\n8        echo \"Usage: array-2 dir\" >&2\n9        exit 1\n10    fi\n11\n12    for i in \"$1\"/*; do\n13       owner=$(stat -c %U \"$i\")\n14       group=$(stat -c %G \"$i\")\n15        files[\"$i\"]=\"$i\"\n16        file_owner[\"$i\"]=$owner\n17        file_group[\"$i\"]=$group\n18        ((++owners[$owner]))\n19        ((++groups[$group]))\n20    done\n21\n22    # List the collected files\n23    { for i in \"${files[@]}\"; do\n24    printf \"%-40s %-10s %-10s\\n\" \\\n25    \"$i\" ${file_owner[\"$i\"]} ${file_group[\"$i\"]}\n26    done } | sort\n27    echo\n28\n29   # List owners\n30    echo \"File owners:\"\n31    { for i in \"${!owners[@]}\"; do\n32    printf \"%-10s: %5d file(s)\\n\" \"$i\" ${owners[\"$i\"]}\n33    done } | sort\n34    echo\n35\n36    # List groups\n37    echo \"File group owners:\"\n38    { for i in \"${!groups[@]}\"; do\n39    printf \"%-10s: %5d file(s)\\n\" \"$i\" ${groups[\"$i\"]}\n40    done } | sort\nLet’s take a look at the mechanics of this script:\n\n让我们看一下这个脚本的运行机制：\n\nLine 5: Associative arrays must be created with the declare command using the -A option. In this script we create five arrays as follows:\n\n行5： 关联数组必须用带有 -A 选项的 declare 命令创建。在这个脚本中我们创建了如下五个数组：\n\nfiles contains the names of the files in the directory, indexed by filename\n\nfile_group contains the group owner of each file, indexed by filename\n\nfile_owner contains the owner of each file, indexed by file name\n\ngroups contains the number of files belonging to the indexed group\n\nowners contains the number of files belonging to the indexed owner\n\nfiles 包含了目录中文件的名字，按文件名索引\n\nfile_group 包含了每个文件的组所有者，按文件名索引\n\nfile_owner 包含了每个文件的所有者，按文件名索引\n\ngroups 包含了属于索引的组的文件数目\n\nowners 包含了属于索引的所有者的文件数目\n\nLines 7-10: Checks to see that a valid directory name was passed as a positional parameter. If not, a usage message is displayed and the script exits with an exit status of 1.\n\n行7-10：查看是否一个有效的目录名作为位置参数传递给程序。如果不是，就会显示一条使用信息，并且脚本退出，退出状态为1。\n\nLines 12-20: Loop through the files in the directory. Using the stat command, lines 13 and 14 extract the names of the file owner and group owner and assign the values to their respective arrays (lines 16, 17) using the name of the file as the array index. Likewise the file name itself is assigned to the files array (line 15).\n\n行12-20：循环遍历目录中的所有文件。使用 stat 命令，行13和行14抽取文件所有者和组所有者， 并把值赋给它们各自的数组（行16，17），使用文件名作为数组索引。同样地，文件名自身也赋值给 files 数组。\n\nLines 18-19: The total number of files belonging to the file owner and group owner are incremented by one.\n\n行18-19：属于文件所有者和组所有者的文件总数各自加1。\n\nLines 22-27: The list of files is output. This is done using the “${array[@]}” parameter expansion which expands into the entire list of array element with each element treated as a separate word. This allows for the possibility that a file name may contain embedded spaces. Also note that the entire loop is enclosed in braces thus forming a group command. This permits the entire output of the loop to be piped into the sort command. This is necessary because the expansion of the array elements is not sorted.\n\n行22-27：输出文件列表。为做到这一点，使用了 “${array[@]}” 参数展开，展开成整个的数组元素列表， 并且每个元素被当做是一个单独的词。从而允许文件名包含空格的情况。也要注意到整个循环是包裹在花括号中， 从而形成了一个组命令。这样就允许整个循环输出会被管道输送给 sort 命令的输入。这是必要的，因为 展开的数组元素是无序的。\n\nLines 29-40: These two loops are similar to the file list loop except that they use the “${! array[@]}” expansion which expands into the list of array indexes rather than the list of array elements.\n\n行29-40：这两个循环与文件列表循环相似，除了它们使用 “${!array[@]}” 展开，展开成数组索引的列表 而不是数组元素的。\n\n进程替换\nWhile they look similar and can both be used to combine streams for redirection, there is an important difference between group commands and subshells. Whereas a group command executes all of its commands in the current shell, a subshell (as the name suggests) executes its commands in a child copy of the current shell. This means that the environment is copied and given to a new instance of the shell. When the subshell exits, the copy of the environment is lost, so any changes made to the subshell’s environment (including variable assignment) is lost as well. Therefore, in most cases, unless a script requires a subshell, group commands are preferable to subshells. Group commands are both faster and require less memory.\n\n虽然组命令和子 shell 看起来相似，并且它们都能用来在重定向中合并流，但是两者之间有一个很重要的不同之处。 然而，一个组命令在当前 shell 中执行它的所有命令，而一个子 shell（顾名思义）在当前 shell 的一个 子副本中执行它的命令。这意味着运行环境被复制给了一个新的 shell 实例。当这个子 shell 退出时，环境副本会消失， 所以在子 shell 环境（包括变量赋值）中的任何更改也会消失。因此，在大多数情况下，除非脚本要求一个子 shell， 组命令比子 shell 更受欢迎。组命令运行很快并且占用的内存也少。\n\nWe saw an example of the subshell environment problem in Chapter 28, when we discovered that a read command in a pipeline does not work as we might intuitively expect. To recap, if we construct a pipeline like this:\n\n我们在第20章中看到过一个子 shell 运行环境问题的例子，当我们发现管道线中的一个 read 命令 不按我们所期望的那样工作的时候。为了重现问题，我们构建一个像这样的管道线：\n\necho \"foo\" | read\necho $REPLY\nThe content of the REPLY variable is always empty because the read command is executed in a subshell, and its copy of REPLY is destroyed when the subshell terminates. Because commands in pipelines are always executed in subshells, any command that assigns variables will encounter this issue. Fortunately, the shell provides an exotic form of expansion called process substitution that can be used to work around this problem. Process substitution is expressed in two ways:\n\n该 REPLY 变量的内容总是为空，是因为这个 read 命令在一个子 shell 中执行，所以当该子 shell 终止的时候， 它的 REPLY 副本会被毁掉。因为管道线中的命令总是在子 shell 中执行，任何给变量赋值的命令都会遭遇这样的问题。 幸运地是，shell 提供了一种奇异的展开方式，叫做进程替换，它可以用来解决这种麻烦。进程替换有两种表达方式：\n\nFor processes that produce standard output:\n\n一种适用于产生标准输出的进程：\n\n<(list)\nor, for processes that intake standard input:\n\n另一种适用于接受标准输入的进程：\n\n>(list)\nwhere list is a list of commands.\n\n这里的 list 是一串命令列表：\n\nTo solve our problem with read, we can employ process substitution like this:\n\n为了解决我们的 read 命令问题，我们可以雇佣进程替换，像这样：\n\nread < <(echo \"foo\")\necho $REPLY\nProcess substitution allows us to treat the output of a subshell as an ordinary file for purposes of redirection. In fact, since it is a form of expansion, we can examine its real value:\n\n进程替换允许我们把一个子 shell 的输出结果当作一个用于重定向的普通文件。事实上，因为它是一种展开形式，我们可以检验它的真实值：\n\n[me@linuxbox ~]$ echo <(echo \"foo\")\n/dev/fd/63\nBy using echo to view the result of the expansion, we see that the output of the subshell is being provided by a file named /dev/fd/63.\n\n通过使用 echo 命令，查看展开结果，我们看到子 shell 的输出结果，由一个名为 /dev/fd/63 的文件提供。\n\nProcess substitution is often used with loops containing read. Here is an example of a read loop that processes the contents of a directory listing created by a subshell:\n\n进程替换经常被包含 read 命令的循环用到。这里是一个 read 循环的例子，处理一个目录列表的内容，内容创建于一个子 shell：\n\n#!/bin/bash\n# pro-sub : demo of process substitution\nwhile read attr links owner group size date time filename; do\n    cat <<- EOF\n        Filename:     $filename\n        Size:         $size\n        Owner:        $owner\n        Group:        $group\n        Modified:     $date $time\n        Links:        $links\n        Attributes:   $attr\n    EOF\ndone < <(ls -l | tail -n +2)\nThe loop executes read for each line of a directory listing. The listing itself is produced on the final line of the script. This line redirects the output of the process substitution into the standard input of the loop. The tail command is included in the process substitution pipeline to eliminate the first line of the listing, which is not needed.\n\n这个循环对目录列表的每一个条目执行 read 命令。列表本身产生于该脚本的最后一行代码。这一行代码把从进程替换得到的输出 重定向到这个循环的标准输入。这个包含在管道线中的 tail 命令，是为了消除列表的第一行文本，这行文本是多余的。\n\nWhen executed, the script produces output like this:\n\n当脚本执行后，脚本产生像这样的输出：\n\n[me@linuxbox ~]$ pro_sub | head -n 20\nFilename: addresses.ldif\nSize: 14540\nOwner: me\nGroup: me\nModified: 2009-04-02 11:12\nLinks:\n1\nAttributes: -rw-r--r--\nFilename: bin\nSize: 4096\nOwner: me\nGroup: me\nModified: 2009-07-10 07:31\nLinks: 2\nAttributes: drwxr-xr-x\nFilename: bookmarks.html\nSize: 394213\nOwner: me\nGroup: me\n陷阱\nIn Chapter 10, we saw how programs can respond to signals. We can add this capability to our scripts, too. While the scripts we have written so far have not needed this capabil- ity (because they have very short execution times, and do not create temporary files), larger and more complicated scripts may benefit from having a signal handling routine.\n\n在第10章中，我们看到过程序是怎样响应信号的。我们也可以把这个功能添加到我们的脚本中。然而到目前为止， 我们所编写过的脚本还不需要这种功能（因为它们运行时间非常短暂，并且不创建临时文件），大且更复杂的脚本 可能会受益于一个信息处理程序。\n\nWhen we design a large, complicated script, it is important to consider what happens if the user logs off or shuts down the computer while the script is running. When such an event occurs, a signal will be sent to all affected processes. In turn, the programs repre- senting those processes can perform actions to ensure a proper and orderly termination of the program. Let’s say, for example, that we wrote a script that created a temporary file during its execution. In the course of good design, we would have the script delete the file when the script finishes its work. It would also be smart to have the script delete the file if a signal is received indicating that the program was going to be terminated prematurely.\n\n当我们设计一个大的，复杂的脚本的时候，若脚本仍在运行时，用户注销或关闭了电脑，这时候会发生什么，考虑到这一点非常重要。 当像这样的事情发生了，一个信号将会发送给所有受到影响的进程。依次地，代表这些进程的程序会执行相应的动作，来确保程序 合理有序的终止。比方说，例如，我们编写了一个会在执行时创建临时文件的脚本。在一个好的设计流程，我们应该让脚本删除创建的 临时文件，当脚本完成它的任务之后。若脚本接收到一个信号，表明该程序即将提前终止的信号， 此时让脚本删除创建的临时文件，也会是很精巧的设计。\n\nbash provides a mechanism for this purpose known as a trap. Traps are implemented with the appropriately named builtin command, trap. trap uses the following syntax:\n\n为满足这样需求，bash 提供了一种机制，众所周知的 trap。陷阱正好由内部命令 trap 实现。 trap 使用如下语法：\n\ntrap argument signal [signal...]\nwhere argument is a string which will be read and treated as a command and signal is the specification of a signal that will trigger the execution of the interpreted command.\n\n这里的 argument 是一个字符串，它被读取并被当作一个命令，signal 是一个信号的说明，它会触发执行所要解释的命令。\n\nHere is a simple example:\n\n这里是一个简单的例子：\n\n#!/bin/bash\n# trap-demo : simple signal handling demo\ntrap \"echo \'I am ignoring you.\'\" SIGINT SIGTERM\nfor i in {1..5}; do\n    echo \"Iteration $i of 5\"\n    sleep 5\ndone\nThis script defines a trap that will execute an echo command each time either the SIGINT or SIGTERM signal is received while the script is running. Execution of the program looks like this when the user attempts to stop the script by pressing Ctrl-c:\n\n这个脚本定义一个陷阱，当脚本运行的时候，这个陷阱每当接受到一个 SIGINT 或 SIGTERM 信号时，就会执行一个 echo 命令。 当用户试图通过按下 Ctrl-c 组合键终止脚本运行的时候，该程序的执行结果看起来像这样：\n\n[me@linuxbox ~]$ trap-demo\nIteration 1 of 5\nIteration 2 of 5\nI am ignoring you.\nIteration 3 of 5\nI am ignoring you.\nIteration 4 of 5\nIteration 5 of 5\nAs we can see, each time the user attempts to interrupt the program, the message is printed instead.\n\n正如我们所看到的，每次用户试图中断程序时，会打印出这条信息。\n\nConstructing a string to form a useful sequence of commands can be awkward, so it is common practice to specify a shell function as the command. In this example, a separate shell function is specified for each signal to be handled:\n\n构建一个字符串来形成一个有用的命令序列是很笨拙的，所以通常的做法是指定一个 shell 函数作为命令。在这个例子中， 为每一个信号指定了一个单独的 shell 函数来处理：\n\n#!/bin/bash\n# trap-demo2 : simple signal handling demo\nexit_on_signal_SIGINT () {\n    echo \"Script interrupted.\" 2>&1\n    exit 0\n}\nexit_on_signal_SIGTERM () {\n    echo \"Script terminated.\" 2>&1\n    exit 0\n}\ntrap exit_on_signal_SIGINT SIGINT\ntrap exit_on_signal_SIGTERM SIGTERM\nfor i in {1..5}; do\n    echo \"Iteration $i of 5\"\n    sleep 5\ndone\nThis script features two trap commands, one for each signal. Each trap, in turn, speci- fies a shell function to be executed when the particular signal is received. Note the inclu- sion of an exit command in each of the signal-handling functions. Without an exit, the script would continue after completing the function.\n\n这个脚本的特色是有两个 trap 命令，每个命令对应一个信号。每个 trap，依次，当接受到相应的特殊信号时， 会执行指定的 shell 函数。注意每个信号处理函数中都包含了一个 exit 命令。没有 exit 命令， 信号处理函数执行完后，该脚本将会继续执行。\n\nWhen the user presses Ctrl-c during the execution of this script, the results look like this:\n\n当用户在这个脚本执行期间，按下 Ctrl-c 组合键的时候，输出结果看起来像这样：\n\n[me@linuxbox ~]$ trap-demo2\nIteration 1 of 5\nIteration 2 of 5\nScript interrupted.\nTemporary Files\n\n临时文件\n\nOne reason signal handlers are included in scripts is to remove temporary files that the script may create to hold intermediate results during execution. There is something of an art to naming temporary files. Traditionally, programs on Unix-like systems create their temporary files in the /tmp directory, a shared directory intended for such files. However, since the directory is shared, this poses certain security concerns, particularly for programs running with superuser privileges. Aside from the obvious step of setting proper permissions for files exposed to all users of the system, it is important to give temporary files non-predictable filenames. This avoids an exploit known as a temp race attack. One way to create a non-predictable (but still descriptive) name is to do something like this:\n\n把信号处理程序包含在脚本中的一个原因是删除临时文件，在脚本执行期间，脚本可能会创建临时文件来存放中间结果。 命名临时文件是一种艺术。传统上，在类似于 unix 系统中的程序会在 /tmp 目录下创建它们的临时文件，/tmp 是 一个服务于临时文件的共享目录。然而，因为这个目录是共享的，这会引起一定的安全顾虑，尤其对那些用 超级用户特权运行的程序。除了为暴露给系统中所有用户的文件设置合适的权限这一明显步骤之外， 给临时文件一个不可预测的文件名是很重要的。这就避免了一种为大众所知的 temp race 攻击。 一种创建一个不可预测的（但是仍有意义的）临时文件名的方法是，做一些像这样的事情：\n\ntempfile=/tmp/$(basename $0).$$.$RANDOM\n\nThis will create a filename consisting of the program’s name, followed by its process ID (PID), followed by a random integer. Note, however, that the $RANDOM shell variable only returns a value in the range of 1-32767, which is not a very large range in computer terms, so a single instance of the variable is not sufficient to overcome a determined attacker.\n\n这将创建一个由程序名字，程序进程的 ID（PID）文件名，和一个随机整数组成。注意，然而，该 $RANDOM shell 变量 只能返回一个范围在1-32767内的整数值，这在计算机术语中不是一个很大的范围，所以一个单一的该变量实例是不足以克服一个坚定的攻击者的。\n\nA better way is to use the mktemp program (not to be confused with the mktemp standard library function) to both name and create the temporary file. The mktemp program accepts a template as an argument that is used to build the filename. The template should include a series of “X” characters, which are replaced by a corresponding number of random letters and numbers. The longer the series of “X” characters, the longer the series of random characters. Here is an example:\n\n一个比较好的方法是使用 mktemp 程序（不要和 mktemp 标准库函数相混淆）来命名和创建临时文件。 这个 mktemp 程序接受一个用于创建文件名的模板作为参数。这个模板应该包含一系列的 “X” 字符， 随后这些字符会被相应数量的随机字母和数字替换掉。一连串的 “X” 字符越长，则一连串的随机字符也就越长。 这里是一个例子：\n\ntempfile=$(mktemp /tmp/foobar.$$.XXXXXXXXXX)\n\nThis creates a temporary file and assigns its name to the variable tempfile. The “X” characters in the template are replaced with random letters and numbers so that the final filename (which, in this example, also includes the expanded value of the special parameter $$ to obtain the PID) might be something like:\n\n这里创建了一个临时文件，并把临时文件的名字赋值给变量 tempfile。因为模板中的 “X” 字符会被随机字母和 数字代替，所以最终的文件名（在这个例子中，文件名也包含了特殊参数 $$ 的展开值，进程的 PID）可能像这样：\n\n/tmp/foobar.6593.UOZuvM6654\n\nFor scripts that are executed by regular users, it may be wise to avoid the use of the /tmp directory and create a directory for temporary files within the user’s home directory, with a line of code such as this:\n\n对于那些由普通用户操作执行的脚本，避免使用 /tmp 目录，而是在用户家目录下为临时文件创建一个目录， 通过像这样的一行代码：\n\n[[ -d $HOME/tmp ]] || mkdir $HOME/tmp\n\n异步执行\nIt is sometimes desirable to perform more than one task at the same time. We have seen how all modern operating systems are at least multitasking if not multiuser as well. Scripts can be constructed to behave in a multitasking fashion.\n\n有时候需要同时执行多个任务。我们已经知道现在所有的操作系统若不是多用户的但至少是多任务的。 脚本也可以构建成多任务处理的模式。\n\nUsually this involves launching a script that, in turn, launches one or more child scripts that perform an additional task while the parent script continues to run. However, when a series of scripts runs this way, there can be problems keeping the parent and child coordinated. That is, what if the parent or child is dependent on the other, and one script must wait for the other to finish its task before finishing its own?\n\n通常这涉及到启动一个脚本，依次，启动一个或多个子脚本来执行额外的任务，而父脚本继续运行。然而，当一系列脚本 以这种方式运行时，要保持父子脚本之间协调工作，会有一些问题。也就是说，若父脚本或子脚本依赖于另一方，并且 一个脚本必须等待另一个脚本结束任务之后，才能完成它自己的任务，这应该怎么办？\n\nbash has a builtin command to help manage asynchronous execution such as this. The wait command causes a parent script to pause until a specified process (i.e., the child script) finishes.\n\nbash 有一个内置命令，能帮助管理诸如此类的异步执行的任务。wait 命令导致一个父脚本暂停运行，直到一个 特定的进程（例如，子脚本）运行结束。\n\n等待\nWe will demonstrate the wait command first. To do this, we will need two scripts, a par- ent script:\n\n首先我们将演示一下 wait 命令的用法。为此，我们需要两个脚本，一个父脚本：\n\n#!/bin/bash\n# async-parent : Asynchronous execution demo (parent)\necho \"Parent: starting...\"\necho \"Parent: launching child script...\"\nasync-child &\npid=$!\necho \"Parent: child (PID= $pid) launched.\"\necho \"Parent: continuing...\"\nsleep 2\necho \"Parent: pausing to wait for child to finish...\"\nwait $pid\necho \"Parent: child is finished. Continuing...\"\necho \"Parent: parent is done. Exiting.\"\nand a child script:\n\n和一个子脚本：\n\n#!/bin/bash\n# async-child : Asynchronous execution demo (child)\necho \"Child: child is running...\"\nsleep 5\necho \"Child: child is done. Exiting.\"\nIn this example, we see that the child script is very simple. The real action is being per- formed by the parent. In the parent script, the child script is launched and put into the background. The process ID of the child script is recorded by assigning the pid variable with the value of the $! shell parameter, which will always contain the process ID of the last job put into the background.\n\n在这个例子中，我们看到该子脚本是非常简单的。真正的操作通过父脚本完成。在父脚本中，子脚本被启动， 并被放置到后台运行。子脚本的进程 ID 记录在 pid 变量中，这个变量的值是 $! shell 参数的值，它总是 包含放到后台执行的最后一个任务的进程 ID 号。\n\nThe parent script continues and then executes a wait command with the PID of the child process. This causes the parent script to pause until the child script exits, at which point the parent script concludes.\n\n父脚本继续，然后执行一个以子进程 PID 为参数的 wait 命令。这就导致父脚本暂停运行，直到子脚本退出，父脚本随之结束。\n\nWhen executed, the parent and child scripts produce the following output:\n\n当执行后，父子脚本产生如下输出：\n\n[me@linuxbox ~]$ async-parent\nParent: starting...\nParent: launching child script...\nParent: child (PID= 6741) launched.\nParent: continuing...\nChild: child is running...\nParent: pausing to wait for child to finish...\nChild: child is done. Exiting.\nParent: child is finished. Continuing...\nParent: parent is done. Exiting.\n命名管道\nIn most Unix-like systems, it is possible to create a special type of file called a named pipe. Named pipes are used to create a connection between two processes and can be used just like other types of files. They are not that popular, but they’re good to know about.\n\n在大多数类似 Unix 的操作系统中，有可能创建一种特殊类型的文件，叫做命名管道。命名管道用来在 两个进程之间建立连接，也可以像其它类型的文件一样使用。虽然它们不是那么流行，但是它们值得我们去了解。\n\nThere is a common programming architecture called client-server, which can make use of a communication method such as named pipes, as well as other kinds of interprocess communication such as network connections.\n\n有一种常见的编程架构，叫做客户端-服务器，它可以利用像命名管道这样的通信方式， 也可以使用其它类型的进程间通信方式，比如网络连接。\n\nThe most widely used type of client-server system is, of course, a web browser communicating with a web server. The web browser acts as the client, making requests to the server and the server responds to the browser with web pages.\n\n最为广泛使用的客户端-服务器系统类型当然是一个web浏览器与一个web服务器之间进行通信。 web 浏览器作为客户端，向服务器发出请求，服务器响应请求，并把对应的网页发送给浏览器。\n\nNamed pipes behave like files, but actually form first-in first-out (FIFO) buffers. As with ordinary (unnamed) pipes, data goes in one end and emerges out the other. With named pipes, it is possible to set up something like this:\n\n命令管道的行为类似于文件，但实际上形成了先入先出（FIFO）的缓冲。和普通（未命令的）管道一样， 数据从一端进入，然后从另一端出现。通过命令管道，有可能像这样设置一些东西：\n\nprocess1 > named_pipe\nand\n\n和\n\nprocess2 < named_pipe\nand it will behave as if:\n\n表现出来就像这样：\n\nprocess1 | process2\n设置一个命名管道\nFirst, we must create a named pipe. This is done using the mkfifo command:\n\n首先，我们必须创建一个命名管道。使用 mkfifo 命令能够创建命令管道：\n\n[me@linuxbox ~]$ mkfifo pipe1\n[me@linuxbox ~]$ ls -l pipe1\nprw-r--r-- 1 me\nme\n0 2009-07-17 06:41 pipe1\nHere we use mkfifo to create a named pipe called pipe1. Using ls, we examine the file and see that the first letter in the attributes field is “p”, indicating that it is a named pipe.\n\n这里我们使用 mkfifo 创建了一个名为 pipe1 的命名管道。使用 ls 命令，我们查看这个文件， 看到位于属性字段的第一个字母是 “p”，表明它是一个命名管道。\n\n使用命名管道\nTo demonstrate how the named pipe works, we will need two terminal windows (or alternately, two virtual consoles). In the first terminal, we enter a simple command and redirect its output to the named pipe:\n\n为了演示命名管道是如何工作的，我们将需要两个终端窗口（或用两个虚拟控制台代替）。 在第一个终端中，我们输入一个简单命令，并把命令的输出重定向到命名管道：\n\n[me@linuxbox ~]$ ls -l > pipe1\nAfter we press the Enter key, the command will appear to hang. This is because there is nothing receiving data from the other end of the pipe yet. When this occurs, it is said that the pipe is blocked. This condition will clear once we attach a process to the other end and it begins to read input from the pipe. Using the second terminal window, we enter this command:\n\n我们按下 Enter 按键之后，命令将会挂起。这是因为在管道的另一端没有任何对象来接收数据。这种现象被称为管道阻塞。一旦我们绑定一个进程到管道的另一端，该进程开始从管道中读取输入的时候，管道阻塞现象就不存在了。 使用第二个终端窗口，我们输入这个命令：\n\n[me@linuxbox ~]$ cat < pipe1\nand the directory listing produced from the first terminal window appears in the second terminal as the output from the cat command. The ls command in the first terminal successfully completes once it is no longer blocked.\n\n然后产自第一个终端窗口的目录列表出现在第二个终端中，并作为来自 cat 命令的输出。在第一个终端 窗口中的 ls 命令一旦它不再阻塞，会成功地结束。\n\n总结\nWell, we have completed our journey. The only thing left to do now is practice, practice, practice. Even though we covered a lot of ground in our trek, we barely scratched the surface as far as the command line goes. There are still thousands of command line programs left to be discovered and enjoyed. Start digging around in /usr/bin and you’ll see!\n\n嗯，我们已经完成了我们的旅程。现在剩下的唯一要做的事就是练习，练习，再练习。 纵然在我们的长途跋涉中，我们涉及了很多命令，但是就命令行而言，我们只是触及了它的表面。 仍留有成千上万的命令行程序，需要去发现和享受。开始挖掘 /usr/bin 目录吧，你将会看到！\n\n拓展阅读\nThe “Compound Commands” section of the bash man page contains a full description of group command and subshell notations.\n\nbash 手册页的 “复合命令” 部分包含了对组命令和子 shell 表示法的详尽描述。\n\nThe EXPANSION section of the bash man page contains a subsection of process substitution.\n\nbash 手册也的 EXPANSION 部分包含了一小部分进程替换的内容：\n\nThe Advanced Bash-Scripting Guide also has a discussion of process substitution:\n\n《高级 Bash 脚本指南》也有对进程替换的讨论：\n\nhttp://tldp.org/LDP/abs/html/process-sub.html\n\nLinux Journal has two good articles on named pipes. The first, from September 1997:\n\n《Linux 杂志》有两篇关于命令管道的好文章。第一篇，源于1997年9月：\n\nhttp://www.linuxjournal.com/article/2156\n\nand the second, from March 2009:\n\n和第二篇，源于2009年3月：\n\nhttp://www.linuxjournal.com/content/using-named-pipes-fifos-bash\n\n\nGo to Table of Contents', '2018-06-08 16:41:57.040811', '3', 'Source', '78', null);
-INSERT INTO `show_comment` VALUES ('90', '我是真的服气', '2018-06-09 00:11:22.102029', '5', '下 下面那位大侠', '79', null);
-INSERT INTO `show_comment` VALUES ('91', '跑路', '2018-06-09 12:09:38.540738', '3', 'bug来了', '80', null);
-INSERT INTO `show_comment` VALUES ('92', '垃圾网站', '2018-06-09 18:04:20.965512', '3', '李林宇', '81', null);
-INSERT INTO `show_comment` VALUES ('96', '啦啦啦啦啦绿绿绿', '2018-06-09 19:43:12.643207', '3', '啦啦啦', '82', null);
-INSERT INTO `show_comment` VALUES ('97', 'sss', '2018-06-09 20:00:58.519235', '3', 'sss', '83', null);
-INSERT INTO `show_comment` VALUES ('98', 'ffffff', '2018-06-09 20:01:13.762110', '3', 'fff', '84', null);
-INSERT INTO `show_comment` VALUES ('99', 'ssssss', '2018-06-09 22:59:25.914414', '3', 'ss', '85', null);
+INSERT INTO `show_comment` VALUES (2, 'mmm', '2018-06-07 00:00:44.124617', 3, '小明', 2, 'excited');
+INSERT INTO `show_comment` VALUES (3, '嘎嘎啊嘎嘎', '2018-06-07 01:35:33.256418', 4, '爱特展示', 1, '');
+INSERT INTO `show_comment` VALUES (4, 'gfdgdfgdfg', '2018-06-07 02:22:29.981719', 8, '阿萨德', 3, NULL);
+INSERT INTO `show_comment` VALUES (5, '啥鼎折覆餗', '2018-06-07 02:26:33.293651', 4, 'aaa', 4, NULL);
+INSERT INTO `show_comment` VALUES (6, '批量添加', '2018-06-07 02:39:07.655851', 3, '批量添加', 5, '');
+INSERT INTO `show_comment` VALUES (7, '批量添加', '2018-06-07 02:39:10.859033', 3, '批量添加', 6, '');
+INSERT INTO `show_comment` VALUES (8, '批量添加', '2018-06-07 02:39:12.938153', 3, '批量添加', 7, '');
+INSERT INTO `show_comment` VALUES (9, '批量添加', '2018-06-07 02:39:19.856551', 3, '批量添加', 8, '');
+INSERT INTO `show_comment` VALUES (10, '批量添加', '2018-06-07 02:39:22.059676', 3, '批量添加', 9, '');
+INSERT INTO `show_comment` VALUES (11, '批量添加', '2018-06-07 02:39:23.993789', 3, '批量添加', 10, '');
+INSERT INTO `show_comment` VALUES (12, '批量添加', '2018-06-07 02:39:25.545877', 3, '批量添加', 11, '');
+INSERT INTO `show_comment` VALUES (13, '批量添加', '2018-06-07 02:39:26.929955', 3, '批量添加', 12, '');
+INSERT INTO `show_comment` VALUES (14, '批量添加', '2018-06-07 02:39:28.783064', 3, '批量添加', 13, '');
+INSERT INTO `show_comment` VALUES (15, '批量添加', '2018-06-07 02:39:30.634170', 3, '批量添加', 14, '');
+INSERT INTO `show_comment` VALUES (16, '批量添加', '2018-06-07 02:39:32.322268', 3, '批量添加', 15, '');
+INSERT INTO `show_comment` VALUES (17, '哈哈哈', '2018-06-07 04:10:37.781252', 3, '哈哈', 16, NULL);
+INSERT INTO `show_comment` VALUES (18, '哇bug改完了', '2018-06-07 04:10:50.059956', 8, '哇bug改完了', 17, NULL);
+INSERT INTO `show_comment` VALUES (19, '哇bug改完了', '2018-06-07 04:14:31.051610', 3, '哇bug改完了', 18, NULL);
+INSERT INTO `show_comment` VALUES (20, '12', '2018-06-07 04:17:31.753960', 3, '1', 19, NULL);
+INSERT INTO `show_comment` VALUES (21, 'hhhhhh', '2018-06-07 04:26:47.986815', 3, 'hhh', 20, NULL);
+INSERT INTO `show_comment` VALUES (22, '11111111111111111111111111111111111111111111111111111111111111111111111111111111', '2018-06-07 04:28:09.018453', 3, 'hh', 21, NULL);
+INSERT INTO `show_comment` VALUES (23, '5464', '2018-06-07 04:29:56.531610', 5, '256+59685+', 22, NULL);
+INSERT INTO `show_comment` VALUES (24, 'werw', '2018-06-07 04:31:33.464160', 3, '23111111', 23, NULL);
+INSERT INTO `show_comment` VALUES (25, 'hhhhhhhhhhhhhhhhhhhh', '2018-06-07 04:41:38.163791', 3, '666', 24, NULL);
+INSERT INTO `show_comment` VALUES (26, '？？？', '2018-06-07 04:46:47.273491', 8, 'h', 25, NULL);
+INSERT INTO `show_comment` VALUES (27, '12', '2018-06-07 04:48:07.206070', 3, '12', 26, NULL);
+INSERT INTO `show_comment` VALUES (28, 'nxsa', '2018-06-07 04:50:00.375552', 5, 'kk', 27, NULL);
+INSERT INTO `show_comment` VALUES (29, 'sssssss', '2018-06-07 04:59:17.064428', 5, 'sssss', 28, NULL);
+INSERT INTO `show_comment` VALUES (30, '666', '2018-06-07 04:59:31.764273', 3, '66', 29, NULL);
+INSERT INTO `show_comment` VALUES (31, '66', '2018-06-07 04:59:53.064492', 3, '66', 30, NULL);
+INSERT INTO `show_comment` VALUES (32, '<Button>sss</Button>', '2018-06-07 05:00:16.115817', 7, 'gayzheng', 31, NULL);
+INSERT INTO `show_comment` VALUES (33, '<img src=\"/static/img/logo.png\" class=\"IT_logo\">', '2018-06-07 05:03:21.939449', 3, 'lj', 32, NULL);
+INSERT INTO `show_comment` VALUES (34, '<script>alert(\"文本\");</script>', '2018-06-07 05:06:11.195145', 3, '66', 33, NULL);
+INSERT INTO `show_comment` VALUES (37, '<script>alert(1234);</script>', '2018-06-07 05:34:19.933853', 3, 'hack', 34, NULL);
+INSERT INTO `show_comment` VALUES (39, '哈哈哈哈哈', '2018-06-07 07:20:31.553735', 3, '哈哈', 35, NULL);
+INSERT INTO `show_comment` VALUES (40, '1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1', '2018-06-07 07:24:35.136689', 5, 'aa', 36, NULL);
+INSERT INTO `show_comment` VALUES (41, '啊啊啊', '2018-06-07 07:32:09.039680', 3, '   ', 37, NULL);
+INSERT INTO `show_comment` VALUES (42, '           ', '2018-06-07 07:32:51.243096', 3, '    ', 38, NULL);
+INSERT INTO `show_comment` VALUES (43, '                                                                                ', '2018-06-07 07:33:52.347591', 3, '   ', 39, NULL);
+INSERT INTO `show_comment` VALUES (44, '                                                                                a', '2018-06-07 07:36:02.742061', 3, '          ', 40, NULL);
+INSERT INTO `show_comment` VALUES (45, 'test', '2018-06-07 07:49:41.750962', 3, 'dfgh', 41, NULL);
+INSERT INTO `show_comment` VALUES (46, 'test', '2018-06-07 07:50:09.604554', 3, '<button />', 42, NULL);
+INSERT INTO `show_comment` VALUES (47, 'dfghhjjj', '2018-06-07 07:52:11.924560', 3, '<a>123</a>', 43, NULL);
+INSERT INTO `show_comment` VALUES (48, '   ', '2018-06-07 07:54:20.877947', 3, ' ', 44, NULL);
+INSERT INTO `show_comment` VALUES (49, 'ass', '2018-06-07 07:56:05.620944', 3, 'sss', 45, '没内容也行');
+INSERT INTO `show_comment` VALUES (50, '  ', '2018-06-07 10:26:07.676463', 3, '  ', 46, NULL);
+INSERT INTO `show_comment` VALUES (51, '     vvv', '2018-06-07 10:26:41.152379', 7, 'dhd', 47, NULL);
+INSERT INTO `show_comment` VALUES (52, ' c', '2018-06-07 10:28:49.603732', 3, 'c', 48, NULL);
+INSERT INTO `show_comment` VALUES (53, '嗷嗷', '2018-06-07 10:35:02.128067', 3, 'a a', 49, NULL);
+INSERT INTO `show_comment` VALUES (54, '我们的生活方式是什么时候回来呀，我们的生活方式是什么时候回来呀，去了', '2018-06-07 10:35:40.149241', 3, '嗷嗷', 50, NULL);
+INSERT INTO `show_comment` VALUES (55, 'aaaa', '2018-06-07 10:44:27.652453', 3, 'aaa', 51, NULL);
+INSERT INTO `show_comment` VALUES (56, 'aaaa', '2018-06-07 10:45:02.009423', 3, 'aaa', 52, NULL);
+INSERT INTO `show_comment` VALUES (57, 'avv', '2018-06-07 10:46:46.536409', 3, 'd', 53, NULL);
+INSERT INTO `show_comment` VALUES (58, 'bbb', '2018-06-07 10:49:43.903567', 3, 'aa', 54, NULL);
+INSERT INTO `show_comment` VALUES (61, '少时诵诗书所所所所所所所所所所所所所所所所所所所所所所所所所所少时诵诗书所所所所所所所所所所所所所所所所所所所所所所所所所所少时诵诗书所所所所所所所所所所所所所少时诵诗书所所所所所所所所所所所所所所所所所所所所所所所所所所', '2018-06-07 11:39:04.396101', 3, 'llll', 57, NULL);
+INSERT INTO `show_comment` VALUES (62, '少时诵诗书所所所', '2018-06-07 11:40:25.215729', 3, '所所所所所所所所所', 58, NULL);
+INSERT INTO `show_comment` VALUES (63, 'aaaa', '2018-06-07 11:44:24.900454', 3, 'aa', 59, NULL);
+INSERT INTO `show_comment` VALUES (64, 'ggg', '2018-06-07 11:45:46.955157', 3, 'aa', 60, NULL);
+INSERT INTO `show_comment` VALUES (65, 'ggg#include <iostream>\nusing namespace std', '2018-06-07 11:47:23.973725', 3, 'aa', 61, NULL);
+INSERT INTO `show_comment` VALUES (67, '54354354', '2018-06-07 11:52:01.873628', 3, '54', 63, NULL);
+INSERT INTO `show_comment` VALUES (70, 'qeqwe', '2018-06-07 12:18:40.446172', 3, 'q', 64, NULL);
+INSERT INTO `show_comment` VALUES (71, '112', '2018-06-07 12:18:55.046005', 3, '1', 65, NULL);
+INSERT INTO `show_comment` VALUES (73, 'baozha', '2018-06-08 15:12:40.993089', 3, 'ewew', 67, NULL);
+INSERT INTO `show_comment` VALUES (75, '咦，谁写的爆炸', '2018-06-08 15:15:12.898786', 3, '哈哈', 69, NULL);
+INSERT INTO `show_comment` VALUES (80, 'sssssssss', '2018-06-08 15:31:34.750018', 3, 'ss', 73, NULL);
+INSERT INTO `show_comment` VALUES (81, '啊啊啊', '2018-06-08 15:33:01.847997', 3, '啊', 74, NULL);
+INSERT INTO `show_comment` VALUES (85, '啊\n啊\n啊', '2018-06-08 15:38:08.523560', 3, '啊', 75, NULL);
+INSERT INTO `show_comment` VALUES (87, '这个评论的id是傻逼', '2018-06-08 15:55:24.079867', 8, '李学委', 77, NULL);
+INSERT INTO `show_comment` VALUES (89, '目录\n奇珍异宝\n\nIn this, the final chapter of our journey, we will look at some odds and ends. While we have certainly covered a lot of ground in the previous chapters, there are many bash features that we have not covered. Most are fairly obscure, and useful mainly to those integrating bash into a Linux distribution. However, there are a few that, while not in common use, are helpful for certain programming problems. We will cover them here.\n\n在我们 bash 学习旅程中的最后一站，我们将看一些零星的知识点。当然我们在之前的章节中已经 涵盖了很多方面，但是还有许多 bash 特性我们没有涉及到。其中大部分特性相当晦涩，主要对 那些把 bash 集成到 Linux 发行版的程序有用处。然而还有一些特性，虽然不常用， 但是对某些程序问题是很有帮助的。我们将在这里介绍它们。\n\n组命令和子 shell\nbash allows commands to be grouped together. This can be done in one of two ways; either with a group command or with a subshell. Here are examples of the syntax of each:\n\nbash 允许把命令组合在一起。可以通过两种方式完成；要么用一个 group 命令，要么用一个子 shell。 这里是每种方式的语法示例：\n\nGroup command:\n\n组命令：\n\n{ command1; command2; [command3; ...] }\nSubshell:\n\n子 shell：\n\n(command1; command2; [command3;...])\nThe two forms differ in that a group command surrounds its commands with braces and a subshell uses parentheses. It is important to note that, due to the way bash implements group commands, the braces must be separated from the commands by a space and the last command must be terminated with either a semicolon or a newline prior to the closing brace.\n\n这两种形式的不同之处在于，组命令用花括号把它的命令包裹起来，而子 shell 用括号。值得注意的是，鉴于 bash 实现组命令的方式， 花括号与命令之间必须有一个空格，并且最后一个命令必须用一个分号或者一个换行符终止。\n\nSo what are group commands and subshells good for? While they have an important difference (which we will get to in a moment), they are both used to manage redirection. Let’s consider a script segment that performs redirections on multiple commands:\n\n那么组命令和子 shell 命令对什么有好处呢？ 尽管它们有一个很重要的差异（我们马上会接触到），但它们都是用来管理重定向的。 让我们考虑一个对多个命令执行重定向的脚本片段。\n\nls -l > output.txt\necho \"Listing of foo.txt\" >> output.txt\ncat foo.txt >> output.txt\nThis is pretty straightforward. Three commands with their output redirected to a file named output.txt. Using a group command, we could code this as follows:\n\n这些代码相当简洁明了。三个命令的输出都重定向到一个名为 output.txt 的文件中。 使用一个组命令，我们可以重新编 写这些代码，如下所示：\n\n{ ls -l; echo \"Listing of foo.txt\"; cat foo.txt; } > output.txt\nUsing a subshell is similar:\n\n使用一个子 shell 是相似的：\n\n(ls -l; echo \"Listing of foo.txt\"; cat foo.txt) > output.txt\nUsing this technique we have saved ourselves some typing, but where a group command or subshell really shines is with pipelines. When constructing a pipeline of commands, it is often useful to combine the results of several commands into a single stream. Group commands and subshells make this easy:\n\n使用这样的技术，我们为我们自己节省了一些打字时间，但是组命令和子 shell 真正闪光的地方是与管道线相结合。 当构建一个管道线命令的时候，通常把几个命令的输出结果合并成一个流是很有用的。 组命令和子 shell 使这种操作变得很简单：\n\n{ ls -l; echo \"Listing of foo.txt\"; cat foo.txt; } | lpr\nHere we have combined the output of our three commands and piped them into the input of lpr to produce a printed report.\n\n这里我们已经把我们的三个命令的输出结果合并在一起，并把它们用管道输送给命令 lpr 的输入，以便产生一个打印报告。\n\nIn the script that follows, we will use groups commands and look at several programming techniques that can be employed in conjunction with associative arrays. This script, called array-2, when given the name of a directory, prints a listing of the files in the directory along with the names of the the file’s owner and group owner. At the end of listing, the script prints a tally of the number of files belonging to each owner and group. Here we see the results (condensed for brevity) when the script is given the directory /usr/bin:\n\n在下面的脚本中，我们将使用组命令，看几个与关联数组结合使用的编程技巧。这个脚本，称为 array-2，当给定一个目录名，打印出目录中的文件列表， 伴随着每个文件的文件所有者和组所有者。在文件列表的末尾，脚本打印出属于每个所有者和组的文件数目。 这里我们看到的（为简单起见而缩短的）结果，是给定脚本的目录为 /usr/bin 的时候：\n\n[me@linuxbox ~]$ array-2 /usr/bin\n/usr/bin/2to3-2.6                 root        root\n/usr/bin/2to3                     root        root\n/usr/bin/a2p                      root        root\n/usr/bin/abrowser                 root        root\n/usr/bin/aconnect                 root        root\n/usr/bin/acpi_fakekey             root        root\n/usr/bin/acpi_listen              root        root\n/usr/bin/add-apt-repository       root        root\n.\n.\n.\n/usr/bin/zipgrep                  root        root\n/usr/bin/zipinfo                  root        root\n/usr/bin/zipnote                  root        root\n/usr/bin/zip                      root        root\n/usr/bin/zipsplit                 root        root\n/usr/bin/zjsdecode                root        root\n/usr/bin/zsoelim                  root        root\n\nFile owners:\ndaemon  : 1 file(s)\nroot    : 1394 file(s) File group owners:\ncrontab : 1 file(s)\ndaemon  : 1 file(s)\nlpadmin : 1 file(s)\nmail    : 4 file(s)\nmlocate : 1 file(s)\nroot    : 1380 file(s)\nshadow  : 2 file(s)\nssh     : 1 file(s)\ntty     : 2 file(s)\nutmp    : 2 file(s)\nHere is a listing (with line numbers) of the script:\n\n这里是脚本代码列表（带有行号）：\n\n1     #!/bin/bash\n2\n3     # array-2: Use arrays to tally file owners\n4\n5     declare -A files file_group file_owner groups owners\n6\n7     if [[ ! -d \"$1\" ]]; then\n8        echo \"Usage: array-2 dir\" >&2\n9        exit 1\n10    fi\n11\n12    for i in \"$1\"/*; do\n13       owner=$(stat -c %U \"$i\")\n14       group=$(stat -c %G \"$i\")\n15        files[\"$i\"]=\"$i\"\n16        file_owner[\"$i\"]=$owner\n17        file_group[\"$i\"]=$group\n18        ((++owners[$owner]))\n19        ((++groups[$group]))\n20    done\n21\n22    # List the collected files\n23    { for i in \"${files[@]}\"; do\n24    printf \"%-40s %-10s %-10s\\n\" \\\n25    \"$i\" ${file_owner[\"$i\"]} ${file_group[\"$i\"]}\n26    done } | sort\n27    echo\n28\n29   # List owners\n30    echo \"File owners:\"\n31    { for i in \"${!owners[@]}\"; do\n32    printf \"%-10s: %5d file(s)\\n\" \"$i\" ${owners[\"$i\"]}\n33    done } | sort\n34    echo\n35\n36    # List groups\n37    echo \"File group owners:\"\n38    { for i in \"${!groups[@]}\"; do\n39    printf \"%-10s: %5d file(s)\\n\" \"$i\" ${groups[\"$i\"]}\n40    done } | sort\nLet’s take a look at the mechanics of this script:\n\n让我们看一下这个脚本的运行机制：\n\nLine 5: Associative arrays must be created with the declare command using the -A option. In this script we create five arrays as follows:\n\n行5： 关联数组必须用带有 -A 选项的 declare 命令创建。在这个脚本中我们创建了如下五个数组：\n\nfiles contains the names of the files in the directory, indexed by filename\n\nfile_group contains the group owner of each file, indexed by filename\n\nfile_owner contains the owner of each file, indexed by file name\n\ngroups contains the number of files belonging to the indexed group\n\nowners contains the number of files belonging to the indexed owner\n\nfiles 包含了目录中文件的名字，按文件名索引\n\nfile_group 包含了每个文件的组所有者，按文件名索引\n\nfile_owner 包含了每个文件的所有者，按文件名索引\n\ngroups 包含了属于索引的组的文件数目\n\nowners 包含了属于索引的所有者的文件数目\n\nLines 7-10: Checks to see that a valid directory name was passed as a positional parameter. If not, a usage message is displayed and the script exits with an exit status of 1.\n\n行7-10：查看是否一个有效的目录名作为位置参数传递给程序。如果不是，就会显示一条使用信息，并且脚本退出，退出状态为1。\n\nLines 12-20: Loop through the files in the directory. Using the stat command, lines 13 and 14 extract the names of the file owner and group owner and assign the values to their respective arrays (lines 16, 17) using the name of the file as the array index. Likewise the file name itself is assigned to the files array (line 15).\n\n行12-20：循环遍历目录中的所有文件。使用 stat 命令，行13和行14抽取文件所有者和组所有者， 并把值赋给它们各自的数组（行16，17），使用文件名作为数组索引。同样地，文件名自身也赋值给 files 数组。\n\nLines 18-19: The total number of files belonging to the file owner and group owner are incremented by one.\n\n行18-19：属于文件所有者和组所有者的文件总数各自加1。\n\nLines 22-27: The list of files is output. This is done using the “${array[@]}” parameter expansion which expands into the entire list of array element with each element treated as a separate word. This allows for the possibility that a file name may contain embedded spaces. Also note that the entire loop is enclosed in braces thus forming a group command. This permits the entire output of the loop to be piped into the sort command. This is necessary because the expansion of the array elements is not sorted.\n\n行22-27：输出文件列表。为做到这一点，使用了 “${array[@]}” 参数展开，展开成整个的数组元素列表， 并且每个元素被当做是一个单独的词。从而允许文件名包含空格的情况。也要注意到整个循环是包裹在花括号中， 从而形成了一个组命令。这样就允许整个循环输出会被管道输送给 sort 命令的输入。这是必要的，因为 展开的数组元素是无序的。\n\nLines 29-40: These two loops are similar to the file list loop except that they use the “${! array[@]}” expansion which expands into the list of array indexes rather than the list of array elements.\n\n行29-40：这两个循环与文件列表循环相似，除了它们使用 “${!array[@]}” 展开，展开成数组索引的列表 而不是数组元素的。\n\n进程替换\nWhile they look similar and can both be used to combine streams for redirection, there is an important difference between group commands and subshells. Whereas a group command executes all of its commands in the current shell, a subshell (as the name suggests) executes its commands in a child copy of the current shell. This means that the environment is copied and given to a new instance of the shell. When the subshell exits, the copy of the environment is lost, so any changes made to the subshell’s environment (including variable assignment) is lost as well. Therefore, in most cases, unless a script requires a subshell, group commands are preferable to subshells. Group commands are both faster and require less memory.\n\n虽然组命令和子 shell 看起来相似，并且它们都能用来在重定向中合并流，但是两者之间有一个很重要的不同之处。 然而，一个组命令在当前 shell 中执行它的所有命令，而一个子 shell（顾名思义）在当前 shell 的一个 子副本中执行它的命令。这意味着运行环境被复制给了一个新的 shell 实例。当这个子 shell 退出时，环境副本会消失， 所以在子 shell 环境（包括变量赋值）中的任何更改也会消失。因此，在大多数情况下，除非脚本要求一个子 shell， 组命令比子 shell 更受欢迎。组命令运行很快并且占用的内存也少。\n\nWe saw an example of the subshell environment problem in Chapter 28, when we discovered that a read command in a pipeline does not work as we might intuitively expect. To recap, if we construct a pipeline like this:\n\n我们在第20章中看到过一个子 shell 运行环境问题的例子，当我们发现管道线中的一个 read 命令 不按我们所期望的那样工作的时候。为了重现问题，我们构建一个像这样的管道线：\n\necho \"foo\" | read\necho $REPLY\nThe content of the REPLY variable is always empty because the read command is executed in a subshell, and its copy of REPLY is destroyed when the subshell terminates. Because commands in pipelines are always executed in subshells, any command that assigns variables will encounter this issue. Fortunately, the shell provides an exotic form of expansion called process substitution that can be used to work around this problem. Process substitution is expressed in two ways:\n\n该 REPLY 变量的内容总是为空，是因为这个 read 命令在一个子 shell 中执行，所以当该子 shell 终止的时候， 它的 REPLY 副本会被毁掉。因为管道线中的命令总是在子 shell 中执行，任何给变量赋值的命令都会遭遇这样的问题。 幸运地是，shell 提供了一种奇异的展开方式，叫做进程替换，它可以用来解决这种麻烦。进程替换有两种表达方式：\n\nFor processes that produce standard output:\n\n一种适用于产生标准输出的进程：\n\n<(list)\nor, for processes that intake standard input:\n\n另一种适用于接受标准输入的进程：\n\n>(list)\nwhere list is a list of commands.\n\n这里的 list 是一串命令列表：\n\nTo solve our problem with read, we can employ process substitution like this:\n\n为了解决我们的 read 命令问题，我们可以雇佣进程替换，像这样：\n\nread < <(echo \"foo\")\necho $REPLY\nProcess substitution allows us to treat the output of a subshell as an ordinary file for purposes of redirection. In fact, since it is a form of expansion, we can examine its real value:\n\n进程替换允许我们把一个子 shell 的输出结果当作一个用于重定向的普通文件。事实上，因为它是一种展开形式，我们可以检验它的真实值：\n\n[me@linuxbox ~]$ echo <(echo \"foo\")\n/dev/fd/63\nBy using echo to view the result of the expansion, we see that the output of the subshell is being provided by a file named /dev/fd/63.\n\n通过使用 echo 命令，查看展开结果，我们看到子 shell 的输出结果，由一个名为 /dev/fd/63 的文件提供。\n\nProcess substitution is often used with loops containing read. Here is an example of a read loop that processes the contents of a directory listing created by a subshell:\n\n进程替换经常被包含 read 命令的循环用到。这里是一个 read 循环的例子，处理一个目录列表的内容，内容创建于一个子 shell：\n\n#!/bin/bash\n# pro-sub : demo of process substitution\nwhile read attr links owner group size date time filename; do\n    cat <<- EOF\n        Filename:     $filename\n        Size:         $size\n        Owner:        $owner\n        Group:        $group\n        Modified:     $date $time\n        Links:        $links\n        Attributes:   $attr\n    EOF\ndone < <(ls -l | tail -n +2)\nThe loop executes read for each line of a directory listing. The listing itself is produced on the final line of the script. This line redirects the output of the process substitution into the standard input of the loop. The tail command is included in the process substitution pipeline to eliminate the first line of the listing, which is not needed.\n\n这个循环对目录列表的每一个条目执行 read 命令。列表本身产生于该脚本的最后一行代码。这一行代码把从进程替换得到的输出 重定向到这个循环的标准输入。这个包含在管道线中的 tail 命令，是为了消除列表的第一行文本，这行文本是多余的。\n\nWhen executed, the script produces output like this:\n\n当脚本执行后，脚本产生像这样的输出：\n\n[me@linuxbox ~]$ pro_sub | head -n 20\nFilename: addresses.ldif\nSize: 14540\nOwner: me\nGroup: me\nModified: 2009-04-02 11:12\nLinks:\n1\nAttributes: -rw-r--r--\nFilename: bin\nSize: 4096\nOwner: me\nGroup: me\nModified: 2009-07-10 07:31\nLinks: 2\nAttributes: drwxr-xr-x\nFilename: bookmarks.html\nSize: 394213\nOwner: me\nGroup: me\n陷阱\nIn Chapter 10, we saw how programs can respond to signals. We can add this capability to our scripts, too. While the scripts we have written so far have not needed this capabil- ity (because they have very short execution times, and do not create temporary files), larger and more complicated scripts may benefit from having a signal handling routine.\n\n在第10章中，我们看到过程序是怎样响应信号的。我们也可以把这个功能添加到我们的脚本中。然而到目前为止， 我们所编写过的脚本还不需要这种功能（因为它们运行时间非常短暂，并且不创建临时文件），大且更复杂的脚本 可能会受益于一个信息处理程序。\n\nWhen we design a large, complicated script, it is important to consider what happens if the user logs off or shuts down the computer while the script is running. When such an event occurs, a signal will be sent to all affected processes. In turn, the programs repre- senting those processes can perform actions to ensure a proper and orderly termination of the program. Let’s say, for example, that we wrote a script that created a temporary file during its execution. In the course of good design, we would have the script delete the file when the script finishes its work. It would also be smart to have the script delete the file if a signal is received indicating that the program was going to be terminated prematurely.\n\n当我们设计一个大的，复杂的脚本的时候，若脚本仍在运行时，用户注销或关闭了电脑，这时候会发生什么，考虑到这一点非常重要。 当像这样的事情发生了，一个信号将会发送给所有受到影响的进程。依次地，代表这些进程的程序会执行相应的动作，来确保程序 合理有序的终止。比方说，例如，我们编写了一个会在执行时创建临时文件的脚本。在一个好的设计流程，我们应该让脚本删除创建的 临时文件，当脚本完成它的任务之后。若脚本接收到一个信号，表明该程序即将提前终止的信号， 此时让脚本删除创建的临时文件，也会是很精巧的设计。\n\nbash provides a mechanism for this purpose known as a trap. Traps are implemented with the appropriately named builtin command, trap. trap uses the following syntax:\n\n为满足这样需求，bash 提供了一种机制，众所周知的 trap。陷阱正好由内部命令 trap 实现。 trap 使用如下语法：\n\ntrap argument signal [signal...]\nwhere argument is a string which will be read and treated as a command and signal is the specification of a signal that will trigger the execution of the interpreted command.\n\n这里的 argument 是一个字符串，它被读取并被当作一个命令，signal 是一个信号的说明，它会触发执行所要解释的命令。\n\nHere is a simple example:\n\n这里是一个简单的例子：\n\n#!/bin/bash\n# trap-demo : simple signal handling demo\ntrap \"echo \'I am ignoring you.\'\" SIGINT SIGTERM\nfor i in {1..5}; do\n    echo \"Iteration $i of 5\"\n    sleep 5\ndone\nThis script defines a trap that will execute an echo command each time either the SIGINT or SIGTERM signal is received while the script is running. Execution of the program looks like this when the user attempts to stop the script by pressing Ctrl-c:\n\n这个脚本定义一个陷阱，当脚本运行的时候，这个陷阱每当接受到一个 SIGINT 或 SIGTERM 信号时，就会执行一个 echo 命令。 当用户试图通过按下 Ctrl-c 组合键终止脚本运行的时候，该程序的执行结果看起来像这样：\n\n[me@linuxbox ~]$ trap-demo\nIteration 1 of 5\nIteration 2 of 5\nI am ignoring you.\nIteration 3 of 5\nI am ignoring you.\nIteration 4 of 5\nIteration 5 of 5\nAs we can see, each time the user attempts to interrupt the program, the message is printed instead.\n\n正如我们所看到的，每次用户试图中断程序时，会打印出这条信息。\n\nConstructing a string to form a useful sequence of commands can be awkward, so it is common practice to specify a shell function as the command. In this example, a separate shell function is specified for each signal to be handled:\n\n构建一个字符串来形成一个有用的命令序列是很笨拙的，所以通常的做法是指定一个 shell 函数作为命令。在这个例子中， 为每一个信号指定了一个单独的 shell 函数来处理：\n\n#!/bin/bash\n# trap-demo2 : simple signal handling demo\nexit_on_signal_SIGINT () {\n    echo \"Script interrupted.\" 2>&1\n    exit 0\n}\nexit_on_signal_SIGTERM () {\n    echo \"Script terminated.\" 2>&1\n    exit 0\n}\ntrap exit_on_signal_SIGINT SIGINT\ntrap exit_on_signal_SIGTERM SIGTERM\nfor i in {1..5}; do\n    echo \"Iteration $i of 5\"\n    sleep 5\ndone\nThis script features two trap commands, one for each signal. Each trap, in turn, speci- fies a shell function to be executed when the particular signal is received. Note the inclu- sion of an exit command in each of the signal-handling functions. Without an exit, the script would continue after completing the function.\n\n这个脚本的特色是有两个 trap 命令，每个命令对应一个信号。每个 trap，依次，当接受到相应的特殊信号时， 会执行指定的 shell 函数。注意每个信号处理函数中都包含了一个 exit 命令。没有 exit 命令， 信号处理函数执行完后，该脚本将会继续执行。\n\nWhen the user presses Ctrl-c during the execution of this script, the results look like this:\n\n当用户在这个脚本执行期间，按下 Ctrl-c 组合键的时候，输出结果看起来像这样：\n\n[me@linuxbox ~]$ trap-demo2\nIteration 1 of 5\nIteration 2 of 5\nScript interrupted.\nTemporary Files\n\n临时文件\n\nOne reason signal handlers are included in scripts is to remove temporary files that the script may create to hold intermediate results during execution. There is something of an art to naming temporary files. Traditionally, programs on Unix-like systems create their temporary files in the /tmp directory, a shared directory intended for such files. However, since the directory is shared, this poses certain security concerns, particularly for programs running with superuser privileges. Aside from the obvious step of setting proper permissions for files exposed to all users of the system, it is important to give temporary files non-predictable filenames. This avoids an exploit known as a temp race attack. One way to create a non-predictable (but still descriptive) name is to do something like this:\n\n把信号处理程序包含在脚本中的一个原因是删除临时文件，在脚本执行期间，脚本可能会创建临时文件来存放中间结果。 命名临时文件是一种艺术。传统上，在类似于 unix 系统中的程序会在 /tmp 目录下创建它们的临时文件，/tmp 是 一个服务于临时文件的共享目录。然而，因为这个目录是共享的，这会引起一定的安全顾虑，尤其对那些用 超级用户特权运行的程序。除了为暴露给系统中所有用户的文件设置合适的权限这一明显步骤之外， 给临时文件一个不可预测的文件名是很重要的。这就避免了一种为大众所知的 temp race 攻击。 一种创建一个不可预测的（但是仍有意义的）临时文件名的方法是，做一些像这样的事情：\n\ntempfile=/tmp/$(basename $0).$$.$RANDOM\n\nThis will create a filename consisting of the program’s name, followed by its process ID (PID), followed by a random integer. Note, however, that the $RANDOM shell variable only returns a value in the range of 1-32767, which is not a very large range in computer terms, so a single instance of the variable is not sufficient to overcome a determined attacker.\n\n这将创建一个由程序名字，程序进程的 ID（PID）文件名，和一个随机整数组成。注意，然而，该 $RANDOM shell 变量 只能返回一个范围在1-32767内的整数值，这在计算机术语中不是一个很大的范围，所以一个单一的该变量实例是不足以克服一个坚定的攻击者的。\n\nA better way is to use the mktemp program (not to be confused with the mktemp standard library function) to both name and create the temporary file. The mktemp program accepts a template as an argument that is used to build the filename. The template should include a series of “X” characters, which are replaced by a corresponding number of random letters and numbers. The longer the series of “X” characters, the longer the series of random characters. Here is an example:\n\n一个比较好的方法是使用 mktemp 程序（不要和 mktemp 标准库函数相混淆）来命名和创建临时文件。 这个 mktemp 程序接受一个用于创建文件名的模板作为参数。这个模板应该包含一系列的 “X” 字符， 随后这些字符会被相应数量的随机字母和数字替换掉。一连串的 “X” 字符越长，则一连串的随机字符也就越长。 这里是一个例子：\n\ntempfile=$(mktemp /tmp/foobar.$$.XXXXXXXXXX)\n\nThis creates a temporary file and assigns its name to the variable tempfile. The “X” characters in the template are replaced with random letters and numbers so that the final filename (which, in this example, also includes the expanded value of the special parameter $$ to obtain the PID) might be something like:\n\n这里创建了一个临时文件，并把临时文件的名字赋值给变量 tempfile。因为模板中的 “X” 字符会被随机字母和 数字代替，所以最终的文件名（在这个例子中，文件名也包含了特殊参数 $$ 的展开值，进程的 PID）可能像这样：\n\n/tmp/foobar.6593.UOZuvM6654\n\nFor scripts that are executed by regular users, it may be wise to avoid the use of the /tmp directory and create a directory for temporary files within the user’s home directory, with a line of code such as this:\n\n对于那些由普通用户操作执行的脚本，避免使用 /tmp 目录，而是在用户家目录下为临时文件创建一个目录， 通过像这样的一行代码：\n\n[[ -d $HOME/tmp ]] || mkdir $HOME/tmp\n\n异步执行\nIt is sometimes desirable to perform more than one task at the same time. We have seen how all modern operating systems are at least multitasking if not multiuser as well. Scripts can be constructed to behave in a multitasking fashion.\n\n有时候需要同时执行多个任务。我们已经知道现在所有的操作系统若不是多用户的但至少是多任务的。 脚本也可以构建成多任务处理的模式。\n\nUsually this involves launching a script that, in turn, launches one or more child scripts that perform an additional task while the parent script continues to run. However, when a series of scripts runs this way, there can be problems keeping the parent and child coordinated. That is, what if the parent or child is dependent on the other, and one script must wait for the other to finish its task before finishing its own?\n\n通常这涉及到启动一个脚本，依次，启动一个或多个子脚本来执行额外的任务，而父脚本继续运行。然而，当一系列脚本 以这种方式运行时，要保持父子脚本之间协调工作，会有一些问题。也就是说，若父脚本或子脚本依赖于另一方，并且 一个脚本必须等待另一个脚本结束任务之后，才能完成它自己的任务，这应该怎么办？\n\nbash has a builtin command to help manage asynchronous execution such as this. The wait command causes a parent script to pause until a specified process (i.e., the child script) finishes.\n\nbash 有一个内置命令，能帮助管理诸如此类的异步执行的任务。wait 命令导致一个父脚本暂停运行，直到一个 特定的进程（例如，子脚本）运行结束。\n\n等待\nWe will demonstrate the wait command first. To do this, we will need two scripts, a par- ent script:\n\n首先我们将演示一下 wait 命令的用法。为此，我们需要两个脚本，一个父脚本：\n\n#!/bin/bash\n# async-parent : Asynchronous execution demo (parent)\necho \"Parent: starting...\"\necho \"Parent: launching child script...\"\nasync-child &\npid=$!\necho \"Parent: child (PID= $pid) launched.\"\necho \"Parent: continuing...\"\nsleep 2\necho \"Parent: pausing to wait for child to finish...\"\nwait $pid\necho \"Parent: child is finished. Continuing...\"\necho \"Parent: parent is done. Exiting.\"\nand a child script:\n\n和一个子脚本：\n\n#!/bin/bash\n# async-child : Asynchronous execution demo (child)\necho \"Child: child is running...\"\nsleep 5\necho \"Child: child is done. Exiting.\"\nIn this example, we see that the child script is very simple. The real action is being per- formed by the parent. In the parent script, the child script is launched and put into the background. The process ID of the child script is recorded by assigning the pid variable with the value of the $! shell parameter, which will always contain the process ID of the last job put into the background.\n\n在这个例子中，我们看到该子脚本是非常简单的。真正的操作通过父脚本完成。在父脚本中，子脚本被启动， 并被放置到后台运行。子脚本的进程 ID 记录在 pid 变量中，这个变量的值是 $! shell 参数的值，它总是 包含放到后台执行的最后一个任务的进程 ID 号。\n\nThe parent script continues and then executes a wait command with the PID of the child process. This causes the parent script to pause until the child script exits, at which point the parent script concludes.\n\n父脚本继续，然后执行一个以子进程 PID 为参数的 wait 命令。这就导致父脚本暂停运行，直到子脚本退出，父脚本随之结束。\n\nWhen executed, the parent and child scripts produce the following output:\n\n当执行后，父子脚本产生如下输出：\n\n[me@linuxbox ~]$ async-parent\nParent: starting...\nParent: launching child script...\nParent: child (PID= 6741) launched.\nParent: continuing...\nChild: child is running...\nParent: pausing to wait for child to finish...\nChild: child is done. Exiting.\nParent: child is finished. Continuing...\nParent: parent is done. Exiting.\n命名管道\nIn most Unix-like systems, it is possible to create a special type of file called a named pipe. Named pipes are used to create a connection between two processes and can be used just like other types of files. They are not that popular, but they’re good to know about.\n\n在大多数类似 Unix 的操作系统中，有可能创建一种特殊类型的文件，叫做命名管道。命名管道用来在 两个进程之间建立连接，也可以像其它类型的文件一样使用。虽然它们不是那么流行，但是它们值得我们去了解。\n\nThere is a common programming architecture called client-server, which can make use of a communication method such as named pipes, as well as other kinds of interprocess communication such as network connections.\n\n有一种常见的编程架构，叫做客户端-服务器，它可以利用像命名管道这样的通信方式， 也可以使用其它类型的进程间通信方式，比如网络连接。\n\nThe most widely used type of client-server system is, of course, a web browser communicating with a web server. The web browser acts as the client, making requests to the server and the server responds to the browser with web pages.\n\n最为广泛使用的客户端-服务器系统类型当然是一个web浏览器与一个web服务器之间进行通信。 web 浏览器作为客户端，向服务器发出请求，服务器响应请求，并把对应的网页发送给浏览器。\n\nNamed pipes behave like files, but actually form first-in first-out (FIFO) buffers. As with ordinary (unnamed) pipes, data goes in one end and emerges out the other. With named pipes, it is possible to set up something like this:\n\n命令管道的行为类似于文件，但实际上形成了先入先出（FIFO）的缓冲。和普通（未命令的）管道一样， 数据从一端进入，然后从另一端出现。通过命令管道，有可能像这样设置一些东西：\n\nprocess1 > named_pipe\nand\n\n和\n\nprocess2 < named_pipe\nand it will behave as if:\n\n表现出来就像这样：\n\nprocess1 | process2\n设置一个命名管道\nFirst, we must create a named pipe. This is done using the mkfifo command:\n\n首先，我们必须创建一个命名管道。使用 mkfifo 命令能够创建命令管道：\n\n[me@linuxbox ~]$ mkfifo pipe1\n[me@linuxbox ~]$ ls -l pipe1\nprw-r--r-- 1 me\nme\n0 2009-07-17 06:41 pipe1\nHere we use mkfifo to create a named pipe called pipe1. Using ls, we examine the file and see that the first letter in the attributes field is “p”, indicating that it is a named pipe.\n\n这里我们使用 mkfifo 创建了一个名为 pipe1 的命名管道。使用 ls 命令，我们查看这个文件， 看到位于属性字段的第一个字母是 “p”，表明它是一个命名管道。\n\n使用命名管道\nTo demonstrate how the named pipe works, we will need two terminal windows (or alternately, two virtual consoles). In the first terminal, we enter a simple command and redirect its output to the named pipe:\n\n为了演示命名管道是如何工作的，我们将需要两个终端窗口（或用两个虚拟控制台代替）。 在第一个终端中，我们输入一个简单命令，并把命令的输出重定向到命名管道：\n\n[me@linuxbox ~]$ ls -l > pipe1\nAfter we press the Enter key, the command will appear to hang. This is because there is nothing receiving data from the other end of the pipe yet. When this occurs, it is said that the pipe is blocked. This condition will clear once we attach a process to the other end and it begins to read input from the pipe. Using the second terminal window, we enter this command:\n\n我们按下 Enter 按键之后，命令将会挂起。这是因为在管道的另一端没有任何对象来接收数据。这种现象被称为管道阻塞。一旦我们绑定一个进程到管道的另一端，该进程开始从管道中读取输入的时候，管道阻塞现象就不存在了。 使用第二个终端窗口，我们输入这个命令：\n\n[me@linuxbox ~]$ cat < pipe1\nand the directory listing produced from the first terminal window appears in the second terminal as the output from the cat command. The ls command in the first terminal successfully completes once it is no longer blocked.\n\n然后产自第一个终端窗口的目录列表出现在第二个终端中，并作为来自 cat 命令的输出。在第一个终端 窗口中的 ls 命令一旦它不再阻塞，会成功地结束。\n\n总结\nWell, we have completed our journey. The only thing left to do now is practice, practice, practice. Even though we covered a lot of ground in our trek, we barely scratched the surface as far as the command line goes. There are still thousands of command line programs left to be discovered and enjoyed. Start digging around in /usr/bin and you’ll see!\n\n嗯，我们已经完成了我们的旅程。现在剩下的唯一要做的事就是练习，练习，再练习。 纵然在我们的长途跋涉中，我们涉及了很多命令，但是就命令行而言，我们只是触及了它的表面。 仍留有成千上万的命令行程序，需要去发现和享受。开始挖掘 /usr/bin 目录吧，你将会看到！\n\n拓展阅读\nThe “Compound Commands” section of the bash man page contains a full description of group command and subshell notations.\n\nbash 手册页的 “复合命令” 部分包含了对组命令和子 shell 表示法的详尽描述。\n\nThe EXPANSION section of the bash man page contains a subsection of process substitution.\n\nbash 手册也的 EXPANSION 部分包含了一小部分进程替换的内容：\n\nThe Advanced Bash-Scripting Guide also has a discussion of process substitution:\n\n《高级 Bash 脚本指南》也有对进程替换的讨论：\n\nhttp://tldp.org/LDP/abs/html/process-sub.html\n\nLinux Journal has two good articles on named pipes. The first, from September 1997:\n\n《Linux 杂志》有两篇关于命令管道的好文章。第一篇，源于1997年9月：\n\nhttp://www.linuxjournal.com/article/2156\n\nand the second, from March 2009:\n\n和第二篇，源于2009年3月：\n\nhttp://www.linuxjournal.com/content/using-named-pipes-fifos-bash\n\n\nGo to Table of Contents', '2018-06-08 16:41:57.040811', 3, 'Source', 78, NULL);
+INSERT INTO `show_comment` VALUES (90, '我是真的服气', '2018-06-09 00:11:22.102029', 5, '下 下面那位大侠', 79, NULL);
+INSERT INTO `show_comment` VALUES (91, '跑路', '2018-06-09 12:09:38.540738', 3, 'bug来了', 80, NULL);
+INSERT INTO `show_comment` VALUES (92, '垃圾网站', '2018-06-09 18:04:20.965512', 3, '李林宇', 81, NULL);
+INSERT INTO `show_comment` VALUES (96, '啦啦啦啦啦绿绿绿', '2018-06-09 19:43:12.643207', 3, '啦啦啦', 82, NULL);
+INSERT INTO `show_comment` VALUES (97, 'sss', '2018-06-09 20:00:58.519235', 3, 'sss', 83, NULL);
+INSERT INTO `show_comment` VALUES (98, 'ffffff', '2018-06-09 20:01:13.762110', 3, 'fff', 84, NULL);
+INSERT INTO `show_comment` VALUES (99, 'ssssss', '2018-06-09 22:59:25.914414', 3, 'ss', 85, NULL);
+INSERT INTO `show_comment` VALUES (101, 'fffffff', '2018-06-10 15:39:38.106170', 3, 'fff', 86, NULL);
+INSERT INTO `show_comment` VALUES (102, '<script>alert(\"是这条信息吗\")</script>', '2018-06-10 17:41:44.922275', 3, 'sss', 87, '');
+INSERT INTO `show_comment` VALUES (103, '评论', '2018-07-19 10:53:19.049465', 3, '524', 0, '发的');
+INSERT INTO `show_comment` VALUES (104, '十大sa', '2018-07-19 16:26:19.014281', 3, '十大', -1, '飒飒大十大');
+INSERT INTO `show_comment` VALUES (105, '反倒是方式', '2018-07-19 16:28:21.205778', 3, '发是的', 88, '发撒地方');
+INSERT INTO `show_comment` VALUES (106, '给的分割发代首个df', '2018-07-19 16:28:31.233976', 3, '发的gd', 89, '大范甘迪高数');
 
 -- ----------------------------
 -- Table structure for show_department
 -- ----------------------------
 DROP TABLE IF EXISTS `show_department`;
-CREATE TABLE `show_department` (
+CREATE TABLE `show_department`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `pic` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `intro` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of show_department
 -- ----------------------------
-INSERT INTO `show_department` VALUES ('1', '前端开发', 'image/DepartmentPicture/前端.png', '爱特前端部门负责网站的界面开发。用html,css,javascript等语言进行前台页面的构 建与优化。他们不仅仅满足于网站结构与功能的实现，更致力于带给用户强烈的视觉冲击和良好的交互体验。“前端工程师犹如网站的化妆师”，作为最接近用户的编程者，他们用双手敲打出属于自己的绝代风华。');
-INSERT INTO `show_department` VALUES ('2', '程序开发', 'image/DepartmentPicture/程序.png', '爱特工作室程序部门主要负责网站的后台开发、数据库搭建以及数据处理。成员主要基于.NET Framework 等平台进行开发，应用 C#、JAVA、Python 等编程语言进行网络编程，实现与SQL Server, MySql 等数据库数据交互，设计API供其他应用程序调用。');
-INSERT INTO `show_department` VALUES ('3', 'UI设计', 'image/DepartmentPicture/ui.png', '爱特UI设计部门专注于界面设计。他们以Photoshop, Illustration, Axure, After Effects 等软件为工具，以美为追求，使界面更有格调、更有品味，使网站操作更简单方便、交互性更强。每一个小小的icon，每一抹恰到好处的色彩，都是他们精心准备的惊喜。他们用灵感和创造力给网站以活力。');
-INSERT INTO `show_department` VALUES ('4', 'APP开发', 'image/DepartmentPicture/app.png', '爱特APP开发部门是第一个跳出了传统的网页开发的部门，负责安卓端应用程序的开发。他们遵循Material Design的设计模式，利用C++、JAVA等语言进行应用程序后台的开发与构建，并使程序流畅的和数据库及网络进行交互，力求带给用户最好的使用体验。');
+INSERT INTO `show_department` VALUES (1, '前端开发', 'image/DepartmentPicture/前端.png', '爱特前端部门负责网站的界面开发。用html,css,javascript等语言进行前台页面的构 建与优化。他们不仅仅满足于网站结构与功能的实现，更致力于带给用户强烈的视觉冲击和良好的交互体验。“前端工程师犹如网站的化妆师”，作为最接近用户的编程者，他们用双手敲打出属于自己的绝代风华。');
+INSERT INTO `show_department` VALUES (2, '程序开发', 'image/DepartmentPicture/程序.png', '爱特工作室程序部门主要负责网站的后台开发、数据库搭建以及数据处理。成员主要基于.NET Framework 等平台进行开发，应用 C#、JAVA、Python 等编程语言进行网络编程，实现与SQL Server, MySql 等数据库数据交互，设计API供其他应用程序调用。');
+INSERT INTO `show_department` VALUES (3, 'UI设计', 'image/DepartmentPicture/ui.png', '爱特UI设计部门专注于界面设计。他们以Photoshop, Illustration, Axure, After Effects 等软件为工具，以美为追求，使界面更有格调、更有品味，使网站操作更简单方便、交互性更强。每一个小小的icon，每一抹恰到好处的色彩，都是他们精心准备的惊喜。他们用灵感和创造力给网站以活力。');
+INSERT INTO `show_department` VALUES (4, 'APP开发', 'image/DepartmentPicture/app.png', '爱特APP开发部门是第一个跳出了传统的网页开发的部门，负责安卓端应用程序的开发。他们遵循Material Design的设计模式，利用C++、JAVA等语言进行应用程序后台的开发与构建，并使程序流畅的和数据库及网络进行交互，力求带给用户最好的使用体验。');
 
 -- ----------------------------
 -- Table structure for show_event
 -- ----------------------------
 DROP TABLE IF EXISTS `show_event`;
-CREATE TABLE `show_event` (
+CREATE TABLE `show_event`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `pic` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `year` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of show_event
 -- ----------------------------
-INSERT INTO `show_event` VALUES ('1', 'Android Ap', 'image/EventPhoto/前端.png', 'Android App开发部门正式成立', '2017');
-INSERT INTO `show_event` VALUES ('2', '小明', 'media/default/EventPhoto.png', 'fgdgfd', '2017');
-INSERT INTO `show_event` VALUES ('3', 'fg', 'media/default/EventPhoto.png', 'dgsgfdsg', '2017');
-INSERT INTO `show_event` VALUES ('4', 'gfds', 'media/default/EventPhoto.png', 'sdgfgdsf', '2016');
-INSERT INTO `show_event` VALUES ('5', 'sgdfgsdfg', 'media/default/EventPhoto.png', 'dsfgsdgsdf', '2016');
-INSERT INTO `show_event` VALUES ('6', 'gdsfgsd', 'media/default/EventPhoto.png', 'gdsfgsd', '2015');
-INSERT INTO `show_event` VALUES ('7', 'sadsadsal.', 'media/default/EventPhoto.png', 'sadsadasa', '2014');
+INSERT INTO `show_event` VALUES (1, 'Android Ap', 'image/EventPhoto/前端.png', 'Android App开发部门正式成立', 2017);
+INSERT INTO `show_event` VALUES (2, '小明', 'media/default/EventPhoto.png', 'fgdgfd', 2018);
+INSERT INTO `show_event` VALUES (3, 'fg', 'media/default/EventPhoto.png', 'dgsgfdsg', 2017);
+INSERT INTO `show_event` VALUES (4, 'gfds', 'media/default/EventPhoto.png', 'sdgfgdsf', 2016);
+INSERT INTO `show_event` VALUES (5, 'sgdfgsdfg', 'media/default/EventPhoto.png', 'dsfgsdgsdf', 2016);
+INSERT INTO `show_event` VALUES (6, 'gdsfgsd', 'media/default/EventPhoto.png', 'gdsfgsd', 2015);
+INSERT INTO `show_event` VALUES (7, 'sadsadsal.', 'media/default/EventPhoto.png', 'sadsadasa', 2014);
 
 -- ----------------------------
 -- Table structure for show_headpicture
 -- ----------------------------
 DROP TABLE IF EXISTS `show_headpicture`;
-CREATE TABLE `show_headpicture` (
+CREATE TABLE `show_headpicture`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` int(11) NOT NULL,
   `pic` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of show_headpicture
 -- ----------------------------
-INSERT INTO `show_headpicture` VALUES ('3', '1', 'image/HeadPicture/head1.png');
-INSERT INTO `show_headpicture` VALUES ('4', '2', 'image/HeadPicture/head2.png');
-INSERT INTO `show_headpicture` VALUES ('5', '3', 'image/HeadPicture/head3.png');
-INSERT INTO `show_headpicture` VALUES ('6', '4', 'image/HeadPicture/head4.png');
-INSERT INTO `show_headpicture` VALUES ('7', '5', 'image/HeadPicture/head5.png');
-INSERT INTO `show_headpicture` VALUES ('8', '6', 'image/HeadPicture/head6.png');
+INSERT INTO `show_headpicture` VALUES (3, 1, 'image/HeadPicture/head1.png');
+INSERT INTO `show_headpicture` VALUES (4, 2, 'image/HeadPicture/head2.png');
+INSERT INTO `show_headpicture` VALUES (5, 3, 'image/HeadPicture/head3.png');
+INSERT INTO `show_headpicture` VALUES (6, 4, 'image/HeadPicture/head4.png');
+INSERT INTO `show_headpicture` VALUES (7, 5, 'image/HeadPicture/head5.png');
+INSERT INTO `show_headpicture` VALUES (8, 6, 'image/HeadPicture/head6.png');
+INSERT INTO `show_headpicture` VALUES (9, 7, 'image/HeadPicture/0723_2.JPG');
+INSERT INTO `show_headpicture` VALUES (10, 8, 'image/HeadPicture/9150e4e5gy1fpwe2vs79fj20ku0kgdgz.jpg');
+INSERT INTO `show_headpicture` VALUES (11, 9, 'image/HeadPicture/0723_2_Vh82NUn.JPG');
+INSERT INTO `show_headpicture` VALUES (13, -1, 'image/HeadPicture/20165116592831174_xQtMPwV.jpg');
 
 -- ----------------------------
 -- Table structure for show_member
 -- ----------------------------
 DROP TABLE IF EXISTS `show_member`;
-CREATE TABLE `show_member` (
+CREATE TABLE `show_member`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `photo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -7109,61 +7222,58 @@ CREATE TABLE `show_member` (
   `department_id` int(11) DEFAULT NULL,
   `sex` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `show_member_department_id_d440d176_fk_show_department_id` (`department_id`) USING BTREE,
-  CONSTRAINT `show_member_department_id_d440d176_fk_show_department_id` FOREIGN KEY (`department_id`) REFERENCES `show_department` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  INDEX `show_member_department_id_d440d176_fk_show_department_id`(`department_id`) USING BTREE,
+  CONSTRAINT `show_member_department_id_d440d176_fk_show_department_id` FOREIGN KEY (`department_id`) REFERENCES `show_department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of show_member
 -- ----------------------------
-INSERT INTO `show_member` VALUES ('1', '谢哲勇', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_5QjqQTm.gif', '爱特重量担当', '2017', '1', '0');
-INSERT INTO `show_member` VALUES ('2', '浦泽元', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_DzO4w2v.gif', '阿普爱曼联', '2017', '1', '0');
-INSERT INTO `show_member` VALUES ('3', '陈尊龙', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_nJ52str.gif', '啊,,龙!!!', '2017', '1', '0');
-INSERT INTO `show_member` VALUES ('4', '陈开拓', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E.gif', '拓拓', '2017', '1', '0');
-INSERT INTO `show_member` VALUES ('5', '丁进仁', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_52vJ9iB.gif', '丁丁', '2017', '2', '0');
-INSERT INTO `show_member` VALUES ('6', '李林宇', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_NqkVxzT.gif', '前任经理', '2017', '4', '0');
+INSERT INTO `show_member` VALUES (1, '谢哲勇', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_5QjqQTm.gif', '爱特重量担当', 2017, 1, 0);
+INSERT INTO `show_member` VALUES (2, '浦泽元', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_DzO4w2v.gif', '阿普爱曼联', 2017, 1, 0);
+INSERT INTO `show_member` VALUES (3, '陈尊龙', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_nJ52str.gif', '啊,,龙!!!', 2017, 1, 0);
+INSERT INTO `show_member` VALUES (4, '陈开拓', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E.gif', '拓拓', 2017, 1, 0);
+INSERT INTO `show_member` VALUES (5, '丁进仁', 'image/MemberPhoto/ACAD628D-2D05-4D36-8EA5-8F4212CA0C4E_52vJ9iB.gif', '丁丁', 2017, 2, 0);
+INSERT INTO `show_member` VALUES (6, '李1', 'image/MemberPhoto/20165116592831174.jpg', '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 2018, 1, 0);
 
 -- ----------------------------
 -- Table structure for show_worksshow
 -- ----------------------------
 DROP TABLE IF EXISTS `show_worksshow`;
-CREATE TABLE `show_worksshow` (
+CREATE TABLE `show_worksshow`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `pic` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `link` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of show_worksshow
 -- ----------------------------
-INSERT INTO `show_worksshow` VALUES ('1', '海洋技术系网站', 'image/WorksShowPhoto/海寂.png', 'http://it.ouc.edu.cn/SeaProject/View/TeacherList.aspx');
-INSERT INTO `show_worksshow` VALUES ('2', '信息科学与工程学院', 'image/WorksShowPhoto/信息.png', 'http://it.ouc.edu.cn/Display/Index.aspx');
-INSERT INTO `show_worksshow` VALUES ('3', '爱特工作室', 'image/WorksShowPhoto/爱特.png', 'http://222.195.145.152:8099/PC/Index.aspx');
-INSERT INTO `show_worksshow` VALUES ('4', '中国海洋大学iGEM', 'image/WorksShowPhoto/igem3.png', 'http://2015.igem.org/Team:OUC-China');
-INSERT INTO `show_worksshow` VALUES ('5', '国际教育学院', 'image/WorksShowPhoto/国际教育.png', 'www.hao123.com');
+INSERT INTO `show_worksshow` VALUES (3, '爱特工作室', 'image/WorksShowPhoto/爱特展示网.png', 'http://222.195.145.152:8099/PC/Index.aspx');
+INSERT INTO `show_worksshow` VALUES (4, '中国海洋大学iGEM', 'image/WorksShowPhoto/igem3.png', 'http://2015.igem.org/Team:OUC-China');
 
 -- ----------------------------
 -- Table structure for tes_profile
 -- ----------------------------
 DROP TABLE IF EXISTS `tes_profile`;
-CREATE TABLE `tes_profile` (
+CREATE TABLE `tes_profile`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `avatar` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of tes_profile
 -- ----------------------------
-INSERT INTO `tes_profile` VALUES ('1', 'avatars/微信图片_20171120215458.jpg');
+INSERT INTO `tes_profile` VALUES (1, 'avatars/微信图片_20171120215458.jpg');
 
 -- ----------------------------
 -- Table structure for user_fresher
 -- ----------------------------
 DROP TABLE IF EXISTS `user_fresher`;
-CREATE TABLE `user_fresher` (
+CREATE TABLE `user_fresher`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `sex` tinyint(1) NOT NULL,
@@ -7175,30 +7285,32 @@ CREATE TABLE `user_fresher` (
   `registerTime` datetime(6) NOT NULL,
   `userCode` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `wantDepartment_id` int(11) DEFAULT NULL,
-  `qqnum` varchar(20) DEFAULT NULL,
+  `qqnum` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `user_fresher_status_id_b4e91ba9` (`status_id`) USING BTREE,
-  KEY `user_fresher_wantDepartment_id_827b732f` (`wantDepartment_id`) USING BTREE,
-  CONSTRAINT `user_fresher_wantDepartment_id_827b732f_fk_show_department_id` FOREIGN KEY (`wantDepartment_id`) REFERENCES `show_department` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10043 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  INDEX `user_fresher_status_id_b4e91ba9`(`status_id`) USING BTREE,
+  INDEX `user_fresher_wantDepartment_id_827b732f`(`wantDepartment_id`) USING BTREE,
+  CONSTRAINT `user_fresher_wantDepartment_id_827b732f_fk_show_department_id` FOREIGN KEY (`wantDepartment_id`) REFERENCES `show_department` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 10051 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of user_fresher
 -- ----------------------------
-INSERT INTO `user_fresher` VALUES ('10036', '阿浦', '0', '2018保密', '983739298@qq.com', '13532145654', 'dsaa', '0', '2018-06-10 13:34:14.560027', 'NY1dEp7jar', '1', '1234569874', '0');
-INSERT INTO `user_fresher` VALUES ('10037', '阿浦', '0', '2018新闻', '100896@qq.com', '13532145698', '达大厦', '0', '2018-06-10 13:41:36.245322', 'jQx0GnVYhO', '1', '986532232', '0');
-INSERT INTO `user_fresher` VALUES ('10038', '阿浦', '0', '2018新闻', '100896@qq.com', '13532145698', '达大厦', '0', '2018-06-10 13:42:25.517145', 'kmD8GuesJc', '2', '986532232', '0');
-INSERT INTO `user_fresher` VALUES ('10039', '陈玉沅', '0', '2018对对对', 'yuyuan@126.com', '13622222222', '达大厦', '0', '2018-06-10 13:43:34.075069', 'oR61QMaqEY', '2', '2286619021', '0');
-INSERT INTO `user_fresher` VALUES ('10040', '陈玉沅', '0', '2018急急急', 'yuyuan@126.com', '13622222222', 'wqwqw', '0', '2018-06-10 13:45:51.582942', 'u2BmsQzue6', '1', '228722222', '0');
-INSERT INTO `user_fresher` VALUES ('10041', '陈玉沅', '0', '2018急急急', 'yuyuan@126.com', '13622222222', 'wqwqw', '0', '2018-06-10 13:47:26.641383', '7MWERe3MYv', '1', '228722222', '0');
-INSERT INTO `user_fresher` VALUES ('10042', '陈玉沅', '0', '2018急急急', 'yuyuan@126.com', '13622222222', 'wqwqw', '0', '2018-06-10 13:47:38.512066', 'zrI0OTt9Ws', '1', '228722222', '0');
+INSERT INTO `user_fresher` VALUES (10036, '阿浦', 0, '2018保密', '983739298@qq.com', '13532145654', 'dsaa', 0, '2018-06-10 13:34:14.560027', 'NY1dEp7jar', 1, '1234569874', 0);
+INSERT INTO `user_fresher` VALUES (10037, '阿浦', 0, '2018新闻', '100896@qq.com', '13532145698', '达大厦', 0, '2018-06-10 13:41:36.245322', 'jQx0GnVYhO', 1, '986532232', 0);
+INSERT INTO `user_fresher` VALUES (10038, '阿浦', 0, '2018新闻', '100896@qq.com', '13532145698', '达大厦', 0, '2018-06-10 13:42:25.517145', 'kmD8GuesJc', 2, '986532232', 0);
+INSERT INTO `user_fresher` VALUES (10039, '陈玉沅', 0, '2018对对对', 'yuyuan@126.com', '13622222222', '达大厦', 0, '2018-06-10 13:43:34.075069', 'oR61QMaqEY', 2, '2286619021', 0);
+INSERT INTO `user_fresher` VALUES (10040, '陈玉沅', 0, '2018急急急', 'yuyuan@126.com', '13622222222', 'wqwqw', 0, '2018-06-10 13:45:51.582942', 'u2BmsQzue6', 1, '228722222', 0);
+INSERT INTO `user_fresher` VALUES (10041, '陈玉沅', 0, '2018急急急', 'yuyuan@126.com', '13622222222', 'wqwqw', 0, '2018-06-10 13:47:26.641383', '7MWERe3MYv', 1, '228722222', 0);
+INSERT INTO `user_fresher` VALUES (10042, '陈玉沅', 0, '2018急急急15555', 'yuyuan@126.com', '13622222222', 'wqwqw', 0, '2018-06-10 13:47:38.512066', 'zrI0OTt9Ws', 1, '11224', 0);
+INSERT INTO `user_fresher` VALUES (10043, '谭坚铭', 0, '2018新闻', '983739298@qq.com', '15220849225', '我是一条小青龙', 2, '2018-07-19 08:33:11.772134', 'sj7HmNBtHi', 3, '983739298', 1);
+INSERT INTO `user_fresher` VALUES (10050, '谈谈谈', 0, '2018女装', '983739298@qq.com', '15220849225', '524254254343', 1, '2018-07-19 16:16:25.679561', 'ikszVmbPJj', 1, '983739298', 1);
 
 -- ----------------------------
 -- Table structure for user_statusdetails
 -- ----------------------------
 DROP TABLE IF EXISTS `user_statusdetails`;
-CREATE TABLE `user_statusdetails` (
+CREATE TABLE `user_statusdetails`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` int(11) NOT NULL,
   `time` datetime(6) NOT NULL,
@@ -7207,43 +7319,81 @@ CREATE TABLE `user_statusdetails` (
   `isTail` tinyint(1) NOT NULL,
   `statu_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `user_statusdetails_hostID_id_62bff682_fk_user_fresher_id` (`hostID_id`) USING BTREE,
-  KEY `user_statusdetails_statu_id_f9ebc5b7_fk_user_statusinfo_code` (`statu_id`) USING BTREE,
-  CONSTRAINT `user_statusdetails_hostID_id_62bff682_fk_user_fresher_id` FOREIGN KEY (`hostID_id`) REFERENCES `user_fresher` (`id`),
-  CONSTRAINT `user_statusdetails_statu_id_f9ebc5b7_fk_user_statusinfo_code` FOREIGN KEY (`statu_id`) REFERENCES `user_statusinfo` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=3604 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  INDEX `user_statusdetails_hostID_id_62bff682_fk_user_fresher_id`(`hostID_id`) USING BTREE,
+  INDEX `user_statusdetails_statu_id_f9ebc5b7_fk_user_statusinfo_code`(`statu_id`) USING BTREE,
+  CONSTRAINT `user_statusdetails_hostID_id_62bff682_fk_user_fresher_id` FOREIGN KEY (`hostID_id`) REFERENCES `user_fresher` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_statusdetails_statu_id_f9ebc5b7_fk_user_statusinfo_code` FOREIGN KEY (`statu_id`) REFERENCES `user_statusinfo` (`code`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3630 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of user_statusdetails
 -- ----------------------------
-INSERT INTO `user_statusdetails` VALUES ('3597', '1', '2018-06-10 13:34:14.656029', '10036', '', '1', '0');
-INSERT INTO `user_statusdetails` VALUES ('3598', '1', '2018-06-10 13:41:36.319326', '10037', '', '1', '0');
-INSERT INTO `user_statusdetails` VALUES ('3599', '1', '2018-06-10 13:42:25.560141', '10038', '', '1', '0');
-INSERT INTO `user_statusdetails` VALUES ('3600', '1', '2018-06-10 13:43:34.126065', '10039', '', '1', '0');
-INSERT INTO `user_statusdetails` VALUES ('3601', '1', '2018-06-10 13:45:51.620940', '10040', '', '1', '0');
-INSERT INTO `user_statusdetails` VALUES ('3602', '1', '2018-06-10 13:47:26.756394', '10041', '', '1', '0');
-INSERT INTO `user_statusdetails` VALUES ('3603', '1', '2018-06-10 13:47:38.537068', '10042', '', '1', '0');
+INSERT INTO `user_statusdetails` VALUES (3597, 1, '2018-06-10 13:34:14.656029', 10036, '', 1, 0);
+INSERT INTO `user_statusdetails` VALUES (3598, 1, '2018-06-10 13:41:36.319326', 10037, '', 1, 0);
+INSERT INTO `user_statusdetails` VALUES (3599, 1, '2018-06-10 13:42:25.560141', 10038, '', 1, 0);
+INSERT INTO `user_statusdetails` VALUES (3600, 1, '2018-06-10 13:43:34.126065', 10039, '', 1, 0);
+INSERT INTO `user_statusdetails` VALUES (3601, 1, '2018-06-10 13:45:51.620940', 10040, '', 1, 0);
+INSERT INTO `user_statusdetails` VALUES (3602, 1, '2018-06-10 13:47:26.756394', 10041, '', 1, 0);
+INSERT INTO `user_statusdetails` VALUES (3603, 1, '2018-06-10 13:47:38.537068', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3604, 2, '2018-07-11 09:04:28.542395', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3605, 3, '2018-07-11 09:04:33.009367', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3606, 4, '2018-07-11 09:04:38.147348', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3607, 5, '2018-07-11 09:19:07.427069', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3608, 6, '2018-07-11 09:19:16.371166', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3609, 7, '2018-07-11 09:29:13.815255', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3610, 8, '2018-07-11 09:36:00.031617', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3611, 9, '2018-07-11 09:36:09.436134', 10042, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3612, 10, '2018-07-11 09:36:13.395330', 10042, '', 1, 0);
+INSERT INTO `user_statusdetails` VALUES (3613, 1, '2018-07-19 08:33:11.803676', 10043, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3614, 2, '2018-07-19 08:44:00.850380', 10043, '', 0, 1);
+INSERT INTO `user_statusdetails` VALUES (3615, 3, '2018-07-19 09:59:00.828533', 10043, '', 1, 2);
+INSERT INTO `user_statusdetails` VALUES (3625, 1, '2018-07-19 16:16:25.689504', 10050, '', 0, 0);
+INSERT INTO `user_statusdetails` VALUES (3626, 2, '2018-07-19 16:17:44.771305', 10050, '', 0, 1);
+INSERT INTO `user_statusdetails` VALUES (3627, 3, '2018-07-19 20:03:45.097577', 10050, '', 0, 2);
+INSERT INTO `user_statusdetails` VALUES (3628, 4, '2018-07-19 23:37:07.383540', 10050, '', 0, 3);
+INSERT INTO `user_statusdetails` VALUES (3629, 5, '2018-07-19 23:37:11.282073', 10050, '', 1, 1);
 
 -- ----------------------------
 -- Table structure for user_statusinfo
 -- ----------------------------
 DROP TABLE IF EXISTS `user_statusinfo`;
-CREATE TABLE `user_statusinfo` (
+CREATE TABLE `user_statusinfo`  (
   `code` int(11) NOT NULL,
   `info` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `emailText` longtext CHARACTER SET utf8 COLLATE utf8_general_ci,
   `nextStatus_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`code`) USING BTREE,
-  UNIQUE KEY `user_statusinfo_code_4281e7d8_uniq` (`code`) USING BTREE,
-  KEY `user_statusinfo_nextStatus_id_1d56067f_fk_user_statusinfo_code` (`nextStatus_id`) USING BTREE,
-  CONSTRAINT `user_statusinfo_nextStatus_id_1d56067f_fk_user_statusinfo_code` FOREIGN KEY (`nextStatus_id`) REFERENCES `user_statusinfo` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+  UNIQUE INDEX `user_statusinfo_code_4281e7d8_uniq`(`code`) USING BTREE,
+  INDEX `user_statusinfo_nextStatus_id_1d56067f_fk_user_statusinfo_code`(`nextStatus_id`) USING BTREE,
+  CONSTRAINT `user_statusinfo_nextStatus_id_1d56067f_fk_user_statusinfo_code` FOREIGN KEY (`nextStatus_id`) REFERENCES `user_statusinfo` (`code`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
 
 -- ----------------------------
 -- Records of user_statusinfo
 -- ----------------------------
-INSERT INTO `user_statusinfo` VALUES ('0', '待审核', '你的报名信息已收到，请使用激活链接激活', '1');
-INSERT INTO `user_statusinfo` VALUES ('1', '面试', '你已经进入一轮面试,请于几月几日到哪里参加,谢谢', '2');
-INSERT INTO `user_statusinfo` VALUES ('2', '笔试', '笔试地点2131', '3');
-INSERT INTO `user_statusinfo` VALUES ('3', '退出', '啦啦啦', '1');
-INSERT INTO `user_statusinfo` VALUES ('6', '21', '1', null);
+INSERT INTO `user_statusinfo` VALUES (0, '待审核', '你的报名信息已经收到，使用激活链接激活', 1);
+INSERT INTO `user_statusinfo` VALUES (1, '面试', '你已经进入一轮面试,请于几月几日到哪里参加,谢谢', 2);
+INSERT INTO `user_statusinfo` VALUES (2, '笔试', '笔试地点2131', 3);
+INSERT INTO `user_statusinfo` VALUES (3, '退出', '啦啦啦', 1);
+INSERT INTO `user_statusinfo` VALUES (6, '21', '1', NULL);
+
+-- ----------------------------
+-- Table structure for user_visituser
+-- ----------------------------
+DROP TABLE IF EXISTS `user_visituser`;
+CREATE TABLE `user_visituser`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `visitNum` int(11) NOT NULL,
+  `slotTime` datetime(6) NOT NULL,
+  `allNum` int(11) NOT NULL,
+  `lastTime` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci  ;
+
+-- ----------------------------
+-- Records of user_visituser
+-- ----------------------------
+INSERT INTO `user_visituser` VALUES (2, '127.0.0.1', 3, '2018-07-15 10:50:32.926167', 0, '2018-07-15 10:51:13.644614');
+
+SET FOREIGN_KEY_CHECKS = 1;

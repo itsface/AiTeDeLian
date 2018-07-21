@@ -18,9 +18,15 @@
 
 
             {% for head in heads %}
-              <li value="{{ head.name }}"><img src="{{ MEDIA_URL }}{{ head.pic }}" alt=""></li>
+              <li><img src="{{ MEDIA_URL }}{{ head.pic }}" alt=""></li>
             {% endfor %}
-{#<input name="headsNum" class="headamount" value="{{ num }}" style="display:none ">#}
+<input name="headsNum" class="headamount" value="{{ num }}" style="display:none ">
+{#              <li><img src="{% static  "images/head1.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head2.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head3.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head4.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head5.png" %}" alt=""></li>#}
+{#              <li><img src="{% static  "images/head6.png" %}" alt=""></li>#}
 
           </div>
         <div class="right_arrow"><img src="{% static  "images/rightarrow.png" %}" alt=""></div>
@@ -35,7 +41,7 @@
       </div>
       
       <div class="text">
-        <textarea name="" id="" cols="30" rows="10" ></textarea>
+        <textarea name="" id="" cols="30" rows="10" style="resize:none"></textarea>
       </div>
       <div class="footer clearfix3">
         <div class="verify_tip">(请输入验证码)</div>
@@ -51,7 +57,6 @@
       <h1>留言板</h1>
       <span class="line"></span>
     </div>
-        <input name="headsNum" type="text" class="headamount" value="{{ num }}" style="display:none ">
     <div class="body">
         <div class="comments-contain index_topic mCustomScrollbar _mCS_1">
       <div id="mCSB_1" class="mCustomScrollBox mCS-rounded-dots mCSB_vertical mCSB_inside" tabindex="0">
@@ -68,11 +73,9 @@
   </div>
 {% endblock %}
 {% block script %}
-{#<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>#}
-    <script src = "https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-{#<script src="{% static  "js/mCustomScrollbar.js" %}"></script>#}
-<script src="{% static  "js/comment3.js" %}"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="{% static  "js/mCustomScrollbar.js" %}"></script>
+<script src="{% static  "js/comment.js" %}"></script>
 <script>
     $.ajaxSetup({
         data: {csrfmiddlewaretoken: '{{ csrf_token }}' },

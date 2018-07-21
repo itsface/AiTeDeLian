@@ -8,6 +8,7 @@ jQuery.browser = {
 	mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
 }; //通过正则去判断当前使用的哪种内核的浏览器
 var H, W;
+var l, h;
 P = 867 / 560 //长宽比
 // if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(window).width()”
 // {
@@ -110,6 +111,26 @@ if (H > 400) {
 	})
 	$(".processform_return").height(0.046 * H)
 
+	for (var j = 0; j < l; j++) {
+		$(".dot").eq(j).css({
+			'width': 0.034 * 0.32 * H + 'px',
+			'height': 0.034 * 0.32 * H + 'px',
+			'border-radius': 0.034 * 0.16 * H + 'px'
+
+
+		})
+		// console.log(h)
+		$(".dot").eq(j).css({
+			'top': 0.16 * H * 0.17 + j * 0.034 * 0.32 * H + h * j + 'px',
+			'left': '-' + 0.034 * 0.16 * H + 'px'
+		})
+		$(".event").eq(j).css({
+			'top': 0.16 * H * 0.17 + j * 0.034 * 0.32 * H + h * j + 'px',
+			// 'left': '-' + 0.034 * 0.16 * H + 'px'
+		})
+	}
+
+
 
 }
 
@@ -118,6 +139,7 @@ if (H > 400) {
 $(window).resize(function() {
 	H = $(window).height(); //获得窗口宽度
 	W = $(window).width(); //获得窗口高度
+	h = (0.32 * H * 0.83 - l * 0.034 * 0.32 * H) / (l - 1);
 	// $("body").height(H);
 	if (H > 400) {
 		$(".container").height(H);
@@ -215,6 +237,25 @@ $(window).resize(function() {
 			'margin-top': 0.09 * H
 		})
 		$(".processform_return").height(0.046 * H)
+
+		for (var j = 0; j < l; j++) {
+			$(".dot").eq(j).css({
+				'width': 0.034 * 0.32 * H + 'px',
+				'height': 0.034 * 0.32 * H + 'px',
+				'border-radius': 0.034 * 0.16 * H + 'px'
+
+
+			})
+			// console.log(h)
+			$(".dot").eq(j).css({
+				'top': 0.16 * H * 0.17 + j * 0.034 * 0.32 * H + h * j + 'px',
+				'left': '-' + 0.034 * 0.16 * H + 'px'
+			})
+			$(".event").eq(j).css({
+				'top': 0.16 * H * 0.17 + j * 0.034 * 0.32 * H + h * j + 'px',
+				// 'left': '-' + 0.034 * 0.16 * H + 'px'
+			})
+		}
 
 
 
@@ -454,7 +495,15 @@ $(".apform").submit(function() {
 	return false;
 })
 
+
+
 $(".apform_submit").click(function() {
+	$(".apform_submit").attr('disabled','true')
+	
+	setTimeout(function(){
+		$(".apform_submit").removeAttr('disabled')
+	},3000)
+		
 	if (check_form() && correct_form()) {
 		var wantdepart = $(".selected").val();
 		$(".intention_choose").val(wantdepart);
@@ -483,6 +532,16 @@ $(".apform_submit").click(function() {
 					alert("报名失败，请重试")
 				}
 
+
+				// $(".apform_submit").css({
+				// 	'disabled': 'disabled'
+				// })
+				// setTimeout(function() {
+				// 	$(".apform_submit").css({
+				// 		'disabled': ''
+				// 	})
+				// }, 2000);
+
 			},
 			error: function(jqXHR) {
 				alert("报名失败，请重试")
@@ -497,7 +556,11 @@ $(".apform_submit").click(function() {
 		return false;
 	}
 
+
+
 })
+
+
 
 //----华丽丽的分割线
 
@@ -516,11 +579,12 @@ $(".verify_back").click(function() {
 
 
 //在报名状态下点击返回，然后回到单号页面
-$(".processform .return").click(function() {
+$(".processform_return").click(function() {
 
 	$(".processform").hide();
 	$(".verify").show();
 })
+
 
 
 //
@@ -532,7 +596,7 @@ $(".verify_check").click(function() {
 	} else {
 		var obj = {
 			method: "GET",
-			url: "/api/status/get?userCode=" + $(".inputwrap input").val(),
+			url: "/api/status/get?userCode=" +$(".inputwrap input").val() ,
 			timeout: 5000,
 			dataType: 'Default: Intelligent Guess',
 			async: true
@@ -540,24 +604,49 @@ $(".verify_check").click(function() {
 
 		promisesetajax(obj).then(function(data) {
 			if (data.success) {
+				l = data.status.length;
+		
+
+				h = (0.32 * H * 0.83 - l * 0.034 * 0.32 * H) / (l - 1);
+		
 				$(".content").eq(0).html(data.name);
 				$(".content").eq(1).html(data.major);
 				$(".content").eq(2).html(data.wantDepart);
+				$(".events").children().remove();
+				$(".dots").children().remove();
 				var str = '';
-				for (var i = 0; i < 3; i++) {
+				var str2 = '';
+
+				for (var i = 0; i < l; i++) {
 					// str += `
 					// 		<div class="event">
 					// 			<span>${data.status[i].statusHappenTime}</span>
 					// 			<span>${data.status[i].statusName}</span>
-								
+
 					// 		</div>
-							
+
 
 					// `
+
 					str += "\n\t\t\t\t\t\t\t<div class=\"event\">\n\t\t\t\t\t\t\t\t<span>" + data.status[i].statusHappenTime + "</span>\n\t\t\t\t\t\t\t\t<span>" + data.status[i].statusName + "</span>\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\n\n\t\t\t\t\t";
+					// str2 +=`<div class="dot"></div>`
+					str2 += "<div class=\"dot\"></div>\n";
 				}
-				console.log(str)
-				$(".events").append(str)
+				$(".events").append(str);
+				$(".dots").append(str2);
+
+				//为他们设置css
+				for (var j = 0; j < l; j++) {
+					$(".dot").eq(j).css({
+						'top': 0.16 * H * 0.17 + j * 0.034 * 0.32 * H + h * j + 'px',
+						'left': '-' + 0.034 * 0.16 * H + 'px'
+					})
+					$(".event").eq(j).css({
+						'top': 0.16 * H * 0.17 + j * 0.034 * 0.32 * H + h * j + 'px'
+					})
+				}
+
+
 
 				// x = [0, 1, 2];
 				// x.forEach(function(v) {
@@ -581,7 +670,7 @@ $(".verify_check").click(function() {
 });
 
 function promisesetajax(obj) {
-	return new Promise(function(resolve, reject){
+	return new Promise(function(resolve, reject) {
 		var request = new XMLHttpRequest();
 		request.open(obj.method, obj.url, obj.async);
 		if (obj.method == 'GET') {

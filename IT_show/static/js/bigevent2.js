@@ -1,13 +1,4 @@
-$(document).ready(function() {
-	$(".menu").children().eq(3).addClass("current-menu-item")
 
-	var $thisnav = $('.current-menu-item').offset().left - $('.x').offset().left;
-	var $initwidth = $('.current-menu-item').width();
-	$('.wee').css({
-		'left': $thisnav + 10 + 'px',
-		'width': $initwidth
-	});
-})
 window.onload = function() {
 	$baller = $(".ball");
 	$pole = $(".plate .pole"); // 杆子
@@ -178,7 +169,7 @@ window.onload = function() {
 				'margin-top': '-' + parseInt($eventtext.height()) * 0.5 + 'px'
 				// 'margin-bottom': -0.3118*H
 			})
-				console.log($eventboard.css('margin-top'))
+				
 		}
 
 
@@ -451,7 +442,7 @@ window.onload = function() {
 
 
 		var obj = {
-			url: '/api/event/get?year=' + (index + 2014),
+			url: 'http://ktchen.cn:8080/api/event/get?year=' + (index + 2014),
 			method: 'GET',
 			data: {
 				year: index + 2014
@@ -493,6 +484,11 @@ window.onload = function() {
 					// }
 
 
+					$("#mCSB_1_container").append(str);
+					$("#mCSB_1_container").append(str);
+					$("#mCSB_1_container").append(str);
+					$("#mCSB_1_container").append(str);
+					$("#mCSB_1_container").append(str);
 					$("#mCSB_1_container").append(str);
 					$(".year").html(index + 2014)
 
@@ -753,7 +749,7 @@ function word() {
 	})
 setTimeout(function(){
 	word();
-},20)
+},200)
 
 }
 word();

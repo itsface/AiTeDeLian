@@ -3,6 +3,7 @@
 	padding:0px;
 	font-family: MicrosoftYaHei, sans-serif;
 }
+h1, h2, h3, h4, h5, h6 { font-weight:normal; }
 
 @media screen and (min-width: 1920px){ 
 	html{font-size:15px;} 

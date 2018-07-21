@@ -87,7 +87,7 @@ class HeadPicture(models.Model):
         verbose_name_plural = r"匿名评论头像"
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))

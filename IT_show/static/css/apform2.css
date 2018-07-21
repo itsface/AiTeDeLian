@@ -1,3 +1,24 @@
+
+	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+    body { background:#fff; color:#555; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; }
+    td,th,caption { font-size:14px; }
+    h1, h2, h3, h4, h5, h6 { font-weight:normal; }
+    address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+    a { color:#555; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    img { border:none; }
+    ol,ul,li { list-style:none; }
+    input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
+    table { border-collapse:collapse; }
+    html {overflow-y: scroll;} 
+    .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+    .clearfix { *zoom:1; }
+	.clear{clear: both;}
+	.click-on-nav{
+	color: rgb(184,3,4);
+}
+
+
 input{
 	outline: none;
 }
@@ -43,6 +64,7 @@ img
 	background-size: cover;
 	background-position: center;	
 	overflow: hidden;
+	min-height: 400px;
 }
 .logo img,.logo
 {
@@ -147,6 +169,10 @@ img
 	font-size: 20px;
 	color: #458bac;
 
+}
+.choosebody li:hover
+{
+	cursor: pointer;
 }
 .choosebody li:nth-child(1)
 {
@@ -398,8 +424,15 @@ img
 	background-color: #458bac;
 	border-radius: 6px;
 }
+.event
+{
+	position: absolute;
+	left: 15px;
+	color: #458bac;
+	font-size: 16px
+}
 
-.dot:nth-child(3)
+/*.dot:nth-child(3)
 {
 	left: -6px;
 
@@ -417,7 +450,7 @@ img
 	left: -6px;
 
 	top:30px; 
-}
+}*/
 .processform_return
 {
 	width: 100%;
@@ -463,6 +496,10 @@ img
 	{
 		font-size: 16px;
 	}
+	.event
+	{
+		font-size: 15px;
+	}
 
 }
 @media screen and (max-height:900px){
@@ -490,6 +527,10 @@ img
 	.title,.content
 	{
 		font-size: 14px;
+	}
+	.event
+	{
+		font-size: 13px;
 	}
 
 
@@ -536,6 +577,10 @@ img
 	{
 		font-size: 12px;
 	}
+	.event
+	{
+		font-size: 11px;
+	}
 
 
 
@@ -555,7 +600,7 @@ img
 	.choosebody li{
 		/*border-radius: 8px;*/
 	}
-		.info_input input,.introduction{
+	.info_input input,.introduction{
 		font-size: 10px;
 	}
 	.verify h2
@@ -569,6 +614,10 @@ img
 	.title,.content
 	{
 		font-size: 10px;
+	}
+	.event
+	{
+		font-size: 9px;
 	}
 
 
@@ -601,6 +650,10 @@ img
 	{
 		font-size: 8px;
 	}
+	.event
+	{
+		font-size: 9px;
+	}
 
 
 
@@ -609,7 +662,7 @@ img
 }
 @media screen and (max-height:500px){
 	.formheader{
-		font-size: 12px;
+		font-size: 10px;
 	}
 	.info_title,.choosehead,.intro_title,.choosebody li{
 		font-size: 8px;
