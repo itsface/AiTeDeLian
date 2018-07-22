@@ -65,6 +65,20 @@ def setCache():
         cache.set(key,result,time)
     return result
 
+def sendEmailTest(request):
+    email=request.GET.get("email","983739298@qq.com")
+    result=""
+    try:
+        if email!="":
+            from django.core.mail import send_mail
+
+            send_mail("这是标题吧","这是内容","easyblog123@163.com",[email],fail_silently=False)
+        result="成功"
+    except:
+        result = "失败"
+
+    return render(request,"sendEmail.html",result)
+
 
 from django.core.cache import cache
 from django.http import HttpRequest
