@@ -71,13 +71,12 @@ def sendEmailTest(request):
     try:
         if email!="":
             from django.core.mail import send_mail
-
             send_mail("这是标题吧","这是内容","easyblog123@163.com",[email],fail_silently=False)
         result="成功"
     except:
         result = "失败"
 
-    return render(request,"sendEmail.html",result)
+    return render(request,"sendEmail.html",{"result":result})
 
 
 from django.core.cache import cache
