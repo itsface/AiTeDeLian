@@ -1,45 +1,13 @@
+{% extends "base.html" %}
+{% load myfilter %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>成员展示</title>
-    <meta charset="utf-8">
-    <link rel="shortcut icon" href="{% static  "favicon.ico" %}">
-    <link rel="stylesheet" type="text/css" href="{% static  "css/member.css" %}">
+{% block head %}
+    <meta charset="UTF-8">
+	<title>成员展示</title>
+	<link rel="stylesheet" type="text/css" href="{% static  "css/member.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static  "css/d.css" %}">
-</head>
-<body>
-<div class="container">
-    <div class="head">
-        <div class="center">
-            <img src="{% static  "img/logo.png" %}" class="logo">
-            <h2>爱特工作室</h2>
-            <div class="menu">
-                <div class="menu-item x">
-                    <a href="{% url 'show_index' %}">首页</a>
-                </div>
-                <div class="menu-item">
-                    <a href="{% url 'show_department' %}">部门介绍</a>
-                </div>
-                <div class="menu-item">
-                    <a href="{% url 'show_workshow' %}">作品展示</a>
-                </div>
-                <div class="menu-item">
-                    <a href="{% url 'show_big_event' %}">爱特大事记</a>
-                </div>
-                <div class="menu-item current-menu-item">
-                    <a href="{% url 'show_member' %}">成员展示</a>
-                    <div class="wee"></div>
-                </div>
-                <div class="menu-item">
-                    <a href="{% url 'show_comment' %}">留言板</a>
-                </div>
-                <div class="menu-item">
-                    <a href="{% url 'user_' %}">加入我们</a>
-                </div>
-            </div>
-        </div>
-    </div>
+{% endblock %}
+{% block content %}
     <div class="show">
         <h1 class="member_show">成员展示</h1>
         <span class="zhan"></span>
@@ -50,19 +18,17 @@
     <div class="main">
         <div class="float"></div>
         <img src="{% static  "img/asdabj.png" %}" class="time_star">
-        <div class="quan quan2011"></div>
-        <div class="quan quan2012"></div>
-        <div class="quan quan2013"></div>
-        <div class="quan quan2014"></div>
-        <div class="quan quan2015"></div>
-        <div class="quan quan2016"></div>
-        <div class="quan quan2017"></div>
+
+        {% for one in result.members %}
+            <div class="quan quan{{ one.year}}"></div>
+        {% endfor %}
     </div>
 
 
-    {% for year in result.year %}
-        <div class="member{{ year }}_block member_block">
-            <h2 class="grade">{{ year }}</h2>
+        {% for one in result.members %}
+
+        <div class="member{{ one.year }}_block member_block">
+            <h2 class="grade">{{ one.year }}</h2>
             <div class="cha_block">
                 <img src="{% static  "img/cha.png" %}" class="cha">
             </div>
@@ -74,223 +40,68 @@
             </div>
             <div class="lunbo">
                 <div class="long">
-                    {% ifequal year 2011 %}
-                        {% for i in  result.m11  %}
-                            <div class="boy{{ forloop.counter }} boy">
+
+                {% for member in one.member %}
+                    <div class="boy{{ forloop.counter }} boy">
                                 <div class="portrait">
-                                    <img src="{{ MEDIA_URL }}{{ i.photo }}" class="portrait">
+                                    <img src="{{ MEDIA_URL }}{{ member.photo }}" class="portrait">
                                     <div class="cover">
-                                        <p>{{ i.intro }}</p>
+                                        <p>{{ member.intro }}</p>
                                     </div>
                                 </div>
-                                <h2 class="name">{{ i.name }}</h2>
-                                <h3 class="department">{{ i.department.name }}</h3>
+                                <h2 class="name">{{ member.name }}</h2>
+                                <h3 class="department">{{ member.department.name }}</h3>
                             </div>
- {% endfor %}
-                            </div>
-                            </div>
-
-                            <div class="turn_page">
-                                {% for one in result.num11 %}
-
-                                    <div class="page{{ forloop.counter }} page">
-                                        <img src="{% static  "img/page"%}{{ forloop.counter }}.png" class="qiu{{ forloop.counter }} qiu">
-                                        <img src="{% static  "img/up.png" %}" class="uprow">
-                                        <img src="{% static  "img/down.png" %}" class="downrow">
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            </div>
-
-
-
-
-
-                    {% endifequal %}
-
-        {% ifequal year 2012 %}
-            {% for i in  result.m12  %}
-                <div class="boy{{ forloop.counter }} boy">
-                    <div class="portrait">
-                        <img src="{{ MEDIA_URL }}{{ i.photo }}" class="portrait">
-                        <div class="cover">
-                            <p>{{ i.intro }}</p>
-                        </div>
+                    {% endfor %}
                     </div>
-                    <h2 class="name">{{ i.name }}</h2>
-                    <h3 class="department">{{ i.department.name }}</h3>
+                        </div>
+                <div class="turn_page">
                 </div>
-            {% endfor %}
+{#                        <div class="turn_page">#}
+{#                            {% for one in result.num11 %}#}
+{##}
+{#                                <div class="page{{ forloop.counter }} page">#}
+{#                                    <img src="{% static  "img/page" %}{{ forloop.counter }}.png"#}
+{#                                         class="qiu{{ forloop.counter }} qiu">#}
+{#                                    <img src="{% static  "img/up.png" %}" class="uprow">#}
+{#                                    <img src="{% static  "img/down.png" %}" class="downrow">#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                        </div>#}
 
-            </div>
-                        </div>
 
-                        <div class="turn_page">
-                            {% for one in result.num12 %}
-
-                                <div class="page{{ forloop.counter }} page">
-                                    <img src="{% static  "img/page"%}{{ forloop.counter }}.png" class="qiu{{ forloop.counter }} qiu">
-                                    <img src="{% static  "img/up.png" %}" class="uprow">
-                                    <img src="{% static  "img/down.png" %}" class="downrow">
-                                </div>
-                            {% endfor %}
-                        </div>
-                        </div>
-        {% endifequal %}
-
-        {% ifequal year 2013 %}
-            {% for i in  result.m13  %}
-                <div class="boy{{ forloop.counter }} boy">
-                    <div class="portrait">
-                        <img src="{{ MEDIA_URL }}{{ i.photo }}" class="portrait">
-                        <div class="cover">
-                            <p>{{ i.intro }}</p>
-                        </div>
-                    </div>
-                    <h2 class="name">{{ i.name }}</h2>
-                    <h3 class="department">{{ i.department.name }}</h3>
-                </div>
-            {% endfor %}
-
-            </div>
-            </div>
-
-            <div class="turn_page">
-                {% for one in result.num13 %}
-
-                    <div class="page{{ forloop.counter }} page">
-                        <img src="{% static  "img/page"%}{{ forloop.counter }}.png" class="qiu{{ forloop.counter }} qiu">
-                        <img src="{% static  "img/up.png" %}" class="uprow">
-                        <img src="{% static  "img/down.png" %}" class="downrow">
-                    </div>
-                {% endfor %}
-            </div>
-            </div>
-
-        {% endifequal %}
-
-        {% ifequal year 2014 %}
-            {% for i in  result.m14  %}
-                <div class="boy{{ forloop.counter }} boy">
-                    <div class="portrait">
-                        <img src="{{ MEDIA_URL }}{{ i.photo }}" class="portrait">
-                        <div class="cover">
-                            <p>{{ i.intro }}</p>
-                        </div>
-                    </div>
-                    <h2 class="name">{{ i.name }}</h2>
-                    <h3 class="department">{{ i.department.name }}</h3>
-                </div>
-            {% endfor %}
-
-            </div>
-            </div>
-
-            <div class="turn_page">
-                {% for one in result.num14 %}
-
-                    <div class="page{{ forloop.counter }} page">
-                        <img src="{% static  "img/page"%}{{ forloop.counter }}.png" class="qiu{{ forloop.counter }} qiu">
-                        <img src="{% static  "img/up.png" %}" class="uprow">
-                        <img src="{% static  "img/down.png" %}" class="downrow">
-                    </div>
-                {% endfor %}
-            </div>
-            </div>
-
-        {% endifequal %}
-
-        {% ifequal year 2015 %}
-            {% for i in  result.m15  %}
-                <div class="boy{{ forloop.counter }} boy">
-                    <div class="portrait">
-                        <img src="{{ MEDIA_URL }}{{ i.photo }}" class="portrait">
-                        <div class="cover">
-                            <p>{{ i.intro }}</p>
-                        </div>
-                    </div>
-                    <h2 class="name">{{ i.name }}</h2>
-                    <h3 class="department">{{ i.department.name }}</h3>
-                </div>
-            {% endfor %}
-
-            </div>
-            </div>
-
-            <div class="turn_page">
-                {% for one in result.num15 %}
-
-                    <div class="page{{ forloop.counter }} page">
-                        <img src="{% static  "img/page"%}{{ forloop.counter }}.png" class="qiu{{ forloop.counter }} qiu">
-                        <img src="{% static  "img/up.png" %}" class="uprow">
-                        <img src="{% static  "img/down.png" %}" class="downrow">
-                    </div>
-                {% endfor %}
-            </div>
-            </div>
-
-        {% endifequal %}
-
-        {% ifequal year 2016 %}
-            {% for i in  result.m16  %}
-                <div class="boy{{ forloop.counter }} boy">
-                    <div class="portrait">
-                        <img src="{{ MEDIA_URL }}{{ i.photo }}" class="portrait">
-                        <div class="cover">
-                            <p>{{ i.intro }}</p>
-                        </div>
-                    </div>
-                    <h2 class="name">{{ i.name }}</h2>
-                    <h3 class="department">{{ i.department.name }}</h3>
-                </div>
-            {% endfor %}
-
-            </div>
-            </div>
-
-            <div class="turn_page">
-                {% for one in result.num16 %}
-
-                    <div class="page{{ forloop.counter }} page">
-                        <img src="{% static  "img/page"%}{{ forloop.counter }}.png" class="qiu{{ forloop.counter }} qiu">
-                        <img src="{% static  "img/up.png" %}" class="uprow">
-                        <img src="{% static  "img/down.png" %}" class="downrow">
-                    </div>
-                {% endfor %}
-            </div>
-            </div>
-
-        {% endifequal %}
-
-        {% ifequal year 2017 %}
-            {% for i in  result.m17  %}
-                <div class="boy{{ forloop.counter }} boy">
-                    <div class="portrait">
-                        <img src="{{ MEDIA_URL }}{{ i.photo }}" class="portrait">
-                        <div class="cover">
-                            <p>{{ i.intro }}</p>
-                        </div>
-                    </div>
-                    <h2 class="name">{{ i.name }}</h2>
-                    <h3 class="department">{{ i.department.name }}</h3>
-                </div>
-            {% endfor %}
-            </div>
-            </div>
-
-            <div class="turn_page">
-                {% for one in result.num17 %}
-
-                    <div class="page{{ forloop.counter }} page">
-                        <img src="{% static  "img/page"%}{{ forloop.counter }}.png" class="qiu{{ forloop.counter }} qiu">
-                        <img src="{% static  "img/up.png" %}" class="uprow">
-                        <img src="{% static  "img/down.png" %}" class="downrow">
-                    </div>
-                {% endfor %}
-            </div>
-            </div>
-
-        {% endifequal %}
+{##}
+{#        {% ifequal year 2017 %}#}
+{#            {% for i in  result.m17 %}#}
+{#                <div class="boy{{ forloop.counter }} boy">#}
+{#                    <div class="portrait">#}
+{#                        <img src="{{ MEDIA_URL }}{{ i.photo }}" class="portrait">#}
+{#                        <div class="cover">#}
+{#                            <p>{{ i.intro }}</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <h2 class="name">{{ i.name }}</h2>#}
+{#                    <h3 class="department">{{ i.department.name }}</h3>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#            </div>#}
+{#            </div>#}
+{##}
+{#            <div class="turn_page">#}
+{#                {% for one in result.num17 %}#}
+{##}
+{#                    <div class="page{{ forloop.counter }} page">#}
+{#                        <img src="{% static  "img/page" %}{{ forloop.counter }}.png"#}
+{#                             class="qiu{{ forloop.counter }} qiu">#}
+{#                        <img src="{% static  "img/up.png" %}" class="uprow">#}
+{#                        <img src="{% static  "img/down.png" %}" class="downrow">#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            </div>#}
+{##}
+{#        {% endifequal %}#}
 
 
         {% comment %}	</div>
@@ -306,10 +117,19 @@
                 {% endfor %}
 			</div>
 		</div>{% endcomment %}
+        </div>
     {% endfor %}
-</div>
-<script type="text/javascript" src="{% static  "js/jquery-3.3.1.min.js" %}"></script>
-<script type="text/javascript" src="{% static  "js/member.js" %}"></script>
-</body>
-</html>
-<!-- //2 8 7 8 6 15 10 -->
+
+
+    <div class="amount" style="display: none;">
+    {% for one in result.members %}
+        <input id="{{ one.year }}" value="{{ one.num }}" type="text">
+    {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block script %}
+	<script type="text/javascript" src="{% static  "js/jquery-3.3.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static  "js/member.js" %}"></script>
+{% endblock %}

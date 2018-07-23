@@ -40,37 +40,20 @@ def workshow(request):  # success
 
 @simple_cache_page(60*60*10,"member")
 def member(request):
+    result={}
+    members=[]
+    year=2011
+    while year<2018:
+        temp = Member.objects.filter(year=year)
+        num=int(temp.count()/3)
+        if temp.count()%3!=0:
+            num=num+1
+            print(num)
+        temp2={"member":temp,"num":num,"year":year}
+        members.append(temp2)
+        year=year+1
 
-    m11=Member.objects.filter(year=2011)
-    m12 = Member.objects.filter(year=2012)
-    m13=Member.objects.filter(year=2013)
-    m14 = Member.objects.filter(year=2014)
-    m15 = Member.objects.filter(year=2015)
-    m16 = Member.objects.filter(year=2016)
-    m17 = Member.objects.filter(year=2017)
-
-    num11 = Member.objects.filter(year=2011).count()
-
-    num12 = Member.objects.filter(year=2012).count()
-
-    num13 = Member.objects.filter(year=2013).count()
-    num14 = Member.objects.filter(year=2014).count()
-    num15 = Member.objects.filter(year=2015).count()
-    num16 = Member.objects.filter(year=2016).count()
-    num17 = Member.objects.filter(year=2017).count()
-    num17=num17 // 3 if num17 % 3 == 0 else num17//3 + 1
-    nnum17=range(1,num17+1)
-    num11 = range(1,(num11 // 3 if num11 % 3 == 0 else num11//3 + 1)+1)
-    num12 = range(1,(num12 // 3 if num12 % 3 == 0 else num12//3 + 1)+1)
-    num13 = range(1,(num13 // 3 if num13 % 3 == 0 else num13//3 + 1)+1)
-    num14 = range(1,(num14 // 3 if num14 % 3 == 0 else num14//3 + 1)+1)
-    num15 = range(1,(num15 // 3 if num15 % 3 == 0 else num15//3 + 1)+1)
-    num16 = range(1,(num16 // 3 if num16 % 3 == 0 else num16//3 + 1)+1)
-    num17 = range(1,(num17 //  3 if num17 % 3 == 0 else num17//3 + 1)+1)
-
-    result = {'m11':m11,'m12':m12,'m13':m13,'m14':m14,'m15':m15,'m16':m16,'m17':m17,'num5':range(1,4),'year':range(2011,2018),
-              'num11':num11,'num12':num12,'num13':num13,'num14':num14,'num15':num15,'num16':num16,'num17':nnum17,
-              }
+    result = {'members':members}
 
     return render(request, 'member.html',{'result':result})
 

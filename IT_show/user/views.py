@@ -47,7 +47,7 @@ def register(request):
 
 
 def addNewStatusDetail(userId,statueId):
-    # try:
+    try:
         fresher=Fresher.objects.get(id=userId)
         fresher.status_id = statueId #更新用户状态
         fresher.save()
@@ -60,6 +60,6 @@ def addNewStatusDetail(userId,statueId):
                                      hostID_id=userId,
                                      code=StatusDetails.objects.filter(
                                      hostID=fresher.id).count() + 1,isTail=True)
-    # except:
-    #     pass
+    except:
+        pass
 

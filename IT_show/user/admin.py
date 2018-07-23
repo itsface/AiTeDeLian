@@ -367,6 +367,7 @@ class FresherAdmin(admin.ModelAdmin):
         obj.save()
 
 
+
 #招生状态设置
 class StatusInfoAdmin(admin.ModelAdmin):
     list_display = ('code', 'info', "nextStatus", "emailText")
