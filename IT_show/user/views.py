@@ -30,7 +30,7 @@ def sendEmail(name, code, mail,text):
                             +text+
                             '\n你的个人ID为:' + code+'\n',
                 'easyblog123@163.com',
-                [mail],
+                mail,
                 fail_silently=False
              )
         except BadHeaderError:
