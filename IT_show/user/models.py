@@ -3,7 +3,7 @@ import show.models
 import logging
 
 class StatusInfo(models.Model):
-    code = models.IntegerField(verbose_name="状态Id", default=0, auto_created=True, primary_key=True)
+    code = models.IntegerField(verbose_name="状态Id",default=-1, auto_created=True, primary_key=True)
     nextStatus = models.ForeignKey('self', verbose_name="下个状态", null=True, blank=True, on_delete=models.SET_NULL)
     # nextStatus = models.IntegerField(verbose_name="下个状态", null=True)
     info = models.CharField(verbose_name="状态信息", max_length=50)
@@ -16,6 +16,13 @@ class StatusInfo(models.Model):
 
     def __str__(self):
         return str(self.info)
+
+    def save(self, *args, **kwargs):
+        from base import func
+        from user.views import addNewStatusDetail,sendEmail
+        if self.code=="" or self.code==-1:#以code不存在为新状态标志
+            self.code=StatusInfo.objects.all().order_by("-code")[0].code + 1
+        super(StatusInfo, self).save(*args, **kwargs)  # Call the "real" save() method.
 
 
 class Fresher(models.Model):
