@@ -18,6 +18,7 @@ from django.contrib import admin
 import django.views.static
 import IT_show.settings
 import show.views
+from django.views.generic.base import RedirectView
 from django.conf.urls import handler404, handler500
 handler404 = "show.views.page404"
 from django.conf import settings
@@ -34,5 +35,5 @@ urlpatterns = [
     url('^$', show.views.index, name="index"),
     url(r'^(?P<path>.*)', django.views.static.serve, {'document_root': IT_show.settings.BASE_DIR }),
     # path('media/<path:path>',serve,{'document_root':MEDIA_ROOT}),
-
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

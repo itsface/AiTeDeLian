@@ -137,7 +137,7 @@ def api_comment_submit(request):
         if len(content) <= 80:
             head = int(request.POST.get("head"))
             # logging.debug(content + " " + str(head))
-            code = int(Comment.objects.latest("code").code) + 1
+            code = int(Comment.objects.all().order_by("-code")[0].code) + 1
             # logging.debug(code)
             nickName = request.POST.get("nickName")
             logging.debug(nickName)

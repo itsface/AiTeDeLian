@@ -2130,6 +2130,7 @@ function addcomment() {
 	var code;
 	if (firstTime) {
 		code = 0;
+		
 		firstTime = false;
 	} else {
 		code = $(".index_topic .comments:last-child").attr('id')
@@ -2142,6 +2143,8 @@ function addcomment() {
 		}
 	}
 
+	console.log(code);
+
 	var obj = {
 		url: '/api/comment/get?code=' + code,
 		method: 'GET',
@@ -2149,7 +2152,6 @@ function addcomment() {
 		async: true
 
 	}
-
 
 	promisesetajax(obj).then(function(data) {
 				var str = "";
@@ -2166,7 +2168,7 @@ function addcomment() {
  						else
  						{
 
-						str += "<div class=\"comments clearfix3\" id=\"" + data.comment[i].code + ")\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix3\">\n\t\t\t\t            <div class=\"clearfix3\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + ("</p>\n\t\t\t\t            <div class=\"adminreply clearfix3\">\n\t\t\t\t                <span>\u56DE\u590D\uFF1A</span>\n\t\t\t\t                <span> " + data.comment[i].admin + "</span>\n\t\t\t\t              </div> \n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ");
+						str += "<div class=\"comments clearfix3\" id=\"" + data.comment[i].code + "\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix3\">\n\t\t\t\t            <div class=\"clearfix3\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + ("</p>\n\t\t\t\t            <div class=\"adminreply clearfix3\">\n\t\t\t\t                <span>\u56DE\u590D\uFF1A</span>\n\t\t\t\t                <span> " + data.comment[i].admin + "</span>\n\t\t\t\t              </div> \n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ");
  						}
 						// str += `<div class="comments clearfix3" id="${data.comment[i].code})">
 						//      			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>

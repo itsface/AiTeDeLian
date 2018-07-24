@@ -245,7 +245,7 @@ class HeadPictureAdmin(admin.ModelAdmin):
     list_per_page = 30
     actions = [deleteHeadImage]
 
-    admin.site.disable_action('delete_selected')#禁用删除
+    # admin.site.disable_action('delete_selected')#禁用删除
     def has_delete_permission(self, request, obj=None):
         """ 取消后台删除附件功能 """
         return False
