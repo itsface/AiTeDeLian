@@ -2143,7 +2143,7 @@ function addcomment() {
 		}
 	}
 
-	console.log(code);
+	// console.log(code);
 
 	var obj = {
 		url: '/api/comment/get?code=' + code,
