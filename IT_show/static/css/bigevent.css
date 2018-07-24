@@ -27,7 +27,7 @@ textarea{
 *{
 	padding: 0px;
 	margin:0px;
-	font-family: MicrosoftYaHei;
+	/* font-family: MicrosoftYaHei; */
 }
 .container{
 	/*min-width: 1000px;*/

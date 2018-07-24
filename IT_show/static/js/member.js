@@ -348,6 +348,14 @@ function ballchange(_this) {
 	}
 
 }
+$(window).resize(function() {
+
+	$(".tselect").siblings('.lunbo').children().eq(0).css({
+		left: - x * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
+	})
+	console.log($(".lunbo").width() )
+})
+
 $(".page").click(function(event) {
 
 	ballchange(this)
@@ -383,7 +391,7 @@ function toright(_this) {
 }
 $(".turnleft").click(function() {
 	toleft(this)
-})
+});
 $(".turnright").click(function(event) {
 	toright(this)
 });
