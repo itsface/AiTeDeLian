@@ -399,6 +399,7 @@ class StatusInfoAdmin(admin.ModelAdmin):
             'fields': ('code', 'info', "emailText", "nextStatus"),
         }],
     )
+    readonly_fields = ["code"]
     list_per_page = 30
     ordering = ('-code',)
 

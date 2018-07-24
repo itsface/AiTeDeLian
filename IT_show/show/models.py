@@ -63,6 +63,8 @@ class Event(models.Model):
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
 
+
+
 class WorksShow(models.Model):
     name = models.CharField(verbose_name="网站名", max_length=10, default="")
     pic = models.ImageField(verbose_name="网站图片",upload_to='image/WorksShowPhoto/',default='media/default/WorksShowPhoto.png',)
@@ -92,6 +94,37 @@ class HeadPicture(models.Model):
     def image_tag(self):
         return mark_safe('<img width=50px src="%s%s" />' % (IT_show.settings.MEDIA_URL,self.pic))
 
+    def save(self, *args, **kwargs):
+        from base import func
+        if self.name=="" or self.name==-1:
+            try:
+                self.name=HeadPicture.objects.all().order_by("-name")[0].name + 1
+            except:
+                self.name=100
+        super(HeadPicture, self).save(*args, **kwargs)  # Call the "real" save() method.
+
+    def delete(self, using=None, soft=True, *args, **kwargs):
+        name=self.name
+        if name!=0:
+            print(name)
+            code=self.id
+            results = Comment.objects.filter(head__comment__code=code)
+            defaultId=0
+            try:
+                defaultId=HeadPicture.objects.get(name=0).id
+            except:
+                defaultId=HeadPicture.objects.all().order_by("name")[0].id
+
+            for one in results:
+                try:
+                    one.head_id=defaultId
+                    one.save()
+                except:
+                    pass
+            super(HeadPicture, self).delete(using=using, *args, **kwargs)
+
+
+
 
 class Comment(models.Model):
     code = models.IntegerField(verbose_name="这是第几个创建的评论",primary_key=True,auto_created=True,default=-1)
@@ -115,6 +148,9 @@ class Comment(models.Model):
 
     def save(self, *args, **kwargs):
         if self.code==-1:
-            self.code=Comment.objects.all().order_by("-code")[0].code+1
+            try:
+                self.code=Comment.objects.all().order_by("-code")[0].code+1
+            except:
+                self.code=100
         super(Comment, self).save(*args, **kwargs)
 

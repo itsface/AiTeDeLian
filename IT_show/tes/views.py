@@ -71,7 +71,7 @@ def sendEmailTest(request):
     try:
         if email!="":
             from django.core.mail import send_mail
-            send_mail("这是标题吧","这是内容","easyblog123@163.com",[email],fail_silently=False)
+            send_mail("这是标题吧","这是内容","easyblog123@163.com",[email],fail_silently=True)
         result="成功"
     except:
         result = "失败"
