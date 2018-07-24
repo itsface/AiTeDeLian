@@ -6,7 +6,7 @@ from show.tool import refreshCacheThread,simple_cache_page
 from xlwt import *
 from django.core.cache import cache
 from show import forms
-
+from django.contrib import admin, messages
 def makeExcel(modeladmin, request, queryset):
     # 创建工作簿
     ws = Workbook(encoding='utf-8')
@@ -49,6 +49,7 @@ def makeExcel(modeladmin, request, queryset):
     response = HttpResponse(sio.getvalue(), content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename=' + fileName  # test.xls'
     response.write(sio.getvalue())
+
     return response
 
 
@@ -176,6 +177,7 @@ class DepartmentAdmin(admin.ModelAdmin):
     list_per_page = 10
 
     def save_model(self, request, obj, form, change):
+        super(DepartmentAdmin, self).save_model()
         obj.save()
         cache.set('department', None, 0)
 
@@ -200,7 +202,40 @@ class CommentAdmin(admin.ModelAdmin):
     readonly_fields = ("createTime","image_tag","code")
     search_fields = ('code', 'content',"name",)
     list_per_page = 30
+    date_hierarchy = 'createTime'
+    # list_editable = ['content']
 
+from show.models import *
+def deleteHeadImage(modeladmin, request, queryset):
+    for head in queryset:
+        print("执行到1")
+        if head.name=="0" or head.name==0:
+            print("执行到2")
+            messages.warning(request, u"name为0的头像为默认头像，不能被删除")
+            continue
+        else:
+            try:
+                oldId=head.id
+                defaultId = 0
+                try:
+                    defaultId = HeadPicture.objects.get(name=0).id
+                    print()
+                except:
+                    defaultId = HeadPicture.objects.all().order_by("name")[0].id
+                results=Comment.objects.filter(head__id=oldId)
+                for one in results:
+                    try:
+                        one.head_id = defaultId
+                        one.save()
+                    except:
+                        pass
+
+                head.delete()
+            except:
+                pass
+    modeladmin.message_user(request, " 操作完成.")
+
+deleteHeadImage.short_description = "删除指定头像"
 
 class HeadPictureAdmin(admin.ModelAdmin):
     list_display = ('name', "image_tag", 'pic')
@@ -208,6 +243,13 @@ class HeadPictureAdmin(admin.ModelAdmin):
     search_fields = ('name', 'pic')
     readonly_fields = ["name","image_tag"]
     list_per_page = 30
+    actions = [deleteHeadImage]
+
+    admin.site.disable_action('delete_selected')#禁用删除
+    def has_delete_permission(self, request, obj=None):
+        """ 取消后台删除附件功能 """
+        return False
+
 
 
 
@@ -217,6 +259,7 @@ class worksShowAdmin(admin.ModelAdmin):
     readonly_fields = ["image_tag"]
     search_fields = ('name', "link")
     list_per_page = 30
+    form = forms.DepartmentForm
     def save_model(self, request, obj, form, change):
         obj.save()
         cache.set('workshow', None, 0)

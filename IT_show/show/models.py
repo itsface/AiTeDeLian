@@ -103,25 +103,25 @@ class HeadPicture(models.Model):
                 self.name=100
         super(HeadPicture, self).save(*args, **kwargs)  # Call the "real" save() method.
 
-    def delete(self, using=None, soft=True, *args, **kwargs):
-        name=self.name
-        if name!=0:
-            print(name)
-            code=self.id
-            results = Comment.objects.filter(head__comment__code=code)
-            defaultId=0
-            try:
-                defaultId=HeadPicture.objects.get(name=0).id
-            except:
-                defaultId=HeadPicture.objects.all().order_by("name")[0].id
-
-            for one in results:
-                try:
-                    one.head_id=defaultId
-                    one.save()
-                except:
-                    pass
-            super(HeadPicture, self).delete(using=using, *args, **kwargs)
+    # def delete(self, using=None, soft=True, *args, **kwargs):
+    #     name=self.name
+    #     if name!=0 or name !="0":
+    #         print(name)
+    #         code=self.id
+    #         results = Comment.objects.filter(head__comment__code=code)
+    #         defaultId=0
+    #         try:
+    #             defaultId=HeadPicture.objects.get(name=0).id
+    #         except:
+    #             defaultId=HeadPicture.objects.all().order_by("name")[0].id
+    #
+    #         for one in results:
+    #             try:
+    #                 one.head_id=defaultId
+    #                 one.save()
+    #             except:
+    #                 pass
+    #         super(HeadPicture, self).delete(using=using, *args, **kwargs)
 
 
 
