@@ -174,24 +174,24 @@ function change_member(W, H) {
 	})
 }
 
-$(window).on('load resize', function() {
-	// var $thisnav = $('.current-menu-item').offset().left;
-	$('.menu-item').hover(function() {
-		var $left = $(this).offset().left - $thisnav;
-		var $width = $(this).outerWidth();
-		var $start = 0;
-		$('.wee').css({
-			'left': $left + 10,
-			'width': $width - 20
-		});
-	}, function() {
-		var $initwidth = $('.current-menu-item').width();
-		$('.wee').css({
-			'left': '10px',
-			'width': $initwidth
-		});
-	});
-}); //滑块
+// $(window).on('load resize', function() {
+// 	// var $thisnav = $('.current-menu-item').offset().left;
+// 	$('.menu-item').hover(function() {
+// 		var $left = $(this).offset().left - $thisnav;
+// 		var $width = $(this).outerWidth();
+// 		var $start = 0;
+// 		$('.wee').css({
+// 			'left': $left + 10,
+// 			'width': $width - 20
+// 		});
+// 	}, function() {
+// 		var $initwidth = $('.current-menu-item').width();
+// 		$('.wee').css({
+// 			'left': '10px',
+// 			'width': $initwidth
+// 		});
+// 	});
+// }); //滑块
 $(document).ready(function() {
 	$(".menu").children().eq(5).addClass("nowpage");
 	localwee();

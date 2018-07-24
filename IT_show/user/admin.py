@@ -135,10 +135,24 @@ update_data_src.short_description = u'将所选用户跳转至指定状态，并
 
 
 def sendStatuInfo(modeladmin, request, queryset):
+    ok1=0
+    ok2=0
+    fail=0
     for fresher in queryset:
-        if  fresher.status_id!=None and fresher.status.emailText!="":
-            user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
-
+        try:
+            if  fresher.status_id!=None and fresher.status.emailText!="":
+                user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
+                ok1=ok1+1
+            else:
+                ok2=ok2
+        except:
+            fail=fail+1
+    if ok1>0:
+        modeladmin.message_user(request, str(ok1)+"名用户邮件通知发送完成.")
+    if ok2 > 0:
+        modeladmin.message_user(request, str(ok2) + "名用户当前状态无邮件内容.")
+    if fail > 0:
+        modeladmin.message_user(request, str(fail) + "名用户邮件通知发送失败.")
 
 sendStatuInfo.short_description = "给所选用户发送当前状态通知"
 
@@ -359,7 +373,7 @@ class UserFilterDepartment(admin.SimpleListFilter):
             return queryset.filter(wantDepartment=self.value())
 
 
-# 招生管理设置
+# 招新管理设置
 class FresherAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'sex', 'yearAndMajor', "wantDepartment", 'email', 'qqnum', 'phone', 'status', 'registerTime','active')
@@ -415,14 +429,13 @@ class StatusDetailsAdmin(admin.ModelAdmin):
     readonly_fields = ('hostID',  'statu',"info",'code', 'time',"isTail")
     list_per_page = 30
     ordering = ('-time',)
-
+    actions = []
+    # admin.site.disable_action('delete_selected')  # 禁用删除
     def has_add_permission(self, request):
         """ 取消后台添加附件功能 """
         return False
 
-    def has_delete_permission(self, request, obj=None):
-        """ 取消后台删除附件功能 """
-        return False
+
 
     def save_model(self, request, obj, form, change):
         """ 取消后台编辑附件功能 """

@@ -180,12 +180,20 @@ html body .menu .menu-item a {
 }
 .cover{
 	position: absolute;
-	background-color: #7ECEF4;
-	opacity: 0.5;
+	/* background-color: #7ECEF4; */
+  /* opacity: 0.5; */
+  background:rgba(126,206,244,0.5);
 	display: none;
 	left: 0px;
 	top: 0px;
 }
+.cover p{
+  font-size: 16px;
+  font-family: MicrosoftYaHei, sans-serif;
+  color: #FAFAFA;
+  
+}
+
 .turn_page{
 	position: absolute;
 }

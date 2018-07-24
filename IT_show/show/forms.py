@@ -1,6 +1,7 @@
 from django import forms
 from datetime import datetime
 import re
+from show.models import *
 
 #爱特成员信息表单验证
 class MenberForm(forms.ModelForm):
@@ -86,3 +87,12 @@ class FresherForm(forms.ModelForm):
         else:
             raise forms.ValidationError("年级专业输入有误!")
 
+#部门信息表单验证
+class DepartmentForm(forms.ModelForm):
+    def clean_name(self):
+        data = self.cleaned_data['name']
+        result=Department.objects.filter(name=data)
+        if len(result)==0:
+            return data
+        else:
+            raise forms.ValidationError("部门名称不能重复!")
