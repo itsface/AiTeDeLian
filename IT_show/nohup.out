@@ -12248,3 +12248,550 @@ Exception happened during processing of request from ('111.1.106.254', 33269)
 3
 5
 2
+[2018-07-24 19:37:15,072] [INFO] "GET /static/favicon.ico HTTP/1.1" 200 536
+2018-07-24 19:37:15,072 INFO "GET /static/favicon.ico HTTP/1.1" 200 536
+[2018-07-24 19:39:08,752] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 19:39:08,752 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 19:42:43,612] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 19:42:43,612 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 19:42:43,694] [INFO] "GET /static/css/nav.css HTTP/1.1" 304 0
+2018-07-24 19:42:43,694 INFO "GET /static/css/nav.css HTTP/1.1" 304 0
+[2018-07-24 19:42:43,698] [INFO] "GET /static/css/home.css HTTP/1.1" 304 0
+2018-07-24 19:42:43,698 INFO "GET /static/css/home.css HTTP/1.1" 304 0
+[2018-07-24 19:42:43,702] [INFO] "GET /static/css/d.css HTTP/1.1" 304 0
+2018-07-24 19:42:43,702 INFO "GET /static/css/d.css HTTP/1.1" 304 0
+[2018-07-24 19:42:43,745] [INFO] "GET /static/js/jquery-3.2.1.min.js HTTP/1.1" 304 0
+2018-07-24 19:42:43,745 INFO "GET /static/js/jquery-3.2.1.min.js HTTP/1.1" 304 0
+[2018-07-24 19:42:43,785] [INFO] "GET /static/img/jsiji.png HTTP/1.1" 304 0
+2018-07-24 19:42:43,785 INFO "GET /static/img/jsiji.png HTTP/1.1" 304 0
+[2018-07-24 19:42:43,786] [INFO] "GET /static/img/sahu.png HTTP/1.1" 304 0
+2018-07-24 19:42:43,786 INFO "GET /static/img/sahu.png HTTP/1.1" 304 0
+[2018-07-24 19:42:43,787] [INFO] "GET /static/img/shi.png HTTP/1.1" 304 0
+2018-07-24 19:42:43,787 INFO "GET /static/img/shi.png HTTP/1.1" 304 0
+[2018-07-24 19:42:43,838] [INFO] "GET /static/img/shui.png HTTP/1.1" 304 0
+2018-07-24 19:42:43,838 INFO "GET /static/img/shui.png HTTP/1.1" 304 0
+[2018-07-24 19:42:43,875] [INFO] "GET /static/img/sji.png HTTP/1.1" 304 0
+2018-07-24 19:42:43,875 INFO "GET /static/img/sji.png HTTP/1.1" 304 0
+[2018-07-24 19:42:43,876] [INFO] "GET /static/img/iTstudio.png HTTP/1.1" 304 0
+2018-07-24 19:42:43,876 INFO "GET /static/img/iTstudio.png HTTP/1.1" 304 0
+[2018-07-24 19:42:43,878] [INFO] "GET /static/img/jj.png HTTP/1.1" 304 0
+2018-07-24 19:42:43,878 INFO "GET /static/img/jj.png HTTP/1.1" 304 0
+[2018-07-24 19:42:43,940] [INFO] "GET /static/js/nav.js HTTP/1.1" 304 0
+2018-07-24 19:42:43,940 INFO "GET /static/js/nav.js HTTP/1.1" 304 0
+[2018-07-24 19:42:43,982] [INFO] "GET /static/js/home.js HTTP/1.1" 304 0
+2018-07-24 19:42:43,982 INFO "GET /static/js/home.js HTTP/1.1" 304 0
+[2018-07-24 19:42:44,035] [INFO] "GET /static/img/logo.png HTTP/1.1" 304 0
+2018-07-24 19:42:44,035 INFO "GET /static/img/logo.png HTTP/1.1" 304 0
+[2018-07-24 19:42:44,136] [INFO] "GET /static/img/asca.png HTTP/1.1" 304 0
+2018-07-24 19:42:44,136 INFO "GET /static/img/asca.png HTTP/1.1" 304 0
+[2018-07-24 19:42:44,231] [INFO] "GET /static/img/jhio.png HTTP/1.1" 304 0
+2018-07-24 19:42:44,231 INFO "GET /static/img/jhio.png HTTP/1.1" 304 0
+[2018-07-24 19:42:44,881] [INFO] "GET /static/img/shauis.png HTTP/1.1" 304 0
+2018-07-24 19:42:44,881 INFO "GET /static/img/shauis.png HTTP/1.1" 304 0
+[2018-07-24 19:42:44,884] [INFO] "GET /static/img/sabu.png HTTP/1.1" 304 0
+2018-07-24 19:42:44,884 INFO "GET /static/img/sabu.png HTTP/1.1" 304 0
+[2018-07-24 19:42:45,375] [INFO] "GET /static/img/suh.png HTTP/1.1" 304 0
+2018-07-24 19:42:45,375 INFO "GET /static/img/suh.png HTTP/1.1" 304 0
+[2018-07-24 19:42:45,376] [INFO] "GET /static/img/hhaj.png HTTP/1.1" 304 0
+2018-07-24 19:42:45,376 INFO "GET /static/img/hhaj.png HTTP/1.1" 304 0
+[2018-07-24 19:42:45,742] [INFO] "GET /fresher/new/ HTTP/1.1" 200 4846
+2018-07-24 19:42:45,742 INFO "GET /fresher/new/ HTTP/1.1" 200 4846
+[2018-07-24 19:42:45,840] [INFO] "GET /static/js/apform2.js HTTP/1.1" 200 15553
+2018-07-24 19:42:45,840 INFO "GET /static/js/apform2.js HTTP/1.1" 200 15553
+[2018-07-24 19:42:45,844] [INFO] "GET /static/css/apform2.css HTTP/1.1" 200 10038
+2018-07-24 19:42:45,844 INFO "GET /static/css/apform2.css HTTP/1.1" 200 10038
+[2018-07-24 19:42:45,944] [INFO] "GET /static/images/check_process.png HTTP/1.1" 200 3715
+2018-07-24 19:42:45,944 INFO "GET /static/images/check_process.png HTTP/1.1" 200 3715
+[2018-07-24 19:42:45,951] [INFO] "GET /static/images/submit.png HTTP/1.1" 200 3121
+2018-07-24 19:42:45,951 INFO "GET /static/images/submit.png HTTP/1.1" 200 3121
+[2018-07-24 19:42:45,996] [INFO] "GET /static/images/check2.png HTTP/1.1" 200 2835
+2018-07-24 19:42:45,996 INFO "GET /static/images/check2.png HTTP/1.1" 200 2835
+[2018-07-24 19:42:46,000] [INFO] "GET /static/images/back.png HTTP/1.1" 200 2824
+2018-07-24 19:42:46,000 INFO "GET /static/images/back.png HTTP/1.1" 200 2824
+[2018-07-24 19:42:46,122] [INFO] "GET /static/images/%E8%83%8C%E6%99%AF.png HTTP/1.1" 200 244730
+2018-07-24 19:42:46,122 INFO "GET /static/images/%E8%83%8C%E6%99%AF.png HTTP/1.1" 200 244730
+[2018-07-24 19:42:52,605] [INFO] "GET /home/comment/ HTTP/1.1" 200 5174
+2018-07-24 19:42:52,605 INFO "GET /home/comment/ HTTP/1.1" 200 5174
+[2018-07-24 19:42:52,669] [INFO] "GET /static/css/comment3.css HTTP/1.1" 304 0
+2018-07-24 19:42:52,669 INFO "GET /static/css/comment3.css HTTP/1.1" 304 0
+[2018-07-24 19:42:52,673] [INFO] "GET /static/images/close.png HTTP/1.1" 304 0
+2018-07-24 19:42:52,673 INFO "GET /static/images/close.png HTTP/1.1" 304 0
+[2018-07-24 19:42:52,674] [INFO] "GET /static/css/jquery.mCustomScrollbar.css HTTP/1.1" 304 0
+2018-07-24 19:42:52,674 INFO "GET /static/css/jquery.mCustomScrollbar.css HTTP/1.1" 304 0
+[2018-07-24 19:42:52,675] [INFO] "GET /static/images/leftarrow.png HTTP/1.1" 304 0
+2018-07-24 19:42:52,675 INFO "GET /static/images/leftarrow.png HTTP/1.1" 304 0
+[2018-07-24 19:42:52,676] [INFO] "GET /static/js/comment3.js HTTP/1.1" 304 0
+2018-07-24 19:42:52,676 INFO "GET /static/js/comment3.js HTTP/1.1" 304 0
+[2018-07-24 19:42:52,724] [INFO] "GET /image/image/HeadPicture/20165116592831174_xQtMPwV.jpg HTTP/1.1" 304 0
+2018-07-24 19:42:52,724 INFO "GET /image/image/HeadPicture/20165116592831174_xQtMPwV.jpg HTTP/1.1" 304 0
+[2018-07-24 19:42:52,790] [INFO] "GET /image/image/HeadPicture/head1.png HTTP/1.1" 304 0
+2018-07-24 19:42:52,790 INFO "GET /image/image/HeadPicture/head1.png HTTP/1.1" 304 0
+[2018-07-24 19:42:52,792] [INFO] "GET /image/image/HeadPicture/head4.png HTTP/1.1" 304 0
+2018-07-24 19:42:52,792 INFO "GET /image/image/HeadPicture/head4.png HTTP/1.1" 304 0
+[2018-07-24 19:42:52,793] [INFO] "GET /image/image/HeadPicture/head3.png HTTP/1.1" 304 0
+2018-07-24 19:42:52,793 INFO "GET /image/image/HeadPicture/head3.png HTTP/1.1" 304 0
+[2018-07-24 19:42:52,794] [INFO] "GET /image/image/HeadPicture/head2.png HTTP/1.1" 304 0
+2018-07-24 19:42:52,794 INFO "GET /image/image/HeadPicture/head2.png HTTP/1.1" 304 0
+[2018-07-24 19:42:52,843] [INFO] "GET /api/comment/get?code=0 HTTP/1.1" 200 1981
+2018-07-24 19:42:52,843 INFO "GET /api/comment/get?code=0 HTTP/1.1" 200 1981
+[2018-07-24 19:42:53,158] [INFO] "GET /image/image/HeadPicture/head5.png HTTP/1.1" 304 0
+2018-07-24 19:42:53,158 INFO "GET /image/image/HeadPicture/head5.png HTTP/1.1" 304 0
+[2018-07-24 19:42:53,159] [INFO] "GET /image/image/HeadPicture/0723_2.JPG HTTP/1.1" 304 0
+2018-07-24 19:42:53,159 INFO "GET /image/image/HeadPicture/0723_2.JPG HTTP/1.1" 304 0
+[2018-07-24 19:42:53,161] [INFO] "GET /image/image/HeadPicture/9150e4e5gy1fpwe2vs79fj20ku0kgdgz.jpg HTTP/1.1" 304 0
+2018-07-24 19:42:53,161 INFO "GET /image/image/HeadPicture/9150e4e5gy1fpwe2vs79fj20ku0kgdgz.jpg HTTP/1.1" 304 0
+[2018-07-24 19:42:53,162] [INFO] "GET /image/image/HeadPicture/head6.png HTTP/1.1" 304 0
+2018-07-24 19:42:53,162 INFO "GET /image/image/HeadPicture/head6.png HTTP/1.1" 304 0
+[2018-07-24 19:42:53,211] [INFO] "GET /image/image/HeadPicture/0723_2_Vh82NUn.JPG HTTP/1.1" 304 0
+2018-07-24 19:42:53,211 INFO "GET /image/image/HeadPicture/0723_2_Vh82NUn.JPG HTTP/1.1" 304 0
+[2018-07-24 19:42:53,254] [INFO] "GET /static/images/rightarrow.png HTTP/1.1" 304 0
+2018-07-24 19:42:53,254 INFO "GET /static/images/rightarrow.png HTTP/1.1" 304 0
+2018-07-24 19:42:53,265 DEBUG 随机串：MgYt
+[2018-07-24 19:42:53,291] [INFO] "GET /api/identifyPic HTTP/1.1" 200 1083
+2018-07-24 19:42:53,291 INFO "GET /api/identifyPic HTTP/1.1" 200 1083
+[2018-07-24 19:42:53,567] [INFO] "GET /static/images/%E8%83%8C%E6%99%AF1.png HTTP/1.1" 200 123673
+2018-07-24 19:42:53,567 INFO "GET /static/images/%E8%83%8C%E6%99%AF1.png HTTP/1.1" 200 123673
+2018-07-24 19:42:53,948 DEBUG 随机串：sKFu
+[2018-07-24 19:42:53,964] [INFO] "GET /api/identifyPic?time=0.053837878313606646 HTTP/1.1" 200 1104
+2018-07-24 19:42:53,964 INFO "GET /api/identifyPic?time=0.053837878313606646 HTTP/1.1" 200 1104
+2018-07-24 19:42:55,028 DEBUG 随机串：vCbM
+[2018-07-24 19:42:55,056] [INFO] "GET /api/identifyPic?time=0.06833590041304305 HTTP/1.1" 200 1383
+2018-07-24 19:42:55,056 INFO "GET /api/identifyPic?time=0.06833590041304305 HTTP/1.1" 200 1383
+2018-07-24 19:42:55,565 DEBUG 随机串：vqBq
+[2018-07-24 19:42:55,580] [INFO] "GET /api/identifyPic?time=0.27595977283755624 HTTP/1.1" 200 1073
+2018-07-24 19:42:55,580 INFO "GET /api/identifyPic?time=0.27595977283755624 HTTP/1.1" 200 1073
+[2018-07-24 19:44:53,621] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 19:44:53,621 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 20:17:05,839] [INFO] code 400, message Bad request syntax ('\x05\x01\x00')
+2018-07-24 20:17:05,839 INFO code 400, message Bad request syntax ('\x05\x01\x00')
+[2018-07-24 20:17:05,840] [WARNING] " " 400 -
+2018-07-24 20:17:05,840 WARNING " " 400 -
+[2018-07-24 20:21:38,050] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 20:21:38,050 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 20:26:35,631] [WARNING] Not Found: /133.130.126.119:43
+2018-07-24 20:26:35,631 WARNING Not Found: /133.130.126.119:43
+[2018-07-24 20:26:35,632] [WARNING] "CONNECT 133.130.126.119:43 HTTP/1.1" 404 1757
+2018-07-24 20:26:35,632 WARNING "CONNECT 133.130.126.119:43 HTTP/1.1" 404 1757
+[2018-07-24 20:40:21,414] [ERROR] Invalid HTTP_HOST header: 'VM_0_12_centos:8080'. The domain name provided is not valid according to RFC 1034/1035.
+2018-07-24 20:40:21,414 ERROR Invalid HTTP_HOST header: 'VM_0_12_centos:8080'. The domain name provided is not valid according to RFC 1034/1035.
+[2018-07-24 20:40:21,839] [WARNING] "POST /GponForm/diag_Form?images/ HTTP/1.1" 400 63987
+2018-07-24 20:40:21,839 WARNING "POST /GponForm/diag_Form?images/ HTTP/1.1" 400 63987
+[2018-07-24 20:46:06,273] [WARNING] Not Found: /wp-includes/js/comment-reply.min.js
+2018-07-24 20:46:06,273 WARNING Not Found: /wp-includes/js/comment-reply.min.js
+[2018-07-24 20:46:06,273] [WARNING] "GET /wp-includes/js/comment-reply.min.js HTTP/1.1" 404 1839
+2018-07-24 20:46:06,273 WARNING "GET /wp-includes/js/comment-reply.min.js HTTP/1.1" 404 1839
+[2018-07-24 20:46:06,437] [WARNING] Not Found: /skins/vector/csshover.htc
+2018-07-24 20:46:06,437 WARNING Not Found: /skins/vector/csshover.htc
+[2018-07-24 20:46:06,438] [WARNING] "GET /skins/vector/csshover.htc HTTP/1.1" 404 1809
+2018-07-24 20:46:06,438 WARNING "GET /skins/vector/csshover.htc HTTP/1.1" 404 1809
+[2018-07-24 20:46:06,614] [WARNING] Not Found: /misc/states.js
+2018-07-24 20:46:06,614 WARNING Not Found: /misc/states.js
+[2018-07-24 20:46:06,615] [WARNING] "GET /misc/states.js HTTP/1.1" 404 1776
+2018-07-24 20:46:06,615 WARNING "GET /misc/states.js HTTP/1.1" 404 1776
+[2018-07-24 20:46:06,795] [WARNING] "GET /static/js/md5.js HTTP/1.1" 404 1746
+2018-07-24 20:46:06,795 WARNING "GET /static/js/md5.js HTTP/1.1" 404 1746
+[2018-07-24 20:46:06,966] [WARNING] Not Found: /include/js/md5.js
+2018-07-24 20:46:06,966 WARNING Not Found: /include/js/md5.js
+[2018-07-24 20:46:06,966] [WARNING] "GET /include/js/md5.js HTTP/1.1" 404 1785
+2018-07-24 20:46:06,966 WARNING "GET /include/js/md5.js HTTP/1.1" 404 1785
+[2018-07-24 20:46:07,138] [WARNING] Not Found: /include/js/common.js
+2018-07-24 20:46:07,138 WARNING Not Found: /include/js/common.js
+[2018-07-24 20:46:07,138] [WARNING] "GET /include/js/common.js HTTP/1.1" 404 1794
+2018-07-24 20:46:07,138 WARNING "GET /include/js/common.js HTTP/1.1" 404 1794
+[2018-07-24 20:46:07,317] [WARNING] Not Found: /include/js/ajax.js
+2018-07-24 20:46:07,317 WARNING Not Found: /include/js/ajax.js
+[2018-07-24 20:46:07,317] [WARNING] "GET /include/js/ajax.js HTTP/1.1" 404 1788
+2018-07-24 20:46:07,317 WARNING "GET /include/js/ajax.js HTTP/1.1" 404 1788
+[2018-07-24 20:46:07,493] [WARNING] Not Found: /res/js/dev/pages/common/global.js
+2018-07-24 20:46:07,493 WARNING Not Found: /res/js/dev/pages/common/global.js
+[2018-07-24 20:46:07,493] [WARNING] "GET /res/js/dev/pages/common/global.js HTTP/1.1" 404 1833
+2018-07-24 20:46:07,493 WARNING "GET /res/js/dev/pages/common/global.js HTTP/1.1" 404 1833
+[2018-07-24 20:46:07,674] [WARNING] Not Found: /js/wind_editor.js
+2018-07-24 20:46:07,674 WARNING Not Found: /js/wind_editor.js
+[2018-07-24 20:46:07,675] [WARNING] "GET /js/wind_editor.js HTTP/1.1" 404 1785
+2018-07-24 20:46:07,675 WARNING "GET /js/wind_editor.js HTTP/1.1" 404 1785
+[2018-07-24 20:46:07,842] [WARNING] Not Found: /styles/prosilver/template/forum_fn.js
+2018-07-24 20:46:07,842 WARNING Not Found: /styles/prosilver/template/forum_fn.js
+[2018-07-24 20:46:07,843] [WARNING] "GET /styles/prosilver/template/forum_fn.js HTTP/1.1" 404 1845
+2018-07-24 20:46:07,843 WARNING "GET /styles/prosilver/template/forum_fn.js HTTP/1.1" 404 1845
+[2018-07-24 20:46:08,012] [WARNING] Not Found: /styles/prosilver/template/styleswitcher.js
+2018-07-24 20:46:08,012 WARNING Not Found: /styles/prosilver/template/styleswitcher.js
+[2018-07-24 20:46:08,013] [WARNING] "GET /styles/prosilver/template/styleswitcher.js HTTP/1.1" 404 1860
+2018-07-24 20:46:08,013 WARNING "GET /styles/prosilver/template/styleswitcher.js HTTP/1.1" 404 1860
+[2018-07-24 20:46:08,188] [WARNING] Not Found: /editor/ubb/uploader.js
+2018-07-24 20:46:08,188 WARNING Not Found: /editor/ubb/uploader.js
+[2018-07-24 20:46:08,188] [WARNING] "GET /editor/ubb/uploader.js HTTP/1.1" 404 1800
+2018-07-24 20:46:08,188 WARNING "GET /editor/ubb/uploader.js HTTP/1.1" 404 1800
+[2018-07-24 20:46:08,350] [WARNING] Not Found: /template/default/style.css
+2018-07-24 20:46:08,350 WARNING Not Found: /template/default/style.css
+[2018-07-24 20:46:08,351] [WARNING] "GET /template/default/style.css HTTP/1.1" 404 1812
+2018-07-24 20:46:08,351 WARNING "GET /template/default/style.css HTTP/1.1" 404 1812
+[2018-07-24 20:46:08,510] [WARNING] "GET /static/js/reset.js HTTP/1.1" 404 1752
+2018-07-24 20:46:08,510 WARNING "GET /static/js/reset.js HTTP/1.1" 404 1752
+[2018-07-24 20:46:08,671] [WARNING] Not Found: /images/js/common.js
+2018-07-24 20:46:08,671 WARNING Not Found: /images/js/common.js
+[2018-07-24 20:46:08,672] [WARNING] "GET /images/js/common.js HTTP/1.1" 404 1791
+2018-07-24 20:46:08,672 WARNING "GET /images/js/common.js HTTP/1.1" 404 1791
+[2018-07-24 20:46:08,854] [WARNING] Not Found: /templets/style/dede.css
+2018-07-24 20:46:08,854 WARNING Not Found: /templets/style/dede.css
+[2018-07-24 20:46:08,855] [WARNING] "GET /templets/style/dede.css HTTP/1.1" 404 1803
+2018-07-24 20:46:08,855 WARNING "GET /templets/style/dede.css HTTP/1.1" 404 1803
+[2018-07-24 20:46:09,019] [WARNING] Not Found: /include/dedeajax2.js
+2018-07-24 20:46:09,019 WARNING Not Found: /include/dedeajax2.js
+[2018-07-24 20:46:09,019] [WARNING] "GET /include/dedeajax2.js HTTP/1.1" 404 1794
+2018-07-24 20:46:09,019 WARNING "GET /include/dedeajax2.js HTTP/1.1" 404 1794
+[2018-07-24 20:46:09,177] [WARNING] Not Found: /images/default/inc.js
+2018-07-24 20:46:09,177 WARNING Not Found: /images/default/inc.js
+[2018-07-24 20:46:09,178] [WARNING] "GET /images/default/inc.js HTTP/1.1" 404 1797
+2018-07-24 20:46:09,178 WARNING "GET /images/default/inc.js HTTP/1.1" 404 1797
+[2018-07-24 20:46:09,345] [WARNING] Not Found: /js/lang/core/zh-cn.js
+2018-07-24 20:46:09,345 WARNING Not Found: /js/lang/core/zh-cn.js
+[2018-07-24 20:46:09,345] [WARNING] "GET /js/lang/core/zh-cn.js HTTP/1.1" 404 1797
+2018-07-24 20:46:09,345 WARNING "GET /js/lang/core/zh-cn.js HTTP/1.1" 404 1797
+[2018-07-24 20:46:09,501] [WARNING] Not Found: /js/lang/cms/zh-cn.js
+2018-07-24 20:46:09,501 WARNING Not Found: /js/lang/cms/zh-cn.js
+[2018-07-24 20:46:09,502] [WARNING] "GET /js/lang/cms/zh-cn.js HTTP/1.1" 404 1794
+2018-07-24 20:46:09,502 WARNING "GET /js/lang/cms/zh-cn.js HTTP/1.1" 404 1794
+[2018-07-24 20:46:09,690] [WARNING] Not Found: /d/js/acmsd/ecms_dialog.js
+2018-07-24 20:46:09,690 WARNING Not Found: /d/js/acmsd/ecms_dialog.js
+[2018-07-24 20:46:09,690] [WARNING] "GET /d/js/acmsd/ecms_dialog.js HTTP/1.1" 404 1809
+2018-07-24 20:46:09,690 WARNING "GET /d/js/acmsd/ecms_dialog.js HTTP/1.1" 404 1809
+[2018-07-24 20:46:09,875] [WARNING] Not Found: /skin/default/js/tabs.js
+2018-07-24 20:46:09,875 WARNING Not Found: /skin/default/js/tabs.js
+[2018-07-24 20:46:09,876] [WARNING] "GET /skin/default/js/tabs.js HTTP/1.1" 404 1803
+2018-07-24 20:46:09,876 WARNING "GET /skin/default/js/tabs.js HTTP/1.1" 404 1803
+[2018-07-24 20:46:10,071] [WARNING] Not Found: /media/system/js/tab.js
+2018-07-24 20:46:10,071 WARNING Not Found: /media/system/js/tab.js
+[2018-07-24 20:46:10,071] [WARNING] "GET /media/system/js/tab.js HTTP/1.1" 404 1800
+2018-07-24 20:46:10,071 WARNING "GET /media/system/js/tab.js HTTP/1.1" 404 1800
+[2018-07-24 20:46:10,242] [WARNING] Not Found: /media/system/css/mootree.css
+2018-07-24 20:46:10,242 WARNING Not Found: /media/system/css/mootree.css
+[2018-07-24 20:46:10,243] [WARNING] "GET /media/system/css/mootree.css HTTP/1.1" 404 1818
+2018-07-24 20:46:10,243 WARNING "GET /media/system/css/mootree.css HTTP/1.1" 404 1818
+[2018-07-24 20:46:10,426] [WARNING] Not Found: /lang/zh/front.js
+2018-07-24 20:46:10,426 WARNING Not Found: /lang/zh/front.js
+[2018-07-24 20:46:10,426] [WARNING] "GET /lang/zh/front.js HTTP/1.1" 404 1782
+2018-07-24 20:46:10,426 WARNING "GET /lang/zh/front.js HTTP/1.1" 404 1782
+[2018-07-24 20:46:10,584] [WARNING] Not Found: /style/default/content.css
+2018-07-24 20:46:10,584 WARNING Not Found: /style/default/content.css
+[2018-07-24 20:46:10,585] [WARNING] "GET /style/default/content.css HTTP/1.1" 404 1809
+2018-07-24 20:46:10,585 WARNING "GET /style/default/content.css HTTP/1.1" 404 1809
+[2018-07-24 20:46:10,747] [WARNING] Not Found: /lang/zh/edit.js
+2018-07-24 20:46:10,747 WARNING Not Found: /lang/zh/edit.js
+[2018-07-24 20:46:10,747] [WARNING] "GET /lang/zh/edit.js HTTP/1.1" 404 1779
+2018-07-24 20:46:10,747 WARNING "GET /lang/zh/edit.js HTTP/1.1" 404 1779
+[2018-07-24 20:46:10,919] [WARNING] Not Found: /rockmongo/
+2018-07-24 20:46:10,919 WARNING Not Found: /rockmongo/
+[2018-07-24 20:46:10,920] [WARNING] "GET /rockmongo/ HTTP/1.1" 404 1763
+2018-07-24 20:46:10,920 WARNING "GET /rockmongo/ HTTP/1.1" 404 1763
+[2018-07-24 20:46:11,097] [WARNING] Not Found: /server-status
+2018-07-24 20:46:11,097 WARNING Not Found: /server-status
+[2018-07-24 20:46:11,097] [WARNING] "GET /server-status HTTP/1.1" 404 1773
+2018-07-24 20:46:11,097 WARNING "GET /server-status HTTP/1.1" 404 1773
+[2018-07-24 20:46:11,274] [WARNING] Not Found: /ueditor.all.js
+2018-07-24 20:46:11,274 WARNING Not Found: /ueditor.all.js
+[2018-07-24 20:46:11,274] [WARNING] "GET /ueditor.all.js HTTP/1.1" 404 1776
+2018-07-24 20:46:11,274 WARNING "GET /ueditor.all.js HTTP/1.1" 404 1776
+[2018-07-24 20:46:11,451] [WARNING] Not Found: /wikilib.d/PmWiki.ChangeLog
+2018-07-24 20:46:11,451 WARNING Not Found: /wikilib.d/PmWiki.ChangeLog
+[2018-07-24 20:46:11,452] [WARNING] "GET /wikilib.d/PmWiki.ChangeLog HTTP/1.1" 404 1812
+2018-07-24 20:46:11,452 WARNING "GET /wikilib.d/PmWiki.ChangeLog HTTP/1.1" 404 1812
+[2018-07-24 20:46:11,614] [WARNING] Not Found: /4e5e5d7364f443e28fbf0d3ae744a59a
+2018-07-24 20:46:11,614 WARNING Not Found: /4e5e5d7364f443e28fbf0d3ae744a59a
+[2018-07-24 20:46:11,614] [WARNING] "GET /4e5e5d7364f443e28fbf0d3ae744a59a HTTP/1.1" 404 1830
+2018-07-24 20:46:11,614 WARNING "GET /4e5e5d7364f443e28fbf0d3ae744a59a HTTP/1.1" 404 1830
+[2018-07-24 20:46:11,770] [WARNING] Not Found: /jenkins/
+2018-07-24 20:46:11,770 WARNING Not Found: /jenkins/
+[2018-07-24 20:46:11,770] [WARNING] "GET /jenkins/ HTTP/1.1" 404 1757
+2018-07-24 20:46:11,770 WARNING "GET /jenkins/ HTTP/1.1" 404 1757
+[2018-07-24 20:46:11,943] [WARNING] Not Found: /console/login/LoginForm.jsp
+2018-07-24 20:46:11,943 WARNING Not Found: /console/login/LoginForm.jsp
+[2018-07-24 20:46:11,943] [WARNING] "GET /console/login/LoginForm.jsp HTTP/1.1" 404 1815
+2018-07-24 20:46:11,943 WARNING "GET /console/login/LoginForm.jsp HTTP/1.1" 404 1815
+[2018-07-24 20:46:12,108] [WARNING] Not Found: /solr/
+2018-07-24 20:46:12,108 WARNING Not Found: /solr/
+[2018-07-24 20:46:12,108] [WARNING] "GET /solr/ HTTP/1.1" 404 1748
+2018-07-24 20:46:12,108 WARNING "GET /solr/ HTTP/1.1" 404 1748
+[2018-07-24 20:46:12,282] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 20:46:12,282 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 20:46:12,518] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 20:46:12,518 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 20:48:13,713] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 20:48:13,713 INFO "GET / HTTP/1.1" 200 4446
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 24, 2018 - 19:30:58
+Django version 1.11.9, using settings 'IT_show.settings'
+Starting development server at http://0.0.0.0:8080/
+Quit the server with CONTROL-C.
+[2018-07-24 20:54:22,044] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 20:54:22,044 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 20:54:22,131] [INFO] "GET /static/css/nav.css HTTP/1.1" 304 0
+2018-07-24 20:54:22,131 INFO "GET /static/css/nav.css HTTP/1.1" 304 0
+[2018-07-24 20:54:22,142] [INFO] "GET /static/css/d.css HTTP/1.1" 304 0
+2018-07-24 20:54:22,142 INFO "GET /static/css/d.css HTTP/1.1" 304 0
+[2018-07-24 20:54:22,155] [INFO] "GET /static/css/home.css HTTP/1.1" 304 0
+2018-07-24 20:54:22,155 INFO "GET /static/css/home.css HTTP/1.1" 304 0
+[2018-07-24 20:54:22,167] [INFO] "GET /static/img/logo.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,167 INFO "GET /static/img/logo.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,175] [INFO] "GET /static/img/asca.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,175 INFO "GET /static/img/asca.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,324] [INFO] "GET /static/js/jquery-3.2.1.min.js HTTP/1.1" 304 0
+2018-07-24 20:54:22,324 INFO "GET /static/js/jquery-3.2.1.min.js HTTP/1.1" 304 0
+[2018-07-24 20:54:22,364] [INFO] "GET /static/js/nav.js HTTP/1.1" 304 0
+2018-07-24 20:54:22,364 INFO "GET /static/js/nav.js HTTP/1.1" 304 0
+[2018-07-24 20:54:22,375] [INFO] "GET /static/js/home.js HTTP/1.1" 304 0
+2018-07-24 20:54:22,375 INFO "GET /static/js/home.js HTTP/1.1" 304 0
+[2018-07-24 20:54:22,387] [INFO] "GET /static/img/jhio.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,387 INFO "GET /static/img/jhio.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,398] [INFO] "GET /static/img/jsiji.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,398 INFO "GET /static/img/jsiji.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,409] [INFO] "GET /static/img/sahu.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,409 INFO "GET /static/img/sahu.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,534] [INFO] "GET /static/img/jj.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,534 INFO "GET /static/img/jj.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,546] [INFO] "GET /static/img/sji.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,546 INFO "GET /static/img/sji.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,556] [INFO] "GET /static/img/shi.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,556 INFO "GET /static/img/shi.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,568] [INFO] "GET /static/img/shui.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,568 INFO "GET /static/img/shui.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,594] [INFO] "GET /static/img/iTstudio.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,594 INFO "GET /static/img/iTstudio.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,604] [INFO] "GET /static/img/shauis.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,604 INFO "GET /static/img/shauis.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,710] [INFO] "GET /static/img/sabu.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,710 INFO "GET /static/img/sabu.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,720] [INFO] "GET /static/img/suh.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,720 INFO "GET /static/img/suh.png HTTP/1.1" 304 0
+[2018-07-24 20:54:22,731] [INFO] "GET /static/img/hhaj.png HTTP/1.1" 304 0
+2018-07-24 20:54:22,731 INFO "GET /static/img/hhaj.png HTTP/1.1" 304 0
+[2018-07-24 20:54:30,646] [INFO] "GET /admin/ HTTP/1.1" 200 9795
+2018-07-24 20:54:30,646 INFO "GET /admin/ HTTP/1.1" 200 9795
+[2018-07-24 20:54:30,733] [INFO] "GET /admin/ HTTP/1.1" 200 9795
+2018-07-24 20:54:30,733 INFO "GET /admin/ HTTP/1.1" 200 9795
+[2018-07-24 20:54:30,815] [INFO] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+2018-07-24 20:54:30,815 INFO "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[2018-07-24 20:54:30,827] [INFO] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+2018-07-24 20:54:30,827 INFO "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[2018-07-24 20:54:30,941] [INFO] "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+2018-07-24 20:54:30,941 INFO "GET /static/admin/css/fonts.css HTTP/1.1" 304 0
+[2018-07-24 20:54:31,031] [INFO] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+2018-07-24 20:54:31,031 INFO "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+[2018-07-24 20:54:31,127] [INFO] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+2018-07-24 20:54:31,127 INFO "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 304 0
+[2018-07-24 20:54:31,138] [INFO] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+2018-07-24 20:54:31,138 INFO "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 304 0
+[2018-07-24 20:54:31,149] [INFO] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+2018-07-24 20:54:31,149 INFO "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 304 0
+[2018-07-24 20:54:31,165] [WARNING] Not Found: /favicon.ico
+2018-07-24 20:54:31,165 WARNING Not Found: /favicon.ico
+[2018-07-24 20:54:31,166] [WARNING] "GET /favicon.ico HTTP/1.1" 404 1762
+2018-07-24 20:54:31,166 WARNING "GET /favicon.ico HTTP/1.1" 404 1762
+[2018-07-24 20:54:31,171] [INFO] "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+2018-07-24 20:54:31,171 INFO "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+[2018-07-24 20:54:31,197] [INFO] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+2018-07-24 20:54:31,197 INFO "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[2018-07-24 20:54:32,876] [INFO] "GET /admin/user/fresher/ HTTP/1.1" 200 19366
+2018-07-24 20:54:32,876 INFO "GET /admin/user/fresher/ HTTP/1.1" 200 19366
+[2018-07-24 20:54:33,046] [INFO] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+2018-07-24 20:54:33,046 INFO "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[2018-07-24 20:54:33,060] [WARNING] "GET /static/s HTTP/1.1" 404 1717
+2018-07-24 20:54:33,060 WARNING "GET /static/s HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,070] [WARNING] "GET /static/o HTTP/1.1" 404 1717
+2018-07-24 20:54:33,070 WARNING "GET /static/o HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,080] [WARNING] "GET /static/m HTTP/1.1" 404 1717
+2018-07-24 20:54:33,080 WARNING "GET /static/m HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,092] [WARNING] "GET /static/e HTTP/1.1" 404 1717
+2018-07-24 20:54:33,092 WARNING "GET /static/e HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,102] [WARNING] "GET /static/p HTTP/1.1" 404 1717
+2018-07-24 20:54:33,102 WARNING "GET /static/p HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,226] [WARNING] "GET /static/a HTTP/1.1" 404 1717
+2018-07-24 20:54:33,226 WARNING "GET /static/a HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,240] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 20:54:33,240 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 20:54:33,247] [WARNING] "GET /static/t HTTP/1.1" 404 1717
+2018-07-24 20:54:33,247 WARNING "GET /static/t HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,259] [WARNING] "GET /static/h HTTP/1.1" 404 1717
+2018-07-24 20:54:33,259 WARNING "GET /static/h HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,270] [WARNING] "GET /static/c HTTP/1.1" 404 1717
+2018-07-24 20:54:33,270 WARNING "GET /static/c HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,347] [WARNING] "GET /static/d HTTP/1.1" 404 1717
+2018-07-24 20:54:33,347 WARNING "GET /static/d HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,359] [WARNING] "GET /static/i HTTP/1.1" 404 1717
+2018-07-24 20:54:33,359 WARNING "GET /static/i HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,379] [WARNING] "GET /static/b HTTP/1.1" 404 1717
+2018-07-24 20:54:33,379 WARNING "GET /static/b HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,392] [WARNING] "GET /static/l HTTP/1.1" 404 1717
+2018-07-24 20:54:33,392 WARNING "GET /static/l HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,455] [WARNING] "GET /static/_ HTTP/1.1" 404 1717
+2018-07-24 20:54:33,455 WARNING "GET /static/_ HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,466] [WARNING] "GET /static/v HTTP/1.1" 404 1717
+2018-07-24 20:54:33,466 WARNING "GET /static/v HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,551] [WARNING] "GET /static/n HTTP/1.1" 404 1717
+2018-07-24 20:54:33,551 WARNING "GET /static/n HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,561] [WARNING] "GET /static/u HTTP/1.1" 404 1717
+2018-07-24 20:54:33,561 WARNING "GET /static/u HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,574] [WARNING] "GET /static/g HTTP/1.1" 404 1717
+2018-07-24 20:54:33,574 WARNING "GET /static/g HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,583] [WARNING] "GET /static/ HTTP/1.1" 404 1712
+2018-07-24 20:54:33,583 WARNING "GET /static/ HTTP/1.1" 404 1712
+[2018-07-24 20:54:33,616] [INFO] "GET /admin/jsi18n/ HTTP/1.1" 200 7682
+2018-07-24 20:54:33,616 INFO "GET /admin/jsi18n/ HTTP/1.1" 200 7682
+[2018-07-24 20:54:33,619] [INFO] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+2018-07-24 20:54:33,619 INFO "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[2018-07-24 20:54:33,739] [WARNING] "GET /static/s HTTP/1.1" 404 1717
+2018-07-24 20:54:33,739 WARNING "GET /static/s HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,748] [WARNING] "GET /static/o HTTP/1.1" 404 1717
+2018-07-24 20:54:33,748 WARNING "GET /static/o HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,760] [WARNING] "GET /static/m HTTP/1.1" 404 1717
+2018-07-24 20:54:33,760 WARNING "GET /static/m HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,770] [WARNING] "GET /static/e HTTP/1.1" 404 1717
+2018-07-24 20:54:33,770 WARNING "GET /static/e HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,808] [WARNING] "GET /static/p HTTP/1.1" 404 1717
+2018-07-24 20:54:33,808 WARNING "GET /static/p HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,819] [WARNING] "GET /static/a HTTP/1.1" 404 1717
+2018-07-24 20:54:33,819 WARNING "GET /static/a HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,899] [WARNING] "GET /static/t HTTP/1.1" 404 1717
+2018-07-24 20:54:33,899 WARNING "GET /static/t HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,917] [WARNING] "GET /static/h HTTP/1.1" 404 1717
+2018-07-24 20:54:33,917 WARNING "GET /static/h HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,961] [WARNING] "GET /static/c HTTP/1.1" 404 1717
+2018-07-24 20:54:33,961 WARNING "GET /static/c HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,973] [WARNING] "GET /static/d HTTP/1.1" 404 1717
+2018-07-24 20:54:33,973 WARNING "GET /static/d HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,985] [WARNING] "GET /static/i HTTP/1.1" 404 1717
+2018-07-24 20:54:33,985 WARNING "GET /static/i HTTP/1.1" 404 1717
+[2018-07-24 20:54:33,996] [WARNING] "GET /static/b HTTP/1.1" 404 1717
+2018-07-24 20:54:33,996 WARNING "GET /static/b HTTP/1.1" 404 1717
+[2018-07-24 20:54:34,082] [WARNING] "GET /static/l HTTP/1.1" 404 1717
+2018-07-24 20:54:34,082 WARNING "GET /static/l HTTP/1.1" 404 1717
+[2018-07-24 20:54:34,125] [WARNING] "GET /static/_ HTTP/1.1" 404 1717
+2018-07-24 20:54:34,125 WARNING "GET /static/_ HTTP/1.1" 404 1717
+[2018-07-24 20:54:34,142] [WARNING] "GET /static/v HTTP/1.1" 404 1717
+2018-07-24 20:54:34,142 WARNING "GET /static/v HTTP/1.1" 404 1717
+[2018-07-24 20:54:34,152] [WARNING] "GET /static/n HTTP/1.1" 404 1717
+2018-07-24 20:54:34,152 WARNING "GET /static/n HTTP/1.1" 404 1717
+[2018-07-24 20:54:34,164] [WARNING] "GET /static/u HTTP/1.1" 404 1717
+2018-07-24 20:54:34,164 WARNING "GET /static/u HTTP/1.1" 404 1717
+[2018-07-24 20:54:34,174] [WARNING] "GET /static/g HTTP/1.1" 404 1717
+2018-07-24 20:54:34,174 WARNING "GET /static/g HTTP/1.1" 404 1717
+[2018-07-24 20:54:34,256] [WARNING] "GET /static/ HTTP/1.1" 404 1712
+2018-07-24 20:54:34,256 WARNING "GET /static/ HTTP/1.1" 404 1712
+[2018-07-24 20:54:34,273] [INFO] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+2018-07-24 20:54:34,273 INFO "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[2018-07-24 20:54:34,283] [INFO] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+2018-07-24 20:54:34,283 INFO "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[2018-07-24 20:54:34,294] [INFO] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+2018-07-24 20:54:34,294 INFO "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[2018-07-24 20:54:34,373] [INFO] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+2018-07-24 20:54:34,373 INFO "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[2018-07-24 20:54:34,384] [INFO] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+2018-07-24 20:54:34,384 INFO "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[2018-07-24 20:54:34,446] [INFO] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+2018-07-24 20:54:34,446 INFO "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[2018-07-24 20:54:34,456] [INFO] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+2018-07-24 20:54:34,456 INFO "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[2018-07-24 20:54:34,469] [INFO] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+2018-07-24 20:54:34,469 INFO "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[2018-07-24 20:54:34,633] [INFO] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+2018-07-24 20:54:34,633 INFO "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+[2018-07-24 20:54:34,644] [INFO] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+2018-07-24 20:54:34,644 INFO "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[2018-07-24 20:54:35,460] [INFO] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+2018-07-24 20:54:35,460 INFO "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[2018-07-24 20:55:05,076] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 20:55:05,076 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 20:55:17,503] [INFO] "POST /admin/user/fresher/ HTTP/1.1" 302 0
+2018-07-24 20:55:17,503 INFO "POST /admin/user/fresher/ HTTP/1.1" 302 0
+[2018-07-24 20:55:17,797] [INFO] "GET /admin/user/fresher/ HTTP/1.1" 200 19363
+2018-07-24 20:55:17,797 INFO "GET /admin/user/fresher/ HTTP/1.1" 200 19363
+[2018-07-24 20:55:17,972] [WARNING] "GET /static/o HTTP/1.1" 404 1717
+2018-07-24 20:55:17,972 WARNING "GET /static/o HTTP/1.1" 404 1717
+[2018-07-24 20:55:17,983] [WARNING] "GET /static/m HTTP/1.1" 404 1717
+2018-07-24 20:55:17,983 WARNING "GET /static/m HTTP/1.1" 404 1717
+[2018-07-24 20:55:17,993] [WARNING] "GET /static/s HTTP/1.1" 404 1717
+2018-07-24 20:55:17,993 WARNING "GET /static/s HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,010] [INFO] "GET / HTTP/1.1" 200 4446
+2018-07-24 20:55:18,010 INFO "GET / HTTP/1.1" 200 4446
+[2018-07-24 20:55:18,014] [WARNING] "GET /static/e HTTP/1.1" 404 1717
+2018-07-24 20:55:18,014 WARNING "GET /static/e HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,032] [WARNING] "GET /static/p HTTP/1.1" 404 1717
+2018-07-24 20:55:18,032 WARNING "GET /static/p HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,125] [WARNING] "GET /static/a HTTP/1.1" 404 1717
+2018-07-24 20:55:18,125 WARNING "GET /static/a HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,144] [WARNING] "GET /static/t HTTP/1.1" 404 1717
+2018-07-24 20:55:18,144 WARNING "GET /static/t HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,155] [WARNING] "GET /static/h HTTP/1.1" 404 1717
+2018-07-24 20:55:18,155 WARNING "GET /static/h HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,239] [WARNING] "GET /static/c HTTP/1.1" 404 1717
+2018-07-24 20:55:18,239 WARNING "GET /static/c HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,251] [WARNING] "GET /static/d HTTP/1.1" 404 1717
+2018-07-24 20:55:18,251 WARNING "GET /static/d HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,261] [WARNING] "GET /static/i HTTP/1.1" 404 1717
+2018-07-24 20:55:18,261 WARNING "GET /static/i HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,371] [WARNING] "GET /static/b HTTP/1.1" 404 1717
+2018-07-24 20:55:18,371 WARNING "GET /static/b HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,383] [WARNING] "GET /static/l HTTP/1.1" 404 1717
+2018-07-24 20:55:18,383 WARNING "GET /static/l HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,393] [WARNING] "GET /static/_ HTTP/1.1" 404 1717
+2018-07-24 20:55:18,393 WARNING "GET /static/_ HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,476] [WARNING] "GET /static/v HTTP/1.1" 404 1717
+2018-07-24 20:55:18,476 WARNING "GET /static/v HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,487] [WARNING] "GET /static/n HTTP/1.1" 404 1717
+2018-07-24 20:55:18,487 WARNING "GET /static/n HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,498] [WARNING] "GET /static/u HTTP/1.1" 404 1717
+2018-07-24 20:55:18,498 WARNING "GET /static/u HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,576] [WARNING] "GET /static/g HTTP/1.1" 404 1717
+2018-07-24 20:55:18,576 WARNING "GET /static/g HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,586] [WARNING] "GET /static/ HTTP/1.1" 404 1712
+2018-07-24 20:55:18,586 WARNING "GET /static/ HTTP/1.1" 404 1712
+[2018-07-24 20:55:18,601] [INFO] "GET /admin/jsi18n/ HTTP/1.1" 200 7682
+2018-07-24 20:55:18,601 INFO "GET /admin/jsi18n/ HTTP/1.1" 200 7682
+[2018-07-24 20:55:18,647] [INFO] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+2018-07-24 20:55:18,647 INFO "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+[2018-07-24 20:55:18,756] [WARNING] "GET /static/s HTTP/1.1" 404 1717
+2018-07-24 20:55:18,756 WARNING "GET /static/s HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,766] [WARNING] "GET /static/o HTTP/1.1" 404 1717
+2018-07-24 20:55:18,766 WARNING "GET /static/o HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,777] [WARNING] "GET /static/m HTTP/1.1" 404 1717
+2018-07-24 20:55:18,777 WARNING "GET /static/m HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,788] [WARNING] "GET /static/e HTTP/1.1" 404 1717
+2018-07-24 20:55:18,788 WARNING "GET /static/e HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,799] [WARNING] "GET /static/p HTTP/1.1" 404 1717
+2018-07-24 20:55:18,799 WARNING "GET /static/p HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,890] [WARNING] "GET /static/a HTTP/1.1" 404 1717
+2018-07-24 20:55:18,890 WARNING "GET /static/a HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,906] [WARNING] "GET /static/t HTTP/1.1" 404 1717
+2018-07-24 20:55:18,906 WARNING "GET /static/t HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,984] [WARNING] "GET /static/h HTTP/1.1" 404 1717
+2018-07-24 20:55:18,984 WARNING "GET /static/h HTTP/1.1" 404 1717
+[2018-07-24 20:55:18,993] [WARNING] "GET /static/c HTTP/1.1" 404 1717
+2018-07-24 20:55:18,993 WARNING "GET /static/c HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,003] [WARNING] "GET /static/d HTTP/1.1" 404 1717
+2018-07-24 20:55:19,003 WARNING "GET /static/d HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,014] [WARNING] "GET /static/i HTTP/1.1" 404 1717
+2018-07-24 20:55:19,014 WARNING "GET /static/i HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,080] [WARNING] "GET /static/b HTTP/1.1" 404 1717
+2018-07-24 20:55:19,080 WARNING "GET /static/b HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,091] [WARNING] "GET /static/l HTTP/1.1" 404 1717
+2018-07-24 20:55:19,091 WARNING "GET /static/l HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,109] [WARNING] "GET /static/_ HTTP/1.1" 404 1717
+2018-07-24 20:55:19,109 WARNING "GET /static/_ HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,121] [WARNING] "GET /static/v HTTP/1.1" 404 1717
+2018-07-24 20:55:19,121 WARNING "GET /static/v HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,153] [WARNING] "GET /static/n HTTP/1.1" 404 1717
+2018-07-24 20:55:19,153 WARNING "GET /static/n HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,172] [WARNING] "GET /static/g HTTP/1.1" 404 1717
+2018-07-24 20:55:19,172 WARNING "GET /static/g HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,227] [WARNING] "GET /static/u HTTP/1.1" 404 1717
+2018-07-24 20:55:19,227 WARNING "GET /static/u HTTP/1.1" 404 1717
+[2018-07-24 20:55:19,338] [WARNING] "GET /static/ HTTP/1.1" 404 1712
+2018-07-24 20:55:19,338 WARNING "GET /static/ HTTP/1.1" 404 1712
+[2018-07-24 20:55:25,132] [INFO] "GET /admin/ HTTP/1.1" 200 9795
+2018-07-24 20:55:25,132 INFO "GET /admin/ HTTP/1.1" 200 9795
+[2018-07-24 20:55:26,223] [INFO] "GET /admin/user/statusdetails/ HTTP/1.1" 200 13427
+2018-07-24 20:55:26,223 INFO "GET /admin/user/statusdetails/ HTTP/1.1" 200 13427
+[2018-07-24 20:56:54,410] [INFO] "GET /admin/ HTTP/1.1" 200 9795
+2018-07-24 20:56:54,410 INFO "GET /admin/ HTTP/1.1" 200 9795
