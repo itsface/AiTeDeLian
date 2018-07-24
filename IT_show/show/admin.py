@@ -154,6 +154,7 @@ class MemberAdmin(admin.ModelAdmin):
     form = forms.MenberForm
     def save_model(self, request, obj, form, change):
         obj.save()
+
         cache.set('member', None, 0)
 
     def delete_model(self, request, obj):

@@ -60,9 +60,7 @@ class Fresher(models.Model):
 
 
         super(Fresher, self).save(*args, **kwargs)  # Call the "real" save() method.
-        print("下面判断是否为-1")
         if newFlag:#-1是默认值，
-            print("赋值为0")
             # super(Fresher, self).save(*args, **kwargs)  # Call the "real" save() method.
             from datetime import datetime
             try:

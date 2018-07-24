@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	$(".menu").children().eq(5).addClass("nowpage");
+	localwee();
 	var userAgent = navigator.userAgent.toLowerCase();
 	// Figure out what browser is being used
 	jQuery.browser = {
@@ -26,6 +28,11 @@ $(document).ready(function() {
 $(".turn_page").addClass('clearfix3')
 var turn_h;
 var turn_w;
+var flag = 0;
+var n, x = 0;
+var page = new Array();
+var str = ['', '', '', '', '', '', ''];
+inilize();
 
 function change_member(W, H) {
 	$(".container").height(H);
@@ -35,9 +42,9 @@ function change_member(W, H) {
 		"top": 0.12 * H + "px"
 	})
 	$(".member_show").css({
-		"margin-top": 0.05 * H + "px"
+		"margin-top": 0.13 * H + "px"
 	})
-	$(".main").width(0.7 * W);
+	$(".main").width(0.5 * W);
 	$(".time_star").width($(".main").width());
 	$(".main").height($(".time_star").height());
 	$(".main").css({
@@ -107,13 +114,13 @@ function change_member(W, H) {
 		"right": 0.02 * aw + "px"
 	});
 	$(".turn_page").height(0.14 * ah);
-	$(".turn_page").width(0.25*aw);
+	// $(".turn_page").width();
 	$(".turn_page").css({
 		"bottom": 0.02 * ah + "px",
 		left: (aw - $(".turn_page").width()) / 2 + "px"
 	});
 	turn_h = $(".turn_page").height();
-	turn_w = $(".turn_page").width();
+	turn_w = 0.25*aw;
 	$(".page").width(0.2 * turn_w);
 	$(".page").height(turn_h);
 	$(".page").css({
@@ -168,7 +175,7 @@ function change_member(W, H) {
 }
 
 $(window).on('load resize', function() {
-	var $thisnav = $('.current-menu-item').offset().left;
+	// var $thisnav = $('.current-menu-item').offset().left;
 	$('.menu-item').hover(function() {
 		var $left = $(this).offset().left - $thisnav;
 		var $width = $(this).outerWidth();
@@ -187,7 +194,7 @@ $(window).on('load resize', function() {
 }); //滑块
 $(document).ready(function() {
 	$(".float").animate({
-		left: $(".main").width() + "px"
+		left: $(".container").width() + "px"
 	}, 2500);
 });
 $(".portrait").hover(function() {
@@ -199,100 +206,39 @@ $(".portrait").hover(function() {
 		"display": "none"
 	})
 })
-$(".quan2011").click(function() {
-	$(".member_block").css({
-		"display": "none"
-	});
-	$(".member2011_block").css({
-		"opacity": "0",
-		"display": "block"
-	});
-	$(".member2011_block").animate({
-		opacity: "1"
-	}, 700)
-})
-$(".quan2012").click(function() {
-	$(".member_block").css({
-		"display": "none"
-	});
-	$(".member2012_block").css({
-		"opacity": "0",
-		"display": "block"
-	});
-	$(".member2012_block").animate({
-		opacity: "1"
-	}, 700)
-})
-$(".quan2013").click(function() {
-	$(".member_block").css({
-		"display": "none"
-	});
-	$(".member2013_block").css({
-		"opacity": "0",
-		"display": "block"
-	});
-	$(".member2013_block").animate({
-		opacity: "1"
-	}, 700)
-})
-$(".quan2014").click(function() {
-	$(".member_block").css({
-		"display": "none"
-	});
-	$(".member2014_block").css({
-		"opacity": "0",
-		"display": "block"
-	});
-	$(".member2014_block").animate({
-		opacity: "1"
-	}, 700)
-})
-$(".quan2015").click(function() {
-	$(".member_block").css({
-		"display": "none"
-	});
-	$(".member2015_block").css({
-		"opacity": "0",
-		"display": "block"
-	});
-	$(".member2015_block").animate({
-		opacity: "1"
-	}, 700)
-})
-$(".quan2016").click(function() {
-	$(".member_block").css({
-		"display": "none"
-	});
-	$(".member2016_block").css({
-		"opacity": "0",
-		"display": "block"
-	});
-	$(".member2016_block").animate({
-		opacity: "1"
-	}, 700)
-})
-$(".quan2017").click(function() {
-	$(".member_block").css({
-		"display": "none"
-	});
-	$(".member2017_block").css({
-		"opacity": "0",
-		"display": "block"
-	});
-	$(".member2017_block").animate({
-		opacity: "1"
-	}, 700)
-})
+
+
+$(".quan").click(function(){
+	for (var i=1;i<=7;i++){
+		var showHandle = ".show"+i.toString();
+		if ($(this).hasClass("quan"+(i+2010).toString())){
+			$(".member_block").css({
+				"display": "none"
+			});
+			$(".member"+(i+2010).toString()+"_block").css({
+				"opacity": "0",
+				"display": "block"
+			});
+			$(".member"+(i+2010).toString()+"_block").animate({
+				opacity: "1"
+			}, 700)
+		}
+	}
+}
+)
+
 $(".cha").click(function() {
 	$(".member_block").animate({
 		opacity: "0"
 	}, 700, function() {
 		disappear()
 	})
+	$(".turn_page").removeClass('tselect');
+	$(".page").removeClass('ballselect');
+	x =0;
 })
 
-var flag = 0;
-var n, x = 0,
+
 	y = 0; //x 记录当前页的,y记录被点击页
 var point2012 = 1,
 	point2013 = 1,
@@ -301,6 +247,10 @@ var point2012 = 1,
 	point2016 = 1,
 	point2017 = 1;
 
+var point=new Array();
+for (var i = 0; i < 7; i++) {
+	point[i]=1;
+}
 function disappear() {
 	$(".member_block").css({
 		"display": "none"
@@ -346,864 +296,94 @@ function disappear() {
 		"display": "none"
 	});
 }
-$(".qiu1").click(function() {
-	var j = 0;
-	y = 1;
-	for (j = 0; j < 5; j++) {
-		if ($(this).parent().parent().children().eq(j).children().eq(1).css("display") == "block") {
-			x = j + 1;
-		}
-	}
-	if ($(this).parent().parent().parent().hasClass("member2012_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2012 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2013_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2013 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2014_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2014 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2015_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2015 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2016_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2016 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2017_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2017 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	}
-})
-$(".qiu2").click(function() {
-	var j = 0;
-	y = 2;
-	for (j = 0; j < 5; j++) {
-		if ($(this).parent().parent().children().eq(j).children().eq(1).css("display") == "block") {
-			x = j + 1;
-		}
-
-	}
-	if ($(this).parent().parent().parent().hasClass("member2012_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2012 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2013_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2013 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2014_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2014 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2015_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2015 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2016_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2016 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2017_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2017 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	}
-})
-$(".qiu3").click(function() {
-	var j = 0;
-	y = 3;
-	for (j = 0; j < 5; j++) {
-		if ($(this).parent().parent().children().eq(j).children().eq(1).css("display") == "block") {
-			x = j + 1;
-		}
-	}
-	if ($(this).parent().parent().parent().hasClass("member2012_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2012 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2013_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2013 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2014_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2014 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2015_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2015 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2016_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2016 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2017_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2017 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	}
-})
-$(".qiu4").click(function() {
-	var j = 0;
-	y = 4;
-	for (j = 0; j < 5; j++) {
-		if ($(this).parent().parent().children().eq(j).children().eq(1).css("display") == "block") {
-			x = j + 1;
-		}
-	}
-	if ($(this).parent().parent().parent().hasClass("member2012_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2012 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2013_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2013 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2014_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2014 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2015_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2015 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2016_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2016 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2017_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2017 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	}
-})
-$(".qiu5").click(function() {
-	var j = 0;
-	y = 5;
-	for (j = 0; j < 5; j++) {
-		if ($(this).parent().parent().children().eq(j).children().eq(1).css("display") == "block") {
-			x = j + 1;
-		}
-	}
-	if ($(this).parent().parent().parent().hasClass("member2012_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2012 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2013_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2013 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2014_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2014 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2015_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2015 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2016_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2016 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	} else if ($(this).parent().parent().parent().hasClass("member2017_block") && flag == 0) {
-		var left = parseInt($(this).parent().parent().parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().parent().parent().children().eq(4).children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2017 += y - x;
-		$(this).parent().parent().children().eq(x - 1).children().eq(1).css("display", "none");
-		$(this).parent().parent().children().eq(x - 1).children().eq(2).css("display", "none");
-		$(this).next().css({
-			"display": "block"
-		});
-		$(this).next().next().css({
-			"display": "block"
-		});
-	}
-})
 $(".turnright").click(function() {
-	if ($(this).parent().hasClass("member2012_block") && point2012 < 3 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left - $(".lunbo").width() - 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2012 += 1;
-		var i = 0;
-		for (i = 0; i < 3; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
+	
+	for (var t = 0; t < 7; t++) {
+		var memberBlockStr="member"+(t+2011).toString()+"_block"
+		if ($(this).parent().hasClass(memberBlockStr) && flag == 0){
+			toright(this,page[t]);
+			break;
 		}
-		$(this).parent().children().eq(5).children().eq(point2012 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2012 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2013_block") && point2013 < 3 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left - $(".lunbo").width() - 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2013 += 1;
-		var i = 0;
-		for (i = 0; i < 3; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2013 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2013 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2014_block") && point2014 < 3 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left - $(".lunbo").width() - 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2014 += 1;
-		var i = 0;
-		for (i = 0; i < 3; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2014 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2014 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2015_block") && point2015 < 2 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left - $(".lunbo").width() - 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2015 += 1;
-		var i = 0;
-		for (i = 0; i < 2; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2015 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2015 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2016_block") && point2016 < 5 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left - $(".lunbo").width() - 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2016 += 1;
-		var i = 0;
-		for (i = 0; i < 5; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2016 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2016 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2017_block") && point2017 < 4 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left - $(".lunbo").width() - 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2017 += 1;
-		var i = 0;
-		for (i = 0; i < 4; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2017 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2017 - 1).children().eq(2).css({
-			"display": "block"
-		});
 	}
+	// for (var t = 0; t < 7; t++) {
+		// var memberBlockStr="member"+(t+2011).toString()+"_block"
+		// if ($(this).parent().hasClass(memberBlockStr) && point[t] < page[t] && flag == 0){
+	// 		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
+	// 		flag = 1;
+	// 		$(this).parent().children().eq(4).children().eq(0).animate({
+	// 			left: left - $(".lunbo").width() - 0.1 * $(".lunbo").width() + "px"
+	// 		}, 1000, function() {
+	// 			flag = 0;
+	// 		})
+	// 		point[t] += 1;
+	// 		var i = 0;
+	// 		for (i = 0; i < point[t]; i++) {
+	// 			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
+	// 				"display": "none"
+	// 			});
+	// 			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
+	// 				"display": "none"
+	// 			});
+	// 		}
+	// 		$(this).parent().children().eq(5).children().eq(point[t] - 1).children().eq(1).css({
+	// 			"display": "block"
+	// 		});
+	// 		$(this).parent().children().eq(5).children().eq(point[t] - 1).children().eq(2).css({
+	// 			"display": "block"
+	// 		});
+	// 		ballchange($(this).parent().siblings(".turn page").children().eq(1))
+	// 		break;
+	// 	}
+	// }
 })
+
 $(".turnleft").click(function() {
+	
 
-	if ($(this).parent().hasClass("member2012_block") && point2012 > 1 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left + $(".lunbo").width() + 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2012 -= 1;
-		var i = 0;
-		for (i = 0; i < 3; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
+	for (var t = 0; t < 7; t++) {
+			var memberBlockStr="member"+(t+2011).toString()+"_block"
+			if ($(this).parent().hasClass(memberBlockStr) && flag == 0){
+			toleft(this);
+			}
+			break;
 		}
-		$(this).parent().children().eq(5).children().eq(point2012 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2012 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2013_block") && point2013 > 1 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left + $(".lunbo").width() + 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2013 -= 1;
-		var i = 0;
-		for (i = 0; i < 3; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2013 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2013 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2014_block") && point2014 > 1 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left + $(".lunbo").width() + 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2014 -= 1;
-		var i = 0;
-		for (i = 0; i < 3; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2014 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2014 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2015_block") && point2015 > 1 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left + $(".lunbo").width() + 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2015 -= 1;
-		var i = 0;
-		for (i = 0; i < 2; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2015 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2015 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2016_block") && point2016 > 1 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left + $(".lunbo").width() + 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2016 -= 1;
-		var i = 0;
-		for (i = 0; i < 5; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2016 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2016 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	} else if ($(this).parent().hasClass("member2017_block") && point2017 > 1 && flag == 0) {
-		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
-		flag = 1;
-		$(this).parent().children().eq(4).children().eq(0).animate({
-			left: left + $(".lunbo").width() + 0.1 * $(".lunbo").width() + "px"
-		}, 1000, function() {
-			flag = 0;
-		})
-		point2017 -= 1;
-		for (i = 0; i < 4; i++) {
-			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
-				"display": "none"
-			});
-			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
-				"display": "none"
-			});
-		}
-		$(this).parent().children().eq(5).children().eq(point2017 - 1).children().eq(1).css({
-			"display": "block"
-		});
-		$(this).parent().children().eq(5).children().eq(point2017 - 1).children().eq(2).css({
-			"display": "block"
-		});
-	}
+
+
+	// for (var t = 0; t < 7; t++) {
+	// 	var memberBlockStr="member"+(t+2011).toString()+"_block"
+	// 	if ($(this).parent().hasClass(memberBlockStr) && point[t] >1 && flag == 0){
+	// 		var left = parseInt($(this).parent().children().eq(4).children().eq(0).css("left"));
+	// 		flag = 1;
+	// 		$(this).parent().children().eq(4).children().eq(0).animate({
+	// 			left: left + $(".lunbo").width() + 0.1 * $(".lunbo").width() + "px"
+	// 		}, 1000, function() {
+	// 			flag = 0;
+	// 		})
+	// 		point[t] -= 1;
+	// 		var i = 0;
+	// 		for (i = 0; i < point[t]; i++) {
+	// 			$(this).parent().children().eq(5).children().eq(i).children().eq(1).css({
+	// 				"display": "none"
+	// 			});
+	// 			$(this).parent().children().eq(5).children().eq(i).children().eq(2).css({
+	// 				"display": "none"
+	// 			});
+	// 		}
+	// 		$(this).parent().children().eq(5).children().eq(point[t] - 1).children().eq(1).css({
+	// 			"display": "block"
+	// 		});
+	// 		$(this).parent().children().eq(5).children().eq(point[t] - 1).children().eq(2).css({
+	// 			"display": "block"
+	// 		});
+	// 		ballchange($(this).parent().siblings(".turn page").children().eq(1))
+	// 		break;
+	// 	}
+		
+	// }
+	
 })
 
-var page = new Array();
-var str = ['', '', '', '', '', '', ''];
+
 
 function inilize()
 
@@ -1213,7 +393,7 @@ function inilize()
 
 		page[i] = $(".amount input").eq(i).val() - 0;
 
-		for (var j = 1, m = page[i] + 1; j < m; j++) {
+		for (var j = 1, m =page[i]+1; j < m; j++) {
 			//ES6
 
 			// str[i] +=
@@ -1232,22 +412,64 @@ function inilize()
 
 }
 
-inilize();
 
-$(".page").click(function(event) {
-	console.log($(this).find('qiu'))
-	$(this).find('img').css({
+
+
+
+function ballchange(_this){
+	// if($(_this).parent().hasClass('tselect') =='false')
+	// {
+	// 	x=0;
+	// }
+	$sel = $(_this).parent();
+
+	$(_this).addClass("ballselect")
+	$(_this).siblings('.page').removeClass("ballselect");
+	$(_this).parent().addClass('tselect');
+	$(".turn_page").not($sel).removeClass("tselect");
+	$(".ballselect").find('img').css({
 		'width': 0.15 * turn_w + 'px',
 		'height': 'auto',
 		"top": 0.27 * turn_h + "px",
 		"left": ($(".page").width() - $(".qiu").width()) / 2 - 0.015* turn_w + "px"
 
 	})
-	$(this).siblings('.page').find('img').css({
+	$(".ballselect").siblings('.page').find('img').css({
 		'width': 0.12 * turn_w + 'px',
 		'height': 'auto',
 		"top": 0.3 * turn_h + "px",
 		"left": ($(".page").width() - $(".qiu").width()) / 2 + "px"
 	})
+	y = $(".tselect .page").index(_this);
 
-});
+	var left = parseInt($(".tselect").siblings('.lunbo').children().eq(0).css("left"));
+
+		flag = 1;
+		$(".tselect").siblings('.lunbo').children().eq(0).animate({
+			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
+		}, 1000, function() {
+			flag = 0;
+		})
+	x = y;
+
+}
+$(".page").click(function(event) {
+
+	ballchange(this)
+});	
+
+function toleft(_this){
+	if(x>0){
+		y=y-1;
+		ballchange($(_this).parent().siblings(".turn_page").children().eq(y));
+		x=y;
+	}
+}
+
+function toright(_this,maxPage){
+	if(x<maxPage){
+		y=y+1;
+		ballchange($(_this).parent().siblings(".turn_page").children().eq(y));
+		x=y;
+	}
+}

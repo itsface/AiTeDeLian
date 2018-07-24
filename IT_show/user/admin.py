@@ -102,6 +102,9 @@ def update_data_src(modeladmin, request, queryset):
         if form.is_valid():
             data_src = form.cleaned_data['data_src']
             for case in queryset:
+                if case.active == False:
+                    messages.warning(request, u"用户" + case.name + "未激活，请先执行激活操作")
+                    continue
                 case.status_id = data_src.code
                 case.save()
                 if case.status_id != None and case.status.emailText != "":
@@ -121,11 +124,7 @@ def update_data_src(modeladmin, request, queryset):
 
     if not form:
         form = modeladmin.data_src_form(initial={'_selected_action': request.POST.getlist(admin.ACTION_CHECKBOX_NAME)})
-    # return render_to_response('batch_update.html',
 
-    # if queryset[0].status.emailText != "":
-    #     for fresher in queryset:
-    #         user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
     return render(request, 'batch_update.html',
                   {'objs': queryset, 'form': form, 'path': request.get_full_path(),
                    'action': 'update_data_src', 'title': u'将所选用户跳转至如下状态'},
@@ -147,6 +146,9 @@ sendStatuInfo.short_description = "给所选用户发送当前状态通知"
 def statusToNext(modeladmin, request, queryset):
     for fresher in queryset:
         try:
+            if fresher.active==False:
+                messages.warning(request, u"用户"+fresher.name+"未激活，请先执行激活操作")
+                continue
             newStatusId = models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
         except:
             newStatusId = None
@@ -173,12 +175,32 @@ def statusGoBack(modeladmin, request, queryset):
                 nowDetailTail = StatusDetails.objects.get(hostID=fresher, isTail=True)
                 fresher.status_id = nowDetailTail.statu.code
                 fresher.save()
+
             except:
                 pass
 
 
 statusGoBack.short_description = "所选用户撤销上一个改变状态的操作"
 
+def activeFresher(modeladmin, request, queryset):
+    for fresher in queryset:
+            try:
+                if fresher.active==False:
+                    fresher.active=True
+                    newStatu=StatusInfo.objects.get(code=fresher.status_id).nextStatus_id
+                    fresher.status_id=newStatu
+                    fresher.save()
+                    user.views.sendEmail(fresher.name, fresher.userCode, fresher.email,
+                                         "您的报名请求已经激活")
+
+                    newInfo = user.models.StatusDetails.objects.create(statu_id=fresher.status.code, time=datetime.now(),
+                                                                       hostID_id=fresher.id,
+                                                                       code=user.models.StatusDetails.objects.filter(
+                                                                           hostID=fresher.id).count() + 1)
+            except:
+                pass
+
+activeFresher.short_description = "激活所选用户并发送邮件"
 
 def makeExcel(modeladmin, request, queryset):
     # 创建工作簿
@@ -230,7 +252,6 @@ def makeExcel(modeladmin, request, queryset):
     response['Content-Disposition'] = 'attachment; filename=' + fileName  # test.xls'
     response.write(sio.getvalue())
     return response
-
 
 makeExcel.short_description = "导出所选用户信息为excel"
 
@@ -343,11 +364,11 @@ class FresherAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'sex', 'yearAndMajor', "wantDepartment", 'email', 'qqnum', 'phone', 'status', 'registerTime','active')
     search_fields = ('name', 'email', 'phone', 'yearAndMajor', "wantDepartment", 'qqnum')
-    readonly_fields = ["userCode","status"]
+    readonly_fields = ["userCode","status","active"]
     list_per_page = 30
     ordering = ('-registerTime',)
     list_filter = (UserFilterActive,UserFilterSex, UserFilterStatus, UserFilterDepartment, UserFilterPubtime,)
-    actions = [sendStatuInfo, update_data_src, statusToNext, makeExcel,statusGoBack]
+    actions = [sendStatuInfo, update_data_src, statusToNext, makeExcel,statusGoBack,activeFresher]
     form = checkForm.FresherForm
 
     class data_src_form(forms.forms.Form):
@@ -358,6 +379,7 @@ class FresherAdmin(admin.ModelAdmin):
         css = {
             'all': ('some/path/to/css/disable_save_and_continuue_editing_button.css')
                 }
+
 
     def save_model(self, request, obj, form, change):
         """

@@ -1,5 +1,7 @@
 
 window.onload = function() {
+	$(".menu").children().eq(4).addClass("nowpage");
+	localwee();
 	$baller = $(".ball");
 	$pole = $(".plate .pole"); // 杆子
 	$board = $(".plate .board"); //牌子

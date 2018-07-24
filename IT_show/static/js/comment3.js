@@ -1360,6 +1360,11 @@
 	})
 });
 
+$(document).ready(function() {
+	$(".menu").children().eq(6).addClass("nowpage");
+	localwee();
+})
+
 // $(document).ready(function() {
 // 	$(".menu").children().eq(5).addClass("current-menu-item")
 // 	var $thisnav = $('.current-menu-item').offset().left - $('.x').offset().left;
