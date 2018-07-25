@@ -50,7 +50,7 @@ $(".return").click(function(){
 	},50)
 
 	function delayer(){
- 		window.location = "http://222.195.145.152:2018/home/index/";
+ 		window.location = "/home/index/";
 	}
 	jQuery(document).ready(function(){
  	setTimeout(function(){

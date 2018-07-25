@@ -32,7 +32,7 @@ SECRET_KEY = 'u5so_w=#virmbwm55*)+fxmcv5rl&$_fvm3pv6e2-k&0j3c=*v'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+localHost="http://ktchen.cn:8080/"
 
 # Application definition
 
@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'it_show', # os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'root',
-        'PASSWORD': "YXwKLhfIcmlY",#'YXwKLhfIcmlY',
+        'PASSWORD': "1234",#'YXwKLhfIcmlY',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

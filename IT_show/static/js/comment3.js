@@ -1977,6 +1977,7 @@ $(".write .submit").click(function() {
 			dataType: "json",
 			//发送成功可以返回的东西
 			success: function(data) {
+				console.log(head);
 				if (data.statusC == 1) {
 					alert("留言提交失败！");
 					changeverify();

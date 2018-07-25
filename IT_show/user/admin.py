@@ -205,7 +205,7 @@ def activeFresher(modeladmin, request, queryset):
                     fresher.status_id=newStatu
                     fresher.save()
                     user.views.sendEmail(fresher.name, fresher.userCode, fresher.email,
-                                         "您的报名请求已经激活")
+                                         "激活成功，你的报名信息正在等待审核")
 
                     newInfo = user.models.StatusDetails.objects.create(statu_id=fresher.status.code, time=datetime.now(),
                                                                        hostID_id=fresher.id,
@@ -377,7 +377,7 @@ class UserFilterDepartment(admin.SimpleListFilter):
 class FresherAdmin(admin.ModelAdmin):
     list_display = (
         'name', 'sex', 'yearAndMajor', "wantDepartment", 'email', 'qqnum', 'phone', 'status', 'registerTime','active')
-    search_fields = ('name', 'email', 'phone', 'yearAndMajor', "wantDepartment", 'qqnum')
+    search_fields = ('name', 'email', 'phone', 'yearAndMajor',  'qqnum')
     readonly_fields = ["userCode","status","active"]
     list_per_page = 30
     ordering = ('-registerTime',)

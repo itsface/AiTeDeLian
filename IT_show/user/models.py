@@ -71,7 +71,9 @@ class Fresher(models.Model):
             # super(Fresher, self).save(*args, **kwargs)  # Call the "real" save() method.
             from datetime import datetime
             try:
-                text = "你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n http://222.195.145.152:2018/api/signOK/" + self.userCode
+                from IT_show.settings import localHost
+
+                text = "你的报名信息已经收到，请复制以下链接到地址栏并转到完成报名\n "+localHost+"api/signOK/" + self.userCode
                 #     + '127.0.0.1:8000/api/signOK/'"
                 sendEmail(name=self.name, code=self.userCode, mail=self.email, text=text)
                 print("邮件发送成功")
