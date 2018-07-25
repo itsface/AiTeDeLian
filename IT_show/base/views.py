@@ -131,38 +131,38 @@ def api_comment_submit(request):
     back = {
         "statusC": 1,  # 未知错误
     }
-    # try:
-    content = request.POST.get("content")
-    # logging.debug(content)
-    if len(content) <= 80:
-        head = int(request.POST.get("head"))
-        # logging.debug(content + " " + str(head))
-        code = int(Comment.objects.all().order_by("-code")[0].code) + 1
-        # logging.debug(code)
-        print(head)
-        print("执行1")
-        nickName = request.POST.get("nickName")
-        logging.debug(nickName)
-        identify = str(request.POST['identify'])
-        print("执行2")
-        if identify.upper() != str(request.session['identify']).upper():
-            back["statusC"] = 2  # u"验证码错误"
-            print("执行3")
-            raise RuntimeError()
-        try:
-            del request.session['identify']
-        except:
-            pass
-        print("执行4")
-        c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(name=head), name=nickName)
-        c.save()
-        back["statusC"] = 0  # 成功
-        from show.views import refreshCache
-        refreshCache("comment")
-    else:
-        back["statusC"] = 1
-    # except:
-    #     pass
+    try:
+        content = request.POST.get("content")
+        # logging.debug(content)
+        if len(content) <= 80:
+            head = int(request.POST.get("head"))
+            # logging.debug(content + " " + str(head))
+            code = int(Comment.objects.all().order_by("-code")[0].code) + 1
+            # logging.debug(code)
+            print(head)
+            print("执行1")
+            nickName = request.POST.get("nickName")
+            logging.debug(nickName)
+            identify = str(request.POST['identify'])
+            print("执行2")
+            if identify.upper() != str(request.session['identify']).upper():
+                back["statusC"] = 2  # u"验证码错误"
+                print("执行3")
+                raise RuntimeError()
+            try:
+                del request.session['identify']
+            except:
+                pass
+            print("执行4")
+            c = Comment.objects.create(code=code, content=content, head=HeadPicture.objects.get(name=head), name=nickName)
+            c.save()
+            back["statusC"] = 0  # 成功
+            from show.views import refreshCache
+            refreshCache("comment")
+        else:
+            back["statusC"] = 1
+    except:
+        pass
     response = HttpResponse(json.dumps(back), content_type="application/json")
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'

@@ -8,6 +8,7 @@ from show.tool import simple_cache_page,refreshCacheThread
 from django.core.mail import send_mail
 from user.models import StatusDetails,Fresher
 from datetime import datetime, timedelta
+from show.models import *
 # Create your views here.
 import threading
 class EmailThread(threading.Thread):
@@ -43,7 +44,10 @@ def refreshCache():
 
 #@simple_cache_page(60*60*10,"register")
 def register(request):
-    return render(request, 'apform.html')
+    # from django.db.models import Q
+    departments=Department.objects.filter(existing=True)
+
+    return render(request, 'apform.html',{'departments':departments})
 
 
 def addNewStatusDetail(userId,statueId):

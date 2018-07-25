@@ -58,10 +58,13 @@
 						<div class="intention clearfix">
 							<div class="choosehead">请选择意向部门</div>
 							<ul class="clearfix choosebody">
-								<li value="1">前端部门</li>
-								<li value="2">UI部门</li>
-								<li value="3">程序部门</li>
-								<li value="4">安卓部门</li>
+                                {% for one in departments %}
+                                <li value="{{ one.id }}">{{ one.name }}</li>
+                                {% endfor %}
+{#								<li value="1">前端部门</li>#}
+{#								<li value="2">UI部门</li>#}
+{#								<li value="3">程序部门</li>#}
+{#								<li value="4">安卓部门</li>#}
 							</ul>
 						</div>
 

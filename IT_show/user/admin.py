@@ -425,7 +425,7 @@ class StatusInfoAdmin(admin.ModelAdmin):
 # 新生状态详情
 class StatusDetailsAdmin(admin.ModelAdmin):
     list_display = ('hostID',  'statu',"info",'code', 'time',"isTail")
-    search_fields = ('hostID__name',)
+    search_fields = ('hostID__name',"")
     readonly_fields = ('hostID',  'statu',"info",'code', 'time',"isTail")
     list_per_page = 30
     ordering = ('-time',)

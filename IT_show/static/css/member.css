@@ -182,7 +182,7 @@ html body .menu .menu-item a {
 	position: absolute;
 	/* background-color: #7ECEF4; */
   /* opacity: 0.5; */
-  background:rgba(126,206,244,0.5);
+  background:rgba(126,206,244,0.75);
 	display: none;
 	left: 0px;
 	top: 0px;

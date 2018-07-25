@@ -2212,7 +2212,7 @@ function addcomment() {
 		function(error) {
 
 			// alert("发生错误：" + error);
-			alert("发生错误!")
+			// alert("发生错误!")
 		})
 
 // $.ajax({

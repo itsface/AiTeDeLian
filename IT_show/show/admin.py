@@ -146,7 +146,7 @@ class MemberAdmin(admin.ModelAdmin):
 
     list_display = ('name', "sex", "year", "department", 'intro', "photo", "image_tag")
     readonly_fields = ['image_tag',"fullImage"]
-    search_fields = ('name', 'intro', "year", "sex", "department")
+    search_fields = ('name','intro',"year","sex","department__name" )#   )
     fields = ('name', "sex", "year", "department", 'intro', "photo", "fullImage")
     #raw_id_fields = ("department",)
     list_per_page = 10
@@ -170,14 +170,14 @@ class MemberAdmin(admin.ModelAdmin):
 
 
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'intro',"pic", "image_tag")
+    list_display = ('name',"existing", 'intro',"pic", "image_tag",)
     search_fields = ('name', 'intro')
-    fields = ('name', 'intro',"pic", "image_tag")
+    fields = ('name', 'intro',"pic","existing", "image_tag")
     readonly_fields = ["image_tag"]
     list_per_page = 10
 
     def save_model(self, request, obj, form, change):
-        super(DepartmentAdmin, self).save_model()
+        # super(DepartmentAdmin, self).save_model()
         obj.save()
         cache.set('department', None, 0)
 
@@ -240,7 +240,7 @@ deleteHeadImage.short_description = "删除指定头像"
 class HeadPictureAdmin(admin.ModelAdmin):
     list_display = ('name', "image_tag", 'pic')
     fields = ('name', "image_tag", 'pic')
-    search_fields = ('name', 'pic')
+    search_fields = ('name',)
     readonly_fields = ["name","image_tag"]
     list_per_page = 30
     actions = [deleteHeadImage]
