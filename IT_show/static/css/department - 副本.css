@@ -56,7 +56,7 @@
 .dp{
 	height:15.7%;
 	position: absolute;
-	top:2000;
+	top:0;
 	left:0;
 	cursor:pointer;
 	z-index:5;
@@ -108,7 +108,7 @@
 }
 
 .word h3{
-	font-size:1.7rem;
+	font-size:1.6rem;
 	color:#458BAC;
 	text-align:center;
 	position:absolute;
@@ -121,7 +121,6 @@
 }
 
 .word p{
-	font-size:1.3rem;
 	width:83.7%;
 	position:absolute;
 	display:block;

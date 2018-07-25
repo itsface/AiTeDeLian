@@ -195,6 +195,13 @@ html body .menu .menu-item a {
 	left: 0px;
 	top: 0px;
 }
+.cover p{
+  font-size: 16px;
+  font-family: MicrosoftYaHei, sans-serif;
+  color: #FAFAFA;
+  
+}
+
 .turn_page{
 	position: absolute;
   width: auto!important;
@@ -262,26 +269,7 @@ html body .menu .menu-item a {
 .page5 .downrow{
 	display: none;
 }
-  .cover p
-  {
-    font-size: 15px;
-    color: #FAFAFA;
-    
-  }
 
-    .member_show
-  {
-    margin-top: 60px;
-    font-size: 28px;
-     margin-bottom: 21px;
-     letter-spacing: 2px;
-  }
-  .zhan
-  {
-    width: 60px;
-    height: 4px;
-   
-  }
 @media screen and (min-width:980px) and (max-width:1367px){
   html body .menu {
     width: 600px;
@@ -359,6 +347,21 @@ html body .menu .menu-item a {
 } 
 
 
+@media screen and (min-width: 400px){
+.grade
+{
+  font-size: 18px;
+  }
+  .name
+  {
+    font-size: 14px;
+  }
+  .department
+  {
+    font-size: 9px;
+    /*margin-top: 0px;*/
+  }
+}
 @media screen and (min-width: 980px ){
 .grade
 {
@@ -366,19 +369,13 @@ html body .menu .menu-item a {
   }
   .name
   {
-    font-size: 16px;
-    margin-top: 12px;
+    font-size: 17px;
+    margin-top: 16px;
   }
   .department
   {
-    font-size: 10px;
-    margin-top: 4px;
-  }
-    .cover p
-  {
-    font-size: 10px;
-    line-height: 19px;
-    
+    font-size: 12px;
+    margin-top: 2px;
   }
 }
 @media screen and (min-width: 1365px ){
@@ -397,19 +394,13 @@ html body .menu .menu-item a {
      
     margin-top: 3px;
   }
-    .cover p
-  {
-    font-size: 11px;
-    line-height: 21px;
-    
-  }
 }
 
 @media screen and (min-width: 1501px ){
 .grade
 {
   font-size: 28px;
- }
+  }
   .name
   {
     font-size: 24px;
@@ -422,96 +413,6 @@ html body .menu .menu-item a {
     margin-top: 5px;
     /*margin-top: -15px;*/
   }
-  .cover p
-  {
-    font-size: 15px;
-    line-height: 30px;
-    
-  }
+
   }
 
-@media screen and (min-width: 400px )and (max-width: 980px){
-.grade
-{
-  font-size: 15px;
-  }
-  .name
-  {
-    font-size: 13px;
-    margin-top: 11px;
-  }
-  .department
-  {
-    font-size: 8px;
-    margin-top: 2px;
-  }
-    .cover p
-  {
-    font-size: 5px;
-    
-  }
-}
-
-
-
-/*标题*/
-@media screen and (max-width: 1920px ){
-  .member_show
-  {
-    margin-top: 60px;
-    font-size: 28px;
-     margin-bottom: 21px;
-     letter-spacing: 2px;
-  }
-  .zhan
-  {
-    width: 60px;
-    height: 4px;
-   
-  }
-}
-@media screen and (max-width: 1366px ){
-  .member_show
-  {
-     margin-top: 41px;
-     font-size: 20px;
-     margin-bottom: 10px;
-     letter-spacing: 2px;
-  }
-  .zhan
-  {
-    width: 42px;
-    height: 2px;
-   
-  }
-}
-@media screen and (max-width: 1280px ){
-  .member_show
-  {
-     margin-top: 25px;
-     font-size: 17px;
-     margin-bottom: 8px;
-     letter-spacing: 2px;
-  }
-  .zhan
-  {
-    width: 40px;
-    height: 2px;
-   
-  }
-}
-@media screen and (max-width: 980px ){
-  .member_show
-  {
-     margin-top: 27px;
-     font-size: 14px;
-     margin-bottom: 8px;
-     letter-spacing: 2px;
-  }
-  .zhan
-  {
-    width: 30px;
-    height: 1px;
-   
-  }
-}

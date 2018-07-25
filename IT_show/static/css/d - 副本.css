@@ -5,17 +5,10 @@
 }
 h1, h2, h3, h4, h5, h6 { font-weight:normal; }
 
-@media screen and (min-width: 1800px){ 
+@media screen and (min-width: 1920px){ 
 	html{font-size:15px;} 
 }
 
-@media screen and (min-width: 1366px) and (max-width: 1800px){ 
-	html{font-size:11px;} 
-}
-
-@media screen and (min-width: 960px) and (max-width: 1365px){ 
-	html{font-size:9px;} 
-}
 
 html body .container {
   width: 100%;

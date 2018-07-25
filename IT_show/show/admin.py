@@ -175,6 +175,7 @@ class DepartmentAdmin(admin.ModelAdmin):
     fields = ('name', 'intro',"pic","existing", "image_tag")
     readonly_fields = ["image_tag"]
     list_per_page = 10
+    list_filter = ("existing",)
 
     def save_model(self, request, obj, form, change):
         # super(DepartmentAdmin, self).save_model()
@@ -196,6 +197,24 @@ class WorksShowAdmin(admin.ModelAdmin):
     # list_filter = ("year")
 
 
+# 过滤有回复的
+class CommentFilterReply(admin.SimpleListFilter):
+    title = u'是否回复'
+    parameter_name = 'reply'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('0', u'未回复'),
+            ('1', u'已回复')
+        )
+
+    def queryset(self, request, queryset):
+        from django.db.models import Q
+        if self.value() == '0':
+            return queryset.filter(Q(reply=None) |Q(reply="") )
+        elif self.value() == '1':
+            return queryset.filter(~Q(reply="") & ~Q(reply=None))
+
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('code',"name", "image_tag", 'content', "reply","createTime")
     fields = ('code',"name","createTime", 'content', "reply", "image_tag","head")
@@ -203,10 +222,13 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('code', 'content',"name",)
     list_per_page = 30
     date_hierarchy = 'createTime'
+    list_filter = (CommentFilterReply,)
     # list_editable = ['content']
 
 from show.models import *
 def deleteHeadImage(modeladmin, request, queryset):
+    ok=0
+    fail=0
     for head in queryset:
         print("执行到1")
         if head.name=="0" or head.name==0:
@@ -231,11 +253,21 @@ def deleteHeadImage(modeladmin, request, queryset):
                         pass
 
                 head.delete()
+                ok=ok+1
             except:
-                pass
-    modeladmin.message_user(request, " 操作完成.")
+                fail=fail+1
+                msg = str(fail)+".序号为"+head.name + "的头像删除失败."
+                messages.add_message(request, messages.ERROR, msg)
+    if ok > 0:
+        msg = "已成功删除了"+str(ok) + "个头像."
+        modeladmin.message_user(request,msg )
+    if fail > 0:
+        msg = str(fail) + "个头像删除失败."
+        messages.add_message(request, messages.ERROR, msg)
 
 deleteHeadImage.short_description = "删除指定头像"
+
+
 
 class HeadPictureAdmin(admin.ModelAdmin):
     list_display = ('name', "image_tag", 'pic')

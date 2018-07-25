@@ -10,22 +10,22 @@ $(document).ready(function() {
 	
 	dpMaxAngle[1]=70;
 	dpMinAngle[1]=10;
-	alltime[1]=6000;
+	alltime[1]=3500;
 	fps[1]=300;
 	
 	dpMaxAngle[2]=55;
-	dpMinAngle[2]=7;
-	alltime[2]=7000;
+	dpMinAngle[2]=10;
+	alltime[2]=4000;
 	fps[2]=300;
 	
-	dpMaxAngle[3]=43;
+	dpMaxAngle[3]=35;
 	dpMinAngle[3]=5;
-	alltime[3]=8000;
+	alltime[3]=4500;
 	fps[3]=300;
 	
-	dpMaxAngle[4]=38;
-	dpMinAngle[4]=5;
-	alltime[4]=9000;
+	dpMaxAngle[4]=30;
+	dpMinAngle[4]=0;
+	alltime[4]=5000;
 	fps[4]=300;
 	
 	for (var i=1;i<=departNum;i++){
@@ -38,23 +38,21 @@ $(document).ready(function() {
 		clickFlag[i]=false;
 	}
 
-	var timeout1 = setTimeout(function(){  
-		allInterval[".dp1"]=setInterval(function(){
-			rotateFlash(1)
-		},alltime[1]/fps[1]);
-		
-		allInterval[".dp2"]=setInterval(function(){
-			rotateFlash(2)
-		},alltime[2]/fps[2]);
-		
-		allInterval[".dp3"]=setInterval(function(){
-			rotateFlash(3)
-		},alltime[3]/fps[3]);
-		
-		allInterval[".dp4"]=setInterval(function(){
-			rotateFlash(4)
-		},alltime[4]/fps[4]);
-	},100); 
+	allInterval[".dp1"]=setInterval(function(){
+		rotateFlash(1)
+	},alltime[1]/fps[1]);
+	
+	allInterval[".dp2"]=setInterval(function(){
+		rotateFlash(2)
+	},alltime[2]/fps[2]);
+	
+	allInterval[".dp3"]=setInterval(function(){
+		rotateFlash(3)
+	},alltime[3]/fps[3]);
+	
+	allInterval[".dp4"]=setInterval(function(){
+		rotateFlash(4)
+	},alltime[4]/fps[4]);
 })
 // var timeout = setTimeout(function(){
 // },100);
@@ -64,29 +62,29 @@ $(window).on('load resize', function() {
 	var timeout = setTimeout(function(){  
 	ellipse[1].center.l=sw*0.05;
 	ellipse[1].center.t=sh*0.971;
-	ellipse[1].w=sw*0.4;
-	ellipse[1].h=sh*0.6;
-	ellipse[1].angle=10;
+	ellipse[1].w=sh*0.8;
+	ellipse[1].h=ellipse[1].w*0.76;
+	ellipse[1].angle=20;
 	draw(1);
 	
-	ellipse[2].center.l=sw*0.05;
-	ellipse[2].center.t=sh*0.971;
-	ellipse[2].w=sw*0.56;
-	ellipse[2].h=sh*0.73;
+	ellipse[2].center.l=sw*0.1;
+	ellipse[2].center.t=sh*0.95;
+	ellipse[2].w=sh*1;
+	ellipse[2].h=ellipse[2].w*0.76;
 	ellipse[2].angle=5;
 	draw(2);
 	
-	ellipse[3].center.l=sw*0.05;
-	ellipse[3].center.t=sh*0.971;
-	ellipse[3].w=sw*0.72;
-	ellipse[3].h=sh*0.85;
-	ellipse[3].angle=7;
+	ellipse[3].center.l=sw*0.15;
+	ellipse[3].center.t=sh*0.93;
+	ellipse[3].w=sh*1.2;
+	ellipse[3].h=ellipse[3].w*0.66;
+	ellipse[3].angle=15;
 	draw(3);
 	
-	ellipse[4].center.l=sw*0.05;
-	ellipse[4].center.t=sh*0.971;
-	ellipse[4].w=sw*0.88;
-	ellipse[4].h=sh*1;
+	ellipse[4].center.l=sw*0.25;
+	ellipse[4].center.t=sh*0.87;
+	ellipse[4].w=sh*1.3;
+	ellipse[4].h=ellipse[4].w*0.8;
 	ellipse[4].angle=5;
 	draw(4);
 	
@@ -102,10 +100,7 @@ $(window).on('load resize', function() {
 		var tp=new _point();
 		getPoint(tp,dpNowAngle[i],i);
 		var wordw=$(wordhandle).width();
-		var wordh=$(wordhandle).height();	
-		if (i==4){
-			tp.l=tp.l-wordw/2;
-		}		
+		var wordh=$(wordhandle).height();			
 		$(wordhandle).css({
 			"left":tp.l-wordw/2,
 			"top":tp.t-wordh/2,
@@ -197,9 +192,7 @@ $(".dp").click(function(){
 			getPoint(tp,dpNowAngle[i],i);
 			var wordw=$(wordhandle).width();
 			var wordh=$(wordhandle).height();
-			if (i==4){
-				tp.l=tp.l-wordw/2;
-			}
+			
 			$(wordhandle).css({
 				"left":tp.l-wordw/2,
 				"top":tp.t-wordh/2,

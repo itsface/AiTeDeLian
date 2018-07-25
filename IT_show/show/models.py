@@ -27,7 +27,7 @@ class Member(models.Model):
     sex = models.BooleanField(verbose_name="性别", default=False, choices=Gender_Choice,blank=True)
     name = models.CharField(verbose_name="名字", max_length=10, default="")
     photo = models.ImageField(verbose_name="皂片", upload_to='image/MemberPhoto/',default='media/default/MemberPhoto.png',)
-    intro = models.TextField(verbose_name="个性签名", max_length=100, default="")
+    intro = models.TextField(verbose_name="个性签名", max_length=48, default="")
     year = models.IntegerField(verbose_name="年份", default=0)
     department=models.ForeignKey(Department,verbose_name="所属部门", max_length=10, default="",null=True)
 

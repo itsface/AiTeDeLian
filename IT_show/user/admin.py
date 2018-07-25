@@ -100,23 +100,36 @@ def update_data_src(modeladmin, request, queryset):
     elif 'data_src' in request.POST:
         form = modeladmin.data_src_form(request.POST)
         if form.is_valid():
+            ok = 0
+            fail = 0
             data_src = form.cleaned_data['data_src']
             for case in queryset:
-                if case.active == False:
-                    messages.warning(request, u"用户" + case.name + "未激活，请先执行激活操作")
-                    continue
-                case.status_id = data_src.code
-                case.save()
-                if case.status_id != None and case.status.emailText != "":
-                    user.views.sendEmail(case.name, case.userCode, case.email,
-                                         models.StatusInfo.objects.get(code=data_src.code).emailText)
-                if case.status != None:
-                    setNewStatues(case.id)
-                    newInfo = user.models.StatusDetails.objects.create(statu_id=case.status.code, time=datetime.now(),
-                                                                       hostID_id=case.id,
-                                                                       code=user.models.StatusDetails.objects.filter(
-                                                                           hostID=case.id).count() + 1)
-            modeladmin.message_user(request, "%s successfully updated." % queryset.count())
+                try:
+                    if case.active == False:
+                        messages.warning(request, u"用户" + case.name + "未激活，请先执行激活操作")
+                        continue
+                    case.status_id = data_src.code
+                    case.save()
+                    if case.status_id != None and case.status.emailText != "":
+                        user.views.sendEmail(case.name, case.userCode, case.email,
+                                             models.StatusInfo.objects.get(code=data_src.code).emailText)
+                    if case.status != None:
+                        setNewStatues(case.id)
+                        newInfo = user.models.StatusDetails.objects.create(statu_id=case.status.code, time=datetime.now(),
+                                                                           hostID_id=case.id,
+                                                                           code=user.models.StatusDetails.objects.filter(
+                                                                               hostID=case.id).count() + 1)
+                    ok=ok+1
+                except:
+                    fail=fail+1
+                    msg = str(fail) + ".用户" + case.name + "的状态修改失败."
+                    messages.add_message(request, messages.ERROR, msg)
+            if ok > 0:
+                msg = "已成功改变" + str(ok) + "名用户的状态."
+                modeladmin.message_user(request, msg)
+            if fail > 0:
+                msg = str(fail) + "名用户的状态改变失败."
+                messages.add_message(request, messages.ERROR, msg)
             return HttpResponseRedirect(request.get_full_path())
         else:
             messages.warning(request, u"请选择数据源")
@@ -128,7 +141,6 @@ def update_data_src(modeladmin, request, queryset):
     return render(request, 'batch_update.html',
                   {'objs': queryset, 'form': form, 'path': request.get_full_path(),
                    'action': 'update_data_src', 'title': u'将所选用户跳转至如下状态'},
-                  # context_instance=RequestContext(request)
                   )
 
 update_data_src.short_description = u'将所选用户跳转至指定状态，并发送邮件通知'
@@ -141,62 +153,101 @@ def sendStatuInfo(modeladmin, request, queryset):
     for fresher in queryset:
         try:
             if  fresher.status_id!=None and fresher.status.emailText!="":
-                user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, fresher.status.emailText)
+                text = fresher.status.emailText
+                if fresher.active == False:
+                    from IT_show.settings import localHost
+                    text = text + "\n激活链接：" + str(localHost) + "/api/signOK/" + fresher.userCode
+
+                user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, text)
                 ok1=ok1+1
             else:
-                ok2=ok2
+                ok2=ok2+1
+                messages.warning(request, u"用户" + fresher.name + "当前状态无邮件内容")
+
         except:
             fail=fail+1
+            msg = str(fail) + ".用户" + fresher.name + "的邮件通知发送失败."
+            messages.add_message(request, messages.ERROR, msg)
     if ok1>0:
         modeladmin.message_user(request, str(ok1)+"名用户邮件通知发送完成.")
     if ok2 > 0:
-        modeladmin.message_user(request, str(ok2) + "名用户当前状态无邮件内容.")
+        messages.warning(request, str(ok2) + "名用户当前状态无邮件内容.")
     if fail > 0:
-        modeladmin.message_user(request, str(fail) + "名用户邮件通知发送失败.")
+        msg = str(fail) + "名用户邮件通知发送失败."
+        messages.add_message(request, messages.ERROR, msg)
 
 sendStatuInfo.short_description = "给所选用户发送当前状态通知"
 
 
 def statusToNext(modeladmin, request, queryset):
+    ok = 0
+    fail = 0
     for fresher in queryset:
         try:
-            if fresher.active==False:
-                messages.warning(request, u"用户"+fresher.name+"未激活，请先执行激活操作")
-                continue
-            newStatusId = models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
+            try:
+                if fresher.active==False:
+                    messages.warning(request, u"用户"+fresher.name+"未激活，请先执行激活操作")
+                    continue
+                newStatusId = models.StatusInfo.objects.get(code=fresher.status.code).nextStatus_id
+            except:
+                newStatusId = None
+            if newStatusId:
+                fresher.status__code=newStatusId
+                fresher.status_id = newStatusId
+                #SetNewStatusDetails(fresher.id, newStatusId)
+                fresher.save()
+                setNewStatues(fresher.id)
+                if fresher.status_id != None and fresher.status.emailText != "":
+                    user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, models.StatusInfo.objects.get(code=newStatusId).emailText)
+                if fresher.status != None:
+                    newInfo = user.models.StatusDetails.objects.create(statu_id=fresher.status_id, time=datetime.now(),
+                                                                       hostID_id=fresher.id,code=user.models.StatusDetails.objects.filter(hostID=fresher.id).count()+1)
+                ok=ok+1
+            else:
+                messages.warning(request, u"用户" + fresher.name + "的状态已到达链顶端")
         except:
-            newStatusId = None
-        if newStatusId:
-            fresher.status__code=newStatusId
-            fresher.status_id = newStatusId
-            #SetNewStatusDetails(fresher.id, newStatusId)
-            fresher.save()
-            setNewStatues(fresher.id)
-            if fresher.status_id != None and fresher.status.emailText != "":
-                user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, models.StatusInfo.objects.get(code=newStatusId).emailText)
-            if fresher.status != None:
-                newInfo = user.models.StatusDetails.objects.create(statu_id=fresher.status_id, time=datetime.now(),
-                                                                   hostID_id=fresher.id,code=user.models.StatusDetails.objects.filter(hostID=fresher.id).count()+1)
-
+            fail=fail+1
+            msg = str(fail) + ".用户"+fresher.name+"的状态改变失败."
+            messages.add_message(request, messages.ERROR, msg)
+    if ok > 0:
+        msg = "已成功改变"+str(ok) + "名用户的状态."
+        modeladmin.message_user(request,msg )
+    if fail > 0:
+        msg = str(fail) + "名用户的状态改变失败."
+        messages.add_message(request, messages.ERROR, msg)
 
 statusToNext.short_description = "所选用户跳转至下一状态，并发送邮件通知"
 
 
 def statusGoBack(modeladmin, request, queryset):
+    ok=0
+    fail=0
     for fresher in queryset:
             DeleteStatusDetails(fresher.id)
             try:
                 nowDetailTail = StatusDetails.objects.get(hostID=fresher, isTail=True)
                 fresher.status_id = nowDetailTail.statu.code
                 fresher.save()
-
+                ok=ok+1
             except:
-                pass
+                fail=fail+1
+                msg = str(fail) + ".用户"+fresher.name+"的撤销操作失败."
+                messages.add_message(request, messages.ERROR, msg)
 
+    if ok > 0:
+        msg = "已成功撤销了"+str(ok) + "名用户的上一状态改变."
+        modeladmin.message_user(request,msg )
+    if fail > 0:
+        msg = str(fail) + "名用户的撤销操作失败."
+        messages.add_message(request, messages.ERROR, msg)
 
 statusGoBack.short_description = "所选用户撤销上一个改变状态的操作"
 
+
+
 def activeFresher(modeladmin, request, queryset):
+    ok=0
+    fail=0
     for fresher in queryset:
             try:
                 if fresher.active==False:
@@ -211,8 +262,15 @@ def activeFresher(modeladmin, request, queryset):
                                                                        hostID_id=fresher.id,
                                                                        code=user.models.StatusDetails.objects.filter(
                                                                            hostID=fresher.id).count() + 1)
+                    ok=ok+1
             except:
-                pass
+                fail=fail+1
+    if ok > 0:
+        msg = "已成功激活了"+str(ok) + "名用户."
+        modeladmin.message_user(request,msg )
+    if fail > 0:
+        msg = str(fail) + "名用户激活失败."
+        messages.add_message(request, messages.ERROR, msg)
 
 activeFresher.short_description = "激活所选用户并发送邮件"
 
@@ -384,6 +442,7 @@ class FresherAdmin(admin.ModelAdmin):
     list_filter = (UserFilterActive,UserFilterSex, UserFilterStatus, UserFilterDepartment, UserFilterPubtime,)
     actions = [sendStatuInfo, update_data_src, statusToNext, makeExcel,statusGoBack,activeFresher]
     form = checkForm.FresherForm
+    date_hierarchy = 'registerTime'
 
     class data_src_form(forms.forms.Form):
         _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)

@@ -83,8 +83,8 @@ function countHW() {
 	sh = $('.container').height();
 	sctnH = $('.show_container').height();
 	centerL = sw * 0.5;
-	centerT = sctnH * 0.799;
-	circleH = sh * 0.267;
+	centerT = sctnH * 0.789;
+	circleH = sh * 0.260;
 	circleW = circleH * 417.5 / 288.5;
 	upH = sctnH * 0.47;
 	upW = upH * 2;

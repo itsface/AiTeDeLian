@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
 	<title>成员展示</title>
 	<link rel="stylesheet" type="text/css" href="{% static  "css/member.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static  "css/d.css" %}">
 {% endblock %}
 {% block content %}
     <div class="show">
@@ -49,8 +48,9 @@
                                         <p>{{ member.intro }}</p>
                                     </div>
                                 </div>
-                                <h2 class="name">{{ member.name }}</h2>
-                                <h3 class="department">{{ member.department.name }}</h3>
+                        <div class="name">{{ member.name }}</div>
+                        <div class="department">{{ member.department.name }}</div>
+
                             </div>
                     {% endfor %}
                     </div>
