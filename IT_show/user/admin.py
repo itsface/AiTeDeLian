@@ -459,7 +459,8 @@ class StatuFilterTail(admin.SimpleListFilter):
         )
 
     def queryset(self, request, queryset):
-        return queryset.filter(isTail=self.value())
+        if self.value() != None:
+            return queryset.filter(isTail=self.value())
 
 
 # 招新管理设置
