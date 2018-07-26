@@ -1,215 +1,576 @@
-.bgup{
+.container{
+	min-width: 900px;
+}
+*{
+	font-family: MicrosoftYaHei, sans-serif;
+}
+/*html body .menu {
+  width: 700px;
+  display: flex;
+  position:absolute;
+  right: 0px;
+}
+html body .menu .menu-item {
+  position: relative;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 33px
+}
+html body .menu .menu-item .wee {
+  height: 2px;
+  width: 80%;
+  background-color:#F9C34F;
+  position: absolute;
+  left: 6px;
+  bottom: 0;
+  transition: 0.75s;
+}
+html body .menu .menu-item a {
+  margin: 0;
+  /*padding: 0 1rem 1.5rem;*/
+  display: block;
+  line-height: 47px;
+  font-size: 1.2rem;
+  color: white;
+  transition: 0.75s;
+  text-decoration:none;
+}*/
+
+.me {
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.me a {
+  display: inline-block;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+  color: #232323;
+  font-size: 1.5rem;
+  transition: 0.75s;
+}
+.me a:hover {
+  color: #002b75;
+}
+.back_ground{
 	width: 100%;
-	height:100%;
 	background-color: #2AA8D9;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	overflow: hidden;
-	z-index:0;
-}
-
-.bgup .bgPointImg{
-	width:95%;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	z-index:1;
-}
-
-.bgup .cyanPlanet{
-	width: 12%;
-	position: absolute;
-	left: 8.5%;
-	top: 15.6%;
-	z-index:2;
-}
-
-.bgup .yellowPlanet{
-	width: 39%;
-	position: absolute;
-	right: 0;
-	top: 18%;
-	z-index:2;
-}
-
-.bgup .haloPlanet{
-	width: 22.6%;
-	position: absolute;
-	right: 53.6%;
-	bottom: 24.1%;
-	z-index:2;
-}
-
-.bgup .iTstudioTitle{
-	width: 12.3%;
-	position: absolute;
-	left: calc(50% - 6.1%);
-	top: 25%;
-	z-index:3;
-}
-
-.bgup p{
-	font-size:2rem;
-	font-family:Moon20-Regular;
-	color: white;
-	position:absolute;
-	left:0;
-	right:0;
-	text-align: center;
-	top:40%;
-	z-index:3;
-}
-
-.bgdown{
-	width: 100%;
-	height: 100%;
-	background-color: #F7FBFC;
-	position: absolute;
-	top: 63.5%;
-	z-index:10;
-}
-
-.bgdown .choose_aboutus{
-	width: 47%;
-	height: 220px;
-	/* background-color: #2AA8D9; */
-	position: absolute;
-	top: 2%;
-	left: 26.5%;
-}
-
-.bgdown .choose_aboutus h2{
-	text-align: center;
-	top: 68px;
-}
-
-.bgdown .choose_aboutus .line_abtus{
-	width: 60px;
-	height:4px;
-	background-color: #7ECEF4;
-	position: absolute;
-	top: 45px;
-	left: calc(50% - 30px);
-}
-
-.bgdown .choose_aboutus .choose{
-	width: 100px;
-	height:120px;
-	position: absolute;
-	cursor:pointer;
-	bottom:0px;
-}
-
-.bgdown .choose_aboutus .cho1{
-	left:0px;
-}
-
-.bgdown .choose_aboutus .cho2{
-	left:calc(50% - 50px);
-}
-
-.bgdown .choose_aboutus .cho3{
-	right:0px;
-}
-
-.bgdown .choose_aboutus .choose .chooseimg{
-	width: 90px;
-	height:90px;
-	position: absolute;
-	left: 5px;
-	top: 0px;
-}
-
-.bgdown .choose_aboutus .choose .icon1{
-	width: 41px;
-	height:44px;
-	position: absolute;
-	left: 29px;
-	top: 20px;
-}
-
-.bgdown .choose_aboutus .choose .icon2{
-	width: 38px;
-	height:37px;
-	position: absolute;
-	left: 33px;
-	top: 25px;
-}
-
-.bgdown .choose_aboutus .choose .icon3{
-	width: 49px;
-	height:40px;
-	position: absolute;
-	left: 25px;
-	top: 21px;
-}
-
-.bgdown .choose_aboutus .choose p{
 	position: relative;
+	overflow: hidden;
+}
+.planet_yellow{
+	position: absolute;
+	right: 0px;
+	top: 200px;
+	width: 600px;
+}
+.planet_huan{
+	position: absolute;
+	left: 600px;
+	top: 350px;
+}
+.planet_blue{
+	position: absolute;
+	left: 100px;
+	top: 100px;
+}
+.bling_star{
+	position: absolute;
+	width: 100%;
+}
+.liuxing{
+	position: absolute;
+	top: 80px;
+	left: 500px;
+	opacity: 0;
+}
+.center{
+	width: 1300px;
+	margin: auto;
+	position: relative;
+}
+.back_ground .head{
+	height: 120px;
+	position: relative;
+	width: 100%;
+}
+.back_ground .head .center .logo{
+	position: absolute;
+	left: 0px;
+	top: 23px;
+}
+.back_ground .head .center h2{
+	font-size: 24px;
+	color: white;
+	position: absolute;
+	left: 100px;
+	top: 42px;
+}
+.name .center .name_main{
+	height: 200px;
+	width: 900px;
+	position: relative;
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	/*margin: 100px auto 0px auto;*/
+}
+.name{
+	position:relative;
+}
+.name .center .name_main img{
+	margin: auto;
+	display: block;
+	margin-bottom: 100px;
+}
+.short_intro{
+	overflow: hidden;
+}
+.in_center{
+	width: 910px;
+	height: 260px;
+	margin: auto;
+}
+.about_us h2{
+	margin:20px auto 20px auto;
 	text-align: center;
-	color: #407E9C;
-	top: 95px;
+	font-size: 26px;
+}
+.about_us .rect{
+	width:60px;
+	height:4px;
+	display: block;
+	margin: auto;
+	border-radius: 2px;
+	background-color: #7ECEF4;
+}
+.block{
+	width: 90px;
+	height: 125px;
+	margin-right: 320px;
+	margin-top: 52px;
+	/*margin-bottom: 50px;*/
+	float: left;
+	position: relative;
+	cursor: pointer;
+}
+.yuan{
+	width: 86px;
+	height: 86px;
+	position: relative;
+}
+.gradident{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+}
+.imagine .yuan .bling{
+	position: absolute;
+	left: 22px;
+	top: 18px;
+	z-index: 2;
+}
+.analyze .yuan .bling{
+	position: absolute;
+	left: 26px;
+	top: 20px;
+	z-index: 2;
+}
+.team .yuan .bling{
+	position: absolute;
+	left: 19px;
+	top: 21px;
+	z-index: 2;
+}
+.block p{
+	font-size: 18px;
+	color: #5796B4;
+	position: absolute;
+	bottom: 0px;
 }
 
-.bgdown .shortIntro{
-	font-size: 16px;
-	width: calc(58.5% + 60px);
-	height: 36.4%;
-	background-color:#2AA8D9;
-	opacity: 0.85;
+
+.intro_detail{
+	/*height: 600px;*/
+	position: relative;
+}
+.qiu1{
 	position: absolute;
-	left: calc(20.85% - 30px);
-	top: 48%;
-	-webkit-border-radius: 10px;
-    border-radius: 10px;
-	z-index:15;
+	left: 117px;
+	top: 198px;
+}
+.qiu2{
+	position: absolute;
+	right: 193px;
+	top: 167px;
+}
+.hidden{
+	width: 1120px;
+	height:361px;
+	background:rgba(42,168,217,1);
+	opacity:0.6;
+	border-radius:10px;
+	position: relative;
+	bottom:20px;
+}
+.qixiang{
+	margin:auto; 
 	display: none;
 }
-
-.bgdown .shortIntro h2{
-	font-size: 1.8125em;
-	color: white;
-	margin-top: 20px;
-	margin-bottom: 25px;
-	text-align: center;
-	font-weight: normal;
-
+.jingzhun{
+	margin: auto;
+	display: block;
 }
-
-.bgdown .shortIntro p{
-	font-size: 1em;
+.youxiu{
+	margin: auto;
+	display:none;
+}
+.hidden h2{
+	font-size: 29px;
 	color: white;
-	margin:0px auto 0px auto;
-	width: 80%;
+	margin-top: 37px;
+	margin-bottom: 43px;
+	text-align: center;
+}
+.hidden p{
+	font-size: 18px;
+	color: white;
+	/*text-align: center;*/
+	margin:0px auto 49px auto;
+	width: 711px;
 	letter-spacing: 2px;
 	line-height: 25px;
 }
+.hidden img{
+	display: block;
+	margin: auto;
+}
+@media screen and (max-width:1400px){
+/*	
+	html body .menu {
+	  width: 600px;
+	  display: flex;
+	  position:absolute;
+	  right: 0px;
+	}
+	html body .menu .menu-item {
+	  position: relative;
+	  cursor: pointer;
+	  padding-left: 10px;
+	  padding-right: 10px;
+	  margin-top: 17px
+	}
+	html body .menu .menu-item .wee {
+	  height: 2px;
+	  width: 80%;
+	  background-color:#F9C34F;
+	  position: absolute;
+	  left: 6px;
+	  bottom: 0;
+	  transition: 0.75s;
+	}
+	html body .menu .menu-item a {
+	  margin: 0;
 
-.bgdown .shortIntro .innerImg{
-	height: 26.3%;
+	  display: block;
+	  line-height: 47px;
+	  font-size: 1rem;
+	  color: white;
+	  transition: 0.75s;
+	  text-decoration:none;
+	}*/
+	
+	.me {
+	  position: absolute;
+	  bottom: 5rem;
+	  left: 50%;
+	  transform: translateX(-50%);
+	}
+	.me a {
+	  display: inline-block;
+	  padding: 0.25rem;
+	  margin: 0 0.25rem;
+	  color: #232323;
+	  font-size: 1.5rem;
+	  transition: 0.75s;
+	}
+	.me a:hover {
+	  color: #002b75;
+	}
+	.center{
+		width: 100%;
+	}
+	.back_ground .head{
+		height: 80px;
+	}
+	.back_ground .head .center .logo{
+		left: 40px;
+		top: 20px;
+		width: 50px;
+	}
+	.back_ground .head .center h2{
+		font-size: 19px;
+		color: white;
+		left: 105px;
+		top: 30px;
+	}
+	.name .center .name_main{
+		height: 150px;
+		width: 800px;
+		margin-top: 70px;
+	}
+	.name .center .name_main img{
+		margin-bottom: 70px;
+	}
+	.name .center .name_main .img1{
+		width: 150px;
+	}
+	.name .center .name_main .img2{
+		width: 800px;
+	}
+	.planet_yellow{
+		width: 440px;
+		right: 0px;
+		top: 140px;
+	}
+	.planet_huan{
+		left: 300px;
+		top: 350px;
+		width: 180px;
+	}
+	.planet_blue{
+		left: 100px;
+		top: 100px;
+		width: 200px;
+	}
+	.bling_star{
+		width: 100%;
+	}
+	.qiu1{
+		left: 150px;
+		top: 198px;
+		width: 256px;
+	}
+	.qiu2{
+		right: 50px;
+		top: 167px;
+		width: 230px;
+	}
+	.hidden{
+		width: 730px;
+		height: 240px;
+	}
+	.hidden h2{
+		font-size: 22px;
+	    margin-top: 26px;
+	    margin-bottom: 23px;
+	}
+	.hidden p{
+		font-size: 14px;
+	    margin: 0px auto 2px auto;
+	    width: 503px;
+	    letter-spacing: 2px;
+	    line-height: 25px;
+	}
+	.hidden img{
+		display: block;
+		margin: auto;
+		width: 53px;
+	}
+	.jingzhun .hidden img
+	{
+		width: 43px;
+	}
+	.youxiu img
+	{
+		width: 64px;
+	}
+	.youxiu p
+	{
+		margin:0px auto 27px auto;
+	}
+
+.in_center{
+	width:650px;
+}
+.about_us h2{
+	font-size: 20px;
+}
+.about_us .rect{
+	width:50px;
+	height:3px;
+}
+.block{
+	width: 70px;
+	height: 100px;
+	margin-right: 220px;
+}
+.yuan{
+	width: 60px;
+	height: 60px;
+}
+.gradident{
+	width: 60px;
+	height: 60px;
+}
+.imagine .yuan .bling {
+    left: 13px;
+    top: 10px;
+    width: 34px;
+}
+.analyze .yuan .bling {
+    left: 18px;
+    top: 16px;
+    width: 30px;
+}
+.team .yuan .bling {
+    left: 13px;
+    top: 17px;
+    width: 34px;
+}
+.block p{
+	font-size: 14px;
+	color: #5796B4;
 	position: absolute;
-	left:0px;
-	right: 0px;
-	margin-left: auto;
-	margin-right: auto;
-	bottom: 5%;
+	bottom: 12px;
 }
 
-.bgdown .yp{
-	height: 34.5%;
-	position: absolute;
-	left:6%;
-	top: 56%;
-	z-index:11;
-}
-
-.bgdown .hp{
-	height: 16.5%;
-	position: absolute;
-	right:10.1%;
-	top: 53%;
-	z-index:11;
 }
 
 
+.nav{
+  /*height: 10%;*/
+  height: 98px;
+  /*position: absolute;*/
+  width: 100%;
+  z-index: 10000;
+}
+.nav .logoandlink{
+  width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.IT_logo{
+  position: absolute;
+  left: 0px;
+  top: 17px;
+  width: 77px;
+  height: auto;
+
+}
+.nav .logoandlink h2{
+  /* font-size: 1.6rem; */
+  font-size: 24px;
+  /*color: #232323;*/
+  color: white;
+  position: absolute;
+  left: 100px;
+  top: 35px;
+}
+.nav .logoandlink .menu {
+  /*width: 700px;*/
+  display: flex;
+  position:absolute;
+  right: 0px;
+}
+.menu-item {
+  position: relative;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 33px;
+}
+.nav .logoandlink .menu .wee {
+  height: 2px;
+  background-color:#EAAA15;
+  position: absolute;
+  display:block;
+  bottom: 0;
+  /* transition: 0.75s; */
+}
+.menu-item a {
+  margin: 0;
+  /*padding: 0 1rem 1.5rem;*/
+  display: block;
+  line-height: 47px;
+  /* font-size: 1.2rem; */
+  font-size: 18px;
+  color: white;
+  /* transition: 0.75s; */
+  text-decoration:none;
+}
+
+@media screen and (max-width: 1366px){
+.menu-item a{
+  font-size: 15px;
+   line-height: 35px;
+}
+.menu-item {
+ margin-top:25px;
+}
+.nav .logoandlink h2
+{
+  font-size: 22px;
+  top: 28px;
+  left: 79px;
+}
+.IT_logo{
+  width: 60px;
+  top: 14px;
+}
+.nav .logoandlink{
+  width: 930px;
+}
+.nav
+{
+  height: 78px;
+}
+
+
+}
+@media screen and (max-width: 1000px){
+  .nav
+{
+  height: 57px;
+}
+
+.menu-item a{
+  font-size: 12px;
+   line-height: 32px;
+}
+.menu-item {
+ margin-top:17px;
+/* padding-left: 6px;
+ padding-right: 6px;*/
+}
+.nav .logoandlink h2
+{
+  font-size: 16px;
+  top: 21px;
+  left: 56px;
+}
+.IT_logo{
+  width: 45px;
+  top: 10px;
+}
+.nav .logoandlink{
+  width: 700px;
+}
+.in_center
+{
+	width: 580px;
+}
+.block
+{
+	margin-right: 185px;
+}
+.hidden
+{
+	width: 628px;
+}
+
+}
