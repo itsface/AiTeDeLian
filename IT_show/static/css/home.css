@@ -574,3 +574,10 @@ html body .menu .menu-item a {
 }
 
 }
+
+html
+ { 
+ 	overflow-x: hidden;
+
+ 	overflow-y: hidden!important;
+  }
