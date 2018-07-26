@@ -2,7 +2,9 @@
 	min-width: 900px;
 }
 *{
-	font-family: MicrosoftYaHei, sans-serif;
+	padding: 0px;
+	margin:0px;
+	font-family: MicrosoftYaHei,arial,helvetica,clean,sans-serif!important;
 }
 /*html body .menu {
   width: 700px;

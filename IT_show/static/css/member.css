@@ -1,5 +1,7 @@
 *{
-	font-family: MicrosoftYaHei, sans-serif;
+	padding: 0px;
+	margin:0px;
+	font-family: MicrosoftYaHei,arial,helvetica,clean,sans-serif!important;
 }
 .container{
   overflow: hidden;
@@ -11,6 +13,7 @@
     clear: both;
     display: table;
 }
+
 /* 
 html body .menu {
   width: 700px;

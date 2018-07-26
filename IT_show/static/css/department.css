@@ -5,7 +5,11 @@
   width: 100%;
   z-index: 10000;
 }
-
+*{
+	padding: 0px;
+	margin:0px;
+	font-family: MicrosoftYaHei,arial,helvetica,clean,sans-serif!important;
+}
 .department_title{
 	/*height: 60px;*/
 	position:absolute;
