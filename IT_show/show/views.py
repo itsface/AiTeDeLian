@@ -74,7 +74,8 @@ def department(request):
 
 @simple_cache_page(60*60*10,"bigevent")
 def big_event(request):
-    return render(request, 'bigevent.html')
+    num=range(1,9)
+    return render(request, 'bigevent.html',{"num":num})
 
 
 def comment(request):

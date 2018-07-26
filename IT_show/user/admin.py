@@ -431,6 +431,37 @@ class UserFilterDepartment(admin.SimpleListFilter):
             return queryset.filter(wantDepartment=self.value())
 
 
+# 过滤状态
+class StatuFilterPoint(admin.SimpleListFilter):
+    title = u'状态内容'
+    parameter_name = 'statu__info'
+
+    def lookups(self, request, model_admin):
+        result = []
+        for info in user.models.StatusInfo.objects.all():
+            t = (info.code, info.info)
+            result.append(t)
+        return result
+
+    def queryset(self, request, queryset):
+        if self.value() != None:
+            return queryset.filter(statu__code=self.value())
+
+# 是否链尾
+class StatuFilterTail(admin.SimpleListFilter):
+    title = u'是否链尾'
+    parameter_name = 'isTail'
+
+    def lookups(self, request, model_admin):
+        return (
+            (False, u'非链尾'),
+            (True, u'链尾')
+        )
+
+    def queryset(self, request, queryset):
+        return queryset.filter(isTail=self.value())
+
+
 # 招新管理设置
 class FresherAdmin(admin.ModelAdmin):
     list_display = (
@@ -466,7 +497,7 @@ class FresherAdmin(admin.ModelAdmin):
 #招生状态设置
 class StatusInfoAdmin(admin.ModelAdmin):
     list_display = ('code', 'info', "nextStatus", "emailText")
-    search_fields = ('code', 'info', "emailText", "nextStatus")
+    search_fields = ('code', 'info', "emailText", "nextStatus__info")
     fieldsets = (
         ["", {
             'fields': ('code', 'info', "emailText", "nextStatus"),
@@ -484,8 +515,9 @@ class StatusInfoAdmin(admin.ModelAdmin):
 # 新生状态详情
 class StatusDetailsAdmin(admin.ModelAdmin):
     list_display = ('hostID',  'statu',"info",'code', 'time',"isTail")
-    search_fields = ('hostID__name',"")
+    search_fields = ('hostID__name',"statu__info","info")
     readonly_fields = ('hostID',  'statu',"info",'code', 'time',"isTail")
+    list_filter = (StatuFilterPoint,StatuFilterTail)
     list_per_page = 30
     ordering = ('-time',)
     actions = []

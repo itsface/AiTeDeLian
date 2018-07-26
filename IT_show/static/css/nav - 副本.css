@@ -16,8 +16,7 @@
   top: 23px;
 }
 .nav .logoandlink h2{
-  /* font-size: 1.6rem; */
-  font-size: 24px;
+  font-size: 1.6rem;
   color: #232323;
   position: absolute;
   left: 100px;
@@ -34,7 +33,7 @@
   cursor: pointer;
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 33px;
+  margin-top: 33px
 }
 .nav .logoandlink .menu .wee {
   height: 2px;
@@ -49,8 +48,7 @@
   /*padding: 0 1rem 1.5rem;*/
   display: block;
   line-height: 47px;
-  /* font-size: 1.2rem; */
-  font-size: 18px;
+  font-size: 1.2rem;
   color: black;
   /* transition: 0.75s; */
   text-decoration:none;
