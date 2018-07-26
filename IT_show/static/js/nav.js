@@ -2,6 +2,8 @@ var allInterval=[],isFlashing=[],sw,sh; // screenwidth and screenheight;
 
 function localwee(){
 	var timeout = setTimeout(function(){
+		window.clearInterval(allInterval[".wee"]);
+		isFlashing[".wee"]=false;
 		var left = $('.nowpage').position().left + 10;
 		var width = $('.nowpage').width();
 		//console.log(width);
@@ -18,7 +20,7 @@ $(window).on('load', function() {
 $(window).on('resize', function() {
     sw = $('.container').width();
 	sh = $('.container').height();
-	window.clearInterval(allInterval['.wee']);
+	// window.clearInterval(allInterval['.wee']);
 	localwee();
 });
 

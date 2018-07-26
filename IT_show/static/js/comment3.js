@@ -1426,9 +1426,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 
 	// }
 
-	$(".header h1").css({
-		'margin-top': 0.128 * H
-	})
+	// $(".header h1").css({
+	// 	'margin-top': 0.128 * H
+	// })
 	$(".container").height(H);
 	$(".container").width(W);
 	$("body").eq(0).height(H)
@@ -1470,7 +1470,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		'margin-top': 0.024 * H
 	})
 	$(".line").css({
-		'margin-top': W / 78.6
+		// 'margin-top': W / 78.6
 	})
 
 	if ($(".write").css('z-index') > 0) {
@@ -1579,9 +1579,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		// com_h = 0.58/21.9*W;
 		// $(".write").width(0.6*W);
-		$(".header h1").css({
-			'margin-top': 0.128 * H
-		})
+		// $(".header h1").css({
+		// 	'margin-top': 0.128 * H
+		// })
 		$(".container").height(H);
 		$(".container").width(W);
 		$("body").eq(0).height(H);
@@ -1622,7 +1622,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'margin-top': 0.125 * 0.284 * H * 0.414
 		})
 		$(".line").css({
-			'margin-top': W / 78.6
+			// 'margin-top': W / 78.6
 		})
 
 		if ($(".write").css('z-index') > 0) {
@@ -1635,6 +1635,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 				'top': box_top
 			})
 		}
+
 
 
 

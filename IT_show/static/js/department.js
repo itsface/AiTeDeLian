@@ -1,4 +1,4 @@
-var ellipse=[],dpNowAngle=[],dpMaxAngle=[],dpMinAngle=[],dpAngleAdd=[],fps=[],alltime=[],blockw=[],blockh=[],hoverFlag=[],clickFlag=[],departNum=4;
+var ellipse=[],dpNowAngle=[],dpMaxAngle=[],dpMinAngle=[],dpAngleAdd=[],department_fps=[],alltime=[],blockw=[],blockh=[],hoverFlag=[],clickFlag=[],departNum=4;
 
 $(document).ready(function() {
 	$(".menu").children().eq(2).addClass("nowpage");
@@ -11,27 +11,27 @@ $(document).ready(function() {
 	dpMaxAngle[1]=70;
 	dpMinAngle[1]=10;
 	alltime[1]=6000;
-	fps[1]=300;
+	department_fps[1]=300;
 	
 	dpMaxAngle[2]=55;
 	dpMinAngle[2]=7;
 	alltime[2]=7000;
-	fps[2]=300;
+	department_fps[2]=300;
 	
 	dpMaxAngle[3]=43;
 	dpMinAngle[3]=5;
 	alltime[3]=8000;
-	fps[3]=300;
+	department_fps[3]=300;
 	
 	dpMaxAngle[4]=38;
 	dpMinAngle[4]=5;
 	alltime[4]=9000;
-	fps[4]=300;
+	department_fps[4]=300;
 	
 	for (var i=1;i<=departNum;i++){
 		var dphandle=".dp"+i.toString();
 		dpNowAngle[i]=dpMinAngle[i];
-		dpAngleAdd[i]=(dpMaxAngle[i]-dpMinAngle[i])/fps[i];
+		dpAngleAdd[i]=(dpMaxAngle[i]-dpMinAngle[i])/department_fps[i];
 		blockw[i]=$(dphandle).children().eq(0).width();
 		blockh[i]=$(dphandle).children().eq(0).height();
 		hoverFlag[i]=false;
@@ -41,19 +41,19 @@ $(document).ready(function() {
 	var timeout1 = setTimeout(function(){  
 		allInterval[".dp1"]=setInterval(function(){
 			rotateFlash(1)
-		},alltime[1]/fps[1]);
+		},alltime[1]/department_fps[1]);
 		
 		allInterval[".dp2"]=setInterval(function(){
 			rotateFlash(2)
-		},alltime[2]/fps[2]);
+		},alltime[2]/department_fps[2]);
 		
 		allInterval[".dp3"]=setInterval(function(){
 			rotateFlash(3)
-		},alltime[3]/fps[3]);
+		},alltime[3]/department_fps[3]);
 		
 		allInterval[".dp4"]=setInterval(function(){
 			rotateFlash(4)
-		},alltime[4]/fps[4]);
+		},alltime[4]/department_fps[4]);
 	},100); 
 })
 // var timeout = setTimeout(function(){

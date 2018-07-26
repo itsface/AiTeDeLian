@@ -80,7 +80,7 @@ def big_event(request):
 
 def comment(request):
     result={}
-    headImages=HeadPicture.objects.all().order_by("name")
+    headImages=HeadPicture.objects.filter(name__gt=0).order_by("name")
     num=HeadPicture.objects.all().count()
     result={"heads":headImages,"num":num}
     return render(request, 'comment.html',result)

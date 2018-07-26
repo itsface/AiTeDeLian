@@ -56,9 +56,9 @@ function change_member(W, H) {
 		"left": 0.1 * W + "px",
 		"top": 0.12 * H + "px"
 	})
-	$(".member_show").css({
-		"margin-top": 0.13 * H + "px"
-	})
+	// $(".member_show").css({
+	// 	"margin-top": 0.13 * H + "px"
+	// })
 	$(".main").width(0.5 * W);
 	$(".time_star").width($(".main").width());
 	$(".main").height($(".time_star").height());

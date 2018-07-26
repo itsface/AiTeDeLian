@@ -1,4 +1,14 @@
-
+.father{
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+.hx{
+	width:100px;
+	height:100px;
+	position:absolute;
+	display:none;
+}
 input{
 	outline: none;
 }
@@ -27,7 +37,7 @@ textarea{
 *{
 	padding: 0px;
 	margin:0px;
-	/* font-family: MicrosoftYaHei; */
+	font-family: MicrosoftYaHei,arial,helvetica,clean,sans-serif!important;
 }
 .container{
 	/*min-width: 1000px;*/
@@ -57,7 +67,7 @@ h1{
 	letter-spacing: 2px;
 	color: #333333;
 	text-align: center;
-	margin-top: 120px;
+	margin-top: 70px;
 	font-weight: normal;
 }
 .line{
@@ -191,12 +201,13 @@ h1{
 	min-height: 50px;
 	/*width: 100%;*/
 	/*min-height: 44px;*/
-	
+	word-wrap: break-word;
 	border-radius: 10px;
 	border: solid 2px #458bac;
 	padding: 20px;
 	margin-bottom: 29px;
 	font-size: 16px;
+
 	
 }
 .yearevent{
@@ -256,7 +267,6 @@ h1{
 }
 
 
-
 @media screen and (max-width: 1500px){
 	.yearevent{
 		max-height: 530px;
@@ -279,7 +289,7 @@ h1{
 
 }
 @media screen and (max-width: 1366px){
-		.yearevent{
+	.yearevent{
 		max-height: 470px;
 	}
    .event{
@@ -361,7 +371,80 @@ h1{
    	font-size: 9px;
    }
 
-
-
 }
+/*标题*/
+  h1
+  {
+    margin-top: 60px;
+    font-size: 28px;
+     margin-bottom: 21px;
+     letter-spacing: 2px;
+  }
+  .line
+  {
+    width: 60px;
+    height: 4px;
+   
+  }
 
+
+@media screen and (max-width: 1920px ){
+  h1
+  {
+    margin-top: 120px;
+    font-size: 28px;
+     margin-bottom: 21px;
+     letter-spacing: 2px;
+  }
+  .line
+  {
+    width: 60px;
+    height: 4px;
+   
+  }
+}
+@media screen and (max-width: 1366px ){
+  h1
+  {
+     margin-top: 41px;
+     font-size: 20px;
+     margin-bottom: 10px;
+     letter-spacing: 2px;
+  }
+  .line
+  {
+    width: 42px;
+    height: 2px;
+   
+  }
+}
+@media screen and (max-width: 1280px ){
+  h1
+  {
+     margin-top: 25px;
+     font-size: 17px;
+     margin-bottom: 8px;
+     letter-spacing: 2px;
+  }
+  .line
+  {
+    width: 40px;
+    height: 2px;
+   
+  }
+}
+@media screen and (max-width: 980px ){
+  h1
+  {
+     margin-top: 27px;
+     font-size: 14px;
+     margin-bottom: 8px;
+     letter-spacing: 2px;
+  }
+  .line
+  {
+    width: 30px;
+    height: 1px;
+   
+  }
+}

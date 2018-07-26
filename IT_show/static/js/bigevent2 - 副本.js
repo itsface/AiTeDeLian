@@ -1,7 +1,107 @@
-
-window.onload = function() {
-	$(".menu").children().eq(4).addClass("nowpage");
+var sw,sh,allInterval=[],hxFlash=[],hxH,hxW,speed;
+$(".menu").children().eq(4).addClass("nowpage");
 	localwee();
+$(document).ready(function() {
+	
+	speed=5;
+	for (var i=0;i<8;i++){
+		hxFlash[i]=false;
+	}
+	var timeout1 = setTimeout(function(){
+		hxFlash[0]=true;
+		restart(0);
+	},Math.random()*1000);
+	
+	var timeout2 = setTimeout(function(){
+		hxFlash[1]=true;
+		restart(1);
+	},Math.random()*1000);
+	
+	var timeout3 = setTimeout(function(){
+		hxFlash[2]=true;
+		restart(2);
+	},Math.random()*1000);
+	var timeout4 = setTimeout(function(){
+		hxFlash[3]=true;
+		restart(3);
+	},Math.random()*1000);
+	var timeout5 = setTimeout(function(){
+		hxFlash[4]=true;
+		restart(4);
+	},Math.random()*1000);
+	var timeout6 = setTimeout(function(){
+		hxFlash[5]=true;
+		restart(5);
+	},Math.random()*1000);
+	var timeout7 = setTimeout(function(){
+		hxFlash[6]=true;
+		restart(6);
+	},Math.random()*1000);
+	var timeout8 = setTimeout(function(){
+		hxFlash[7]=true;
+		restart(7);
+	},Math.random()*1000);
+	var timeout9 = setTimeout(function(){
+		hxFlash[8]=true;
+		restart(8);
+	},Math.random()*1000);
+	
+	var hxFlashInterval = setInterval(function(){
+		move();
+	},25);
+	
+	var hxInterval = setInterval(function(){
+		check();
+	},1000);
+})
+
+$(window).on('load resize', function() {
+    sw = $('.container').width();
+	sh = $('.container').height();
+	
+	hxH= $(".hx").height();
+	hxW= $(".hx").width();
+});
+
+function check(){
+	var nowLeft;
+	var nowTop;
+	for (var i=0;i<3;i++){
+		nowLeft=$(".father").children().eq(i).offset().left;
+		nowTop =$(".father").children().eq(i).offset().top ;
+		// console.log(i,nowLeft,nowTop);
+		if (nowLeft<=-hxW||nowTop>sh) restart(i);
+	}
+}
+
+function restart(i){
+	var r=Math.random(),k=sh/(sw+sh);
+	var l,t;
+	if (r>k){
+		l=sw*(r-k)/(1-k);
+		t=-hxH;
+	} else {
+		l=-hxW;
+		t=sh*(r)/(k);
+	}
+	$(".father").children().eq(i).css({
+		"left": l,
+		"top" : t,
+		"display": "block",
+	})
+}
+
+function move(){
+	for (var i=0;i<8;i++){
+		if (!hxFlash[i]) continue;
+		nowLeft=$(".father").children().eq(i).offset().left;
+		nowTop =$(".father").children().eq(i).offset().top ;
+		$(".father").children().eq(i).css({
+			"left": nowLeft+speed,
+			"top" : nowTop+speed,
+		})
+	}
+}
 	$baller = $(".ball");
 	$pole = $(".plate .pole"); // 杆子
 	$board = $(".plate .board"); //牌子
@@ -96,9 +196,9 @@ window.onload = function() {
 	initial_degree();
 
 	//将牌子的偏转坐标移到正确的位置
-	$(".line").css({
-		'margin-top': 0.015 * H
-	})
+	// $(".line").css({
+	// 	'margin-top': 0.015 * H
+	// })
 
 	$(".word_wrap").css({
 		'bottom': 0.096 * W + 'px'
@@ -444,7 +544,7 @@ window.onload = function() {
 
 
 		var obj = {
-			url: 'http://ktchen.cn:8080/api/event/get?year=' + (index + 2014),
+			url: '/api/event/get?year=' + (index + 2014),
 			method: 'GET',
 			data: {
 				year: index + 2014
@@ -486,8 +586,8 @@ window.onload = function() {
 					// }
 
 
-					$("#mCSB_1_container").append(str);
 					
+					$("#mCSB_1_container").append(str);
 					$(".year").html(index + 2014)
 
 				}
@@ -730,7 +830,7 @@ window.onload = function() {
 
 
 
-}
+
 
 //关于那个小球要拟人化的
 
@@ -740,14 +840,14 @@ window.onload = function() {
 function word() {
 	$(".event_word").animate({
 		'opacity': '0'
-	},300, function() {
+	},1000, function() {
 		$(".event_word").animate({
 			'opacity': '100'
-		},300)
+		},1000)
 	})
 setTimeout(function(){
 	word();
-},200)
+},2000)
 
 }
 word();

@@ -11,6 +11,7 @@
     clear: both;
     display: table;
 }
+/* 
 html body .menu {
   width: 700px;
   display: flex;
@@ -36,13 +37,13 @@ html body .menu .menu-item .wee {
 html body .menu .menu-item a {
   margin: 0;
   /*padding: 0 1rem 1.5rem;*/
-  display: block;
-  line-height: 47px;
+  /* display: block; */
+  /* line-height: 47px;
   font-size: 1.2rem;
   color: black;
   transition: 0.75s;
   text-decoration:none;
-}
+} */ */
 
 .me {
   position: absolute;

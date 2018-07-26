@@ -1,12 +1,8 @@
-.workshow_title{
+/*.workshow_title{
 	height: 60px;
-	position:absolute;
-	left:0;
-	right:0;
-	top:15%;
-	margin:auto;
-}
 
+}
+*/
 .workshow_title h2{
 	text-align:center;
 	font-size: 28px;
@@ -17,13 +13,9 @@
 	height:4px;
 	width:60px;
 	background-color:#7ECEF4;
-	position:absolute;
-	bottom:0;
-	left:0;
-	right:0;
-	margin:auto;
-}
+	margin: 0px auto;
 
+}
 .planetandarrow{
 	height: 25.1%;
 	position: absolute;
@@ -64,7 +56,8 @@
 }
 
 .planetandarrow .webname{
-	font-size:1.5rem;
+	/*font-size:1.5rem;*/
+	font-size: 18px;
 	line-height:0;
 	position:absolute;
 	text-align:center; 
@@ -137,3 +130,93 @@
 .show_container .webInfo{
 	display:none;
 }
+/*标题*/
+ .workshow_title h2
+  {
+    margin-top: 60px;
+    font-size: 28px;
+     margin-bottom: 21px;
+     letter-spacing: 2px;
+  }
+  .workshow_title .titleline
+  {
+    width: 60px;
+    height: 4px;
+   
+  }
+
+
+@media screen and (max-width: 1920px ){
+ .workshow_title h2
+  {
+    margin-top: 60px;
+    font-size: 28px;
+     margin-bottom: 21px;
+     letter-spacing: 2px;
+  }
+  .workshow_title .titleline
+  {
+    width: 60px;
+    height: 4px;
+   
+  }
+}
+@media screen and (max-width: 1366px ){
+ .workshow_title h2
+  {
+     margin-top: 41px;
+     font-size: 20px;
+     margin-bottom: 10px;
+     letter-spacing: 2px;
+  }
+  .workshow_title .titleline
+  {
+    width: 42px;
+    height: 2px;
+   
+  }
+}
+@media screen and (max-width: 1280px ){
+ .workshow_title h2
+  {
+     margin-top: 25px;
+     font-size: 17px;
+     margin-bottom: 8px;
+     letter-spacing: 2px;
+  }
+  .workshow_title .titleline
+  {
+    width: 40px;
+    height: 2px;
+   
+  }
+}
+@media screen and (max-width: 980px ){
+ .workshow_title h2
+  {
+     margin-top: 27px;
+     font-size: 14px;
+     margin-bottom: 8px;
+     letter-spacing: 2px;
+  }
+  .workshow_title .titleline
+  {
+    width: 30px;
+    height: 1px;
+   
+  }
+}
+
+@media screen and (max-height: 846px){
+.planetandarrow .webname{
+font-size: 14px;
+}
+@media screen and (max-height: 663px){
+.planetandarrow .webname{
+font-size: 11px;
+}
+@media screen and (max-height: 504px){
+.planetandarrow .webname{
+font-size: 9px;
+}
+
