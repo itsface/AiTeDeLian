@@ -95,7 +95,7 @@ img
 
 }
 @media screen and (max-width: 1000px){
-  .nav
+.nav
 {
   height: 57px;
 }
@@ -121,6 +121,36 @@ img
 }
 .nav .logoandlink{
   width: 700px;
+}
+
+
+}
+@media screen and (max-width: 760px){
+  .nav
+{
+  height: 57px;
+}
+
+.menu-item a{
+  font-size: 9px;
+   line-height: 32px;
+}
+.menu-item {
+ margin-top:17px;
+/* padding-left: 6px;
+ padding-right: 6px;*/
+}
+.nav .logoandlink h2 {
+  font-size: 13px;
+  top: 21px;
+  left: 44px;
+}
+.IT_logo{
+  width: 36px;
+  top: 12px;
+}
+.nav .logoandlink{
+  width: 550px;
 }
 
 
