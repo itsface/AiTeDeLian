@@ -1,3 +1,5 @@
+
+
 .background2
 {
 	/*position: absolute;*/
@@ -88,29 +90,7 @@ h1{
 	background-color: #7ecef4;
 	margin:0px auto;
 }
-/*.event{
-	position: absolute;
-	left: 50%;
-	margin-left: -40px;
-	top: 70px;
-}
-.event_clock{
-	width:74px;
-	height:74px; 
-	z-index: 10;
-	background:rgba(255,255,255,1);
-	border-radius: 80px;
-	border: solid 3px #cccccc;
-	opacity: 0;
-}
-.block_line{
-	width: 3px;
-	height: 835px;
-	position: absolute;
-	left: 50%;
-	margin-left: -1.5px;
-	background-color: #cccccc;
-}*/
+
 
 .background{
 	position: absolute;
@@ -146,6 +126,9 @@ h1{
 	width: 117px;
 	height: 72px;
 	border-radius: 10px;
+ 	-moz-border-radius: 10px;/**兼容火狐浏览器*/
+    -webkit-border-radius: 10px;/**兼容苹果；谷歌，等一些浏览器认*/
+    -o-border-radius: 10px;/**兼容opera浏览器*/
 	border: solid 2px #458bac;
 	position: absolute;
 	/*top: 0px;*/
@@ -348,20 +331,32 @@ h1{
     height: 2px;
    
   }
-  	.yearevent{
+  .yearevent{
 		max-height: 470px;
 	}
    .event{
    	width: 500px;
    	min-height: 25px;
+   	font-size: 14px;
+   }
+   .event div
+   {
+   	line-height: 19px;
    }
    .year{
    	font-size: 22px;
+   	top: 9%;
    }
    .plate .board
    {
    	font-size: 13px;
+   	border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -o-border-radius: 7px;
+    border: solid 2px #458bac
    }
+
 
 }
 @media screen and (max-width: 1280px ){
@@ -423,12 +418,18 @@ h1{
     height: 1px;
    
   }
+  .close img
+  {
+  	width: 10px;
+  	height: auto;
+  }
   	.yearevent{
 		max-height: 412px;
 	}
    .event{
    	width: 355px;
-   	padding: 15px;
+   	padding: 13px;
+   	font-size: 11px;
    	
    }
    .year{
@@ -436,11 +437,27 @@ h1{
    	top: 23px;
    }
    .close{
-   	top: 18px;
-   	right: 18px;
+	   	top: 12px;
+	   	right: 12px;
    }
    .plate .board
    {
    	font-size: 9px;
+   	   border: solid 1px #458bac;
    }
+   .plate .pole
+   {
+   	width: 1px;
+   }
+}
+@media screen and (max-width: 800px ){
+	.plate .board
+	{
+		font-size: 6px;
+		border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-o-border-radius: 3px;
+	}
+
 }

@@ -3,9 +3,20 @@
 	margin:0px;
 	font-family: MicrosoftYaHei,arial,helvetica,clean,sans-serif!important;
 }
-.container{
+h1, h2, h3, h4, h5, h6 { font-weight:normal; }
+
+html body .container {
+/*  width: 100%;
+  height: 100%;
+  position: fixed;*/
   overflow: hidden;
+/*  top: 0px;
+  left: 0px;*/
+}
+.container{
+  /*overflow: auto;*/
   position: relative;
+  min-width: 500px;
   /*background-color: red;*/
 }
 .clearfix::after {
@@ -14,39 +25,7 @@
     display: table;
 }
 
-/* 
-html body .menu {
-  width: 700px;
-  display: flex;
-  position:absolute;
-  right: 0px;
-}
-html body .menu .menu-item {
-  position: relative;
-  cursor: pointer;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 33px
-}
-html body .menu .menu-item .wee {
-  height: 2px;
-  width: 80%;
-  background-color:#F9C34F;
-  position: absolute;
-  left: 6px;
-  bottom: 0;
-  transition: 0.75s;
-}
-html body .menu .menu-item a {
-  margin: 0;
-  /*padding: 0 1rem 1.5rem;*/
-  /* display: block; */
-  /* line-height: 47px;
-  font-size: 1.2rem;
-  color: black;
-  transition: 0.75s;
-  text-decoration:none;
-} */ */
+
 
 .me {
   position: absolute;
@@ -111,13 +90,16 @@ html body .menu .menu-item a {
 	left: 0px;
 	top: 0px;
 	background-color: white;
-	z-index:11000; 
+	/*z-index:11000; */
 }
 .quan{
 	position: absolute;
 	border-radius: 50%;
 	cursor: pointer;
-	z-index: 13000;
+  z-index: 13000;
+  background-color:#000;
+  filter:alpha(opacity=0);
+  opacity:0;
 }
 .member_block{
   width: 1116px;
@@ -362,56 +344,7 @@ html body .menu .menu-item a {
 	font-size: 9px;
 	}
 } 
-
-
-@media screen and (min-width: 980px ){
-.grade
-{
-  font-size: 19px;
-  }
-  .name
-  {
-    font-size: 16px;
-    margin-top: 12px;
-  }
-  .department
-  {
-    font-size: 10px;
-    margin-top: 4px;
-  }
-    .cover p
-  {
-    font-size: 10px;
-    line-height: 19px;
-    
-  }
-}
-@media screen and (min-width: 1365px ){
-.grade
-{
-  font-size: 25px;
-  }
-  .name
-  {
-    font-size: 21px;
-    margin-top: 21px;
-  }
-  .department
-  {
-    font-size: 14px;
-     
-    margin-top: 3px;
-  }
-    .cover p
-  {
-    font-size: 11px;
-    line-height: 21px;
-    
-  }
-}
-
-@media screen and (min-width: 1501px ){
-.grade
+  .grade
 {
   font-size: 28px;
  }
@@ -433,31 +366,6 @@ html body .menu .menu-item a {
     line-height: 30px;
     
   }
-  }
-
-@media screen and (min-width: 400px )and (max-width: 980px){
-.grade
-{
-  font-size: 15px;
-  }
-  .name
-  {
-    font-size: 13px;
-    margin-top: 11px;
-  }
-  .department
-  {
-    font-size: 8px;
-    margin-top: 2px;
-  }
-    .cover p
-  {
-    font-size: 5px;
-    
-  }
-}
-
-
 
 /*标题*/
 @media screen and (max-width: 1920px ){
@@ -474,7 +382,52 @@ html body .menu .menu-item a {
     height: 4px;
    
   }
+  .grade
+{
+  font-size: 28px;
+ }
+  .name
+  {
+    font-size: 24px;
+    margin-top: 25px;
+  }
+  .department
+  {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-top: 5px;
+    /*margin-top: -15px;*/
+  }
+  .cover p
+  {
+    font-size: 15px;
+    line-height: 30px;
+    
+  }
 }
+@media screen and (max-width: 1500px ){
+  .grade
+{
+  font-size: 25px;
+  }
+  .name
+  {
+    font-size: 19px;
+    margin-top: 21px;
+  }
+  .department
+  {
+    font-size: 13px;
+     
+    margin-top: 3px;
+  }
+    .cover p
+  {
+    font-size: 11px;
+    line-height: 21px;
+    
+  }
+  }
 @media screen and (max-width: 1366px ){
   .member_show
   {
@@ -489,7 +442,34 @@ html body .menu .menu-item a {
     height: 2px;
    
   }
+  .grade
+{
+  font-size: 19px;
+  }
+  .name
+  {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+  .department
+  {
+    font-size:10px;
+    margin-top: 4px;
+  }
+    .cover p
+  {
+    font-size: 10px;
+    line-height: 19px;
+    
+  }
+    .cha
+  {
+    width: 10px;
+    height: 10px;
+  }
+  
 }
+
 @media screen and (max-width: 1280px ){
   .member_show
   {
@@ -519,4 +499,25 @@ html body .menu .menu-item a {
     height: 1px;
    
   }
+  .grade
+{
+  font-size: 15px;
+  }
+  .name
+  {
+    font-size: 11px;
+    margin-top: 11px;
+  }
+  .department
+  {
+    font-size: 8px;
+    margin-top: 2px;
+  }
+    .cover p
+  {
+    font-size: 7px;
+    line-height: 12px;
+    
+  }
+
 }

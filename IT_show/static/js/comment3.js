@@ -1400,6 +1400,10 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	H = $(window).height(); //获得窗口宽度
 	W = $(window).width(); //获得窗口高度
 	H2 = $(".container_in").height();
+	if(W<700)
+	{
+		W=700;
+	}
 	write_top1 = $(".make_comment").offset().top
 	write_left1 = $(".make_comment").offset().left
 	box_top = $(".index_topic").offset().top
@@ -1409,6 +1413,10 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		H = $(window).height();
 		W = $(window).width();
+		if(W<700)
+		{
+			W=700;
+		}
 		H2 = $(".container_in").height();
 		write_top1 = $(".make_comment").offset().top
 		write_left1 = $(".make_comment").offset().left
@@ -1418,17 +1426,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		com_h = 0.58 / 1.9 * W;
 	});
 
-	// if(W<'1920' && W>1700)
-	// {
-	// 	com_h = 562;
-	// }else if(W<=1700 && W>1500)
-	// {
 
-	// }
-
-	// $(".header h1").css({
-	// 	'margin-top': 0.128 * H
-	// })
 	$(".container").height(H);
 	$(".container").width(W);
 	$("body").eq(0).height(H)
@@ -1483,21 +1481,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		})
 	}
 
-	// $(".write").width(0.6*W);
 
-	// if ((W - 0) > 1550) {
-	// 	boxw = 1125;
-	// 	box_top = 197.667;
-	// } else if ((W - 0) > 1250 && (W - 0) < 1550) {
-	// 	boxw = 985;
-
-	// 	box_top = 187.667;
-	// } else {
-	// 	boxw = 956;
-	// 	box_top = 177.667;
-	// }
-	// boxw = parseInt($write.css('width'));
-	// boxh = parseInt($write.css('height'));
 
 	//当年想要按比例缩放
 	$(".write textarea").css({
@@ -1536,9 +1520,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		'height': 0.076 * com_h,
 		'margin-top': 0.048 * com_h
 	})
-	$(".write .id input").css({
-		'height': 0.067 * com_h
-	})
+
 	$(".write .id_tip").css({
 		'margin-top': 0.028 * com_h
 	})
@@ -1549,9 +1531,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		'height': 0.064 * com_h,
 		'margin-top': 0.02 * com_h
 	})
-	$(".write .verify input").css({
-		'height': 0.056 * com_h
-	})
+
 	$(".verify_img").css({
 		'height': 0.071 * com_h,
 		'margin-top': 0.021 * com_h
@@ -1639,20 +1619,6 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 
 
 
-		// if ((W - 0) > 1550) {
-		// 	boxw = 1125;
-		// 	box_top = 197.667;
-		// } else if ((W - 0) > 1250 && (W - 0) < 1550) {
-		// 	boxw = 985;
-
-		// 	box_top = 187.667;
-		// } else {
-		// 	boxw = 956;
-		// 	box_top = 177.667;
-		// }
-		// boxw = parseInt($write.css('width'));
-		// boxh = parseInt($write.css('height'));
-
 		//当年想要按比例缩放
 		$(".write textarea").css({
 			'height': 0.453 * com_h - 22
@@ -1691,9 +1657,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'height': 0.076 * com_h,
 			'margin-top': 0.048 * com_h
 		})
-		$(".write .id input").css({
-			'height': 0.067 * com_h
-		})
+		// $(".write .id input").css({
+		// 	'height': 0.067 * com_h
+		// })
 		$(".write .id_tip").css({
 			'margin-top': 0.028 * com_h
 		})
@@ -1704,9 +1670,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'height': 0.064 * com_h,
 			'margin-top': 0.02 * com_h
 		})
-		$(".write .verify input").css({
-			'height': 0.056 * com_h
-		})
+		// $(".write .verify input").css({
+		// 	'height': 0.056 * com_h
+		// })
 		$(".verify_img").css({
 			'height': 0.071 * com_h,
 			'margin-top': 0.021 * com_h

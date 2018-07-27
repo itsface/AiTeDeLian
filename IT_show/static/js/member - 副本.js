@@ -56,9 +56,9 @@ function change_member(W, H) {
 		"left": 0.1 * W + "px",
 		"top": 0.12 * H + "px"
 	})
-	$(".member_show").css({
-		"margin-top": 0.13 * H + "px"
-	})
+	// $(".member_show").css({
+	// 	"margin-top": 0.13 * H + "px"
+	// })
 	$(".main").width(0.5 * W);
 	$(".time_star").width($(".main").width());
 	$(".main").height($(".time_star").height());
@@ -160,14 +160,14 @@ function change_member(W, H) {
 		"margin-right": 0.05 * turn_w + "px"
 	});
 
-	$(".member2016_block .turn_page").width(0.3 * aw);
-	$(".member2016_block .turn_page .page").css({
-		"margin-right": 0.04 * turn_w + "px"
-	});
-	$(".member2016_block .turn_page .qiu").css({
-		"top": 0.3 * turn_h + "px",
-		"left": ($(".page").width() - $(".qiu").width()) / 2 + "px"
-	});
+	// $(".member2016_block .turn_page").width(0.3 * aw);
+	// $(".member2016_block .turn_page .page").css({
+	// 	"margin-right": 0.04 * turn_w + "px"
+	// });
+	// $(".member2016_block .turn_page .qiu").css({
+	// 	"top": 0.3 * turn_h + "px",
+	// 	"left": ($(".page").width() - $(".qiu").width()) / 2 + "px"
+	// });
 
 
 	var bh = $(".lunbo").height();
@@ -358,7 +358,7 @@ function ballchange(_this) {
 		// 	$(".tselect .page,.bselect .turnleft,.bselect .turnright").removeAttr('disabled')
 		// }, 1500);
 		$(".tselect").siblings('.lunbo').children().eq(0).animate({
-			left: left - (y - x) * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
+			left: left - (y - x) * ($(".lunbo").width() + 0.139 * $(".lunbo").width()) + "px"
 		}, 1000, function() {
 			flag = 0;
 		})

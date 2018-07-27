@@ -1,5 +1,7 @@
 *{
-	font-family: MicrosoftYaHei, sans-serif;
+	padding: 0px;
+	margin:0px;
+	font-family: MicrosoftYaHei,arial,helvetica,clean,sans-serif!important;
 }
 .container{
   overflow: hidden;
@@ -11,6 +13,7 @@
     clear: both;
     display: table;
 }
+
 /* 
 html body .menu {
   width: 700px;
@@ -35,15 +38,15 @@ html body .menu .menu-item .wee {
   transition: 0.75s;
 }
 html body .menu .menu-item a {
-  margin: 0; */
+  margin: 0;
   /*padding: 0 1rem 1.5rem;*/
-  /* display: block;
-  line-height: 47px;
+  /* display: block; */
+  /* line-height: 47px;
   font-size: 1.2rem;
   color: black;
   transition: 0.75s;
   text-decoration:none;
-} */
+} */ */
 
 .me {
   position: absolute;
@@ -283,6 +286,7 @@ html body .menu .menu-item a {
     height: 4px;
    
   }
+/*   
 @media screen and (min-width:980px) and (max-width:1367px){
   html body .menu {
     width: 600px;
@@ -309,14 +313,14 @@ html body .menu .menu-item a {
   html body .menu .menu-item a {
     margin: 0;
     /*padding: 0 1rem 1.5rem;*/
-    display: block;
-    line-height: 47px;
-    font-size: 1rem;
-    color: black;
-    transition: 0.75s;
-    text-decoration:none;
-  }
-  
+    /* display: block; */
+    /* line-height: 47px; */
+    /* font-size: 1rem; */
+    /* color: black; */
+    /* transition: 0.75s; */
+    /* text-decoration:none; */
+  /* } */
+ 
   .me {
     position: absolute;
     bottom: 5rem;

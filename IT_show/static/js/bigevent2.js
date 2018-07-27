@@ -133,7 +133,7 @@ if (W > 1500) {
 } else if (W > 980) {
 	boardw = 700;
 } else {
-	boardw = 600;
+	boardw = 550;
 }
 
 
@@ -141,6 +141,9 @@ if (W > 1500) {
 $(window).resize(function() { //浏览器缩放重新获得窗口宽高
 	H = $(window).height();
 	W = $(window).width();
+	if (W < 600) {
+		W =600;
+	}
 	w = W * 0.67; //星球高度
 	h = W * 0.67 / 3.79; //星球宽度
 
@@ -154,7 +157,7 @@ $(window).resize(function() { //浏览器缩放重新获得窗口宽高
 	} else if (W > 980) {
 		boardw = 700;
 	} else {
-		boardw = 600;
+		boardw = 550;
 	}
 
 
@@ -162,8 +165,8 @@ $(window).resize(function() { //浏览器缩放重新获得窗口宽高
 
 $(".container").height(H);
 $(".container").width(W);
-$(".background2").height(H);
-$(".background2").width(W);
+// $(".background2").height(H);
+// $(".background2").width(W);
 // h = W * 0.67;
 $(".background img").width(w);
 r = (h / 2) + (w * w / (8 * h)); // 星球半径
@@ -212,8 +215,8 @@ $(".word_wrap").css({
 $(window).resize(function() { //浏览器缩放重新获得窗口宽高
 	$(".container").height(H);
 	$(".container").width(W);
-	$(".background2").height(H);
-	$(".background2").width(W);
+	// $(".background2").height(H);
+	// $(".background2").width(W);
 	// w = W * 0.67;
 	$(".background img").width(w);
 	$board.css({
@@ -477,7 +480,7 @@ $(".plate").click(function() {
 			var timelen = mathlen / Degree;
 			setTimeout(function() {
 				displayevent(index);
-			}, 200 * timelen + 100);
+			}, 400 * timelen + 100);
 		}
 
 	} else {
@@ -488,7 +491,7 @@ $(".plate").click(function() {
 		var timelen = mathlen / Degree;
 		setTimeout(function() {
 			displayevent(index);
-		}, 200 * timelen + 100);
+		}, 400 * timelen + 100);
 	}
 
 

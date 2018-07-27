@@ -5,6 +5,7 @@ W = $(window).width(); //获得窗口高度
 $(window).resize(function() { //浏览器缩放重新获得窗口宽高
 	H = $(window).height();
 	W = $(window).width();
+
 	change_member(W, H);
 	var ah = $(".member_block").height();
 	var aw = $(".member_block").width();
@@ -19,25 +20,25 @@ $(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		});
 	}
 	// if (c != -1) {
-		// $(".qiu").height(0.12 * turn_w);
-		// $(".qiu").width(0.12 * turn_w);
-		// $(".qiu").css({
-		// 	"top": 0.3 * turn_h + "px",
-		// 	"left": ($(".page").width() - $(".qiu").width()) / 2 + "px"
-		// });
-		$(".ballselect").find('img').css({
-			'width': 0.15 * turn_w + 'px',
-			'height': 'auto',
-			"top": 0.27 * turn_h + "px",
-			"left": ($(".page").width() - $(".qiu").width()) / 2 - 0.015 * turn_w + "px"
+	// $(".qiu").height(0.12 * turn_w);
+	// $(".qiu").width(0.12 * turn_w);
+	// $(".qiu").css({
+	// 	"top": 0.3 * turn_h + "px",
+	// 	"left": ($(".page").width() - $(".qiu").width()) / 2 + "px"
+	// });
+	$(".ballselect").find('img').css({
+		'width': 0.15 * turn_w + 'px',
+		'height': 'auto',
+		"top": 0.27 * turn_h + "px",
+		"left": ($(".page").width() - $(".qiu").width()) / 2 - 0.015 * turn_w + "px"
 
-		})
-		$(".ballselect").siblings('.page').find('img').css({
-			'width': 0.12 * turn_w + 'px',
-			'height': 'auto',
-			"top": 0.3 * turn_h + "px",
-			"left": ($(".page").width() - $(".qiu").width()) / 2 + "px"
-		})
+	})
+	$(".ballselect").siblings('.page').find('img').css({
+		'width': 0.12 * turn_w + 'px',
+		'height': 'auto',
+		"top": 0.3 * turn_h + "px",
+		"left": ($(".page").width() - $(".qiu").width()) / 2 + "px"
+	})
 	// }
 
 });
@@ -50,6 +51,10 @@ var flag = 0;
 var n, x = 0;
 
 function change_member(W, H) {
+	if (W < 500) {
+		W = 500;
+	}
+	
 	$(".container").height(H);
 	$(".star").width(0.7 * W);
 	$(".star").css({
@@ -59,7 +64,18 @@ function change_member(W, H) {
 	// $(".member_show").css({
 	// 	"margin-top": 0.13 * H + "px"
 	// })
-	$(".main").width(0.5 * W);
+	var ww;
+	if (W > 1500) {
+		ww = 1116
+	} else if (W > 1365) {
+		ww = 792;
+	} else if (W > 980) {
+		ww = 697
+	} else {
+		ww = 500;
+	}
+
+	$(".main").width(ww);
 	$(".time_star").width($(".main").width());
 	$(".main").height($(".time_star").height());
 	$(".main").css({
@@ -100,31 +116,15 @@ function change_member(W, H) {
 		"left": 0.91 * x + "px",
 		"top": 0.246 * y + "px"
 	})
-	var ww;
-	if(W>1500)
-	{
-		ww=1116
-	}
-	else if(W>1365)
-	{
-		ww=792;
-	}else if(W>980)
-	{
-		ww =697
-	}
-	else
-	{
-		ww =500;
-	}
 
 	$(".member_block").width(ww);
-	$(".member_block").height(parseInt(	$(".member_block").width())/ 1.86);
-	
+	$(".member_block").height(parseInt($(".member_block").width()) / 1.86);
+
 	$(".member_block").css({
 		"top": (H - $(".member_block").height()) / 2 + 50 + "px",
 		"left": (W - $(".member_block").width()) / 2 + "px"
 	})
-	var ah = parseInt(	$(".member_block").width())/ 1.86
+	var ah = parseInt($(".member_block").width()) / 1.86
 	var aw = $(".member_block").width();
 	$(".lunbo").width(0.8 * aw);
 	$(".lunbo").height(0.52 * ah);
@@ -369,9 +369,9 @@ function ballchange(_this) {
 $(window).resize(function() {
 
 	$(".tselect").siblings('.lunbo').children().eq(0).css({
-		left: - x * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
+		left: -x * ($(".lunbo").width() + 0.1 * $(".lunbo").width()) + "px"
 	})
-	console.log($(".lunbo").width() )
+	console.log($(".lunbo").width())
 })
 
 $(".page").click(function(event) {

@@ -1359,12 +1359,10 @@
 		})
 	})
 });
-
 $(document).ready(function() {
 	$(".menu").children().eq(6).addClass("nowpage");
 	localwee();
 })
-
 // $(document).ready(function() {
 // 	$(".menu").children().eq(5).addClass("current-menu-item")
 // 	var $thisnav = $('.current-menu-item').offset().left - $('.x').offset().left;
@@ -1428,9 +1426,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 
 	// }
 
-	$(".header h1").css({
-		'margin-top': 0.128 * H
-	})
+	// $(".header h1").css({
+	// 	'margin-top': 0.128 * H
+	// })
 	$(".container").height(H);
 	$(".container").width(W);
 	$("body").eq(0).height(H)
@@ -1472,7 +1470,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		'margin-top': 0.024 * H
 	})
 	$(".line").css({
-		'margin-top': W / 78.6
+		// 'margin-top': W / 78.6
 	})
 
 	if ($(".write").css('z-index') > 0) {
@@ -1581,9 +1579,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		// com_h = 0.58/21.9*W;
 		// $(".write").width(0.6*W);
-		$(".header h1").css({
-			'margin-top': 0.128 * H
-		})
+		// $(".header h1").css({
+		// 	'margin-top': 0.128 * H
+		// })
 		$(".container").height(H);
 		$(".container").width(W);
 		$("body").eq(0).height(H);
@@ -1624,7 +1622,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'margin-top': 0.125 * 0.284 * H * 0.414
 		})
 		$(".line").css({
-			'margin-top': W / 78.6
+			// 'margin-top': W / 78.6
 		})
 
 		if ($(".write").css('z-index') > 0) {
@@ -1637,6 +1635,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 				'top': box_top
 			})
 		}
+
 
 
 
@@ -1900,36 +1899,82 @@ var Iscomment = false,
 	Isid = false;
 
 //id输入 ??字数限制呢
+var flag1 = 0;
 $(".write .id input").on({
+
 	focus: function() {
 		if (!Isid && $(".write .id input").val() == '') {
 			Isid = true;
 		}
 	},
-	keydown: function(event) {
+	keyup: function(event) {
+		// var text = $(this).val();
+		// //中文字数统计
+		// str = (text.replace(/\w/g, "")).length;
+		// //非汉字的个数
+		// abcnum = text.length - str;
+		// total = str + abcnum;
+		// if (total > 8) {
+		// 	alert("您输入的字数超限！");
+		// }
+		// console.log($(".write .id input").val()+"8899")
+		if ($(this).prop('comStart1')) {
+			flag1++;
+			return;
+		}
+
 
 		if ($(".write .id input").val().length > 8 && event.keyCode != 8) {
 			alert("昵称太长了！");
+
+
 			$(".write .id input").val($(".write .id input").val().substring(0, 8));
 
 		}
+	},
+	onpaste: function() {
+		var textArea = $(this);
+		setTimeout(function() {
+			console.log(textArea.val());
+		}, 200);
+	},
+
+	compositionstart: function() {
+		$(this).prop('comStart1', true);
+		// console.log("zhongwen")
+	},
+	compositionend: function() {
+		$(this).prop('comStart1', false);
+		// console.log("zhongwe3ndn")
+
 	}
 })
 //留言框判断
 //如果用户自己发起删除不应该判断为超出
 $(".write textarea").on({
+
 	focus: function() {
 		if (!Iscomment && $(".write textarea").val() == '') {
 			Iscomment = true;
 		}
 	},
-	keydown: function(event) {
+
+	keyup: function(event) {
+		if ($(this).prop('comStart')) return;
 
 		if ($(".write textarea").val().length > 80 && event.keyCode != 8) {
 			alert("字数太多了！");
 			$(".write textarea").val($(".write textarea").val().substring(0, 80));
 
 		}
+	},
+	compositionstart: function() {
+		// console.log("zhongwen")
+		$(this).prop('comStart', true);
+	},
+	compositionend: function() {
+		// console.log("zhongwenedn")
+		$(this).prop('comStart', false);
 	}
 })
 
@@ -1956,6 +2001,11 @@ $(".write .submit").click(function() {
 	} else if ($(".write .id input").val() == '') {
 		alert("请输入昵称！");
 		changeverify();
+	} else if ($(".write .id input").val() > 8 || $(".write textarea").val().length > 80) {
+		alert("字数超限!");
+		$(".write .id input").val($(".write .id input").val().substring(0, 8));
+		$(".write textarea").val($(".write textarea").val().substring(0, 80));
+
 	} else {
 		// var msg = $(".write textarea").val(),
 		// 	msg = htmlEncodeJQ(msg);
@@ -1971,13 +2021,12 @@ $(".write .submit").click(function() {
 			data: {
 				content: $(".write textarea").val(),
 				nickName: $(".id input").val(),
-				head: $(".write .head_c li").eq(headimg-1).val(),
+				head: $(".write .head_c li").eq(headimg - 1).val(),
 				identify: $(".verify input").val(),
 			},
 			dataType: "json",
 			//发送成功可以返回的东西
 			success: function(data) {
-				console.log(head);
 				if (data.statusC == 1) {
 					alert("留言提交失败！");
 					changeverify();
@@ -2131,7 +2180,6 @@ function addcomment() {
 	var code;
 	if (firstTime) {
 		code = 0;
-		
 		firstTime = false;
 	} else {
 		code = $(".index_topic .comments:last-child").attr('id')
@@ -2144,8 +2192,6 @@ function addcomment() {
 		}
 	}
 
-	// console.log(code);
-
 	var obj = {
 		url: '/api/comment/get?code=' + code,
 		method: 'GET',
@@ -2154,59 +2200,54 @@ function addcomment() {
 
 	}
 
+
 	promisesetajax(obj).then(function(data) {
-				var str = "";
-				if (data.comment == '[]') {
-					$(".out_tip").show();
-				} else{
+			var str = "";
+			if (data.comment == '[]') {
+				$(".out_tip").show();
+			} else {
 
-					for (var i = 0, m = data.comment.length; i < m; i++) {
+				for (var i = 0, m = data.comment.length; i < m; i++) {
 
- 						if (data.comment[i].admin == '' || data.comment[i].admin == null) 
- 						{
- 							str += "<div class=\"comments clearfix3\" id=\"" + data.comment[i].code + "\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix\">\n\t\t\t\t            <div class=\"clearfix3\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + "</p>\n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ";
- 						}
- 						else
- 						{
+					if (data.comment[i].admin == '' || data.comment[i].admin == null) {
+						str += "<div class=\"comments clearfix3\" id=\"" + data.comment[i].code + "\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix\">\n\t\t\t\t            <div class=\"clearfix3\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + "</p>\n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ";
+					} else {
 
 						str += "<div class=\"comments clearfix3\" id=\"" + data.comment[i].code + "\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix3\">\n\t\t\t\t            <div class=\"clearfix3\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + ("</p>\n\t\t\t\t            <div class=\"adminreply clearfix3\">\n\t\t\t\t                <span>\u56DE\u590D\uFF1A</span>\n\t\t\t\t                <span> " + data.comment[i].admin + "</span>\n\t\t\t\t              </div> \n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ");
- 						}
-						// str += `<div class="comments clearfix3" id="${data.comment[i].code})">
-						//      			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
-						//       				<div class="right clearfix3">
-						//            <div class="clearfix3" >
-						//              	<div class="id">${data.comment[i].nickname}</div>
-						//             	 <div class="time">${data.comment[i].createTime}</div>
-						//            </div>
-						//            <p>${data.comment[i].content}</p>
-						//          	</div>
-						//       	</div>
-						//    `
-
-						
-
 					}
-					$("#mCSB_1_container").append(str);
-
-				
-					
-						// str += `<div class="comments clearfix3" id="${data.comment[i].code})">
-						//      			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
-						//       				<div class="right clearfix3">
-						//            <div class="clearfix3" >
-						//              	<div class="id">${data.comment[i].nickname}</div>
-						//             	 <div class="time">${data.comment[i].createTime}</div>
-						//            </div>
-						//            <p>${data.comment[i].content}</p>
-						//          	</div>
-						//       	</div>
-						//    `
-				
+					// str += `<div class="comments clearfix3" id="${data.comment[i].code})">
+					//      			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
+					//       				<div class="right clearfix3">
+					//            <div class="clearfix3" >
+					//              	<div class="id">${data.comment[i].nickname}</div>
+					//             	 <div class="time">${data.comment[i].createTime}</div>
+					//            </div>
+					//            <p>${data.comment[i].content}</p>
+					//          	</div>
+					//       	</div>
+					//    `
 
 
-					
 
-				
+				}
+				$("#mCSB_1_container").append(str);
+
+
+
+				// str += `<div class="comments clearfix3" id="${data.comment[i].code})">
+				//      			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
+				//       				<div class="right clearfix3">
+				//            <div class="clearfix3" >
+				//              	<div class="id">${data.comment[i].nickname}</div>
+				//             	 <div class="time">${data.comment[i].createTime}</div>
+				//            </div>
+				//            <p>${data.comment[i].content}</p>
+				//          	</div>
+				//       	</div>
+				//    `
+
+
+
 			}
 		},
 		function(error) {
@@ -2215,112 +2256,4 @@ function addcomment() {
 			// alert("发生错误!")
 		})
 
-// $.ajax({
-// 	type: "GET",
-// 	url: "http://118.25.179.209/api/comment/get",
-// 	dataType: "json",
-// 	success: function(data) {
-//
-// 		var str = "";
-// 		for (var i = 0, m = data.comment.length; i < m; i++) {
-//
-// 			str += `<div class="comments clearfix">
-//          			 	<div class="head_c"><img src="${data.comment[i].head}" alt="" /></div>
-//           				<div class="right clearfix">
-// 			            <div class="clearfix" style="margin-bottom: -5px;">
-// 			              	<div class="id"></div>
-// 			             	 <div class="time">${data.comment[i].createTime}</div>
-// 			            </div>
-// 			            <p>${data.comment[i].content}</p>
-// 			          	</div>
-// 		        	</div>
-//        `
-// 		}
-// 		$("#mCSB_1_container").append(str);
-//
-// 	},
-// 	error: function(jqXHR) {
-// 		alert("发生错误：" + jqXHR.status);
-// 	},
-// });
 }
-
-//评论初始化函数
-
-
-
-// $.ajax({ 
-//     type: "POST", 	
-// 	url: "http://localhost/aite/js/jj.txt",
-// 	data: {
-// 		num: $("#mCSB_1").children().length
-// 	},
-// 	dataType: "json",
-// 	//发送成功可以返回的东西
-// 	success: function(data){
-// 		alert("666")
-// 	},
-// 	error: function(jqXHR){     
-// 	   alert("发生错误：" + jqXHR.status);  
-// 	},     
-// });
-
-
-// 	var obj = {
-// 		url: 'http://localhost/aite/js/jj.txt',
-// 		method: 'GET',
-// 		data: {
-// 			// num: $("#mCSB_1").children().length
-// 		},
-// 		dataType: 'Default: Intelligent Guess',
-// 		async: true
-
-// 	}
-
-// 	function promisesetajax(obj) {
-// 		return new Promise((resolve, reject) => {
-// 			var request = new XMLHttpRequest();
-// 			request.open(obj.method, obj.url, obj.async);
-// 			request.send(obj.data);
-// 			request.onreadystatechange = function() {
-// 				if (request.readyState === 4) {
-// 					if (request.status === 200) {
-// 						var dat = JSON.parse(request.responseText);
-// 						resolve(dat);
-
-// 					} else {
-// 						reject(new Error(request.status))
-// 					}
-// 				}
-
-// 			}
-
-// 		})
-// 	}
-
-
-// 	promisesetajax(obj).then(function(data) {
-// 			var str = "";
-// 			for (var i = 0; i < data.length; i++) {
-
-// 				str += `<div>${data[i].content}</div>`;
-
-// 			}
-// 			// $("#mCSB_1_container")[0].innerHtml = str;
-// 			console.log(str)
-// 			document.getElementById("mCSB_1_container").innerHtml = str;
-// 			var ss= document.getElementById("bb");
-// 			ss.innerHtml = "6666";
-
-// 		},
-// 		function(error) {
-// 			alert("发生错误：" + error);
-// 		})
-
-// }
-// document.addEventListener("DOMNodeInserted", function(e) {
-// 	console.log("insert", e.target);
-// });
-
-// })
-
