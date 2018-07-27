@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u5so_w=#virmbwm55*)+fxmcv5rl&$_fvm3pv6e2-k&0j3c=*v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 localHost="http://ktchen.cn:8080/"
