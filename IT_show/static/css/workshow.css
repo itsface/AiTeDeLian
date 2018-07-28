@@ -72,6 +72,10 @@
 	z-index:3;
 	color: white;
 }
+.container{
+	min-width: 600px;
+	min-height: 360px;
+}
 
 .show_container{
 	height:47.7%;

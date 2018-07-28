@@ -1,3 +1,8 @@
+.container
+{
+	min-width: 600px;
+	min-height: 350px;
+}
 .nav{
   /*height: 10%;*/
   /*height: 98px;*/
@@ -309,6 +314,13 @@
 	.word p{
 		font-size: 13px;
 	}
+	.leftplanet
+	{
+		width: 240px;
+		height: auto;
+		top: 56%;
+	}
+
 }
 
 
