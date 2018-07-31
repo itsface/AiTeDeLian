@@ -65,18 +65,10 @@ def setCache():
         cache.set(key,result,time)
     return result
 
+from user.models import *
 def sendEmailTest(request):
-    email=request.GET.get("email","983739298@qq.com")
-    result=""
-    try:
-        if email!="":
-            from django.core.mail import send_mail
-            send_mail("这是标题吧","这是内容","easyblog123@163.com",[email],fail_silently=True)
-        result="成功"
-    except:
-        result = "失败"
-
-    return render(request,"sendEmail.html",{"result":result})
+    pass
+    users=Fresher.objects.filter()
 
 
 from django.core.cache import cache

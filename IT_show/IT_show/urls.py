@@ -19,7 +19,7 @@ import django.views.static
 import IT_show.settings
 import show.views
 from django.views.generic.base import RedirectView
-from django.conf.urls import handler404, handler500
+# from django.conf.urls import handler404, handler500
 handler404 = "show.views.page404"
 from django.conf import settings
 from django.conf.urls.static import static

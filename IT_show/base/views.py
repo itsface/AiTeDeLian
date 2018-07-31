@@ -317,3 +317,64 @@ def identify_code_picture(request):
             image.save(identifyPath, "PNG")
     image = open(identifyPath, "rb").read()
     return HttpResponse(image, content_type="image/png")
+
+def getWorkShow(request):
+    result = {
+        "success": True,
+        "workshows": [],
+    }
+    try:
+        from show.models import WorksShow
+        workshows=WorksShow.objects.all()
+        num = WorksShow.objects.count()
+        result["num"] = num
+        for one in workshows:
+            temp={"name":one.name,"pic":str(one.pic),"link":one.link,}
+            result["workshows"].append(temp)
+
+
+
+    except:
+        result["success"] = False
+    response = HttpResponse(json.dumps(result), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response
+
+
+def getMember(request,code):
+    back = {
+        "success": True,
+        "comment": [],
+    }
+    try:
+        oneTimeGet = 10
+        if code == 0:
+            comments = Comment.objects.all()
+        else:
+            comments = Comment.objects.filter(code__range=(0, code - 1))
+        comments = comments.order_by("-code")
+        len = comments.count()
+        if len > oneTimeGet:
+            len = oneTimeGet
+        comments = comments[0:len]
+        i = 0
+        for c in comments:
+            i = i + 1
+            back["comment"] += [{
+                "head": c.head.pic.url,
+                "content": c.content,
+                "nickname": c.name,
+                "createTime": c.createTime.strftime("%Y-%m-%d %H:%M:%S"),
+                "code": c.code,
+            }]
+    except:
+        back["success"] = False
+    response = HttpResponse(json.dumps(back), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response

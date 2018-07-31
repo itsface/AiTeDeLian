@@ -10,4 +10,7 @@ urlpatterns = [
     url(r'^sign/submit$', api_sign_submit, name='api_sign_submit'),
     url(r'^signOK/(?P<code>.*)$', api_sign_ok, name='api_sign_ok'),
     url(r'^identifyPic$', identify_code_picture, name='identify_code_picture'),
+
+    url(r'^workshow/$', getWorkShow, name='getWorkShow'),
+    url(r'^member/(\d+)$', getMember, name='getMember'),
 ]

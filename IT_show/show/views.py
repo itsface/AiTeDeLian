@@ -38,6 +38,13 @@ def workshow(request):  # success
 
     return render(request, 'workshow.html', result)
 
+def workshowM(request):  # success
+    works=WorksShow.objects.all()
+    num = WorksShow.objects.count()
+    pageNum=(num-1)/3+1
+    result = {"works": works}
+    return render(request, 'workshowPhone.html', {"result":works,"num":pageNum})
+
 @simple_cache_page(60*60*10,"member")
 def member(request):
     result={}
@@ -71,6 +78,20 @@ def department(request):
 
     #result={"qianduan":qianduan,"chengxu":chengxu,"ui":ui,"app":app}
     return render(request, 'department.html',{'result':result})
+
+def departmentM(request):
+    qianduan = Department.objects.get(name="前端开发")
+    chengxu = Department.objects.get(name="程序开发")
+    ui = Department.objects.get(name="UI设计")
+    app = Department.objects.get(name="APP开发")
+    result = []
+    result.append(qianduan)
+    result.append(chengxu)
+    result.append(ui)
+    result.append(app)
+
+    # result={"qianduan":qianduan,"chengxu":chengxu,"ui":ui,"app":app}
+    return render(request, 'departmentPhone.html', {'result': result})
 
 @simple_cache_page(60*60*10,"bigevent")
 def big_event(request):

@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u5so_w=#virmbwm55*)+fxmcv5rl&$_fvm3pv6e2-k&0j3c=*v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 localHost="http://ktchen.cn:8080/"
@@ -164,8 +164,8 @@ CACHES = {
 
 #邮件配置
 EMAIL_HOST = 'smtp.163.com'  # 如果是 163 改成 smtp.163.com
-EMAIL_PORT = 25  # 作用未知
-EMAIL_USE_TLS = True
+EMAIL_PORT = 465  # 作用未知
+EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'easyblog123@163.com'  # 帐号
 EMAIL_HOST_PASSWORD = '110abc'  # 密码
 DEFAULT_FROM_EMAIL = 'IT <easyblog123@163.com>'
