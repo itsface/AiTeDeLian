@@ -56,32 +56,25 @@ def api_comment_get(request):
     return response
     #return HttpResponse(json.dumps(back), content_type="application/json")
 
-def getComment(request,code):
+def getMember(request,code):
     back = {
         "success": True,
-        "comment": [],
+        "menbers": [],
     }
     try:
+        from show.models import Member
         oneTimeGet = 10
         if code == 0:
-            comments = Comment.objects.all()
+            members = Member.objects.all()
         else:
-            comments = Comment.objects.filter(code__range=(0, code - 1))
-        comments = comments.order_by("-code")
-        len = comments.count()
-        if len > oneTimeGet:
-            len = oneTimeGet
-        comments = comments[0:len]
-        i = 0
-        for c in comments:
-            i = i + 1
-            back["comment"] += [{
-                "head": c.head.pic.url,
-                "content": c.content,
-                "nickname": c.name,
-                "createTime": c.createTime.strftime("%Y-%m-%d %H:%M:%S"),
-                "code": c.code,
-            }]
+            members = Member.objects.filter(year=code)
+
+        len = members.count()
+        back["num"]=len
+
+        for one in members:
+            temp={"name":one.name,"photo":str(one.photo),"intro":one.intro,"department":one.department.name}
+            back["menbers"].append(temp)
     except:
         back["success"] = False
     response = HttpResponse(json.dumps(back), content_type="application/json")
@@ -344,7 +337,7 @@ def getWorkShow(request):
     return response
 
 
-def getMember(request,code):
+def getComment(request,code):
     back = {
         "success": True,
         "comment": [],
