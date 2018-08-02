@@ -51,6 +51,25 @@ def simple_cache_page(keyName,cache_timeout):
 def test(request):
     return render(request, "test.html")
 
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def postTest(request):
+    back={"success":True}
+    if request.method=="POST":
+        text=request.POST.get("text")
+        back[text]="您老传的内容是："+text
+        print(text)
+    else:
+        back = {"success": False}
+    response = HttpResponse(json.dumps(back), content_type="application/json")
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    response['Access-Control-Max-Age'] = '1000'
+    response['Access-Control-Allow-Headers'] = '*'
+    return response
+    return render(request, "test.html")
+
 def test2(request):
     cache.set("test", None,0*0)
     return render(request, "test.html")
