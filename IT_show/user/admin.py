@@ -218,6 +218,38 @@ def statusToNext(modeladmin, request, queryset):
 
 statusToNext.short_description = "所选用户跳转至下一状态，并发送邮件通知"
 
+def takeToInfoList(modeladmin, request, queryset):
+    ok1=0
+    ok2=0
+    fail=0
+    for fresher in queryset:
+        try:
+            if  fresher.status_id!=None and fresher.status.emailText!="":
+                text = fresher.status.emailText
+                if fresher.active == False:
+                    from IT_show.settings import localHost
+                    text = text + "\n激活链接：" + str(localHost) + "/api/signOK/" + fresher.userCode
+
+                user.views.sendEmail(fresher.name, fresher.userCode, fresher.email, text)
+                ok1=ok1+1
+            else:
+                ok2=ok2+1
+                messages.warning(request, u"用户" + fresher.name + "当前状态无邮件内容")
+
+        except:
+            fail=fail+1
+            msg = str(fail) + ".用户" + fresher.name + "的邮件通知发送失败."
+            messages.add_message(request, messages.ERROR, msg)
+    if ok1>0:
+        modeladmin.message_user(request, str(ok1)+"名用户邮件通知发送完成.")
+    if ok2 > 0:
+        messages.warning(request, str(ok2) + "名用户当前状态无邮件内容.")
+    if fail > 0:
+        msg = str(fail) + "名用户邮件通知发送失败."
+        messages.add_message(request, messages.ERROR, msg)
+
+takeToInfoList.short_description = "将所选用户添加至短信发送列表"
+
 
 def statusGoBack(modeladmin, request, queryset):
     ok=0

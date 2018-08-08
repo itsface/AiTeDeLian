@@ -87,9 +87,6 @@ class Fresher(models.Model):
                                              hostID=self.id).count() + 1, isTail=True)
 
 
-
-
-
 class StatusDetails(models.Model):
     code = models.IntegerField(verbose_name="链中位置")
     time = models.DateTimeField(verbose_name="发生时间", auto_now_add=True)
@@ -104,3 +101,7 @@ class StatusDetails(models.Model):
 
     def __str__(self):
         return self.hostID.name
+
+
+class shortMessageList(models.Model):
+    hostID = models.ForeignKey(Fresher, verbose_name="报名者")

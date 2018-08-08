@@ -58,7 +58,7 @@ def postTest(request):
     back={"success":True}
     if request.method=="POST":
         text=request.POST.get("text")
-        back[text]="您老传的内容是："+text
+        back["text"]="您老传的内容是："+text
         print(text)
     else:
         back = {"success": False}

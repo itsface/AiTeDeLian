@@ -59,7 +59,7 @@ def api_comment_get(request):
 def getMember(request,code):
     back = {
         "success": True,
-        "menbers": [],
+        "members": [],
     }
     try:
         from show.models import Member
@@ -74,7 +74,7 @@ def getMember(request,code):
 
         for one in members:
             temp={"name":one.name,"photo":str(one.photo),"intro":one.intro,"department":one.department.name}
-            back["menbers"].append(temp)
+            back["members"].append(temp)
     except:
         back["success"] = False
     response = HttpResponse(json.dumps(back), content_type="application/json")
@@ -371,3 +371,7 @@ def getComment(request,code):
     response['Access-Control-Max-Age'] = '1000'
     response['Access-Control-Allow-Headers'] = '*'
     return response
+
+def sendInfo(request):
+
+    pass

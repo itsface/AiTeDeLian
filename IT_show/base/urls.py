@@ -13,4 +13,6 @@ urlpatterns = [
 
     url(r'^workshow/$', getWorkShow, name='getWorkShow'),
     url(r'^member/(\d+)$', getMember, name='getMember'),
+
+    # url(r'^sendInfo/$', sendInfo, name='sendInfo'),
 ]
