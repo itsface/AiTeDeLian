@@ -21,11 +21,12 @@ def api_comment_get(request):
         "comment": [],
     }
     try:
-        oneTimeGet = 10
         try:
             code = int(request.GET.get("code", 0))
+            oneTimeGet=int(request.GET.get("nums", 10))
         except:
             code=0
+            oneTimeGet=10
         if code == 0:
             comments = Comment.objects.all()
         else:
