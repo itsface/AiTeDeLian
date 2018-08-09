@@ -1,0 +1,601 @@
+html {
+    color: #000;
+    background: #fff;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-weight: normal;
+	font-stretch: normal;
+}
+
+html * {
+    outline:none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+html, body {
+    font-family: sans-serif;
+}
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+input, select, textarea {
+    font-size: 100%;
+}
+
+/* 去掉各 Table  cell 的边距并让其边重合 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 去除默认边框 */
+fieldset, img {
+    border: 0;
+}
+
+/* 去掉 firefox 下此元素的边框 */
+abbr, acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+/* 一致的 del 样式 */
+del {
+    text-decoration: line-through;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* 去掉列表前的标识, li 会继承 */
+ol, ul {
+    list-style: none;
+}
+
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption, th {
+    text-align: left;
+}
+
+/* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: 500;
+}
+
+q:before, q:after {
+    content: '';
+}
+
+/* 统一上标和下标 */
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* 正常链接 未访问 */
+a:link {
+}
+
+/* 鼠标悬停 */
+a:hover {
+    text-decoration: underline;
+}
+
+/* 默认不显示下划线，保持页面简洁 */
+ins, a {
+    text-decoration: none;
+}
+
+li{
+	list-style: none;
+}
+body{font-family:Helvetica;}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.clearfix2::before {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+input{
+    outline: none;
+}
+
+li{
+    list-style: none;
+}
+textarea
+{
+    outline: none;
+    resize: none;
+    overflow: auto;
+}
+button{
+    outline: none;
+}
+img
+{
+    border: none;
+    outline: none;
+}
+.container
+{
+    width: 5.4rem;
+    min-height: 9.6rem;
+    margin:0px auto;
+    background-image: url(../images/apformbackPhone.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-position: center;    */
+    overflow: hidden;
+}
+.logo img,.logo
+{
+    width: 0.42rem;
+    height: auto;
+}
+.logo a
+{
+    display: block;
+    width: 0.42rem;
+    height: 0.36rem;
+    position: relative;
+} 
+.logo img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.logo{
+    margin: 0px auto;
+    margin-top: 0.57rem;
+}
+.formheader
+{
+    font-size: 0.14rem;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0.014rem;
+    color: #458bac;
+    text-align: center;
+    margin-top: 0.18rem;
+    margin-bottom: 0.335rem;
+}
+.apform
+{
+    width: 4.32rem;
+    height: 7.32rem;
+    box-shadow: 0rem 0.015rem 0.015rem 0rem 
+        rgba(0, 0, 0, 0.1);
+    border-radius: 0.04rem;
+    background-color: rgba(250, 250, 250, 0.96);
+    /*behavior: url(ie-css3.htc); //hank技术*/
+    margin: 0px auto;
+}
+.formbody
+{
+    width: 3.49rem;
+    margin: 0px auto;
+    padding-top: 0.015rem;
+    padding-bottom: 0.015rem;
+    height: 7.305rem;
+    border-radius: 0.04rem;
+}
+.info_title
+{
+    font-size: 0.154rem;
+    letter-spacing: 0.016rem;
+    color: #458bac;
+    /*font-size: 0.1rem;*/
+    /*height: 0.235rem;*/
+    line-height: 0.235rem;
+     height: 0.394rem;
+     /*line-height: 0.394rem;*/
+     line-height: 0.6rem;
+    width: 16%;
+    float: left;
+    color: #458bac;
+}
+.info_input
+{
+    /*width: 82%;*/
+    width: 2.915rem;
+    height: 0.394rem;
+/*  height: s45px;
+    line-height: 45px;*/
+    float: left;
+    position: relative;
+    
+}
+.info_input input
+{
+    width: 100%;
+    height: 0.225rem;
+    line-height: 0.225rem;
+    border: none;
+    background-color: rgba(250, 250, 250, 0.96);
+    font-size: 0.154rem;
+    border-bottom: 0.01rem solid rgba(204, 204, 204, 0.6);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.intention
+{
+    margin-top: 0.215rem;
+}
+.choosehead
+{
+    font-size: 0.154rem;
+    letter-spacing: 0.016rem;
+    text-align: center;
+    color: #458bac;
+    font-weight: normal; 
+    margin-bottom: 0.245rem;
+/*    height: 94px;
+    line-height: 94px;*/
+}
+.choosebody
+{
+    width: 70%;
+    margin: 0px auto;
+}
+.choosebody li
+{
+    width: 1.03rem;
+    height: 0.435rem;
+    line-height: 0.435rem;
+    border-radius: 0.05rem;
+    border: solid 0.01rem #458bac;
+    font-size: 0.154rem;
+    letter-spacing: 0.016rem;
+    /*background-color: #458bac;*/
+    text-align: center;
+    float: left;
+    color: #458bac;
+
+}
+.choosebody li:hover
+{
+    cursor: pointer;
+}
+.choosebody li:nth-child(1)
+{
+    
+    margin-bottom: 0.205rem;
+}
+.choosebody li:nth-child(2)
+{
+    float: right;
+    margin-bottom: 0.205rem;
+}
+.choosebody li:nth-child(4)
+{
+    float: right;
+}
+.intro_title
+{
+    font-size: 0.154rem;
+    letter-spacing: 0.016rem;
+    color: #458bac;
+    margin-bottom: 0.185rem;
+/*    height: 87px;
+    line-height: 87px;*/
+}
+.self_introduction
+{
+    position: relative;
+    margin-top: 0.305rem;
+    height: 2.3rem;
+}
+.introduction
+{
+    width: 3.39rem;
+    height: 1.76rem;
+    background-color: #ffffff;
+    border-radius: 0.04rem;
+    border: solid 0.01rem #458bac;
+    resize:none;
+    padding: 0.05rem;
+    font-size: 0.15rem;
+}
+.intro_tip
+{
+    position: absolute;
+    bottom: 0.14rem;
+    /*right: 0.14rem;*/
+    right: 0;
+    font-size: 0.15rem;
+    letter-spacing: 0.015rem;
+    color: #d9d9d9;
+}
+.buttonwrap
+{
+    width: 85%;
+    margin: 0px auto;
+    margin-top: 0.25rem;
+}
+.apform_submit
+{
+    width: 1.315rem;
+    height: 0.4rem;
+    border-radius: 0.125rem;
+    box-shadow: none;
+    border: 0.05rem solid rgb(250,250,250);
+    
+    background-image: url(../images/submitPhone.png);
+    background-position: center;
+    background-size: cover;
+    float: left;
+}
+.apform_submit:hover{
+    cursor: pointer;
+}
+.apform_check
+{
+    width: 1.315rem;
+    height: 0.4rem;
+    border-radius: 0.125rem;
+    box-shadow: none;
+    border: 0.05rem solid rgb(250,250,250);
+    background-image: url(../images/check_processPhone.png);
+    background-position: center;
+    background-size: cover;
+    float: right;
+}
+.apform_check:hover{
+    cursor: pointer;
+}
+.verify
+{
+    width: 4.315rem;
+    height: 7.32rem;
+    background-color: #fafafa;
+    box-shadow: 0rem 0.015rem 0.015rem 0rem 
+        rgba(0, 0, 0, 0.1);
+    border-radius: 0.04rem;
+    background-color: #fafafa;
+
+    margin: 0px auto;
+    overflow:hidden 
+
+
+}
+.verify h2
+{
+    font-size: 0.185rem!important;
+    font-weight: normal;
+    font-stretch: normal;
+    letter-spacing: 0.019rem;
+    margin-top:0.865rem;
+    color: #458bac;
+    text-align: center;
+}
+.inputwrap
+{
+    width: 2.68rem;
+    height: 0.54rem;
+    background-color: #ffffff;
+    border-radius: 0.05rem;
+    border: solid 0.01rem #458bac;
+    margin: 0 auto;
+    margin-top: 0.65rem;
+    padding: 0.03rem;
+    position: relative;
+}
+.inputwrap input
+{
+    position: absolute;
+    top: 0;
+    left: 0.03rem;
+    
+     width: 2.68rem;
+    height: 100%;
+    /*height: 50px;*/
+    background-color: #ffffff;
+    border:none;
+    font-size: 0.165rem;
+    
+}
+.verify_check
+{
+    width: 100%;
+     height: 0.4rem;
+    border-radius: 0.125rem;
+    box-shadow: none;
+    border: 1px solid rgb(250,250,250);
+    background-image: url(../images/checkPhone.png);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+.verify_check:hover{
+    cursor: pointer;
+}
+.verify_back
+{
+    width: 100%;
+    height: 0.4rem;
+    border-radius: 0.125rem;
+    box-shadow: none;
+    border: 1px solid rgb(250,250,250);
+    background-image: url(../images/backPhone.png);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.verify_back:hover{
+    cursor: pointer;
+}
+.button_1
+{
+    width: 1.315rem;
+    height: 0.4rem;
+    border-radius: 0.125rem;
+    margin: 0px auto;
+    margin-top: 1.855rem;
+    position: relative;
+}
+.button_2
+{
+    width: 1.315rem;
+    height: 0.4rem;
+    border-radius: 0.125rem;
+    margin: 0px auto;
+    margin-top:0.78rem;
+    position: relative;
+}
+
+.processform
+{
+    width: 3.62rem;
+    height: 6.62rem;
+    background-color: #fafafa;
+    box-shadow: 0rem 0.015rem 0.015rem 0rem 
+        rgba(0, 0, 0, 0.1);
+    border-radius: 0.04rem;
+    margin: 0px auto;
+    overflow:hidden;
+    padding: 0.35rem;
+}
+.title
+{
+    font-size: 0.139rem;
+    letter-spacing: 0.014rem;
+    float: left;
+    color: #999999;
+
+}
+.sign
+{
+    float: none;
+}
+.content
+{
+    float: left;
+    font-size: 0.139rem;
+    letter-spacing: 0.014rem;
+    color: #458bac;
+
+}
+.info
+{
+    margin-top: 0.37rem;
+}
+.info:nth-child(1)
+{
+    margin-top: 0px;
+}
+.state
+{
+    margin-top: 0.375rem;
+    /*background-color: red;*/
+    height: 2.69rem;
+    position: relative;
+}
+.line
+{
+    width: 0.02rem;
+    height: 100%;
+    background-color: #458bac;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+.dots
+{
+    /*position: relative;*/
+}
+.dot
+{
+    position: absolute;
+    width: 0.1rem;
+    height: 0.1rem;
+    background-color: #458bac;
+    border-radius: 0.05rem;
+    left: -0.04rem;
+}
+.event
+{
+    position: absolute;
+
+    left: 0.15rem;
+    color: #458bac;
+    font-size: 0.123rem;
+    letter-spacing: 0.013rem;
+}
+
+/*.dot:nth-child(3)
+{
+    left: -6px;
+
+    bottom:30px; 
+}
+.dot:nth-child(2)
+{
+    left: -6px;
+
+    top: 50%;
+    margin-top: -6px;
+}
+.dot:nth-child(1)
+{
+    left: -6px;
+
+    top:30px; 
+}*/
+.processform_return
+{
+    width: 100%;
+     height: 0.395rem;
+    border-radius: 0.125rem;
+    box-shadow: none;
+    border: 1px solid rgb(250,250,250);
+    background-image: url(../images/backPhone.png);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.pbutton_wrap
+{
+    width: 1.32rem;
+    height: 0.395rem;
+    border-radius: 0.125rem;
+    margin: 0px auto;
+    margin-top: 0.94rem;
+    position: relative;
+
+}

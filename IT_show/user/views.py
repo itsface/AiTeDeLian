@@ -50,6 +50,13 @@ def register(request):
     return render(request, 'apform.html',{'departments':departments})
 
 
+#@simple_cache_page(60*60*10,"register")
+def registerPhone(request):
+    # from django.db.models import Q
+    departments=Department.objects.filter(existing=True)
+
+    return render(request, 'apformPhone.html',{'departments':departments})
+
 def addNewStatusDetail(userId,statueId):
     try:
         fresher=Fresher.objects.get(id=userId)
