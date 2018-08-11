@@ -15,6 +15,27 @@ def refreshCache(key):
 def index(request):  # success
     return render(request, 'home.html')
 
+# @simple_cache_page(60*60*10,"Phone")
+def indexM(request):  # success
+    result = {}
+
+    headImages = HeadPicture.objects.filter(name__gt=0).order_by("name")
+    num = HeadPicture.objects.filter(name__gt=0).count()
+
+    qianduan = Department.objects.get(name="前端开发")
+    chengxu = Department.objects.get(name="程序开发")
+    ui = Department.objects.get(name="UI设计")
+    app = Department.objects.get(name="APP开发")
+    temp = []
+    temp.append(qianduan)
+    temp.append(chengxu)
+    temp.append(ui)
+    temp.append(app)
+
+
+    result = {"heads": headImages, "num": num,"departments":temp}
+    return render(request, 'Phone.html',result)
+
 @simple_cache_page(60*60*10,"workshow")
 def workshow(request):  # success
     result = {

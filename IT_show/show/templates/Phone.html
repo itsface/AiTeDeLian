@@ -1,0 +1,370 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static  "favicon.ico" %}">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>爱特展示网</title>
+	<!-- <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
+	<link rel="stylesheet" href="{% static "css/Phone.css"%}">
+
+
+</head>
+<body>
+	<div class="allcontainer clearfix2" id="allcontainer">
+		<div class="cover"></div>
+		<div class="mobi_nav clearfix">
+			<a href="" class="logo"><img src="{% static "img/logo.png"%}" alt="" class="logo"></a>
+
+				<div class="itname">爱特展示网</div>
+			<input type="text" class="pageinput" style="display: none;" value="1">
+			<div class="menu">
+				<!-- <div class="tri"></div> -->
+				
+			</div>
+			<ul class="openmenu">
+					<li id="1">首页</li>
+					<li id="2">部门介绍</li>
+					<li id="3">作品展示</li>
+					<li id="4">爱特大事记</li>
+					<li id="5">成员介绍</li>
+					<li id="6">留言板</li>
+					<li id="7">加入我们</li>
+				</ul>
+		</div>
+	<a name="Anchor1"></a>
+	<a href="Anchor1" id="Anchor1"></a>
+	<div class="container clearfix2 SYcontainer1">
+		<div class="index_top clearfix2">
+			<img src="{% static "img/liuxing.png"%}" class="liuxing">
+			<img src="{% static "img/liuxing.png"%}" class="liuxing2">
+			<img src="{% static "img/sahu.png"%}" class="bling_star">
+			<img src="{% static "img/asca.png"%}" class="planet_blue">
+			<img src="{% static "img/jhio.png"%}" class="planet_huan">
+			<img src="{% static "img/jsiji.png"%}" class="planet_yellow">
+			<!-- <div class="stitle"> -->
+			<div class="tit1"><img src="{% static "img/iTstudio.png"%}"></div>
+			<div class="tit2"><img src="{% static "img/Creat.png"%}"></div>
+			<!-- </div> -->
+		</div>
+		<a name="introAnchor"></a>
+		<a href="introAnchor" id="introAnchor"></a>
+		<div class="index_bottom">
+			<h2>About us</h2>
+			<div class="line"></div>
+			<div class="topics clearfix">
+				<div  class="topic1">
+					<div class="yuan">
+						<img src="{% static "img/shi.png"%}" class="bling">
+					</div>
+				
+					<p>奇幻的想象</p>
+				</div>
+				<div  class="topic2">
+					<div class="yuan">
+						<img src="{% static "img/shui.png"%}" class="bling">
+					</div>
+					<p>精准的分析</p>
+				</div>
+				<div  class="topic3">
+					<div class="yuan">
+						<img src="{% static "img/sji.png"%}" class="bling">
+					</div>
+					<p>优秀的团队</p>
+				</div>
+			</div>
+
+		</div>
+		<div class="intro_detail">
+				
+				<div class="indextext clearfix">
+					<div class="text1 clearfix2">
+						<h3>奇妙的想象</h3>
+						<p>爱特工作室从来不缺灵感和想象，在这里，你可以用创意和智慧实现一个个网页特效，一次次炫酷的交互，一枚枚精巧的icon，一行行高效的代码。在这里，我们在交流中触发交流的火花，在合作中启迪无限的想象。</p>
+						<img src="{% static "img/shauis.png"%}">
+					</div>
+					<div class="text2 clearfix2" style="display: none;">
+						<div></div>
+						<h3>精准的分析</h3>
+						<p>一群热爱互联网技术的人才在这里汇聚，我们解剖的是网页的后台，研究的是电脑的内核。在浩如烟海的代码中，准确快速的发现漏洞；在眼花缭乱的数据中，精确呜无误的建立逻辑。我们的爱与智慧就是爱特的希望与力量。</p>
+						<img src="{% static "img/sabu.png"%}">
+					</div>
+					<div class="text3 clearfix2" style="display: none;">
+						<h3>优秀的团队</h3>
+						<p>众人力量和，共把千筷折。我们在永不独行，形成了团结友爱的技术团队。明确的分工，合理的执行，都是我们共同奋斗的见证。有困难一起担当，有发现一起分享，我们携手同心，在IT领域不断前行。</p>
+						<img src="{% static "img/suh.png"%}">
+					</div>
+
+				</div>
+				<img src="{% static "img/hhaj.png"%}" class="qiu1">
+				<img src="{% static "img/jhio.png"%}" class="qiu2">
+			</div>
+	
+
+
+	</div>
+
+	
+	<a name="Anchor2"></a>
+	<a href="Anchor2" id="Anchor2"></a>
+	<div class="DEcontainer clearfix2">
+		
+		<h2>部门展示</h2>
+		<div class="line"></div>
+		<div class="mainer">
+			<div class="balls clearfix">
+
+				<div class="frontend">
+					<img src="{% static  "img/"%}{{ departments.0.name }}.png" alt="">
+					<div class="name">{{ departments.0.name }}</div>
+				</div>
+				<div class="program">
+					<img src="{% static  "img/"%}{{ departments.1.name }}.png" alt="">
+					<div class="name">{{ departments.1.name }}</div>
+				</div>
+				<div class="ui">
+					<img src="{% static  "img/"%}{{ departments.2.name }}.png" alt="">
+					<div class="name">{{ departments.2.name }}</div>
+				</div>
+				<div class="android">
+					<img src="{% static  "img/"%}{{ departments.3.name }}.png" alt="">
+					<div class="name">{{ departments.3.name }}</div>
+				</div>
+			</div>
+			<div class="texts">
+				<div class="ftext">
+					<h3>{{ departments.0.name }}</h3>
+					<p>
+						{{ departments.0.intro }}
+					</p>
+				</div>
+				<div class="ptext">
+					<h3>{{ departments.1.name }}</h3>
+					<p>
+					{{ departments.0.intro }}
+					</p>
+				</div>
+				<div class="uitext">
+					<h3>{{ departments.2.name }}</h3>
+					<p>
+					{{ departments.2.intro }}
+					</p>
+				</div>
+				<div class="apptext">
+					<h3>{{ departments.3.name }}</h3>
+					<p>
+					{{ departments.3.intro }}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<img src="{% static "img/leftplanet2.png"%}" alt="" class="leftplanet">
+			<img src="{% static "img/person.png"%}" alt="" class="person">
+		</div>
+	</div>
+	<a name="Anchor3"></a>
+	<a href="Anchor3" id="Anchor3"></a>
+	<div class="container clearfix2">
+		<!-- <div class="cover"></div>
+		<div class="mobi_nav clearfix">
+			<a href="" class="logo"><img src="../img/logo.png" alt="" class="logo"></a>
+
+				<div class="itname">爱特展示网</div>
+
+			<div class="menu">
+				<div class="tri"></div>
+				<ul class="openmenu">
+					<li>首页</li>
+					<li>部门介绍</li>
+					<li class="nowpage">作品展示</li>
+					<li>爱特大事记</li>
+					<li>成员介绍</li>
+					<li>留言板</li>
+					<li>加入我们</li>
+				</ul>
+			</div>
+		</div> -->
+
+		<h2>作品展示</h2>
+		<div class="line"></div>
+		<div class="mainer">
+		<div class="workwarp clearfix">
+			
+
+		</div>
+		<!-- <div class="pagewrap clearfix">
+			<ul>
+				<li class="pageselected">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</div> -->
+	</div>
+        <div class="workaddwrap">
+  			<button class="workadd" type="button">显示全部</button>
+  		</div>
+	</div>
+	<div>
+		
+	</div>
+	<a name="Anchor4"></a>
+	<a href="Anchor4" id="Anchor4"></a>
+	<div class="container clearfix2 EVcontainer">
+        <img src="{% static "images/liuxin2.png"%}" class="hx">
+        <img src="{% static "images/liuxin4.png"%}" class="hx">
+        <h2>爱特大事记</h2>
+      	<div class="line"></div>
+      	<div class="years clearfix">
+      		<ul>
+      			<li>2014<span></span></li>
+      			<li>2015<span></span></li>
+      			<li>2016<span></span></li>
+      			<li>2017<span></span></li>
+      			<li>2018<span></span></li>
+      		</ul>
+      	</div>
+      	<!-- <div class="eventwordwrap"> -->
+      		<img class="eventword" src="{% static "images/event_word2.png"%}" alt=""><!-- </div> -->
+      	<div class="event clearfix">
+      		<div class="close"><img src="{% static "images/close.png"%}" alt=""></div>
+      		<div class="year">2017</div>
+      		<ul class="clearfix">
+      			<li>
+      				<div class="num">1</div>
+      				<div class="content">
+      					<p></p>
+      					<p></p>
+      				</div>
+      			</li>
+      			<li></li>
+      			<li></li>
+      			<li></li>
+      		</ul>
+      		<div class="eventaddwrap">
+      			<button class="eventadd" type="button">显示全部</button>
+      		</div>
+      	</div>
+      	<div class="orangeball"><img src="{% static "images/orangeball.png"%}" alt=""></div>
+	</div>
+	<a name="Anchor5"></a>
+	<a href="Anchor5" id="Anchor5"></a>
+	<div class="container clearfix2 MEcontainer">
+		<h2>成员展示</h2>
+		<div class="line"></div>
+		<div class="circles">
+			<ul>
+				<li id="2011"></li>
+				<li id="2012"></li>
+				<li id="2013"></li>
+				<li id="2014"></li>
+				<li id="2015"></li>
+				<li id="2016"></li>
+				<li id="2017"></li>
+			</ul>
+		</div>
+		<img class="metime" src="{% static "img/MEtime.png"%}" alt="">
+		
+		<div class="members clearfix">
+			<div class="close"><img src="{% static "images/close.png"%}" alt=""></div>
+			<div class="year">2017</div>
+      		<ul class="clearfix">
+      			<li>
+      				<div class="imgwrap">
+      					<div class="mecover">
+      						<p>我不是一个我不是一个我不是一个我不是一个我不是一个伟大的程序员，我只是优秀程序</p>
+      					</div>
+      					<img class="img" src="	" alt="">
+
+      				</div>
+      				<div class="text clearfix">
+      					<span class="name">谢泽宇</span>
+      					<span class="depart">程序部门</span>
+      				</div>
+      			</li>
+      			<li>
+      				<div class="imgwrap">
+      					<div class="cover"></div>
+      					<img class="img" src="	" alt="">
+
+      				</div>
+      				<div class="name"></div>
+      			</li>
+      			<li></li>
+      			<li></li>
+      			<li></li>
+      			<li></li>
+      		</ul>
+		</div>
+	</div>
+	<div class="CMcontainer clearfix2">
+    <div class="write" >
+    	<div class="close"><img src="{% static "images/close.png"%}" alt=""></div>
+      <div class="header clearfix">
+          <div class="head_c">
+              {% for head in heads %}
+              <li value="{{ head.name }}"><img src="{{ MEDIA_URL }}{{ head.pic }}" alt=""></li>
+            {% endfor %}
+{#              <li value="-1"><img src="../images/head1.png"%}" alt=""></li>#}
+{#              <li><img src="../images/head2.png"%}" alt=""></li>#}
+{#              <li><img src="../images/head3.png"%}" alt=""></li>#}
+{#              <li><img src="../images/head4.png"%}" alt=""></li>#}
+{#              <li><img src="../images/head5.png"%}" alt=""></li>#}
+{#              <li><img src="../images/head6.png"%}" alt=""></li>#}
+          </div>
+        <div class="id"><input type="text"></div>  
+        <div style="clear: both;"></div>
+        <div class="head_tip">(请选择头像)</div>
+        
+        
+        <div class="id_tip">(请输入你的id）</div>
+      </div>
+      
+      <div class="text">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="footer clearfix">
+        <div class="verify_tip">(请输入验证码)</div>
+        <div class="text_tip">(请不要超过80个字)</div>
+        <div class="verify"><input type="text"></div>
+        <div class="verify_img" ><img src="" alt="" id="ident"></div>
+        <button class="submit">提交</button>
+      </div>
+      
+    </div>
+    <a name="Anchor6"></a>
+	<a href="Anchor6" id="Anchor6"></a>
+    <div class="container_in clearfix" >
+      <h2>留言板</h2>
+      <div class="line"></div>
+    <input type="text" class="headamount" value="{{ num }}" style="display:none ">
+        <div class="commentwrap clearfix">
+          
+        
+        <div class="out_tip" style="display: none;"> 留言已经到底了</div>
+
+     </div>
+     <div class="comment_button">
+		
+	      <div class="make_comment_wrap"><button class="make_comment">我要留言</button></div>
+	      <div class="check_comment_wrap"><button class="check_comment">加载更多</button></div>
+
+	</div>
+	</div>
+  </div>
+</div>
+</div>
+<script src = "https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+<script src="{% static "js/jquery-3.2.1.min.js"%}"></script>
+
+<script src="{% static "js/Phone.js"%}"></script>
+</body>
+<script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+    });
+</script>
+
+</html>

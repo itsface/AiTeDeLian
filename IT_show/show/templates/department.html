@@ -16,8 +16,6 @@
 		<img src="{% static  "img/dpbg2.png"%}" class="backgroundImg">
 		<img src="{% static  "img/leftplanet.png"%}" class="leftplanet">
 		<img src="{% static  "img/person.png"%}" class="smallman">
-
-
     {% for foo in result %}
 <!-- 前端 -->
     <img src="{% static  "img/whitecircle.png"%}" class="cir cir{{ forloop.counter }}">
@@ -35,13 +33,7 @@
 			</p>
 		</div>
     {% endfor %}
-
-
-
 {% endblock %}
-
 {% block script %}
-{#    <script type="text/javascript" src="{% static  "js/jquery-3.2.1.min.js"%}"></script>#}
-{#	<script type="text/javascript" src="{% static  "js/nav.js"%}"></script>#}
 	<script type="text/javascript" src="{% static  "js/department.js"%}"></script>
 {% endblock %}

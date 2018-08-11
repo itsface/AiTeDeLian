@@ -3,6 +3,8 @@ from .views import *
 
 urlpatterns = [
     url(r'^index/$', index, name='show_index'),
+    url(r'^indexM/$', indexM, name='show_indexM'),
+
 
     url(r'^workshow/$', workshow, name='show_workshow'),
     url(r'^workshowM/$', workshowM, name='show_workshowM'),
