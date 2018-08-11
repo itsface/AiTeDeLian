@@ -98,6 +98,8 @@ $(".openmenu li").click(function() {
         // $("html").animate({scrollTop:$("#Anchor2").offset().top},1000)
         if (index != 6) {
             location.href = "#Anchor" + (index + 1);
+        }else{
+            location.href = "/fresher/newM/";
         }
         $(".openmenu").hide();
         $(".cover").hide();

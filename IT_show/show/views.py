@@ -11,11 +11,13 @@ def refreshCache(key):
     newTask=refreshCacheThread(keyname=key)
     newTask.start()
 
-@simple_cache_page(60*60*10,"index")
+# @simple_cache_page(60*60*10,"index")
 def index(request):  # success
+    if request.is_phone:
+        return indexM(request)
     return render(request, 'home.html')
 
-# @simple_cache_page(60*60*10,"Phone")
+@simple_cache_page(60*60*10,"Phone")
 def indexM(request):  # success
     result = {}
 

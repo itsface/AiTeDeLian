@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_crontab',
+    'makeUserAgent',
     'tes',
     'base',
     'show',
@@ -58,8 +59,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'makeUserAgent.middleware.MobileDetectionMiddleware',
 ]
 
+# MIDDLEWARE_CLASSES=[
+#     'makeUserAgent.middleware.MobileDetectionMiddleware',
+# ]
 ROOT_URLCONF = 'IT_show.urls'
 
 TEMPLATES = [
