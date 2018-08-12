@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'makeUserAgent.middleware.MobileDetectionMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
 ]
 
 # MIDDLEWARE_CLASSES=[
@@ -95,7 +96,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'it_show', # os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'root',
-        'PASSWORD': "YXwKLhfIcmlY",#'YXwKLhfIcmlY',
+        'PASSWORD': "1234",#'YXwKLhfIcmlY',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         # 'OPTIONS': {'charset': 'utf8mb4'},

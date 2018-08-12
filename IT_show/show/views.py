@@ -17,6 +17,8 @@ def index(request):  # success
         return indexM(request)
     return render(request, 'home.html')
 
+# from django.views.decorators.gzip import gzip_page
+# @gzip_page
 @simple_cache_page(60*60*10,"Phone")
 def indexM(request):  # success
     result = {}
