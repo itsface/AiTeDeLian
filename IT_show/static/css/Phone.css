@@ -459,12 +459,12 @@ h2
 .topics>div
 {
 	float: left;
-	width: 0.63rem;
-	height: auto;
-	height: 0.75rem;
-	margin: 0px;
-	position: relative;
-	margin-right: 1.17rem;
+    width: 0.7rem;
+    height: auto;
+    height: 0.75rem;
+    margin: 0px;
+    position: relative;
+    margin-right: 1.06rem;
 
 }
 .topic3
@@ -699,6 +699,7 @@ h2
 	/*background-color: red;*/
 	border: 0.02rem solid rgb(191,227,244);
 	border-radius: 0.05rem;
+	overflow: hidden;
 }
 .imgwrap a
 {
@@ -710,6 +711,7 @@ h2
 	max-width: 100%;
 	width: 100%;
 	height: auto;
+
 }
 
 .workname
@@ -1061,6 +1063,7 @@ h2
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
+	overflow: hidden;
 }
 .meimgwrap img
 {

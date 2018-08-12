@@ -13,7 +13,7 @@ def refreshCache(key):
 
 # @simple_cache_page(60*60*10,"index")
 def index(request):  # success
-    if request.is_phone:
+    if request.is_phone or request.is_mobile:
         return indexM(request)
     return render(request, 'home.html')
 

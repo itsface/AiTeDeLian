@@ -39,33 +39,32 @@ function promisesetajax(obj) {
 }
 
 //神奇流星
-function liuxin()
-{
+function liuxin() {
 
-    var l1 = Math.random()*5+1;
-    var h1 = Math.random()*3+1;
+    var l1 = Math.random() * 5 + 1;
+    var h1 = Math.random() * 3 + 1;
     $(".hx").eq(0).css({
-        'left':0,
-        'top':l1+'rem'
+        'left': 0,
+        'top': l1 + 'rem'
     })
     $(".hx").eq(1).css({
-        'left':h1+'rem',
-        'top':0
+        'left': h1 + 'rem',
+        'top': 0
     })
     $(".hx").eq(0).animate({
-        'left':'5.4rem',
-        'top':(l1+5.4)+'rem'
-    },2000)
-     $(".hx").eq(1).animate({
-        'left':(h1+5.4)+'rem',
-        'top':'5.4rem'
-    },2000)
+        'left': '5.4rem',
+        'top': (l1 + 5.4) + 'rem'
+    }, 2000)
+    $(".hx").eq(1).animate({
+        'left': (h1 + 5.4) + 'rem',
+        'top': '5.4rem'
+    }, 2000)
 }
 liuxin();
-setInterval(function(){
+setInterval(function() {
     // alert("55");
     liuxin();
-},4000);
+}, 4000);
 //导航栏点击部分
 $(".menu").click(function(event) {
     $(".cover").height(H);
@@ -98,8 +97,6 @@ $(".openmenu li").click(function() {
         // $("html").animate({scrollTop:$("#Anchor2").offset().top},1000)
         if (index != 6) {
             location.href = "#Anchor" + (index + 1);
-        }else{
-            location.href = "/fresher/newM/";
         }
         $(".openmenu").hide();
         $(".cover").hide();
@@ -210,11 +207,12 @@ $(".balls>div").click(function(event) {
 
 })
 
-$(document).click(function(event) {
+$(".DEcontainer").click(function(event) {
     var _con = $(".texts div"); // 设置目标区域
     if (!_con.is(event.target) && _con.has(event.target).length === 0) { // Mark 1
         $(".texts div").hide();
     }
+
 });
 
 
@@ -254,7 +252,7 @@ function addwork() {
 
                 if (data.workshows.length > 3) {
                     for (var i = 0, m = 3; i < m; i++) {
-                        str += " <div class=\"work clearfix\">\n                        <div class=\"imgwrap\"><a href=\"" + data.workshows[i].link + "\"><img src=\"/image/"+ data.workshows[i].pic + "\" alt=\"\"></a></div>\n                        <div class=\"workname\">" + data.workshows[i].name + "</div>\n                    </div>";
+                        str += " <div class=\"work clearfix\">\n                        <div class=\"imgwrap\"><a href=\"" + data.workshows[i].link + "\"><img src=\"/image/" + data.workshows[i].pic + "\" alt=\"\"></a></div>\n                        <div class=\"workname\">" + data.workshows[i].name + "</div>\n                    </div>";
 
                         //     str += ` <div class="work clearfix">
                         //     <div class="imgwrap"><a href="${data.workshows[i].link}"><img src="${data.workshows[i].pic}" alt=""></a></div>
@@ -370,7 +368,7 @@ $(".event .close").click(function() {
             $(".event").hide();
             eventflag = true;
         });
-         
+
     } else {
         $(".event").animate({
             'margin-left': '5.4rem'
@@ -383,7 +381,7 @@ $(".event .close").click(function() {
             $(".event").hide();
             eventflag = true;
         });
-         
+
     }
 
     $(".EVcontainer").height("8.52rem");
@@ -435,7 +433,7 @@ $(".years ul li").click(function() {
 
     }
 
-    
+
 })
 
 $(".eventaddwrap").on("click", ".eventadd", function() {
@@ -520,7 +518,6 @@ function displayevent(index) {
 
                 $(".event ul").append(str);
 
-                
 
 
             } else {
@@ -595,8 +592,15 @@ function displayeventmore(index) {
 // 蒙版
 $(".members").on("click", ".meimgwrap", function() {
     var index = $(".meimgwrap").index(this);
-    // $(".members .mecover").hide();
-    $(".members .mecover").eq(index).toggle();
+    $mchoose = $(".members .mecover").eq(index);
+    if ($mchoose.css('display') == 'block') {
+        $mchoose.hide();
+    } else {
+        $(".members .mecover").hide();
+        // $(".members .mecover").eq(indexs).toggle();
+        $(".members .mecover").eq(index).show();
+    }
+
 });
 
 $(".circles li").click(function() {
@@ -648,7 +652,7 @@ function addmember(index) {
                     //         <span class="depart">${data.members[i].department}</span>
                     //     </div>
                     // </li>`
-                   
+
                 }
 
                 $(".members ul").append(str);
@@ -700,10 +704,14 @@ $(".make_comment").click(function() {
     location.href = "#Anchor6";
 })
 
-$(".write .close").click(function() {
+function close_comment() {
     $(".write").hide();
     $(".commentwrap").show();
     $(".comment_button").show();
+}
+$(".write .close").click(function() {
+
+    close_comment();
 })
 
 var Iscomment = false,
@@ -834,7 +842,9 @@ $(".write .submit").click(function() {
                 } else if (data.statusC == 0) {
                     alert("留言发表成功!");
                     close_comment();
-                    location.reload();
+                    // location.reload();
+                    $(".commentwrap").children().remove();
+                    addcomment();
                 }
             },
             error: function(jqXHR) {
@@ -873,8 +883,24 @@ $(window).on("load", function() {
 //     }
 // })
 
+var addcflag = true;
+
 $(".check_comment").click(function(event) {
-    addcomment();
+    if(addcflag)
+    {
+        addcflag = false;
+        addcomment();
+        // $(".check_comment").attr('disabled', 'true')
+
+        // setTimeout(function() {
+        //     $(".check_comment").removeAttr('disabled')
+        // }, 200) 
+        addcflag = true;
+    }
+
+
+   
+
 });
 $("#ident").click(function() {
     changeverify();
@@ -884,17 +910,6 @@ function changeverify() {
     $("#ident").attr('src', '/api/identifyPic?time=' + Math.random());
 }
 
-$(".write .close").click(function(){
-    close_comment();
-    })
-    
-function close_comment()
-{
-
-    $(".write").hide();
-    $(".commentwrap").show();
-    $(".comment_button").show();
-}
 
 function xssdf(value) {
     return $('<div/>').text(value).html();
@@ -913,12 +928,12 @@ function addcomment() {
     } else {
         code = $(".commentwrap .comments:last-child").attr('id')
 
-        var nowtime = new Date().getTime();
-        if (nowtime - lasttime < 2000) {
-            return;
-        } else {
-            lasttime = nowtime;
-        }
+        // var nowtime = new Date().getTime();
+        // if (nowtime - lasttime < 2000) {
+        //     return;
+        // } else {
+        //     lasttime = nowtime;
+        // }
     }
 
     var obj = {
@@ -930,27 +945,37 @@ function addcomment() {
     }
     promisesetajax(obj).then(function(data) {
             var str = "";
-            if (data.comment == '[]') {
-                // $(".out_tip").show();
-                $(".check_comment").css({
-                    'background-image':'',
-                    'background-color':'#f7e8c6'
-                })
-                $(".check_comment").attr('disabled','disabled');
-            } else {
+            if (data.success) {
 
-                for (var i = 0, m = data.comment.length; i < m; i++) {
 
-                    if (data.comment[i].admin == '' || data.comment[i].admin == null) {
-                        str += "<div class=\"comments clearfix\" id=\"" + data.comment[i].code + "\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix\">\n\t\t\t\t            <div class=\"clearfix\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + "</p>\n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ";
-                    } else {
+                if (data.comment == '[]') {
+                    // $(".out_tip").show();
+                    $(".check_comment").css({
+                        'background-image': '',
+                        'background-color': '#f7e8c6'
+                    })
+                    $(".check_comment").attr('disabled', 'true');
+                } else {
 
-                        str += "<div class=\"comments clearfix\" id=\"" + data.comment[i].code + "\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix\">\n\t\t\t\t            <div class=\"clearfix\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + ("</p>\n\t\t\t\t            <div class=\"adminreply clearfix\">\n\t\t\t\t                <span>\u56DE\u590D\uFF1A</span>\n\t\t\t\t                <span> " + data.comment[i].admin + "</span>\n\t\t\t\t              </div> \n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ");
+                    for (var i = 0, m = data.comment.length; i < m; i++) {
+
+                        if (data.comment[i].admin == '' || data.comment[i].admin == null) {
+                            str += "<div class=\"comments clearfix\" id=\"" + data.comment[i].code + "\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix\">\n\t\t\t\t            <div class=\"clearfix\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + "</p>\n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ";
+                        } else {
+
+                            str += "<div class=\"comments clearfix\" id=\"" + data.comment[i].code + "\">\n\t         \t\t\t \t<div class=\"head_c\"><img src=\"" + data.comment[i].head + "\" alt=\"\" /></div>\n\t          \t\t\t\t<div class=\"right clearfix\">\n\t\t\t\t            <div class=\"clearfix\" >\n\t\t\t\t              \t<div class=\"id\">" + xssdf(data.comment[i].nickname) + ("</div>\n\t\t\t\t             \t <div class=\"time\">" + data.comment[i].createTime + "</div>\n\t\t\t\t            </div>\n\t\t\t\t            <p>") + xssdf(data.comment[i].content) + ("</p>\n\t\t\t\t            <div class=\"adminreply clearfix\">\n\t\t\t\t                <span>\u56DE\u590D\uFF1A</span>\n\t\t\t\t                <span> " + data.comment[i].admin + "</span>\n\t\t\t\t              </div> \n\t\t\t\t          \t</div>\n\t\t\t        \t</div>\n        ");
+                        }
+
+
                     }
+                    $(".commentwrap").append(str);
+                    
+
 
 
                 }
-                $(".commentwrap").append(str);
+              
+            } else {
 
 
             }
