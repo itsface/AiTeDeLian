@@ -1930,6 +1930,7 @@ $(".write textarea").on({
 
 		if ($(".write textarea").val().length > 80 && event.keyCode != 8) {
 			alert("字数太多了！");
+			// console.log(str($(".write textarea").val().length))
 			$(".write textarea").val($(".write textarea").val().substring(0, 80));
 
 		}
@@ -1967,7 +1968,7 @@ $(".write .submit").click(function() {
 	} else if ($(".write .id input").val() == '') {
 		alert("请输入昵称！");
 		changeverify();
-	} else if ($(".write .id input").val() > 8 || $(".write textarea").val().length > 80) {
+	} else if ($(".write .id input").val().length > 8 || $(".write textarea").val().length > 80) {
 		alert("字数超限!");
 		$(".write .id input").val($(".write .id input").val().substring(0, 8));
 		$(".write textarea").val($(".write textarea").val().substring(0, 80));
