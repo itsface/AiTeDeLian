@@ -60,8 +60,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'MiddlewareTools.middleware.MobileDetectionMiddleware',
-    # 'MiddlewareTools.middleware.allowVisit',
     'django.middleware.gzip.GZipMiddleware',
+    'MiddlewareTools.middleware.allowVisit',
 
 ]
 

@@ -38,7 +38,7 @@ class allowVisit(MiddlewareMixin):
             filterIP(request)
         except Exception as e:
             #if e == 'user ip banned.':
-            return HttpResponseForbidden('<h1 style="text-align:center;margin-top:20px;">检测到IP访问次数过多，禁止访问！</h1>')
+            return HttpResponseForbidden('<h1 style="text-align:center;margin-top:20px;">检测到你的IP访问次数过多，禁止访问！</h1>')
             #return HttpResponseRedirect("403.html")
 
     def process_view(self, request, callback, callback_args, callback_kwargs):
@@ -64,11 +64,10 @@ def filterIP(request):
             return bot_domain
 
     user_ip = request.META['REMOTE_ADDR'] #获取IP
-
+    info = str(request.META.get("HTTP_USER_AGENT"))
     try:
-        record = visitUser.objects.get(ip=user_ip)
+        record = visitUser.objects.get(ip=user_ip,featureInfo=info)
     except visitUser.DoesNotExist:
-        info = request.META.get("HTTP_USER_AGENT")
         visitUser.objects.create(ip=user_ip, visitNum=1,allNum=1, slotTime=timezone.now(),lastTime=timezone.now(),featureInfo=info)
         return
     # try:
