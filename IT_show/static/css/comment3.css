@@ -645,7 +645,7 @@ button{
 	.header h1 {
 		font-size: 17px;
 	}
-.comments .id,.comments .time,.write .id input,.write textarea,.write .verify input,.write .submit
+	.comments .id,.comments .time,.write .id input,.write textarea,.write .verify input,.write .submit
 	{
 		font-size: 11px;
 	}
@@ -691,6 +691,10 @@ button{
 		border-radius: 18px;
 		font-size: 11px;
 	}
+	.write .id input,.write textarea,.write .verify input
+	{
+		display: block;
+	}
 
 }
 
@@ -708,6 +712,10 @@ button{
 	.write .submit {
 	    border-radius: 18px;
 	    font-size: 8px;
+	}
+	.write textarea
+	{
+		line-height: 10px;
 	}
 		
 }

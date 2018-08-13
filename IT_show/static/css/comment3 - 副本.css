@@ -1,24 +1,16 @@
-	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
-    body { background:#fff; color:#555; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; }
-    td,th,caption { font-size:14px; }
-    h1, h2, h3, h4, h5, h6 { font-weight:normal; }
-    address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
-    a { color:#555; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    img { border:none; }
-    ol,ul,li { list-style:none; }
-    input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
-    table { border-collapse:collapse; }
-    html {overflow-y: scroll;} 
-    .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
-    .clearfix { *zoom:1; }
-	.clear{clear: both;}
-	.click-on-nav{
-	color: rgb(184,3,4);
+/* body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
+body{background:#fff;color:#333;font-size:12px; margin-top:5px;font-family:"SimSun","宋体","Arial Narrow";} 
+ 
+ul,ol{list-style-type:none;} 
+select,input,img,select{vertical-align:middle;} 
+  */
+/* a{text-decoration:none;} 
+a:link{color:#009;} 
+a:visited{color:#800080;} 
+a:hover,a:active,a:focus{color:#c00;text-decoration:underline;} */
+body{
+	overflow-y:hidden;
 }
-
-
-
 input{
 	outline: none;
 }
@@ -347,15 +339,15 @@ button{
 }
 .write .id input{
 	
-	/*width: 215px;*/
 	width: 97.2%;
 	height: 38px;
 	background-color: #ffffff;
 	border-radius: 10px;
-	border: 1px solid white;
 	font-size: 20px;
 	/*padding-left: 4px;*/
 	padding-left: 1.8%;
+	height: 100%;
+	border: none;
 }
 .write .id_tip{
 	float: right;
@@ -389,7 +381,7 @@ button{
 	outline: none;
 	line-height: 32px;
 	overflow: hidden;
-
+	resize: none;
 	
 }
 .write .footer{
@@ -419,12 +411,13 @@ button{
 	/*margin-top: 12px;*/
 	margin-top: 2.1%;
 
+
 }
 .write .verify input{
 	/*width: 112px;*/
 	width: 95%;
 	/*height: 34px;*/
-	height: 88.8%;
+	height: 100%;
 	background-color: #ffffff;
 	border-radius: 8px;
 	/*padding-left: 4px;*/
@@ -469,8 +462,6 @@ button{
 		#f7e8c6);
 	background-blend-mode: normal, 
 		normal;
-	box-shadow: 0px 4px 4px 0px 
-		rgba(0, 0, 0, 0.09);
 	border-radius: 25px;
 	border: 1px solid #ffffff;
 	font-size: 20px;
@@ -552,7 +543,7 @@ button{
 
 @media screen and (max-width: 1366px){
 
-.comments .id,.comments .time,.make_comment,.write .id input,.write textarea,.write .verify input,.write .submit
+	.comments .id,.comments .time,.make_comment,.write .id input,.write textarea,.write .verify input
 	{
 		font-size: 16px;
 	}
@@ -572,7 +563,7 @@ button{
 	{
 		line-height: 20px;
 	}
-	  .header h1
+  .header h1
   {
      margin-top: 41px;
      font-size: 20px;
@@ -585,6 +576,22 @@ button{
     height: 2px;
    
   }
+  .write .id,.write .id input{
+  	border-radius:7px;
+
+  }
+  .write .verif,.write .verif input
+  {
+  	border-radius: 7px;
+  }
+  .write textarea{
+  	padding: 7px;
+  }
+	.write .submit
+	{
+		border-radius: 18px;
+		font-size: 15px;
+	}
 
 }
 
@@ -627,11 +634,18 @@ button{
 	}
 
 }
+@media screen and (max-width: 1100px){
+
+.make_comment{
+	font-size: 12px;
+}
+
+}
 @media screen and (max-width: 980px){
 	.header h1 {
 		font-size: 17px;
 	}
-.comments .id,.comments .time,.make_comment,.write .id input,.write textarea,.write .verify input,.write .submit
+.comments .id,.comments .time,.write .id input,.write textarea,.write .verify input,.write .submit
 	{
 		font-size: 11px;
 	}
@@ -639,7 +653,7 @@ button{
 	{
 		font-size: 8px;
 	}
-		.comments p
+	.comments p
 	{
 		line-height: 14px;
 	}
@@ -664,7 +678,36 @@ button{
 	    height: 1px;
 	   
 	  }
+	.make_comment
+	{
+		font-size: 10px;
+	}
+	.write .verify
+	{
+		border-radius: 6px;
+	}
+	.write .submit
+	{
+		border-radius: 18px;
+		font-size: 11px;
+	}
 
 }
 
 
+@media screen and (max-width: 790px){
+	.make_comment
+	{
+		font-size: 7px;
+		border-radius: 11px;
+	}
+	.comments .id, .comments .time, .write .id input, .write textarea, .write .verify input, .write .submit {
+
+    	font-size: 9px;
+	}
+	.write .submit {
+	    border-radius: 18px;
+	    font-size: 8px;
+	}
+		
+}

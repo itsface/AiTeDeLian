@@ -467,7 +467,7 @@ function check_form() {
 	var apform = document.getElementById("apform");
 	for (var i = 0; i < apform.elements.length - 2; i++) {
 		if (apform.elements[i].value == "" && i != 6) {
-			alert("报名表信息填写不完全!");
+			alert("表单不可为空!");
 			apform.elements[i].focus();
 
 			return false;
@@ -479,7 +479,7 @@ function check_form() {
 
 function correct_form() {
 	if (Isname == false || Isprofession == false || Isqq == false || Isphone == false || Isintro == false || Isintention == false || Isemail == false) {
-		alert("请正确填写报名表信息!")
+		alert("请正确填写表单信息!")
 		return false;
 	} else {
 
@@ -608,10 +608,6 @@ $(".verify_check").click(function() {
 		
 
 				h = (0.32 * H * 0.83 - l * 0.034 * 0.32 * H) / (l - 1);
-				if(l==2)
-				{
-					h = (0.32 * H * 0.83 - 3 * 0.034 * 0.32 * H) / 2;
-				}
 		
 				$(".content").eq(0).html(data.name);
 				$(".content").eq(1).html(data.major);

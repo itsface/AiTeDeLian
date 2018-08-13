@@ -142,7 +142,7 @@ $(window).resize(function() { //浏览器缩放重新获得窗口宽高
 	H = $(window).height();
 	W = $(window).width();
 	if (W < 600) {
-		W =600;
+		W = 600;
 	}
 	w = W * 0.67; //星球高度
 	h = W * 0.67 / 3.79; //星球宽度
@@ -467,7 +467,7 @@ function getmatrix(a, b, c, d, e, f) {
 //用来控制点击时牌子的旋转
 //应该获取这个牌子现在的角度，以及它和0度的差值
 //现在用另外一个len2和u2一直保存最左边的牌子的位置
-$(".plate").click(function() {
+$(".plate").click(function(event) {
 	var index = $plate.index(this);
 
 	//如果一开始打开了牌子
@@ -479,8 +479,8 @@ $(".plate").click(function() {
 			var mathlen = Math.abs(len);
 			var timelen = mathlen / Degree;
 			setTimeout(function() {
-				displayevent(index);
-			}, 400 * timelen + 100);
+				displayevent(index, event);
+			}, 400 * timelen);
 		}
 
 	} else {
@@ -490,8 +490,8 @@ $(".plate").click(function() {
 		var mathlen = Math.abs(len);
 		var timelen = mathlen / Degree;
 		setTimeout(function() {
-			displayevent(index);
-		}, 400 * timelen + 100);
+			displayevent(index, event);
+		}, 400 * timelen);
 	}
 
 
@@ -564,7 +564,12 @@ function click_degree(index) {
 
 function bdclose() { //自定义一个函数这个函数只关闭弹的窗口，
 	$("body").click(function() { //帮订body事件
-		closeevent(); //这个就是调用关闭弹窗口的函数
+		var _con = $(".yearevent"); // 设置目标区域
+		if (!_con.is(event.target) && _con.has(event.target).length === 0) { // Mark 1
+			// $(".yearevent").hide();
+			closeevent(); //这个就是调用关闭弹窗口的函数
+		}
+
 	})
 
 
@@ -572,9 +577,9 @@ function bdclose() { //自定义一个函数这个函数只关闭弹的窗口，
 
 
 //展示爱特大事件
-function displayevent(index) {
+function displayevent(index, event) {
 	//为点击空白处关闭框
-
+	event.stopPropagation();
 
 	bdclose();
 
