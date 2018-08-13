@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_crontab',
-    'makeUserAgent',
+    'MiddlewareTools',
     'tes',
     'base',
     'show',
@@ -59,8 +59,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'makeUserAgent.middleware.MobileDetectionMiddleware',
+    'MiddlewareTools.middleware.MobileDetectionMiddleware',
+    'MiddlewareTools.middleware.allowVisit',
     'django.middleware.gzip.GZipMiddleware',
+
 ]
 
 # MIDDLEWARE_CLASSES=[

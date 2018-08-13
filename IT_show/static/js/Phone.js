@@ -90,7 +90,18 @@ $(".cover").click(function(event) {
 
 });
 //点击导航栏实现响应跳转定位
-
+$(".openmenu li").mouseover(function(event) {
+    $(this).css({
+        'background-color': '#74bee1',
+        'color':'#ffffff'
+    })
+});
+$(".openmenu li").mouseout(function(event) {
+    $(this).css({
+        'background-color': '#ffffff',
+        'color':'#000000'
+    })
+});
 $(".openmenu li").click(function() {
         var index = $(".openmenu li").index(this);
 
@@ -98,14 +109,15 @@ $(".openmenu li").click(function() {
         if (index != 6) {
             location.href = "#Anchor" + (index + 1);
         }
+        else
+        {
+            location.href = '/fresher/newM/';
+        }
+        //您可以在这里写报名表的url
         $(".openmenu").hide();
         $(".cover").hide();
 
-        // else
-        // {
-        //     location.href = 
-        // }
-        //您可以在这里写报名表的url
+
 
 
     })
@@ -890,11 +902,6 @@ $(".check_comment").click(function(event) {
     {
         addcflag = false;
         addcomment();
-        // $(".check_comment").attr('disabled', 'true')
-
-        // setTimeout(function() {
-        //     $(".check_comment").removeAttr('disabled')
-        // }, 200) 
         addcflag = true;
     }
 
@@ -928,12 +935,12 @@ function addcomment() {
     } else {
         code = $(".commentwrap .comments:last-child").attr('id')
 
-        // var nowtime = new Date().getTime();
-        // if (nowtime - lasttime < 2000) {
-        //     return;
-        // } else {
-        //     lasttime = nowtime;
-        // }
+        var nowtime = new Date().getTime();
+        if (nowtime - lasttime < 2000) {
+            return;
+        } else {
+            lasttime = nowtime;
+        }
     }
 
     var obj = {

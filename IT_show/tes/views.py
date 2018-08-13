@@ -82,6 +82,7 @@ def test(request):
         temp+="mobile  "
     if request.is_tablet:
         temp += "tablet  "
+    temp=request.META.get("HTTP_USER_AGENT")
     return render(request, "test.html",{"temp":temp})
 
 from django.views.decorators.csrf import csrf_exempt

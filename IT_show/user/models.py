@@ -105,3 +105,19 @@ class StatusDetails(models.Model):
 
 class shortMessageList(models.Model):
     hostID = models.ForeignKey(Fresher, verbose_name="报名者")
+
+from datetime import datetime
+
+class visitUser(models.Model):
+    ip = models.CharField(max_length=16,verbose_name="IP地址")  # IP地址
+    visitNum = models.IntegerField(default=0,verbose_name="时间段内请求次数")  # 时间段内请求次数
+    slotTime = models.DateTimeField(default=datetime.now,verbose_name="时间段起始时间")  # 第一次发起请求的时间
+    allNum=models.IntegerField(default=0,verbose_name="总访问次数")  # 总访问次数
+    lastTime=models.DateTimeField(default=datetime.now,verbose_name="最近发起请求的时间")  # 最近发起请求的时间
+    featureInfo=models.CharField(max_length=500,verbose_name="特征信息",default="",null=True,blank=True)  # 特征信息
+    class Meta:
+        verbose_name = r"访问信息"
+        verbose_name_plural = r"访问信息"
+
+    def __str__(self):
+        return self.ip

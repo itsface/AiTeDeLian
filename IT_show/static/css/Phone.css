@@ -1,3 +1,8 @@
+a
+{
+	line-height: 0px;
+	font-size: 0px;
+}
 html {
     color: #000;
     background: #fff;
@@ -125,7 +130,10 @@ img
     clear: both;
     display: table;
 }
-
+.allcontainer
+{
+	overflow-x: hidden;
+}
 .cover
 {
 	width: 100%;
@@ -230,12 +238,12 @@ img
 	text-align: center;
 	vertical-align: middle;
 }
-.openmenu li:hover
+/*.openmenu li:hover
 {
 	background-color: #74bee1;
 	color: #ffffff;
 	cursor: pointer;
-}
+}*/
 .openmenu .nowpage
 {
 	background-color: #74bee1;
@@ -684,6 +692,10 @@ h2
 .work
 {
 	margin-bottom: 0.335rem;
+}
+.mainer
+{
+	min-height: 7.155rem;
 }
 .workwarp
 {
@@ -1481,6 +1493,7 @@ h2
 .commentwrap
 {
 	width: 4.51rem;
+	min-height: 6.9rem;
 
 	margin: 0px auto;
 	margin-top: 0.22rem;
