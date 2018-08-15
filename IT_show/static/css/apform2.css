@@ -18,6 +18,15 @@
 	color: rgb(184,3,4);
 }
 
+img{
+
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select: none; 
+	-khtml-user-select: none; 
+	user-select: none;
+
+}
 
 input{
 	outline: none;
@@ -153,12 +162,12 @@ img
 }
 .choosebody
 {
-	width: 70%;
+	width: 100%;
 	margin: 0px auto;
 }
 .choosebody li
 {
-	width: 40%;
+	width: 29%;
 	height: 56px;
 	line-height: 56px;
 	letter-spacing: 1px;
@@ -170,6 +179,7 @@ img
 	float: left;
 	font-size: 20px;
 	color: #458bac;
+	margin-right: calc(6% - 6px);
 
 }
 .choosebody li:hover
@@ -183,12 +193,17 @@ img
 }
 .choosebody li:nth-child(2)
 {
-	float: right;
+
 	margin-bottom: 25px;
+}
+.choosebody li:nth-child(3)
+{
+
+	margin-right: 0;
 }
 .choosebody li:nth-child(4)
 {
-	float: right;
+	clear: both;
 }
 .intro_title
 {
