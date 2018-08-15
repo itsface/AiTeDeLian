@@ -4,6 +4,7 @@ from show.tool import simple_cache_page,refreshCacheThread
 from django.views.static import serve
 from IT_show.settings import MEDIA_ROOT
 from show.models import *
+
 # Create your views here.
 
 #添加或删除留言时调用该函数

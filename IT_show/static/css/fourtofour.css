@@ -1,30 +1,38 @@
 .banqiu{
+	width: auto;
 	position: absolute;
 	bottom: 0px;
+	left: 50%;
 }
 .fourto{
 	position: absolute;
+	width: auto;
+	left: 50%;
 }
-.main{
+/*.main{
 	width: 380px;
 	height: 365px;
 	margin:auto;
 	position: relative;
-}
+}*/
 .huiji{
 	position: absolute;
 }
 .logo{
 	margin: auto;
 	display: block;
-	margin-top: 30px;
+	margin-top: 100px;
 }
 .sorry{
-	margin-top: 60px;
+	display: block;
+	margin:0px auto;
+
 }
 .return{
+	width: auto;
 	bottom: 0px;
 	display: block;
-	margin: 30px auto 0px auto;
+	margin:0px auto;
+	/*margin: 30px auto 0px auto;*/
 	cursor: pointer;
 }

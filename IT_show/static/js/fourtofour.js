@@ -25,11 +25,16 @@ $(document).ready(function() {
 	}
 })
 function change_fourtofour(W,H){
-	$(".container").height(0.9*H);
-	$(".banqiu").width(0.8*W).css("left",0.1*W);
-	$(".fourto").css({"bottom":0.1*W,"left":0.425*W,"width":0.15*W});
-	$(".huiji").css({"bottom":0.4*H,"left":0.25*W,"width":0.2*H});
-	$(".main").css({"height":H-$(".banqiu").height()-30})
+	$(".container").height(H);
+	$(".logo").css({'margin-top':0.12*H,'height':0.074*H});
+	$(".sorry").css({'margin-top':0.092*H,'margin-bottom':0.092*H,'height':0.03*H})
+	$(".banqiu").height(0.4*H);
+	$(".banqiu").css({'margin-left':-$(".banqiu").width()/2+'px'})
+	$(".fourto").height(0.086*H);
+	$(".fourto").css({"bottom":0.185*H,"margin-left":-$(".fourto").width()/2+'px'});
+	$(".huiji").css({"bottom":0.38*H,"left":0.25*W,"width":0.14*H});
+	$(".return").height(0.06*H)
+	// $(".main").css({"height":H-$(".banqiu").height()-30})
 }
 $(".return").click(function(){
 
@@ -50,7 +55,7 @@ $(".return").click(function(){
 	},50)
 
 	function delayer(){
- 		window.location = "/home/index/";
+ 		window.location = "./home.html";
 	}
 	jQuery(document).ready(function(){
  	setTimeout(function(){

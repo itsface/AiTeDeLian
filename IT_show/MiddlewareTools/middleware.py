@@ -27,7 +27,7 @@ class MobileDetectionMiddleware(MiddlewareMixin):
         request.is_phone = is_phone
 
 
-max_visits = 500 #访问最大次数
+max_visits = 50000 #访问最大次数
 min_seconds = 60*10 # 时间段
 
 #只有包含指定信息的访问才被允许
