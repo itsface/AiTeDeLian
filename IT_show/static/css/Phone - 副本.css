@@ -349,7 +349,7 @@ h2
 	width: 1.905rem;
 	height: auto;
 	position: absolute;
-	right: -0.2rem;
+	right: -0.5rem;
 	top: 4.255rem;
 }
 .bling_star
@@ -357,11 +357,26 @@ h2
 	width: 4.4rem;
 	height: auto;
 	position: absolute;
-	top: 1.46rem;
+	top: 2.7rem;
 	left: 0.4rem;
 
 }
-
+.liuxing
+{
+	width: 0.4rem;
+    height: auto;
+    position: absolute;
+    left: 3rem;
+    top: 2rem;
+}
+.liuxing2
+{
+    width: 0.35rem;
+    height: auto;
+    position: absolute;
+    left: 2rem;
+    top: 3.05rem;
+}
 .index_bottom h2
 {
 	font-size: 0.13rem;
