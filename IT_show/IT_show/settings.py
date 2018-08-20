@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u5so_w=#virmbwm55*)+fxmcv5rl&$_fvm3pv6e2-k&0j3c=*v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 localHost="http://ktchen.cn:8080/"
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'base',
     'show',
     'user',
+    # 'werkzeug_debugger_runserver',
+    # 'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -98,7 +100,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'it_show', # os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'root',
-        'PASSWORD': "YXwKLhfIcmlY",#'YXwKLhfIcmlY',
+        'PASSWORD': "YXwKLhfIcmlY",#'YXwKLhfIcmlY',、、、、SU0stJdqu5Jc
+
         'HOST': '127.0.0.1',
         'PORT': '3306',
         # 'OPTIONS': {'charset': 'utf8mb4'},
