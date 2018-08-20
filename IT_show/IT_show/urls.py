@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^home/', include('show.urls')),
     url(r'^fresher/', include('user.urls')),
     url('^$', show.views.index, name="index"),
+    url(r'^captcha/', include('captcha.urls')),
     url(r'^(?P<path>.*)', django.views.static.serve, {'document_root': IT_show.settings.BASE_DIR }),
     # path('media/<path:path>',serve,{'document_root':MEDIA_ROOT}),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico')),
