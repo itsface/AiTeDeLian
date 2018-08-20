@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_crontab',
-    # 'captcha',
+    #'captcha',
     'MiddlewareTools',
     'tes',
     'base',
@@ -102,7 +102,7 @@ DATABASES = {
         'NAME': 'it_show', # os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'root',
         'PASSWORD': "YXwKLhfIcmlY",#'YXwKLhfIcmlY',、、、、SU0stJdqu5Jc
-
+        # 'HOST': '123.206.79.131',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         # 'OPTIONS': {'charset': 'utf8mb4'},

@@ -38,6 +38,7 @@ function promisesetajax(obj) {
     })
 }
 
+
 //神奇流星
 function liuxin() {
 
@@ -93,13 +94,13 @@ $(".cover").click(function(event) {
 $(".openmenu li").mouseover(function(event) {
     $(this).css({
         'background-color': '#74bee1',
-        'color':'#ffffff'
+        'color': '#ffffff'
     })
 });
 $(".openmenu li").mouseout(function(event) {
     $(this).css({
         'background-color': '#ffffff',
-        'color':'#000000'
+        'color': '#000000'
     })
 });
 $(".openmenu li").click(function() {
@@ -108,15 +109,12 @@ $(".openmenu li").click(function() {
         // $("html").animate({scrollTop:$("#Anchor2").offset().top},1000)
         if (index != 6) {
             location.href = "#Anchor" + (index + 1);
-        }
-        else
-        {
+        } else {
             location.href = '/fresher/newM/';
         }
         //您可以在这里写报名表的url
         $(".openmenu").hide();
         $(".cover").hide();
-
 
 
 
@@ -183,8 +181,56 @@ $(window).scroll(function() {
 //首页部分
 
 
-// 点击小圆切换事件
 
+//首页背景
+function moveyellow() {
+    $(".planet_yellow").animate({
+        'top': '4.355rem'
+    }, 4000, function(){
+        $(".planet_yellow").animate({
+            'top': '4.255rem'
+
+        }, 4000)
+    
+    setTimeout(function() {
+        moveyellow();
+    }, 1000)
+})
+}
+moveyellow();
+function movehuan() {
+    $(".planet_huan").animate({
+        'left': '0.435rem',
+            'top': '4.315rem'
+    }, 5000, function(){
+        $(".planet_huan").animate({
+            'left': '0.235rem',
+            'top': '4.115rem'
+
+        }, 5000)
+    
+    setTimeout(function() {
+        movehuan();
+    }, 700)
+})
+}
+movehuan();
+function moveblue() {
+    $(".planet_blue").animate({
+        'left': '0.54rem'
+    }, 4000, function(){
+        $(".planet_blue").animate({
+            'left': '0.44rem'
+
+        }, 4000)
+    
+    setTimeout(function() {
+        moveblue();
+    }, 1000)
+})
+}
+moveblue();
+// 点击小圆切换事件
 
 $(".topics>div").click(function() {
     var index = $(".topics>div").index(this);
@@ -457,7 +503,7 @@ $(".eventaddwrap").on("click", ".eventadd", function() {
 
 
 function displayevent(index) {
-    $(".year").html(index + 2014);
+    $(".event .year").html(index + 2014);
     $(".event ul").children().remove();
     var obj = {
         url: '/api/event/get?year=' + (index + 2014),
@@ -740,10 +786,10 @@ $(".write .id input").on({
     },
     keyup: function(event) {
 
-        if ($(this).prop('comStart1')) {
-            flag1++;
-            return;
-        }
+        // if ($(this).prop('comStart1')) {
+        //     flag1++;
+        //     return;
+        // }
 
 
         if ($(".write .id input").val().length > 8 && event.keyCode != 8) {
@@ -753,23 +799,25 @@ $(".write .id input").on({
             $(".write .id input").val($(".write .id input").val().substring(0, 8));
 
         }
-    },
-    onpaste: function() {
-        var textArea = $(this);
-        setTimeout(function() {
-            // console.log(textArea.val());
-        }, 200);
-    },
-
-    compositionstart: function() {
-        $(this).prop('comStart1', true);
-        // console.log("zhongwen")
-    },
-    compositionend: function() {
-        $(this).prop('comStart1', false);
-        // console.log("zhongwe3ndn")
-
     }
+    // },
+    // onpaste: function() {
+    //     var textArea = $(this);
+    //     setTimeout(function() {
+    //         // console.log(textArea.val());
+    //     }, 200);
+    // }
+    // ,
+
+    // compositionstart: function() {
+    //     $(this).prop('comStart1', true);
+    //     // console.log("zhongwen")
+    // },
+    // compositionend: function() {
+    //     $(this).prop('comStart1', false);
+    //     // console.log("zhongwe3ndn")
+
+    // }
 })
 //留言框判断
 //如果用户自己发起删除不应该判断为超出
@@ -782,22 +830,23 @@ $(".write textarea").on({
     },
 
     keyup: function(event) {
-        if ($(this).prop('comStart')) return;
+        // if ($(this).prop('comStart')) return;
 
         if ($(".write textarea").val().length > 80 && event.keyCode != 8) {
             alert("字数太多了！");
             $(".write textarea").val($(".write textarea").val().substring(0, 80));
 
         }
-    },
-    compositionstart: function() {
-        // console.log("zhongwen")
-        $(this).prop('comStart', true);
-    },
-    compositionend: function() {
-        // console.log("zhongwenedn")
-        $(this).prop('comStart', false);
     }
+    // ,
+    // compositionstart: function() {
+    //     // console.log("zhongwen")
+    //     $(this).prop('comStart', true);
+    // },
+    // compositionend: function() {
+    //     // console.log("zhongwenedn")
+    //     $(this).prop('comStart', false);
+    // }
 })
 
 //验证码输入部分
@@ -857,6 +906,11 @@ $(".write .submit").click(function() {
                     // location.reload();
                     $(".commentwrap").children().remove();
                     addcomment();
+                    $(".write textarea").val('');
+                    $(".write .id input").val('');
+                    $(".verify input").val('');
+
+
                 }
             },
             error: function(jqXHR) {
@@ -898,15 +952,13 @@ $(window).on("load", function() {
 var addcflag = true;
 
 $(".check_comment").click(function(event) {
-    if(addcflag)
-    {
+    if (addcflag) {
         addcflag = false;
         addcomment();
         addcflag = true;
     }
 
 
-   
 
 });
 $("#ident").click(function() {
@@ -976,12 +1028,11 @@ function addcomment() {
 
                     }
                     $(".commentwrap").append(str);
-                    
 
 
 
                 }
-              
+
             } else {
 
 
