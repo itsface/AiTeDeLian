@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'MiddlewareTools.middleware.MobileDetectionMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'MiddlewareTools.middleware.allowVisit',
+    # 'MiddlewareTools.middleware.allowVisit',
 
 ]
 
