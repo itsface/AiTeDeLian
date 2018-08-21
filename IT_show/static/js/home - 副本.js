@@ -21,14 +21,11 @@ $(document).ready(function() {
 				change_home(W,H);
 			}
 			else if(point_hua==1){
-				
-				$(".back_ground").animate({height:$(".head").css("height")},10);
-				$(".intro_detail").height(0.6*$(window).height());
-				$(".short_intro").animate({height:0.999*$(window).height()-parseInt($(".head").css("height"))},10,function(){mi=1});
-          		$(".in_center").height(0.3*H);
-				$(".about_us h2").css({"margin-top":0.02*H,"margin-bottom":0.01*H})
-				$(".block").css({"margin-top":0.04*H})
-				$(".short_intro").height(0.299*H);
+				down();
+          		$(".imagine").children().eq(0).children().eq(0).attr("src","/static/img/cahui.png");
+				$(".qixiang").css("display","block");
+				$(".jingzhun").css("display","none");
+				$(".youxiu").css("display","none");
 			}
 		});
 		change_home(W,H);
