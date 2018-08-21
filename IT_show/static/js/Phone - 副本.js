@@ -786,10 +786,10 @@ $(".write .id input").on({
     },
     keyup: function(event) {
 
-        // if ($(this).prop('comStart1')) {
-        //     flag1++;
-        //     return;
-        // }
+        if ($(this).prop('comStart1')) {
+            flag1++;
+            return;
+        }
 
 
         if ($(".write .id input").val().length > 8 && event.keyCode != 8) {
@@ -799,7 +799,8 @@ $(".write .id input").on({
             $(".write .id input").val($(".write .id input").val().substring(0, 8));
 
         }
-    }
+    },
+    
     // },
     // onpaste: function() {
     //     var textArea = $(this);
@@ -809,15 +810,15 @@ $(".write .id input").on({
     // }
     // ,
 
-    // compositionstart: function() {
-    //     $(this).prop('comStart1', true);
-    //     // console.log("zhongwen")
-    // },
-    // compositionend: function() {
-    //     $(this).prop('comStart1', false);
-    //     // console.log("zhongwe3ndn")
+    compositionstart: function() {
+        $(this).prop('comStart1', true);
+        // console.log("zhongwen")
+    },
+    compositionend: function() {
+        $(this).prop('comStart1', false);
+        // console.log("zhongwe3ndn")
 
-    // }
+    }
 })
 //留言框判断
 //如果用户自己发起删除不应该判断为超出
@@ -830,7 +831,7 @@ $(".write textarea").on({
     },
 
     keyup: function(event) {
-        // if ($(this).prop('comStart')) return;
+        if ($(this).prop('comStart')) return;
 
         if ($(".write textarea").val().length > 80 && event.keyCode != 8) {
             alert("字数太多了！");
@@ -838,15 +839,15 @@ $(".write textarea").on({
 
         }
     }
-    // ,
-    // compositionstart: function() {
-    //     // console.log("zhongwen")
-    //     $(this).prop('comStart', true);
-    // },
-    // compositionend: function() {
-    //     // console.log("zhongwenedn")
-    //     $(this).prop('comStart', false);
-    // }
+    ,
+    compositionstart: function() {
+        // console.log("zhongwen")
+        $(this).prop('comStart', true);
+    },
+    compositionend: function() {
+        // console.log("zhongwenedn")
+        $(this).prop('comStart', false);
+    }
 })
 
 //验证码输入部分

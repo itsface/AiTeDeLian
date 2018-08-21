@@ -1874,20 +1874,11 @@ $(".write .id input").on({
 		}
 	},
 	keyup: function(event) {
-		// var text = $(this).val();
-		// //中文字数统计
-		// str = (text.replace(/\w/g, "")).length;
-		// //非汉字的个数
-		// abcnum = text.length - str;
-		// total = str + abcnum;
-		// if (total > 8) {
-		// 	alert("您输入的字数超限！");
-		// }
-		// console.log($(".write .id input").val()+"8899")
-		// if ($(this).prop('comStart1')) {
-		// 	flag1++;
-		// 	return;
-		// }
+
+		if ($(this).prop('comStart1')) {
+			flag1++;
+			return;
+		}
 
 
 		if ($(".write .id input").val().length > 8 && event.keyCode != 8) {
@@ -1897,7 +1888,7 @@ $(".write .id input").on({
 			$(".write .id input").val($(".write .id input").val().substring(0, 8));
 
 		}
-	}
+	},
 	// ,
 	// onpaste: function() {
 	// 	var textArea = $(this);
@@ -1906,15 +1897,15 @@ $(".write .id input").on({
 	// 	}, 200);
 	// },
 
-	// compositionstart: function() {
-	// 	$(this).prop('comStart1', true);
-	// 	console.log("zhongwen")
-	// },
-	// compositionend: function() {
-	// 	$(this).prop('comStart1', false);
-	// 	console.log("zhongwe3ndn")
+	compositionstart: function() {
+		$(this).prop('comStart1', true);
+		
+	},
+	compositionend: function() {
+		$(this).prop('comStart1', false);
 
-	// }
+
+	}
 })
 //留言框判断
 //如果用户自己发起删除不应该判断为超出
@@ -1927,7 +1918,7 @@ $(".write textarea").on({
 	},
 
 	keyup: function(event) {
-		// if ($(this).prop('comStart')) return;
+		if ($(this).prop('comStart')) return;
 
 		if ($(".write textarea").val().length > 80 && event.keyCode != 8) {
 			alert("字数太多了！");
@@ -1935,15 +1926,15 @@ $(".write textarea").on({
 
 		}
 	}
-	// ,
-	// compositionstart: function() {
-	// 	// console.log("zhongwen")
-	// 	$(this).prop('comStart', true);
-	// },
-	// compositionend: function() {
-	// 	// console.log("zhongwenedn")
-	// 	$(this).prop('comStart', false);
-	// }
+	,
+	compositionstart: function() {
+		// console.log("zhongwen")
+		$(this).prop('comStart', true);
+	},
+	compositionend: function() {
+		// console.log("zhongwenedn")
+		$(this).prop('comStart', false);
+	}
 })
 
 //验证码输入部分
@@ -1970,7 +1961,7 @@ $(".write .submit").click(function() {
 		alert("请输入昵称！");
 		changeverify();
 	} else if ($(".write .id input").val().length > 8 || $(".write textarea").val().length > 80) {
-		alert("字数超限!");
+		// alert("字数超限!");
 		$(".write .id input").val($(".write .id input").val().substring(0, 8));
 		$(".write textarea").val($(".write textarea").val().substring(0, 80));
 

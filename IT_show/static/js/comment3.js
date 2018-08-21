@@ -1359,6 +1359,8 @@
 		})
 	})
 });
+
+var api = '/itstudio';
 $(document).ready(function() {
 	$(".menu").children().eq(6).addClass("nowpage");
 	// localwee();
@@ -1865,78 +1867,94 @@ var Iscomment = false,
 	Isid = false;
 
 //id输入 ??字数限制呢
-var flag1 = 0;
+var cpLock = false;
+var cpLock2 = false;
 $(".write .id input").on({
 
-	focus: function() {
-		if (!Isid && $(".write .id input").val() == '') {
-			Isid = true;
-		}
-	},
-	keyup: function(event) {
+    focus: function() {
+        if (!Isid && $(".write .id input").val() == '') {
+            Isid = true;
+        }
+    },
+    
+    compositionstart: function() {
+        // $(this).prop('comStart1', true);
+        cpLock = true;
+        console.log("中文开始")
+    },
+    compositionend: function() {
+        // $(this).prop('comStart1', false);
+        cpLock = false;
+        console.log("中文结束")
+        if(!cpLock) { 
+        var maxLen = 8;
+        var curtLen = $(".write .id input").val().length;
+        if ( curtLen > maxLen ) {
+            alert("输入超限！")
+        　　 $(".write .id input").val($(".write .id input").val().substring(0, 8));
+        }                                                 
+　　　　
+    }
 
-		if ($(this).prop('comStart1')) {
-			flag1++;
-			return;
-		}
+    },
+    keyup: function(event) {
+       
 
-
-		if ($(".write .id input").val().length > 8 && event.keyCode != 8) {
-			alert("昵称太长了！");
-
-
-			$(".write .id input").val($(".write .id input").val().substring(0, 8));
-
-		}
-	},
-	// ,
-	// onpaste: function() {
-	// 	var textArea = $(this);
-	// 	setTimeout(function() {
-	// 		console.log(textArea.val());
-	// 	}, 200);
-	// },
-
-	compositionstart: function() {
-		$(this).prop('comStart1', true);
-		
-	},
-	compositionend: function() {
-		$(this).prop('comStart1', false);
-
-
-	}
+       if(!cpLock) { 
+        var maxLen = 8;
+        var curtLen = $(".write .id input").val().length;
+        if ( curtLen > maxLen ) {
+            alert("输入超限！")
+        　　 $(".write .id input").val($(".write .id input").val().substring(0, 8));
+        }                                                 
+　　　　
+    }
+}
 })
 //留言框判断
 //如果用户自己发起删除不应该判断为超出
 $(".write textarea").on({
 
-	focus: function() {
-		if (!Iscomment && $(".write textarea").val() == '') {
-			Iscomment = true;
-		}
-	},
+    focus: function() {
+        if (!Iscomment && $(".write textarea").val() == '') {
+            Iscomment = true;
+        }
+    },
 
-	keyup: function(event) {
-		if ($(this).prop('comStart')) return;
+    compositionstart: function() {
+        // $(this).prop('comStart1', true);
+        cpLock2 = true;
+        console.log("中文开始")
+    },
+    compositionend: function() {
+        // $(this).prop('comStart1', false);
+        cpLock2 = false;
+        console.log("中文结束")
+        if(!cpLock2) { 
+        var maxLen = 80;
+        var curtLen = $(".write textarea").val().length;
+        if ( curtLen > maxLen ) {
+            alert("输入超限！")
+        　　 $(".write textarea").val($(".write textarea").val().substring(0, 80));
+        }                                                 
+　　　　
+    }
 
-		if ($(".write textarea").val().length > 80 && event.keyCode != 8) {
-			alert("字数太多了！");
-			$(".write textarea").val($(".write textarea").val().substring(0, 80));
+    },
+    keyup: function(event) {
+       
 
-		}
-	}
-	,
-	compositionstart: function() {
-		// console.log("zhongwen")
-		$(this).prop('comStart', true);
-	},
-	compositionend: function() {
-		// console.log("zhongwenedn")
-		$(this).prop('comStart', false);
-	}
+       if(!cpLock2) { 
+        var maxLen = 80;
+        var curtLen = $(".write textarea").val().length;
+        if ( curtLen > maxLen ) {
+            alert("输入超限！")
+        　　 $(".write textarea").val($(".write textarea").val().substring(0, 80));
+        }                                                 
+　　　　
+    }
+}
 })
-
 //验证码输入部分
 $(".verify input").on({
 	focus: function() {
@@ -1975,7 +1993,7 @@ $(".write .submit").click(function() {
 
 		$.ajax({
 			type: "POST",
-			url: "/api/comment/submit",
+			url: api+"/api/comment/submit",
 			timeout: 5000,
 			data: {
 				content: $(".write textarea").val(),
@@ -2016,7 +2034,7 @@ $(".write .submit").click(function() {
 			},
 		});
 		// 	var com = {
-		// 		url: '/api/comment/submit',
+		// 		url: api+'/api/comment/submit',
 		// 		method: 'POST',
 		// 		data: {
 		// 			content: $(".write textarea").val(),
@@ -2085,7 +2103,7 @@ $("#ident").click(function() {
 });
 //更换验证码事件
 function changeverify() {
-	$("#ident").attr('src', '/api/identifyPic?time=' + Math.random());
+	$("#ident").attr('src', api+'/api/identifyPic?time=' + Math.random());
 }
 
 
@@ -2152,7 +2170,7 @@ function addcomment() {
 	}
 
 	var obj = {
-		url: '/api/comment/get?code=' + code,
+		url: api+'/api/comment/get?code=' + code,
 		method: 'GET',
 		dataType: 'Default: Intelligent Guess',
 		async: true

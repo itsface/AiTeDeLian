@@ -45,6 +45,8 @@ def refreshCache():
 #@simple_cache_page(60*60*10,"register")
 def register(request):
     # from django.db.models import Q
+    if request.is_phone or request.is_mobile:
+        return registerPhone(request)
     departments=Department.objects.filter(existing=True)
 
     return render(request, 'apform.html',{'departments':departments})
