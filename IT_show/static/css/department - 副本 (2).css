@@ -3,10 +3,6 @@
 {
 	min-width: 600px;
 	min-height: 350px;
-	background-image: url(/static/img/dpbg2.png);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
 }
 .nav{
   /*height: 10%;*/

@@ -120,8 +120,11 @@ def setCache():
 
 from user.models import *
 def sendEmailTest(request):
-    pass
-    users=Fresher.objects.filter()
+    from django.core.mail import send_mail as core_send_mail
+    from user.sendMail import send_mail
+    # core_send_mail("小明", "123123","root@tjming.ga" ,["983739298@qq.com"],"12345")
+    send_mail("小明", "123123", "983739298@qq.com","12345")
+    return render(request, "test.html")
 
 
 from django.core.cache import cache

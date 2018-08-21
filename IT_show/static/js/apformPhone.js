@@ -227,15 +227,44 @@ $(".introduction").blur(function() {
 	}
 
 })
-$(".introduction").keyup(function(event) {
-	if ($(this).val().length > 200 && event.keyCode != 8) {
-		alert("字数太多了！");
-		$(this).val($(this).val().substring(0, 200));
 
-	}
+ var cpLock2 = false;
+$(".introduction").on({
+
+    
+
+    compositionstart: function() {
+        // $(this).prop('comStart1', true);
+        cpLock2 = true;
+    },
+    compositionend: function() {
+        // $(this).prop('comStart1', false);
+        cpLock2 = false;
+        if(!cpLock2) { 
+        var maxLen = 200;
+        var curtLen = $(".introduction").val().length;
+        if ( curtLen > maxLen ) {
+            alert("字数太多了！");
+        　　 $(".introduction").val($(".introduction").val().substring(0, 200));
+        }                                                 
+　　　　
+    }
+
+    },
+    input: function(event) {
+       
+
+       if(!cpLock2) { 
+        var maxLen = 200;
+        var curtLen = $(".introduction").val().length;
+        if ( curtLen > maxLen ) {
+            alert("字数太多了！");
+        　　 $(".introduction").val($(".introduction").val().substring(0, 200));
+        }                                                 
+　　　　
+    }
+}
 })
-
-
 
 //验证表单是否有空项
 

@@ -35,21 +35,26 @@ class EmailThread(threading.Thread):
         #     msg.attach_alternative(self.html, "text/html")
         # msg.send(self.fail_silently)
 
-def send_mail(subject, body, from_email, to_email, fail_silently=False, html=None, *args, **kwargs):
+def send_mail(subject, body,  to_email, fail_silently=False, html=None, *args, **kwargs):
     try:
-        sg = sendgrid.SendGridAPIClient(apikey="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")
-        from_email = Email("ITStudio@oucIT.com")  # Email("test@example.com")
-        to_email = Email(to_email)
-        subject = "爱特工作室"
-        content = Content("text/plain", body)
-        mail = Mail(from_email, subject, to_email, content)
+        from_email="root@tjming.ga"
+        core_send_mail(subject, body, from_email, [to_email], fail_silently, html)
 
-        response = sg.client.mail.send.post(request_body=mail.get())
-        print(response.status_code)
-        # EmailThread(subject, body, from_email, to_email, fail_silently, html).start()
+
     except:
         try:
-            core_send_mail(subject, body, from_email, [to_email], fail_silently, html)
+            sg = sendgrid.SendGridAPIClient(
+                apikey="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")
+            from_email = Email("ITStudio@oucIT.com")  # Email("test@example.com")
+
+            to_email = Email(to_email)
+            subject = "爱特工作室"
+            content = Content("text/plain", body)
+            mail = Mail(from_email, subject, to_email, content)
+
+            response = sg.client.mail.send.post(request_body=mail.get())
+            print(response.status_code)
+            # EmailThread(subject, body, from_email, to_email, fail_silently, html).start()
         except:
             pass
 

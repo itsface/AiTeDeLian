@@ -342,7 +342,7 @@ function addwork() {
             }
         },
         function(error) {
-            alert("发生错误!");
+            
 
         })
 
@@ -387,7 +387,7 @@ function addmorework() {
             }
         },
         function(error) {
-            alert("发生错误!");
+           
 
         })
 
@@ -584,7 +584,7 @@ function displayevent(index) {
 
         },
         function(error) {
-            alert("发生错误!");
+            
         })
 
 
@@ -639,7 +639,7 @@ function displayeventmore(index) {
 
         },
         function(error) {
-            alert("发生错误!");
+            
         })
 
 
@@ -726,7 +726,7 @@ function addmember(index) {
             }
         },
         function(error) {
-            alert("发生错误!");
+           
 
         })
 
@@ -806,7 +806,7 @@ $(".write .id input").on({
     }
 
     },
-    keyup: function(event) {
+    input: function(event) {
        
 
        if(!cpLock) { 
@@ -850,7 +850,7 @@ $(".write textarea").on({
     }
 
     },
-    keyup: function(event) {
+    input: function(event) {
        
 
        if(!cpLock2) { 
@@ -887,7 +887,7 @@ $(".write .submit").click(function() {
         alert("请输入昵称！");
         changeverify();
     } else if ($(".write .id input").val().length > 8 || $(".write textarea").val().length > 80) {
-        alert("字数超限!");
+       
         $(".write .id input").val($(".write .id input").val().substring(0, 8));
         $(".write textarea").val($(".write textarea").val().substring(0, 80));
     

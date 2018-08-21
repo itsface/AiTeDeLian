@@ -176,12 +176,21 @@ CACHES = {
 }
 
 #邮件配置
-EMAIL_HOST = 'smtp.163.com'  # 如果是 163 改成 smtp.163.com
-EMAIL_PORT = 465  # 作用未知
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.163.com'  # 如果是 163 改成 smtp.163.com
+# EMAIL_PORT = 25  # 作用未知
+# EMAIL_USE_TLS = False
+#
+# EMAIL_HOST_USER = 'easyblog123@163.com'  # 帐号
+# EMAIL_HOST_PASSWORD = '110abc'  # 密码
+# DEFAULT_FROM_EMAIL = 'IT <easyblog123@163.com>'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.exmail.qq.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'root@tjming.ga'
+EMAIL_HOST_PASSWORD = 'QWEmnb386383'
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'easyblog123@163.com'  # 帐号
-EMAIL_HOST_PASSWORD = '110abc'  # 密码
-DEFAULT_FROM_EMAIL = 'IT <easyblog123@163.com>'
+DEFAULT_FROM_EMAIL = 'root@tjming.ga'
 
 
 # logging

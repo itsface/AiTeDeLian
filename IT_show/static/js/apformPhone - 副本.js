@@ -37,8 +37,8 @@ function promisesetajax(obj) {
 
 	})
 }
-H = $(window).height() || document.body.offsetHeight; //获得窗口宽度
-W = $(window).width() || document.body.offsetWidth; //获得窗口高度
+H = document.documentElement.clientWidth; //获得窗口宽度
+W = document.documentElement.clientHeight; //获得窗口高度
 var p = 9.6/5.4
 
 if(H/W>p)
@@ -227,7 +227,7 @@ $(".introduction").blur(function() {
 	}
 
 })
-$(".introduction").keydown(function(event) {
+$(".introduction").keyup(function(event) {
 	if ($(this).val().length > 200 && event.keyCode != 8) {
 		alert("字数太多了！");
 		$(this).val($(this).val().substring(0, 200));
