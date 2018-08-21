@@ -1361,7 +1361,7 @@
 });
 $(document).ready(function() {
 	$(".menu").children().eq(6).addClass("nowpage");
-	localwee();
+	// localwee();
 })
 // $(document).ready(function() {
 // 	$(".menu").children().eq(5).addClass("current-menu-item")
@@ -1400,6 +1400,10 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	H = $(window).height(); //获得窗口宽度
 	W = $(window).width(); //获得窗口高度
 	H2 = $(".container_in").height();
+	if(W<700)
+	{
+		W=700;
+	}
 	write_top1 = $(".make_comment").offset().top
 	write_left1 = $(".make_comment").offset().left
 	box_top = $(".index_topic").offset().top
@@ -1409,6 +1413,10 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 	$(window).resize(function() { //浏览器缩放重新获得窗口宽高
 		H = $(window).height();
 		W = $(window).width();
+		if(W<700)
+		{
+			W=700;
+		}
 		H2 = $(".container_in").height();
 		write_top1 = $(".make_comment").offset().top
 		write_left1 = $(".make_comment").offset().left
@@ -1418,17 +1426,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		com_h = 0.58 / 1.9 * W;
 	});
 
-	// if(W<'1920' && W>1700)
-	// {
-	// 	com_h = 562;
-	// }else if(W<=1700 && W>1500)
-	// {
 
-	// }
-
-	// $(".header h1").css({
-	// 	'margin-top': 0.128 * H
-	// })
 	$(".container").height(H);
 	$(".container").width(W);
 	$("body").eq(0).height(H)
@@ -1483,21 +1481,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		})
 	}
 
-	// $(".write").width(0.6*W);
 
-	// if ((W - 0) > 1550) {
-	// 	boxw = 1125;
-	// 	box_top = 197.667;
-	// } else if ((W - 0) > 1250 && (W - 0) < 1550) {
-	// 	boxw = 985;
-
-	// 	box_top = 187.667;
-	// } else {
-	// 	boxw = 956;
-	// 	box_top = 177.667;
-	// }
-	// boxw = parseInt($write.css('width'));
-	// boxh = parseInt($write.css('height'));
 
 	//当年想要按比例缩放
 	$(".write textarea").css({
@@ -1536,9 +1520,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		'height': 0.076 * com_h,
 		'margin-top': 0.048 * com_h
 	})
-	$(".write .id input").css({
-		'height': 0.067 * com_h
-	})
+
 	$(".write .id_tip").css({
 		'margin-top': 0.028 * com_h
 	})
@@ -1549,9 +1531,7 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 		'height': 0.064 * com_h,
 		'margin-top': 0.02 * com_h
 	})
-	$(".write .verify input").css({
-		'height': 0.056 * com_h
-	})
+
 	$(".verify_img").css({
 		'height': 0.071 * com_h,
 		'margin-top': 0.021 * com_h
@@ -1639,20 +1619,6 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 
 
 
-		// if ((W - 0) > 1550) {
-		// 	boxw = 1125;
-		// 	box_top = 197.667;
-		// } else if ((W - 0) > 1250 && (W - 0) < 1550) {
-		// 	boxw = 985;
-
-		// 	box_top = 187.667;
-		// } else {
-		// 	boxw = 956;
-		// 	box_top = 177.667;
-		// }
-		// boxw = parseInt($write.css('width'));
-		// boxh = parseInt($write.css('height'));
-
 		//当年想要按比例缩放
 		$(".write textarea").css({
 			'height': 0.453 * com_h - 22
@@ -1691,9 +1657,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'height': 0.076 * com_h,
 			'margin-top': 0.048 * com_h
 		})
-		$(".write .id input").css({
-			'height': 0.067 * com_h
-		})
+		// $(".write .id input").css({
+		// 	'height': 0.067 * com_h
+		// })
 		$(".write .id_tip").css({
 			'margin-top': 0.028 * com_h
 		})
@@ -1704,9 +1670,9 @@ if ($.browser.version != "7.0") //判断是不是IE7 ，IE7下不支持“$(wind
 			'height': 0.064 * com_h,
 			'margin-top': 0.02 * com_h
 		})
-		$(".write .verify input").css({
-			'height': 0.056 * com_h
-		})
+		// $(".write .verify input").css({
+		// 	'height': 0.056 * com_h
+		// })
 		$(".verify_img").css({
 			'height': 0.071 * com_h,
 			'margin-top': 0.021 * com_h
@@ -1918,10 +1884,10 @@ $(".write .id input").on({
 		// 	alert("您输入的字数超限！");
 		// }
 		// console.log($(".write .id input").val()+"8899")
-		if ($(this).prop('comStart1')) {
-			flag1++;
-			return;
-		}
+		// if ($(this).prop('comStart1')) {
+		// 	flag1++;
+		// 	return;
+		// }
 
 
 		if ($(".write .id input").val().length > 8 && event.keyCode != 8) {
@@ -1931,23 +1897,24 @@ $(".write .id input").on({
 			$(".write .id input").val($(".write .id input").val().substring(0, 8));
 
 		}
-	},
-	onpaste: function() {
-		var textArea = $(this);
-		setTimeout(function() {
-			console.log(textArea.val());
-		}, 200);
-	},
-
-	compositionstart: function() {
-		$(this).prop('comStart1', true);
-		// console.log("zhongwen")
-	},
-	compositionend: function() {
-		$(this).prop('comStart1', false);
-		// console.log("zhongwe3ndn")
-
 	}
+	// ,
+	// onpaste: function() {
+	// 	var textArea = $(this);
+	// 	setTimeout(function() {
+	// 		console.log(textArea.val());
+	// 	}, 200);
+	// },
+
+	// compositionstart: function() {
+	// 	$(this).prop('comStart1', true);
+	// 	console.log("zhongwen")
+	// },
+	// compositionend: function() {
+	// 	$(this).prop('comStart1', false);
+	// 	console.log("zhongwe3ndn")
+
+	// }
 })
 //留言框判断
 //如果用户自己发起删除不应该判断为超出
@@ -1960,22 +1927,23 @@ $(".write textarea").on({
 	},
 
 	keyup: function(event) {
-		if ($(this).prop('comStart')) return;
+		// if ($(this).prop('comStart')) return;
 
 		if ($(".write textarea").val().length > 80 && event.keyCode != 8) {
 			alert("字数太多了！");
 			$(".write textarea").val($(".write textarea").val().substring(0, 80));
 
 		}
-	},
-	compositionstart: function() {
-		// console.log("zhongwen")
-		$(this).prop('comStart', true);
-	},
-	compositionend: function() {
-		// console.log("zhongwenedn")
-		$(this).prop('comStart', false);
 	}
+	// ,
+	// compositionstart: function() {
+	// 	// console.log("zhongwen")
+	// 	$(this).prop('comStart', true);
+	// },
+	// compositionend: function() {
+	// 	// console.log("zhongwenedn")
+	// 	$(this).prop('comStart', false);
+	// }
 })
 
 //验证码输入部分
@@ -2001,7 +1969,7 @@ $(".write .submit").click(function() {
 	} else if ($(".write .id input").val() == '') {
 		alert("请输入昵称！");
 		changeverify();
-	} else if ($(".write .id input").val() > 8 || $(".write textarea").val().length > 80) {
+	} else if ($(".write .id input").val().length > 8 || $(".write textarea").val().length > 80) {
 		alert("字数超限!");
 		$(".write .id input").val($(".write .id input").val().substring(0, 8));
 		$(".write textarea").val($(".write textarea").val().substring(0, 80));
